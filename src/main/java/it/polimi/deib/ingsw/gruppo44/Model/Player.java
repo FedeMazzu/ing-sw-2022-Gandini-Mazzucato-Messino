@@ -23,6 +23,10 @@ public class Player {
         this.magician = magician;
     }
 
+    public int getMoney() {
+        return money;
+    }
+
     public void addCoin(){
         money++;
     }
