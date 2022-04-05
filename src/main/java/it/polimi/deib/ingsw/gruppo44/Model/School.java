@@ -69,7 +69,7 @@ public class School {
         }
     }
 
-    public Map<Color, Integer> getHallStudents() {
+    private Map<Color, Integer> getHallStudents() {
         return hallStudents;
     }
 
