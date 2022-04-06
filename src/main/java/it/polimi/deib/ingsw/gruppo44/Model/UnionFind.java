@@ -57,6 +57,7 @@ public class UnionFind {
         return groupSize[findGroup(id)];
     }
 
-
-
+    public int getSize() {
+        return size;
+    }
 }

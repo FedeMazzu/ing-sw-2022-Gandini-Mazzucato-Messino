@@ -23,18 +23,6 @@ public class Island {
         hasTower = false;
     }
 
-    public int getIslandID() {
-        return islandID;
-    }
-
-    public int getStudentNum(Color color){
-        return students.get(color);
-    }
-
-    public void setStudents(Color color, int val){
-        students.put(color,val);
-    }
-
     private int influence(Team team){
         int score;
         School school;
@@ -49,5 +37,30 @@ public class Island {
         }
         return score;
     }
+
+    public void islandClaim(Island island){
+        int bestScore = 0;
+        Team bestTeam;
+        //mi serve arrivare alle squadre
+    }
+
+    public int getIslandID() {
+        return islandID;
+    }
+
+    public int getStudentNum(Color color){
+        return students.get(color);
+    }
+
+    public void setStudents(Color color, int val){
+        students.put(color,val);
+    }
+
+    public boolean getHasTower() {
+        return hasTower;
+    }
+
+    public Tower getTowerColor(){ return tower};
+
 
 }
