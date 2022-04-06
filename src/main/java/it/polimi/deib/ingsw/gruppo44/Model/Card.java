@@ -22,6 +22,13 @@ public enum Card {
         played = true;
     }
 
+    /**
+     * method useful just for testing. Useful to set the status for the PlayerTest class
+     */
+    public void setPlayedFalse(){
+        this.played = false;
+    }
+
     public int getValue() {
         return value;
     }
