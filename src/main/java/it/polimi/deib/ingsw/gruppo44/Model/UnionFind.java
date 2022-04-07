@@ -60,4 +60,6 @@ public class UnionFind {
     public int getSize() {
         return size;
     }
+
+    public Island getIsland(int index){ return islands[index];}
 }

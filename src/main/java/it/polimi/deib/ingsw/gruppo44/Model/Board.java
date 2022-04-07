@@ -1,6 +1,7 @@
 package it.polimi.deib.ingsw.gruppo44.Model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,9 +21,9 @@ public class Board implements Data {
 
     public Board(int playerNum) {
         motherNaturePosition = 0;
-        professors = new Map<Color, Player>();
+        professors = new HashMap<Color,Player>();
         clouds = new ArrayList<Cloud>();
-        shop = new Shop;
+        shop = new Shop();
         unionFind = new UnionFind();
         notOwnedObjects = new NotOwnedObjects();
         numOfPlayers = playerNum;
@@ -49,6 +50,7 @@ public class Board implements Data {
             if(currGroup != tempGroup){
                 currGroup = tempGroup;
                 spaces--;
+                motherNaturePosition = currGroup;
             }
         }
     }
@@ -57,9 +59,12 @@ public class Board implements Data {
         return motherNaturePosition;
     }
 
+
+
     public int getNumOfPlayers() {
         return numOfPlayers;
     }
+
 
 
 

@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class Team implements Data{
     private List<Player> players;
-    private int towersNumber;
+    private int towerCount;
     private Tower tower;
 
     public Team(Tower tower) {
@@ -43,6 +43,7 @@ public class Team implements Data{
         return tower;
     }
 
-    public void setTowersNumber(int towersNumber) {this.towersNumber = towersNumber;}
+    public void setTowerCount(int count) {this.towerCount = count;}
+    public int getTowerCount(){return towerCount;}
 
 }
