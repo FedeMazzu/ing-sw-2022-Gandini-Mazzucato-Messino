@@ -1,7 +1,7 @@
 package it.polimi.deib.ingsw.gruppo44.Model;
 
 /**
- * class to observe the schools
+ * class to observe the school
  * @author filippogandini
  */
 public class SchoolObserver {

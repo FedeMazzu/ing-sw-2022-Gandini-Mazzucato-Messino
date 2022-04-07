@@ -19,18 +19,17 @@ public class Board implements Data {
     private NotOwnedObjects notOwnedObjects;
     private int numOfPlayers;
 
-    public Board(int playerNum) {
+    public Board(GameMode gameMode) {
         motherNaturePosition = 0;
         professors = new HashMap<Color,Player>();
         clouds = new ArrayList<Cloud>();
         shop = new Shop();
         unionFind = new UnionFind();
         notOwnedObjects = new NotOwnedObjects();
-        numOfPlayers = playerNum;
+        numOfPlayers = gameMode.getTeamPlayers() * gameMode.getTeamsNumber();
 
-        for(int p = 0; p<playerNum;p++){
-            Cloud tempCloud = new Cloud(playerNum);
-            clouds.add(tempCloud);
+        for(int p = 0; p< gameMode.getCloudsNumbers();p++){
+            clouds.add(new Cloud(gameMode.getCloudStudents()));
         }
 
 

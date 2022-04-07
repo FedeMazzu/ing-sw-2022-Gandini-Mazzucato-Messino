@@ -12,6 +12,9 @@ public class Cloud {
     private boolean empty;
     private int sizeMod;
 
+    public Cloud(int sizeMod){
+        this.sizeMod = sizeMod;
+    }
     public boolean isEmpty() {
         return empty;
     }

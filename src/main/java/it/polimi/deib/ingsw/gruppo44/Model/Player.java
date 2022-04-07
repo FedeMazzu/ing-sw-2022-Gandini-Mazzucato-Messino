@@ -9,25 +9,33 @@ import java.util.List;
  */
 
 public class Player {
-    private final String name;
-    private final int port;
-    private final String IP;
-    private final School school;
+    private String name;
+    private int port;
+    private String IP;
+    private School school;
     private int money;
-    private final Magician magician;
+    private Magician magician;
     private Card[] deck;
 
     /**
      * Constructor. Note that the instantiation of a player implies the instantiation of a School
      */
-    public Player(String name, String IP, int port, Magician magician) {
+    public Player(String name, String IP, int port, Magician magician,GameMode gameMode) {
         this.name = name;
         this.IP = IP;
         this.port = port;
-        this.school = new School(this);
+        this.school = new School(this,gameMode.getPlayerEntranceStudents());
         this.money = 0;
         this.magician = magician;
         this.deck = new Card[]{Card.ONE, Card.TWO, Card.THREE, Card.FOUR, Card.FIVE, Card.SIX, Card.SEVEN, Card.EIGHT, Card.NINE, Card.TEN};
+    }
+
+    /**
+     * perhaps  the final constructor, the other attributes are unuseful
+     * @param gameMode necessary to establish the number of
+     */
+    public Player(GameMode gameMode){
+        this.school = new School(this,gameMode.getPlayerEntranceStudents());
     }
 
     /**

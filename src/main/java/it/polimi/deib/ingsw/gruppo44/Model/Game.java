@@ -1,5 +1,6 @@
 package it.polimi.deib.ingsw.gruppo44.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,8 +11,15 @@ public class Game {
     private List<Data> data;
 
     /**
-     * method to initialize the game taking some parameters form the client inputs
+     * Constructor which initializes the game
+     * @param gameMode
      */
-    public void init(){
+    public Game(GameMode gameMode){
+        data = new ArrayList<>();
+        // the index i is necessary for a correct initialization of the Tower type
+        for(int i=0; i< gameMode.getTeamsNumber();i++) data.add(new Team(Tower.getColorById(i),gameMode));
+        new Board(gameMode);
     }
+
+
 }

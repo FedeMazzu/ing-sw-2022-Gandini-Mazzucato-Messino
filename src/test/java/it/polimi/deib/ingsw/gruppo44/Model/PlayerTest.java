@@ -19,7 +19,7 @@ class PlayerTest {
 
     @BeforeEach
     public void setUp() {
-        player = new Player("Filippo","127000000000",3084,Magician.MONK);
+        player = new Player("Filippo","127000000000",3084,Magician.MONK,GameMode.TwoPlayersBasic);
         for(Card card : Card.values()) card.setPlayedFalse();
     }
 

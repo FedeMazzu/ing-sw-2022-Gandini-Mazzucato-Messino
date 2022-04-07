@@ -12,9 +12,10 @@ public class Team implements Data{
     private int towerCount;
     private Tower tower;
 
-    public Team(Tower tower) {
+    public Team(Tower tower,GameMode gameMode) {
         this.tower = tower;
         players = new ArrayList<>();
+        for(int i=0; i< gameMode.getTeamPlayers(); i++) players.add(new Player(gameMode));
     }
 
     /**

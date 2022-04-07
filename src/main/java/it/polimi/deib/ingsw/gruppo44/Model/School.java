@@ -15,17 +15,19 @@ public class School {
     private Map<Color, Boolean> professors;
     private int schoolTowersNumber;//note that it's just for the GUI, the towers are owned by the team, not the school.
     private SchoolObserver schoolObserver;
+    private final int entranceStudentsNum;
     /**
      * Constructor. It initializes the maps keeping track of the students and professors
      * @param player associated to the school
      */
-    public School(Player player){
+    public School(Player player,int entranceStudentsNum){
         this.player = player;
         schools = new ArrayList<>();
         hallStudents = new HashMap<>();
         entranceStudents = new HashMap<>();
         professors = new HashMap<>();
         schoolObserver = new SchoolObserver(this);
+        this.entranceStudentsNum =entranceStudentsNum;
         //it's necessary because the colors(keys) aren't assigned by default
         for(Color color : Color.values()){
             hallStudents.put(color, 0);
