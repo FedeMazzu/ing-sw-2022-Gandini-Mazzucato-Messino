@@ -9,22 +9,31 @@ import java.util.List;
  */
 public class Team implements Data{
     private List<Player> players;
-    private int towerNumber;
+    private int towersNumber;
     private Tower tower;
 
     public Team(Tower tower) {
         this.tower = tower;
-        towerNumber = 0;
         players = new ArrayList<>();
     }
 
+    /**
+     * method to save the team's data
+     */
+    @Override
+    public void save(){}
+
+    /**
+     * method to add a player to the team
+     * @param player added to the team
+     */
     public void addPlayer(Player player){
         players.add(player);
     }
 
     /**
      * note that it exposes the rep
-     * @return the list of players
+     * @return the list of players in the team
      */
     public List<Player> getPlayers() {
         return players;
@@ -34,9 +43,6 @@ public class Team implements Data{
         return tower;
     }
 
-    /**
-     * method to save the team's data
-     */
-    @Override
-    public void save(){}
+    public void setTowersNumber(int towersNumber) {this.towersNumber = towersNumber;}
+
 }

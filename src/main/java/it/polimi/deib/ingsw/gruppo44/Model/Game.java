@@ -8,4 +8,10 @@ import java.util.List;
  */
 public class Game {
     private List<Data> data;
+
+    /**
+     * method to initialize the game taking some parameters form the client inputs
+     */
+    public void init(){
+    }
 }
