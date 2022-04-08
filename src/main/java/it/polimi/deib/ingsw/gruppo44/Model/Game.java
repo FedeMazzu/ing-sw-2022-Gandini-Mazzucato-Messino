@@ -8,22 +8,28 @@ import java.util.List;
  * @author filippogandini
  */
 public class Game {
-    private List<Data> data;
+    static public List<Team> teams;
+    private Board board;
 
     /**
      * Constructor which initializes the game
      * @param gameMode
      */
     public Game(GameMode gameMode){
-        data = new ArrayList<>();
+        teams = new ArrayList<>();
         // the index i is necessary to count the initialized teams
         int i=0;
+        board = new Board(gameMode);
         for(Tower tower : Tower.values()){
             if(i == gameMode.getTeamsNumber()) break;
-            data.add(new Team(tower, gameMode));
+            teams.add(new Team(tower, gameMode));
             i++;
         }
-        new Board(gameMode);
+
+    }
+
+    public Board getBoard(){
+        return board;
     }
 
 

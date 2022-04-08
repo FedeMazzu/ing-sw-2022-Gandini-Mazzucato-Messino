@@ -38,7 +38,7 @@ public class Board implements Data {
      * method to change mother nature's position on the islands
      * @param spaces number of spaces motherNature will move
      */
-
+    //SHOULD BE PRIVATE? ç
     public void moveMotherNature(int spaces){
         int currIsland = getMotherNaturePosition();
         int currGroup = unionFind.findGroup(currIsland);
@@ -51,6 +51,7 @@ public class Board implements Data {
                 motherNaturePosition = currGroup;
             }
         }
+        unionFind.getIsland(motherNaturePosition).islandClaim();
     }
 
     public int getMotherNaturePosition() {
@@ -63,8 +64,9 @@ public class Board implements Data {
         return numOfPlayers;
     }
 
-
-
+    public UnionFind getUnionFind() {
+        return unionFind;
+    }
 
     /**
      *  method to save the board's data

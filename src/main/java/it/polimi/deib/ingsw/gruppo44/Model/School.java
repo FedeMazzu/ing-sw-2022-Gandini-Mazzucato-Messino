@@ -86,6 +86,14 @@ public class School {
         }
         notifyObserver();;
     }
+    //METHOD ONLY FOR TESTING ç
+    public void TESTsetProfessor(Color color){
+        professors.put(color,true);
+    }
+
+    public void TESTnoProfessor(Color color){
+        professors.put(color,false);
+    }
 
     /**
      * method to notify the observer after a change

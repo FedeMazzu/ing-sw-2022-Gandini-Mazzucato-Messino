@@ -1,6 +1,8 @@
 package it.polimi.deib.ingsw.gruppo44.Model;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * class to manage the islands
@@ -18,12 +20,29 @@ public class UnionFind {
         group = new int [12];
         groupSize = new int [12];
         size = 12;
+        ArrayList <Color> tempArr = new ArrayList<>();
+        Random rand = new Random();
+        for(Color c:Color.values()){
+            tempArr.add(c);
+            tempArr.add(c);
+        }
         for(int i=0;i<12;i++){
+
             group[i] = -1;
             islands[i] = new Island(this,i);
+            if(i%6 != 0){
+                //adding one student of a random color from five pairs
+                //no need to subtract from the notOwnedObj since this amount is constant
+                int randIndex = rand.nextInt(tempArr.size());
+                Color tempColor = tempArr.get(randIndex);
+                islands[i].addStudent(tempColor);
+                tempArr.remove(randIndex);
+
+            }
             groupSize[i] = 1;
         }
     }
+
 
 
     public int findGroup(int is){
