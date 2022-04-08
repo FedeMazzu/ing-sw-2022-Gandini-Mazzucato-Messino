@@ -16,8 +16,13 @@ public class Game {
      */
     public Game(GameMode gameMode){
         data = new ArrayList<>();
-        // the index i is necessary for a correct initialization of the Tower type
-        for(int i=0; i< gameMode.getTeamsNumber();i++) data.add(new Team(Tower.getColorById(i),gameMode));
+        // the index i is necessary to count the initialized teams
+        int i=0;
+        for(Tower tower : Tower.values()){
+            if(i == gameMode.getTeamsNumber()) break;
+            data.add(new Team(tower, gameMode));
+            i++;
+        }
         new Board(gameMode);
     }
 

@@ -23,11 +23,10 @@ public class Board implements Data {
         motherNaturePosition = 0;
         professors = new HashMap<Color,Player>();
         clouds = new ArrayList<Cloud>();
-        shop = new Shop();
         unionFind = new UnionFind();
         notOwnedObjects = new NotOwnedObjects();
         numOfPlayers = gameMode.getTeamPlayers() * gameMode.getTeamsNumber();
-
+        if(gameMode.isExpertMode()) shop = new Shop();
         for(int p = 0; p< gameMode.getCloudsNumbers();p++){
             clouds.add(new Cloud(gameMode.getCloudStudents()));
         }
