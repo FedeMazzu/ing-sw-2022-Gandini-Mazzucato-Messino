@@ -45,7 +45,7 @@ public class Island {
     public void islandClaim(){
         int bestScore = 0;
         Team bestTeam = null;
-        for(Team t : Game.teams){
+        for(Team t : unionFind.teams){
             int tempScore = influence(t);
             if(tempScore > bestScore){
                 bestScore = tempScore;
@@ -65,7 +65,7 @@ public class Island {
         if(getHasTower()){
             //there is at least one tower
             int islandSize = unionFind.getGroupSize(islandID);
-            for(Team t : Game.teams){
+            for(Team t : unionFind.teams){
                 if(t.getTower() == getTowerColor()) t.setTowerCount(t.getTowerCount() + islandSize);
             }
             tower = bestTeam.getTower();

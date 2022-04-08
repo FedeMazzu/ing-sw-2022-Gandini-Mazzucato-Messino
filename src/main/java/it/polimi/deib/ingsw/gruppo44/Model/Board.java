@@ -19,11 +19,11 @@ public class Board implements Data {
     private NotOwnedObjects notOwnedObjects;
     private int numOfPlayers;
 
-    public Board(GameMode gameMode) {
+    public Board(GameMode gameMode, Game game) {
         motherNaturePosition = 0;
         professors = new HashMap<Color,Player>();
         clouds = new ArrayList<Cloud>();
-        unionFind = new UnionFind();
+        unionFind = new UnionFind(game);
         notOwnedObjects = new NotOwnedObjects();
         numOfPlayers = gameMode.getTeamPlayers() * gameMode.getTeamsNumber();
         if(gameMode.isExpertMode()) shop = new Shop();

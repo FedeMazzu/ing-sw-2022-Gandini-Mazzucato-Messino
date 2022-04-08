@@ -14,13 +14,15 @@ public class UnionFind {
     private int [] group; // where the ID of the group is sorted for each island
     private int size; //number of groups of islands
     private int [] groupSize;
+    public List<Team> teams;
 
-    public UnionFind(){
+    public UnionFind(Game game){
         islands = new Island[12];
         group = new int [12];
         groupSize = new int [12];
         size = 12;
         ArrayList <Color> tempArr = new ArrayList<>();
+        teams = game.getTeams();
         Random rand = new Random();
         for(Color c:Color.values()){
             tempArr.add(c);

@@ -8,7 +8,7 @@ import java.util.List;
  * @author filippogandini
  */
 public class Game {
-    static public List<Team> teams;
+    private List<Team> teams;
     private Board board;
 
     /**
@@ -19,7 +19,7 @@ public class Game {
         teams = new ArrayList<>();
         // the index i is necessary to count the initialized teams
         int i=0;
-        board = new Board(gameMode);
+        board = new Board(gameMode,this);
         for(Tower tower : Tower.values()){
             if(i == gameMode.getTeamsNumber()) break;
             teams.add(new Team(tower, gameMode));
@@ -30,6 +30,10 @@ public class Game {
 
     public Board getBoard(){
         return board;
+    }
+
+    public List <Team> getTeams(){
+        return teams;
     }
 
 

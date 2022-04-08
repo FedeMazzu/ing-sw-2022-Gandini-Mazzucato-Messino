@@ -29,7 +29,7 @@ class IslandTest {
 
     @Test
     public void islandClaim__putTower__2P(){
-        List<Team> teams = Game.teams;
+        List<Team> teams = uf.teams;
         //give all prof to the first player
         Team t1 = teams.get(0);
         Player p1 = t1.getPlayers().get(0);
@@ -56,7 +56,7 @@ class IslandTest {
 
     @Test
     public void IslandClaim__merge_2P(){
-        List<Team> teams = Game.teams;
+        List<Team> teams = uf.teams;
         //give all prof to the first player
         Team t1 = teams.get(0);
         Player p1 = t1.getPlayers().get(0);
