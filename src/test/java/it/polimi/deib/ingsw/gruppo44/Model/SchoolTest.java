@@ -15,7 +15,7 @@ class SchoolTest {
     private Player player;
     @BeforeEach
     void setUp() {
-        player = new Player("Filippo","127000000000",3084,Magician.MONK,GameMode.TwoPlayersBasic);
+        player = new Player("Filippo",Magician.MONK,GameMode.TwoPlayersBasic);
         school = new School(player,7);
     }
 
@@ -60,7 +60,7 @@ class SchoolTest {
      * note that it also tests the private method earnProfessor
      */
     public void addHallStudent2__wocd(){
-        Player player1 = new Player("Riccardo","127000000001",3084,Magician.KING,GameMode.TwoPlayersBasic);
+        Player player1 = new Player("Riccardo",Magician.KING,GameMode.TwoPlayersBasic);
         School school1 = new School(player1,7);
         school.addSchool(school1);
         for(Color color: Color.values()){

@@ -10,8 +10,6 @@ import java.util.List;
 
 public class Player {
     private String name;
-    private int port;
-    private String IP;
     private School school;
     private int money;
     private Magician magician;
@@ -20,10 +18,8 @@ public class Player {
     /**
      * Constructor. Note that the instantiation of a player implies the instantiation of a School
      */
-    public Player(String name, String IP, int port, Magician magician,GameMode gameMode) {
+    public Player(String name, Magician magician, GameMode gameMode) {
         this.name = name;
-        this.IP = IP;
-        this.port = port;
         this.school = new School(this,gameMode.getPlayerEntranceStudents());
         this.money = 0;
         this.magician = magician;
@@ -36,6 +32,8 @@ public class Player {
      */
     public Player(GameMode gameMode){
         this.school = new School(this,gameMode.getPlayerEntranceStudents());
+        this.money = 0;
+        this.deck = new Card[]{Card.ONE, Card.TWO, Card.THREE, Card.FOUR, Card.FIVE, Card.SIX, Card.SEVEN, Card.EIGHT, Card.NINE, Card.TEN};
     }
 
     /**

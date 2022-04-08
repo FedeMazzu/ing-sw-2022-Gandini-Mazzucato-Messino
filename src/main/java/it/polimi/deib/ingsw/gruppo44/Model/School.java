@@ -49,8 +49,15 @@ public class School {
     }
 
     public void addEntranceStudent(Color color){
-        entranceStudents.put(color, entranceStudents.get(color)+1);
-        notifyObserver();
+        int actualEntranceStudentsNum = 0;
+        try {
+            for(Color col: Color.values()) actualEntranceStudentsNum += getEntranceStudentsNum(col);
+            if(actualEntranceStudentsNum >= entranceStudentsNum) throw new Exception();
+            entranceStudents.put(color, entranceStudents.get(color) + 1);
+            notifyObserver();
+        } catch(Exception e){
+            //handle it ç
+        }
     }
     public void addSchool(School school){
         schools.add(school);
