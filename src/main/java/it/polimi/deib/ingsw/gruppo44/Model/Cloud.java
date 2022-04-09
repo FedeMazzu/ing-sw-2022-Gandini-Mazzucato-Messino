@@ -9,47 +9,50 @@ import java.util.Map;
  */
 
 public class Cloud {
-
     private Map<Color, Integer> students;
     private boolean empty;
     private int sizeMod;
 
-    public Cloud(int playerNum){
-        int size;
-        if (playerNum == 3) size = 4;
-        else size = 3;
-        sizeMod = size;
+    public Cloud(int sizeMod){
+        this.sizeMod = sizeMod;
         students = new HashMap<>();
         for (Color color : Color.values()) {
             students.put(color, 0);
         }
+        empty=true;
     }
 
+    public boolean isEmpty() {
+        return empty;
+    }
 
-        public boolean isEmpty() {return empty;}
+    public int getStudentsNum(Color color){
+        return students.get(color);
+    }
 
-
-        public int getStudentsNum(Color color){
-            return students.get(color);
+    public void setStudents (Color color,int val){
+        int sum = 0;
+        for(Color color1 : Color.values()){
+            sum += getStudentsNum(color1);
         }
+        if((sum+val)<=sizeMod){
+            {students.put(color, val);}}
+        empty=false;
+    }
 
-        public void setStudents (Color color,int val){
-            students.put(color, val);
-        }
+    /**
+     * method to wipe the clouds clean
+     */
 
-        public int getSizeMod () {
-            return sizeMod;
-        }
-
-        /**
-         * method to wipe the clouds clean
-         */
-
-        public void wipeCloud(Cloud cloud){
-            for (Color color : Color.values()) {
-                students.remove(color, 4);
+    public void wipeCloud(){
+        for (Color color : Color.values()) {
+            while(getStudentsNum(color)>0){
+                students.remove(color, 1);
             }
-            empty = true;
         }
-
+        empty = true;
     }
+
+}
+
+
