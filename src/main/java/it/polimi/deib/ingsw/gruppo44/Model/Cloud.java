@@ -30,13 +30,8 @@ public class Cloud {
         return students.get(color);
     }
 
-    public void setStudents (Color color,int val){
-        int sum = 0;
-        for(Color color1 : Color.values()){
-            sum += getStudentsNum(color1);
-        }
-        if((sum+val)<=sizeMod){
-            {students.put(color, val);}}
+    public void addStudent(Color color){
+        students.put(color,students.get(color)+1);
         empty=false;
     }
 
