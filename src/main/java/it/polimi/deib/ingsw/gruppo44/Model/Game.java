@@ -1,5 +1,6 @@
 package it.polimi.deib.ingsw.gruppo44.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -7,11 +8,33 @@ import java.util.List;
  * @author filippogandini
  */
 public class Game {
-    private List<Data> data;
+    private List<Team> teams;
+    private Board board;
 
     /**
-     * method to initialize the game taking some parameters form the client inputs
+     * Constructor which initializes the game
+     * @param gameMode
      */
-    public void init(){
+    public Game(GameMode gameMode){
+        teams = new ArrayList<>();
+        // the index i is necessary to count the initialized teams
+        int i=0;
+        board = new Board(gameMode,this);
+        for(Tower tower : Tower.values()){
+            if(i == gameMode.getTeamsNumber()) break;
+            teams.add(new Team(tower, gameMode,this));
+            i++;
+        }
+
     }
+
+    public Board getBoard(){
+        return board;
+    }
+
+    public List <Team> getTeams(){
+        return teams;
+    }
+
+
 }

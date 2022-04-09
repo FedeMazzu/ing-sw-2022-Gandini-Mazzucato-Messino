@@ -1,13 +1,10 @@
 package it.polimi.deib.ingsw.gruppo44.Model;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 /**
  * class to keep track of the unused objects
- * @author filippogandini
+ * @author zenomess
  */
 
 public class NotOwnedObjects{
@@ -16,38 +13,42 @@ public class NotOwnedObjects{
     private int bankMoney;
     private GameMode gameMode;
     private Random rand;
-    private ArrayList<Color> Arr;
+    private List<Color> students;
 
     public NotOwnedObjects(GameMode gameMode){
         this.gameMode = gameMode;
         //students = new HashMap<>();
         //for(Color color : Color.values())
-           //students.put(color, 24);
+        //students.put(color, 24);
         freeProfessors = new HashMap<>();
         for(Color color1 : Color.values())
             freeProfessors.put(color1, true);
         if(gameMode.isExpertMode()) bankMoney=20;
         else bankMoney=0;
-        Arr = new ArrayList<>();
+        students = new ArrayList<>();
         rand = new Random();
         for(Color c : Color.values()){
             for(int i=0; i<24; i++)
-                Arr.add(c);
+                students.add(c);
         }
     }
 
-    public void fillClouds(Cloud[] clouds){
+    public void giveCoin(){
+        bankMoney--;
+    }
+
+    public void fillClouds(Cloud cloud){
+        int randIndex;
         for(int i=0; i<gameMode.getCloudsNumbers(); i++){
-            for(int p=0; p<gameMode.getCloudStudents(); p++) {
-                int randIndex = rand.nextInt(Arr.size());
-                Color tempColor = Arr.get(randIndex);
-                clouds[i].addStudent(tempColor);
-                Arr.remove(randIndex);
-            }
+            randIndex = rand.nextInt(students.size());
+            Color tempColor = students.get(randIndex);
+            cloud.addStudent(tempColor);
+            students.remove(randIndex);
         }
+
     }
 
-    public void fillEntrances()
+    //public void fillEntrances(){}
 
 
 

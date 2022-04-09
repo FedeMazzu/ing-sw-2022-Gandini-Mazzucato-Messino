@@ -19,18 +19,16 @@ public class Board implements Data {
     private NotOwnedObjects notOwnedObjects;
     private int numOfPlayers;
 
-    public Board(int playerNum) {
+    public Board(GameMode gameMode, Game game) {
         motherNaturePosition = 0;
         professors = new HashMap<Color,Player>();
         clouds = new ArrayList<Cloud>();
-        shop = new Shop();
-        unionFind = new UnionFind();
-        notOwnedObjects = new NotOwnedObjects();
-        numOfPlayers = playerNum;
-
-        for(int p = 0; p<playerNum;p++){
-            Cloud tempCloud = new Cloud(playerNum);
-            clouds.add(tempCloud);
+        unionFind = new UnionFind(game);
+        notOwnedObjects = new NotOwnedObjects(gameMode);
+        numOfPlayers = gameMode.getTeamPlayers() * gameMode.getTeamsNumber();
+        if(gameMode.isExpertMode()) shop = new Shop();
+        for(int p = 0; p< gameMode.getCloudsNumbers();p++){
+            clouds.add(new Cloud(gameMode.getCloudStudents()));
         }
 
 
@@ -40,7 +38,7 @@ public class Board implements Data {
      * method to change mother nature's position on the islands
      * @param spaces number of spaces motherNature will move
      */
-
+    //SHOULD BE PRIVATE? ç
     public void moveMotherNature(int spaces){
         int currIsland = getMotherNaturePosition();
         int currGroup = unionFind.findGroup(currIsland);
@@ -53,6 +51,7 @@ public class Board implements Data {
                 motherNaturePosition = currGroup;
             }
         }
+        unionFind.getIsland(motherNaturePosition).islandClaim();
     }
 
     public int getMotherNaturePosition() {
@@ -65,8 +64,13 @@ public class Board implements Data {
         return numOfPlayers;
     }
 
+    public UnionFind getUnionFind() {
+        return unionFind;
+    }
 
-
+    public NotOwnedObjects getNotOwnedObjects() {
+        return notOwnedObjects;
+    }
 
     /**
      *  method to save the board's data

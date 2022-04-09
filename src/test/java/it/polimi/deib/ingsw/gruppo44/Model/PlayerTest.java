@@ -15,11 +15,15 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 
 class PlayerTest {
+    private Game game;
     private Player player;
 
     @BeforeEach
     public void setUp() {
-        player = new Player("Filippo","127000000000",3084,Magician.MONK);
+        game = new Game(GameMode.TwoPlayersBasic);
+        List<Team> teams = game.getTeams();
+        //works because of the mood
+        player = teams.get(0).getPlayers().get(0);
         for(Card card : Card.values()) card.setPlayedFalse();
     }
 

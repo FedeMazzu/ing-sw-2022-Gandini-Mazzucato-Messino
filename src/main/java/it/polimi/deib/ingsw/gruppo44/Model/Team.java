@@ -12,9 +12,15 @@ public class Team implements Data{
     private int towerCount;
     private Tower tower;
 
-    public Team(Tower tower) {
+    /**
+     * Constructor
+     * @param tower type of the team
+     * @param gameMode which defines the number of player for Team
+     */
+    public Team(Tower tower,GameMode gameMode,Game game) {
         this.tower = tower;
         players = new ArrayList<>();
+        for(int i=0; i< gameMode.getTeamPlayers(); i++) players.add(new Player(gameMode,game.getBoard()));
     }
 
     /**

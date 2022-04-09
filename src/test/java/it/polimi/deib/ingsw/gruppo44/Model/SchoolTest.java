@@ -11,12 +11,14 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author filippogandini
  */
 class SchoolTest {
+    private Game game;
     private School school;
     private Player player;
     @BeforeEach
     void setUp() {
-        player = new Player("Filippo","127000000000",3084,Magician.MONK);
-        school = new School(player);
+        game = new Game(GameMode.TwoPlayersBasic);
+        player = game.getTeams().get(0).getPlayers().get(0);
+        school = player.getSchool();
     }
 
     @AfterEach
@@ -60,8 +62,9 @@ class SchoolTest {
      * note that it also tests the private method earnProfessor
      */
     public void addHallStudent2__wocd(){
-        Player player1 = new Player("Riccardo","127000000001",3084,Magician.KING);
-        School school1 = new School(player1);
+        //works on this GameMode
+        Player player1 = game.getTeams().get(1).getPlayers().get(0);
+        School school1 = player1.getSchool();
         school.addSchool(school1);
         for(Color color: Color.values()){
             if(color != Color.GREEN){

@@ -20,13 +20,18 @@ class CloudTest {
 
     @Test
     public void isEmpty() {
-        assertTrue(cloud.isEmpty());
+        boolean empty = true;
+        for(Color color : Color.values()){
+            if(cloud.getStudentsNum(color) != 0) empty =false;
+        }
+        assertTrue(empty);
     }
 
     @Test
-    public void setStudents__woct() {
-        cloud.setStudents(Color.GREEN, 2);
-        cloud.setStudents(Color.RED, 1);
+    public void addStudent__woct() {
+        cloud.addStudent(Color.GREEN);
+        cloud.addStudent(Color.GREEN);
+        cloud.addStudent(Color.RED);
         assertEquals(2,cloud.getStudentsNum(Color.GREEN));
         assertEquals(1,cloud.getStudentsNum(Color.RED));
         assertEquals(0,cloud.getStudentsNum(Color.YELLOW));
@@ -41,12 +46,14 @@ class CloudTest {
         assertEquals(0,cloud.getStudentsNum(Color.GREEN));
         assertEquals(0,cloud.getStudentsNum(Color.BLUE));
         assertEquals(0,cloud.getStudentsNum(Color.PINK));
-        assertTrue(cloud.isEmpty());
+        //assertTrue(cloud.isEmpty());
     }
 
     @Test
-    public void setStudents__nwoud() {
-        cloud.setStudents(Color.GREEN, 3);
+    public void addStudent__nwoud() {
+        cloud.addStudent(Color.GREEN);
+        cloud.addStudent(Color.GREEN);
+        cloud.addStudent(Color.GREEN);
         assertNotEquals(2,cloud.getStudentsNum(Color.GREEN));
         assertNotEquals(1,cloud.getStudentsNum(Color.GREEN));
         assertEquals(0,cloud.getStudentsNum(Color.RED));
