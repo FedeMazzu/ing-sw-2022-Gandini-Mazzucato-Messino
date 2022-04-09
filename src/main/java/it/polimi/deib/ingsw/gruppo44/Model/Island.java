@@ -13,14 +13,18 @@ public class Island {
     private Map<Color, Integer> students;
     private Tower tower;
     private int islandID;
-    private List<Team> teams;
+    //private List<Team> teams;
     private boolean hasTower;
 
     public Island(UnionFind uf,int  id){
         islandID = id;
         students = new HashMap<>();
+        for(Color color:Color.values()) {
+            students.put(color, 0);
+        }
         unionFind = uf;
         hasTower = false;
+
     }
 
     private int influence(Team team){
@@ -41,7 +45,7 @@ public class Island {
     public void islandClaim(){
         int bestScore = 0;
         Team bestTeam = null;
-        for(Team t : teams){
+        for(Team t : unionFind.teams){
             int tempScore = influence(t);
             if(tempScore > bestScore){
                 bestScore = tempScore;
@@ -61,7 +65,7 @@ public class Island {
         if(getHasTower()){
             //there is at least one tower
             int islandSize = unionFind.getGroupSize(islandID);
-            for(Team t : teams){
+            for(Team t : unionFind.teams){
                 if(t.getTower() == getTowerColor()) t.setTowerCount(t.getTowerCount() + islandSize);
             }
             tower = bestTeam.getTower();
@@ -115,6 +119,8 @@ public class Island {
     public void setStudents(Color color, int val){
         students.put(color,val);
     }
+
+    public void addStudent(Color color) {students.put(color,students.get(color)+1);}
 
     public boolean getHasTower() {
         return hasTower;

@@ -15,17 +15,19 @@ public class School {
     private Map<Color, Boolean> professors;
     private int schoolTowersNumber;//note that it's just for the GUI, the towers are owned by the team, not the school.
     private SchoolObserver schoolObserver;
+    private final int entranceStudentsNum;
     /**
      * Constructor. It initializes the maps keeping track of the students and professors
      * @param player associated to the school
      */
-    public School(Player player){
+    public School(Player player,int entranceStudentsNum){
         this.player = player;
         schools = new ArrayList<>();
         hallStudents = new HashMap<>();
         entranceStudents = new HashMap<>();
         professors = new HashMap<>();
         schoolObserver = new SchoolObserver(this);
+        this.entranceStudentsNum =entranceStudentsNum;
         //it's necessary because the colors(keys) aren't assigned by default
         for(Color color : Color.values()){
             hallStudents.put(color, 0);
@@ -47,8 +49,15 @@ public class School {
     }
 
     public void addEntranceStudent(Color color){
-        entranceStudents.put(color, entranceStudents.get(color)+1);
-        notifyObserver();
+        int actualEntranceStudentsNum = 0;
+        try {
+            for(Color col: Color.values()) actualEntranceStudentsNum += getEntranceStudentsNum(col);
+            if(actualEntranceStudentsNum >= entranceStudentsNum) throw new Exception();
+            entranceStudents.put(color, entranceStudents.get(color) + 1);
+            notifyObserver();
+        } catch(Exception e){
+            //handle it ç
+        }
     }
     public void addSchool(School school){
         schools.add(school);
@@ -76,6 +85,14 @@ public class School {
             professors.put(color, true);
         }
         notifyObserver();;
+    }
+    //METHOD ONLY FOR TESTING ç
+    public void TESTsetProfessor(Color color){
+        professors.put(color,true);
+    }
+
+    public void TESTnoProfessor(Color color){
+        professors.put(color,false);
     }
 
     /**

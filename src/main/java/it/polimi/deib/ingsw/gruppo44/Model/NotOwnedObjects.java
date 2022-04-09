@@ -37,7 +37,7 @@ public class NotOwnedObjects{
         bankMoney--;
     }
 
-    public void fillClouds(Cloud cloud){
+    public void fillCloud(Cloud cloud){
         int randIndex;
         for(int i=0; i<gameMode.getCloudsNumbers(); i++){
             randIndex = rand.nextInt(students.size());
