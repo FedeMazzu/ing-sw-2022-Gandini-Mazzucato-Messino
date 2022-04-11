@@ -17,19 +17,8 @@ public class Player {
     private NotOwnedObjects notOwnedObjects;
 
     /**
-     * Constructor. Note that the instantiation of a player implies the instantiation of a School
-     */
-    public Player(String name, Magician magician, GameMode gameMode) {
-        this.name = name;
-        this.school = new School(this,gameMode.getPlayerEntranceStudents());
-        if(gameMode.isExpertMode()) this.money = 0;
-        this.magician = magician;
-        this.deck = new Card[]{Card.ONE, Card.TWO, Card.THREE, Card.FOUR, Card.FIVE, Card.SIX, Card.SEVEN, Card.EIGHT, Card.NINE, Card.TEN};
-    }
-
-    /**
-     * perhaps  the final constructor, the other attributes are unuseful
-     * @param gameMode necessary to establish the number of
+     * constructor, the other attributes are initialized by the setters called in the start stage of the Game controller
+     * @param gameMode necessary to establish the max number of students allowed in the entrance
      */
     public Player(GameMode gameMode, Board board){
         this.school = new School(this,gameMode.getPlayerEntranceStudents());
@@ -73,6 +62,14 @@ public class Player {
         return availableCards;
     }
 
+    public void setMagician(Magician magician) {
+        this.magician = magician;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     /**
      * the deck's index is value-1 because the card X is in position X-1
      * @param value associated to the card
@@ -81,7 +78,6 @@ public class Player {
     public Card getCard(int value){
         return deck[value-1];
     }
-
     public int getMoney() {
         return money;
     }

@@ -38,7 +38,7 @@ public class NotOwnedObjects{
     public void fillCloud(Cloud cloud){
         Random rand = new Random();
         int randIndex;
-        for(int i=0; i<gameMode.getCloudsNumbers(); i++){
+        for(int i=0; i<gameMode.getCloudStudents(); i++){
             randIndex = rand.nextInt(students.size());
             Color tempColor = students.get(randIndex);
             cloud.addStudent(tempColor);
