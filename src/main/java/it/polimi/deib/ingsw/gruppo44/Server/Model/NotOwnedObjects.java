@@ -47,7 +47,16 @@ public class NotOwnedObjects{
 
     }
 
-    //public void fillEntrances(){}
+    public void fillEntrance(School school){
+        Random rand = new Random();
+        int randIndex;
+        for(int i=0; i<7; i++){
+            randIndex = rand.nextInt(students.size());
+            Color tempColor = students.get(randIndex);
+            school.addEntranceStudent(tempColor);
+            students.remove(randIndex);
+        }
+    }
 
 
 
