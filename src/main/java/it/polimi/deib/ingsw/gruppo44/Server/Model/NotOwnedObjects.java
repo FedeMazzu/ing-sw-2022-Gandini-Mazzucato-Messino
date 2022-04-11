@@ -50,7 +50,7 @@ public class NotOwnedObjects{
     public void fillEntrance(School school){
         Random rand = new Random();
         int randIndex;
-        for(int i=0; i<7; i++){
+        for(int i=0; i<school.getMaxEntranceStudentsNum(); i++){
             randIndex = rand.nextInt(students.size());
             Color tempColor = students.get(randIndex);
             school.addEntranceStudent(tempColor);
