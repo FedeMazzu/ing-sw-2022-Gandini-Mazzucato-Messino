@@ -1,6 +1,7 @@
 package it.polimi.deib.ingsw.gruppo44.Server.Controller;
 
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Game;
+import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.Data;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,10 +12,12 @@ import java.util.List;
  */
 public class GameController {
     private Game game;
+    private Data data;
     private List<User> users;
     private Stage stage;
     private GameStage gameStage;
     private boolean endGame;
+
 
     public GameController() {
         users = new ArrayList<>();
@@ -44,6 +47,14 @@ public class GameController {
      */
     public void setGame(Game game) {
         this.game = game;
+    }
+
+    /**
+     * method called from the START stage
+     * @param data
+     */
+    public void setData(Data data) {
+        this.data = data;
     }
 
     /**

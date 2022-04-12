@@ -10,7 +10,7 @@ import java.util.Map;
  * @author FedeMazzu
  */
 
-public class Board implements Data {
+public class Board implements SaveData {
     private int motherNaturePosition;
     private Map<Color, Player> professors;
     private List<Cloud> clouds;
@@ -26,6 +26,7 @@ public class Board implements Data {
         unionFind = new UnionFind(game);
         notOwnedObjects = new NotOwnedObjects(gameMode);
         numOfPlayers = gameMode.getTeamPlayers() * gameMode.getTeamsNumber();
+        // remember multithread implementation
         if(gameMode.isExpertMode()) shop = new Shop();
         for(int p = 0; p< gameMode.getCloudsNumbers();p++){
             clouds.add(new Cloud(gameMode.getCloudStudents()));

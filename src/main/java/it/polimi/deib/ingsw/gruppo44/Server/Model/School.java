@@ -12,12 +12,12 @@ import java.util.Map;
  * @author filippogandini
  */
 public class School implements Observable {
-    private final Player player;
+    private Player player;
     private List<School> schools;
     private Map<Color, Integer> hallStudents, entranceStudents;
     private Map<Color, Boolean> professors;
     private int schoolTowersNumber;//note that it's just for the GUI, the towers are owned by the team, not the school. the Class lacks of the methods to manage this value;
-    private SchoolData schoolData;
+    private SchoolObserver schoolObserver;
     private final int maxEntranceStudentsNum;
     /**
      * Constructor. It initializes the maps keeping track of the students and professors
@@ -29,7 +29,6 @@ public class School implements Observable {
         hallStudents = new HashMap<>();
         entranceStudents = new HashMap<>();
         professors = new HashMap<>();
-        schoolData = new SchoolData(this);
         this.maxEntranceStudentsNum =entranceStudentsNum;
         //it's necessary because the colors(keys) aren't assigned by default
         for(Color color : Color.values()){
@@ -37,7 +36,10 @@ public class School implements Observable {
             entranceStudents.put(color, 0);
             professors.put(color, false);
         }
+        //it's necessary to instantiate it after the initialization of the maps
+        schoolObserver = new SchoolObserver(this);
     }
+
 
     /**
      * method to add a student in the hall that checks(and provides) if the professor is earned
@@ -102,7 +104,7 @@ public class School implements Observable {
      * method to notify the observer after a change
      */
     @Override
-    public void notifyObserver(){ schoolData.update();}
+    public void notifyObserver(){ schoolObserver.update();}
 
     /**
      * @param color of the professor to check
@@ -134,5 +136,9 @@ public class School implements Observable {
 
     public Player getPlayer() {
         return player;
+    }
+
+    public SchoolObserver getSchoolObserver() {
+        return schoolObserver;
     }
 }

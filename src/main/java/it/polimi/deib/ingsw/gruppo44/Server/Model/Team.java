@@ -7,7 +7,7 @@ import java.util.List;
  * class to represent the teams
  * @author filippogandini
  */
-public class Team implements Data{
+public class Team implements SaveData {
     private List<Player> players;
     private int towerCount;
     private Tower tower;

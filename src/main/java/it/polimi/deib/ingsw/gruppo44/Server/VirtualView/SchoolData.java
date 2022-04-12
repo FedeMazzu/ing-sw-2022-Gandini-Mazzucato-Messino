@@ -6,57 +6,75 @@ import it.polimi.deib.ingsw.gruppo44.Server.Model.Magician;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Player;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.School;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
- * School observer in the Virtual View
+ * School in the Virtual View
  */
-public class SchoolData implements Observer {
-    private School school;
+public class SchoolData {
     private Map<Color, Integer> hallStudents, entranceStudents;
     private Map<Color, Boolean> professors;
-    private int schoolTowersNumber;//note that it's just for the GUI, the towers are owned by the team, not the school.
-    private final int maxEntranceStudentsNum;
-    private final Magician magician; //to identify the player who owns the School
+    //identifier
+    private Magician magician;
 
-    public SchoolData(School school) {
-        this.school = school;
-        this.maxEntranceStudentsNum = school.getMaxEntranceStudentsNum();
-        magician = school.getPlayer().getMagician();
-        //in this case it is an initialization
-        update();
-    }
-
-    @Override
-    public void update() {
-        updateNumStudents();
-        updateProfessors();
-
+    public SchoolData() {
+        hallStudents = new HashMap<>();
+        entranceStudents = new HashMap<>();
+        professors = new HashMap<>();
     }
 
     /**
-     * checks the students numbers of the school and updates this class
+     * set the number of hall students
      */
-    public void updateNumStudents(){
-        try {
-            for (Color color : Color.values()) {
-                hallStudents.put(color, school.getHallStudentsNum(color));
-                entranceStudents.put(color, school.getEntranceStudentsNum(color));
-            }
-        } catch(NullPointerException e){
-            e.printStackTrace();
-        }
-    }    /**
-     * checks the professors of the school and updates this class
-     */
-    public void updateProfessors(){
-        try {
-            for (Color color : Color.values()) {
-                professors.put(color, school.hasProfessor(color));
-            }
-        } catch(NullPointerException e){
-            e.printStackTrace();
-        }
+    public void setHallStudents(Color color,int value){
+        hallStudents.put(color,value);
     }
+    /**
+     * set the number of entrance students
+     */
+    public void setEntranceStudents(Color color,int value){
+        entranceStudents.put(color,value);
+    }
+    /**
+     * set the professors
+     */
+    public void setProfessors(Color color,boolean value){
+        professors.put(color,value);
+    }
+
+    /**
+     * @param color of the professor to check
+     * @return true if the school has the professor of the passed color (false otherwise)
+     */
+    public boolean hasProfessor(Color color){
+        return professors.get(color);
+    }
+
+    /**
+     * @param color
+     * @return the number of hallStudents of color
+     */
+    public int getHallStudentsNum(Color color){
+        return hallStudents.get(color);
+    }
+
+    /**
+     * @param color
+     * @return the number of entranceStudents of color
+     */
+    public int getEntranceStudentsNum(Color color){
+        return entranceStudents.get(color);
+    }
+
+    public void setMagician(Magician magician) {
+        this.magician = magician;
+    }
+
+    public Magician getMagician() {
+        return magician;
+    }
+
+
 }
