@@ -62,6 +62,7 @@ public class School implements Observable {
             notifyObserver();
         } catch(Exception e){
             //handle it ç
+            e.printStackTrace();
         }
     }
     public void addSchool(School school){

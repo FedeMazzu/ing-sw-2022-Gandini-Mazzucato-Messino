@@ -31,8 +31,6 @@ public class Board implements SaveData {
         for(int p = 0; p< gameMode.getCloudsNumbers();p++){
             clouds.add(new Cloud(gameMode.getCloudStudents()));
         }
-
-
     }
 
     /**

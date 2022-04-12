@@ -74,7 +74,7 @@ class IslandTest {
         assertEquals(uf.findGroup(board.getMotherNaturePosition()),uf.findGroup(1));
 
         board.moveMotherNature(2);
-        //addding one student to island 6
+        //adding one student to island 6
         uf.getIsland(6).addStudent(Color.BLUE);
         board.moveMotherNature(1);
         board.moveMotherNature(8);

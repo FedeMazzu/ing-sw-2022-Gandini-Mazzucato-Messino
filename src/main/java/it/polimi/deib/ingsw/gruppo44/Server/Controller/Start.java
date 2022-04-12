@@ -1,9 +1,6 @@
 package it.polimi.deib.ingsw.gruppo44.Server.Controller;
 
-import it.polimi.deib.ingsw.gruppo44.Server.Model.Game;
-import it.polimi.deib.ingsw.gruppo44.Server.Model.GameMode;
-import it.polimi.deib.ingsw.gruppo44.Server.Model.Magician;
-import it.polimi.deib.ingsw.gruppo44.Server.Model.Player;
+import it.polimi.deib.ingsw.gruppo44.Server.Model.*;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.Data;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.SchoolData;
 
@@ -37,10 +34,14 @@ public class Start implements Stage {
         Magician magician;
         Player player;
         SchoolData schoolData;
+        School school;
         for(int i=0; i< gameMode.getTeamsNumber(); i++) {
             for (int j = 0; j < gameMode.getTeamPlayers(); j++) {
                 player = game.getTeams().get(i).getPlayers().get(j);
-                schoolData = player.getSchool().getSchoolObserver().getSchoolData();
+                school = player.getSchool();
+                schoolData = school.getSchoolObserver().getSchoolData();
+                //to initialize the School entrance with random values
+                game.getBoard().getNotOwnedObjects().fillEntrance(school);
                 //ask input to the user
                 name = "Andrea";
                 IP = "127.000.000.000";
