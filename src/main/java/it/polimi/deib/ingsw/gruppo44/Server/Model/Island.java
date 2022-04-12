@@ -1,19 +1,21 @@
 package it.polimi.deib.ingsw.gruppo44.Server.Model;
 
+import it.polimi.deib.ingsw.gruppo44.Observable;
+
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * class to represent the islands
- * @author filippogandini
+ * @author FedeMazzu
  */
-public class Island {
+public class Island implements Observable {
     private UnionFind unionFind;
     private Map<Color, Integer> students;
     private Tower tower;
     private int islandID;
-    //private List<Team> teams;
     private boolean hasTower;
+    private IslandsObserver islandsObserver;
 
     public Island(UnionFind uf,int  id){
         islandID = id;
@@ -26,6 +28,14 @@ public class Island {
 
     }
 
+    public void notifyObserver(){
+        islandsObserver.update(islandID);
+    }
+
+    /**
+     * @param team
+     * @return the influence score of the passed team
+     */
     private int influence(Team team){
         int score;
         School school;
@@ -104,8 +114,19 @@ public class Island {
         }
 
         //check win conditions ç
-
+        notifyObserver();
     }
+
+    public void addStudent(Color color) {
+        students.put(color,students.get(color)+1);
+        notifyObserver();
+    }
+
+
+    public void setIslandsObserver(IslandsObserver islandsObserver) {
+        this.islandsObserver = islandsObserver;
+    }
+
 
     public int getIslandID() {
         return islandID;
@@ -118,8 +139,6 @@ public class Island {
     public void setStudents(Color color, int val){
         students.put(color,val);
     }
-
-    public void addStudent(Color color) {students.put(color,students.get(color)+1);}
 
     public boolean getHasTower() {
         return hasTower;

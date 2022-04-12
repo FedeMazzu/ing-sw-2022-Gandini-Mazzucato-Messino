@@ -26,6 +26,9 @@ public class Start implements Stage {
         data = new Data();
         gameController.setGame(game);
         gameController.setData(data);
+        //saving the reference of the islands Data in the Virtual View
+        data.setIslandsData(game.getBoard().getUnionFind().getIslandsObserver().getIslandsData());
+
         //ask for names magician.. and set them here taking the references from the Game
         //set the users
         User user;

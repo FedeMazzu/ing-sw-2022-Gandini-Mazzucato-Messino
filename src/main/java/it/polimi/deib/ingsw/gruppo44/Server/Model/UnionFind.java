@@ -14,6 +14,7 @@ public class UnionFind {
     private int [] group; // where the ID of the group is sorted for each island
     private int size; //number of groups of islands
     private int [] groupSize;
+    private IslandsObserver islandsObserver;
     public List<Team> teams;
 
     public UnionFind(Game game){
@@ -32,16 +33,22 @@ public class UnionFind {
 
             group[i] = -1;
             islands[i] = new Island(this,i);
-            if(i%6 != 0){
+            groupSize[i] = 1;
+        }
+        // setting up the islands observer
+        islandsObserver = new IslandsObserver(islands);
+        for(int i=0; i<12; i++) islands[i].setIslandsObserver(islandsObserver);
+
+        //initializing the students on the islands
+        for(int i=0; i<12; i++){
+            if (i % 6 != 0) {
                 //adding one student of a random color from five pairs
                 //no need to subtract from the notOwnedObj since this amount is constant
                 int randIndex = rand.nextInt(tempArr.size());
                 Color tempColor = tempArr.get(randIndex);
                 islands[i].addStudent(tempColor);
                 tempArr.remove(randIndex);
-
             }
-            groupSize[i] = 1;
         }
     }
 
@@ -83,4 +90,8 @@ public class UnionFind {
     }
 
     public Island getIsland(int index){ return islands[index];}
+
+    public IslandsObserver getIslandsObserver() {
+        return islandsObserver;
+    }
 }
