@@ -59,10 +59,11 @@ class IslandsDataTest {
         board.moveMotherNature(1);
         board.moveMotherNature(1);
         Island is = board.getUnionFind().getIsland(board.getMotherNaturePosition());
-
+        assertEquals(2,islandsData.getGroupSize(board.getMotherNaturePosition()));
         assertEquals(uf.findGroup(board.getMotherNaturePosition()),islandsData.findGroup(1));
 
         board.moveMotherNature(1);
+        assertEquals(3,islandsData.getGroupSize(board.getMotherNaturePosition()));
         assertEquals(uf.findGroup(board.getMotherNaturePosition()),islandsData.findGroup(2));
         assertEquals(uf.findGroup(board.getMotherNaturePosition()),islandsData.findGroup(1));
 
@@ -71,6 +72,7 @@ class IslandsDataTest {
         uf.getIsland(6).addStudent(Color.BLUE);
         board.moveMotherNature(1);
         board.moveMotherNature(8);
+        assertEquals(6,islandsData.getGroupSize(board.getMotherNaturePosition()));
         assertEquals(uf.findGroup(board.getMotherNaturePosition()),islandsData.findGroup(1));
         assertEquals(uf.findGroup(board.getMotherNaturePosition()),islandsData.findGroup(5));
         assertEquals(uf.findGroup(board.getMotherNaturePosition()),islandsData.findGroup(6));

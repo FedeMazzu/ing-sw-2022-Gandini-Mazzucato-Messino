@@ -44,6 +44,7 @@ public class UnionFind {
             islands[i].setIslandsObserver(islandsObserver);
             //to initialize the group values in the View
             islandsData.setGroup(i, group[i]);
+            islandsData.setGroupSize(i,groupSize[i]);
         }
         //initializing the students on the islands
         for(int i=0; i<12; i++){

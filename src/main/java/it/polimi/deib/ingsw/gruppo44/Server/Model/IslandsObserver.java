@@ -32,6 +32,7 @@ public class IslandsObserver{
             //in general, it's necessary to reset the group value of all the islands
             for(int i=0; i<12;i++) {
                 islandsData.setGroup(i, unionFind.getGroup(i));
+                islandsData.setGroupSize(i, unionFind.getGroupSize(i));
             }
         }
 
