@@ -1,5 +1,7 @@
 package it.polimi.deib.ingsw.gruppo44.Server.Model;
 
+import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.IslandsData;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -37,8 +39,12 @@ public class UnionFind {
         }
         // setting up the islands observer
         islandsObserver = new IslandsObserver(islands);
-        for(int i=0; i<12; i++) islands[i].setIslandsObserver(islandsObserver);
-
+        IslandsData islandsData = islandsObserver.getIslandsData();
+        for(int i=0; i<12; i++){
+            islands[i].setIslandsObserver(islandsObserver);
+            //to initialize the group values in the View
+            islandsData.setGroup(i, group[i]);
+        }
         //initializing the students on the islands
         for(int i=0; i<12; i++){
             if (i % 6 != 0) {
@@ -91,7 +97,12 @@ public class UnionFind {
 
     public Island getIsland(int index){ return islands[index];}
 
+    public int getGroup(int islandId){
+        return group[islandId];
+    }
     public IslandsObserver getIslandsObserver() {
         return islandsObserver;
     }
+
+
 }

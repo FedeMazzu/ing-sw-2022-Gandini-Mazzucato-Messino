@@ -23,10 +23,16 @@ public class IslandsObserver{
     public void update(int islandId){
         boolean hasTower = islands[islandId].getHasTower();
         islandsData.setHasTower(islandId,hasTower);
-        // to avoid null values for the tower type
+        // to avoid null values for the tower type and unuseful computation
         if(hasTower){ //note that at the start hasTower is already initialized to false for all the islands by default values
             islandsData.setHasTower(islandId,hasTower);
             islandsData.setTower(islandId,islands[islandId].getTowerColor());
+            //it can be called on every island
+            UnionFind unionFind = islands[0].getUnionFind();
+            //in general, it's necessary to reset the group value of all the islands
+            for(int i=0; i<12;i++) {
+                islandsData.setGroup(i, unionFind.getGroup(i));
+            }
         }
 
         for(Color color: Color.values()){

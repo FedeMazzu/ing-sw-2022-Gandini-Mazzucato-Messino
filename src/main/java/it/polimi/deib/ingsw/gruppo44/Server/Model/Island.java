@@ -146,5 +146,7 @@ public class Island implements Observable {
 
     public Tower getTowerColor(){ return tower;};
 
-
+    public UnionFind getUnionFind() {
+        return unionFind;
+    }
 }

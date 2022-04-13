@@ -16,6 +16,7 @@ import java.util.Map;
  */
 
 public class IslandsData {
+    private int group[]; //representing the connection between the island with the UnionFind conventions
     private List<Map<Color, Integer>> students;
     private Tower[] towers;
     private boolean[] hasTower;
@@ -25,6 +26,7 @@ public class IslandsData {
         for (int i = 0; i < 12; i++) students.add(new HashMap<>());
         towers = new Tower[12];
         hasTower = new boolean[12];
+        group = new int[12];
     }
 
     /**
@@ -45,6 +47,19 @@ public class IslandsData {
      */
     public void setTower(int islandId, Tower tower) {
         towers[islandId] = tower;
+    }
+
+    /**
+     * called for initialization and if the island gets a tower
+     */
+    public void setGroup(int islandId, int value){
+        group[islandId] = value;
+    }
+
+    public int findGroup(int islandId){
+        if(group[islandId] == -1) return islandId;
+        group[islandId] = findGroup(group[islandId]);
+        return group[islandId];
     }
 
     public int getStudentsNum(int islandId, Color color){
