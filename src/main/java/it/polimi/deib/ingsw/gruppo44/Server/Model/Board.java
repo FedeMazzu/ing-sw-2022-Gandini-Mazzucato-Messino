@@ -57,7 +57,7 @@ public class Board implements SaveData {
         return motherNaturePosition;
     }
 
-
+    public List<Cloud> getClouds() {return clouds;}
 
     public int getNumOfPlayers() {
         return numOfPlayers;

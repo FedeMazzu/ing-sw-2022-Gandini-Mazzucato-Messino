@@ -31,9 +31,9 @@ public class NotOwnedObjects{
         }
     }
 
-    public void giveCoin(){
-        bankMoney--;
-    }
+    public void giveCoin(){bankMoney--;}
+
+    public void receiveCoin(){bankMoney++;}
 
     public void fillCloud(Cloud cloud){
         Random rand = new Random();
@@ -57,6 +57,8 @@ public class NotOwnedObjects{
             students.remove(randIndex);
         }
     }
+
+    public List<Color> getStudents() {return students;}
 
 
 

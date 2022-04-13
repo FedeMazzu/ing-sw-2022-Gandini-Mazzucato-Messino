@@ -3,6 +3,7 @@ package it.polimi.deib.ingsw.gruppo44.Server.Model;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
  * class to represent the player
  * @author filippogandini
@@ -49,6 +50,22 @@ public class Player {
         }
 
     }
+    /**
+     * method to play a character. Game reference in player?
+     */
+    /*public void playCharacter(Character character) {
+        try {
+            if (money > character.getPrice()) {
+                for (int i = 0; i < character.getPrice(); i++) {
+                    money--;
+                    notOwnedObjects.receiveCoin();
+                }
+                character.effect(game);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }*/
 
     /**
      * Perhaps this can be useful for the view
