@@ -50,7 +50,7 @@ public enum GameMode {
         return cloudStudents;
     }
 
-    public int getCloudsNumbers() {
+    public int getCloudsNumber() {
         return cloudsNumbers;
     }
 

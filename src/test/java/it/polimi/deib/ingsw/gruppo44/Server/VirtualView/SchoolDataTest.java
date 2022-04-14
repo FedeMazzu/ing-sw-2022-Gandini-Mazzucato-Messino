@@ -9,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * class to test SchoolData.
- * Note that some reports may be caused by the inexhaustible Constructor of School created just for testing
  * @author filippogandini
  */
 class SchoolDataTest {

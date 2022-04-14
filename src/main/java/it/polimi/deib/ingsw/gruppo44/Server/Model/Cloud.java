@@ -1,5 +1,7 @@
 package it.polimi.deib.ingsw.gruppo44.Server.Model;
 
+import it.polimi.deib.ingsw.gruppo44.Observable;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,28 +10,37 @@ import java.util.Map;
  * @author zenomess
  */
 
-public class Cloud {
+public class Cloud implements Observable {
     private Map<Color, Integer> students;
-    //private boolean empty;
+    private int cloudId;
     private int sizeMod;
+    private CloudsObserver cloudsObserver;
 
-    public Cloud(int sizeMod){
+    public Cloud(int sizeMod, int id){
         this.sizeMod = sizeMod;
+        this.cloudId = id;
         students = new HashMap<>();
         for (Color color : Color.values()) {
             students.put(color, 0);
         }
-        //empty=true;
     }
 
-    /*public boolean isEmpty() {
-        return empty;
-    }*/
-
+    @Override
+    public void notifyObserver() {
+        cloudsObserver.update(cloudId);
+    }
 
     public void addStudent(Color color){
-        students.put(color,students.get(color)+1);
-        //empty=false;
+        try{
+            int numStudents = 0;
+            for(Color col : Color.values()) numStudents += students.get(col);
+            if(numStudents >= sizeMod) throw new Exception();
+            students.put(color,students.get(color)+1);
+            notifyObserver();
+        }catch(Exception e ){
+            e.printStackTrace();
+        }
+
     }
 
     /**
@@ -45,7 +56,7 @@ public class Cloud {
             }
             students.put(color, 0);
         }
-        //empty = true;
+        notifyObserver();
     }
 
     /**
@@ -57,5 +68,11 @@ public class Cloud {
         return students.get(color);
     }
 
+    public int getCloudId() {
+        return cloudId;
+    }
 
+    public void setCloudsObserver(CloudsObserver cloudsObserver) {
+        this.cloudsObserver = cloudsObserver;
+    }
 }

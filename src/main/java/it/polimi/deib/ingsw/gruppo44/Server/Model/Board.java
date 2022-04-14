@@ -18,6 +18,7 @@ public class Board implements SaveData {
     private UnionFind unionFind;
     private NotOwnedObjects notOwnedObjects;
     private int numOfPlayers;
+    private CloudsObserver cloudsObserver;
 
     public Board(GameMode gameMode, Game game) {
         motherNaturePosition = 0;
@@ -28,9 +29,16 @@ public class Board implements SaveData {
         numOfPlayers = gameMode.getTeamPlayers() * gameMode.getTeamsNumber();
         // remember multithread implementation
         if(gameMode.isExpertMode()) shop = new Shop();
-        for(int p = 0; p< gameMode.getCloudsNumbers();p++){
-            clouds.add(new Cloud(gameMode.getCloudStudents()));
+        cloudsObserver = new CloudsObserver(gameMode.getCloudsNumber());
+        Cloud cloud;
+        for(int p = 0; p< gameMode.getCloudsNumber(); p++){
+            cloud = new Cloud(gameMode.getCloudStudents(),p);
+            clouds.add(cloud);
+            cloud.setCloudsObserver(cloudsObserver);
+            cloudsObserver.addCloud(cloud);
+            notOwnedObjects.fillCloud(cloud);
         }
+
     }
 
     /**
@@ -57,7 +65,7 @@ public class Board implements SaveData {
         return motherNaturePosition;
     }
 
-    public List<Cloud> getClouds() {return clouds;}
+
 
     public int getNumOfPlayers() {
         return numOfPlayers;
@@ -71,6 +79,19 @@ public class Board implements SaveData {
         return notOwnedObjects;
     }
 
+    public CloudsObserver getCloudsObserver() {
+        return cloudsObserver;
+    }
+
+    /**
+     * useful for testing
+     * @return
+     */
+
+    public List<Cloud> getClouds() {
+        return clouds;
+    }
+
     /**
      *  method to save the board's data
      */
@@ -78,3 +99,4 @@ public class Board implements SaveData {
     public void save(){}
 
 }
+
