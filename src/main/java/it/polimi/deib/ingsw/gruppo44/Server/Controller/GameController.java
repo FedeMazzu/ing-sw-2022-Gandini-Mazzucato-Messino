@@ -32,10 +32,18 @@ public class GameController {
         gameStage = GameStage.START;
         while(!endGame){
             switch (gameStage){
-                case START: stage = new Start(this);
-                case PLANNING: stage = new Planning(this);
-                case ACTION: stage = new Action(this);
-                case END: stage = new End(this);
+                case START:
+                    stage = new Start(this);
+                    break;
+                case PLANNING:
+                    stage = new Planning(this);
+                    break;
+                case ACTION:
+                    stage = new Action(this);
+                    break;
+                default: //case END
+                    stage = new End(this);
+
             }
             stage.handle();
         }
@@ -76,5 +84,10 @@ public class GameController {
      */
     public void setGameStage(GameStage gameStage) {
         this.gameStage = gameStage;
+    }
+
+    public static void main(String[] args) {
+        GameController gameController = new GameController();
+        gameController.game();
     }
 }

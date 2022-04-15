@@ -7,6 +7,12 @@ import it.polimi.deib.ingsw.gruppo44.Server.Model.Game;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Class to represent the first Character
+ * effect: take one student from the card and move it on an island on an island of
+ * your choice. Then draw a student from the bag and put it on this card.
+ * @author zenomess
+ */
 public class Character1 extends Character {
     private int price;
     private List<Color> students;
