@@ -35,31 +35,48 @@ public class NotOwnedObjects{
 
     public void receiveCoin(){bankMoney++;}
 
+    /**
+     * fills the passed cloud at the beginning anf at the end of every round
+     * @param cloud
+     */
     public void fillCloud(Cloud cloud){
         Random rand = new Random();
         int randIndex;
         for(int i=0; i<gameMode.getCloudStudents(); i++){
             randIndex = rand.nextInt(students.size());
-            Color tempColor = students.get(randIndex);
+            Color tempColor = students.remove(randIndex);;
             cloud.addStudent(tempColor);
-            students.remove(randIndex);
         }
 
     }
 
+    /**
+     * Initializes the passed school at the creation of the game
+     * @param school to initialize
+     */
     public void fillEntrance(School school){
         Random rand = new Random();
         int randIndex;
         for(int i=0; i<school.getMaxEntranceStudentsNum(); i++){
             randIndex = rand.nextInt(students.size());
-            Color tempColor = students.get(randIndex);
+            Color tempColor = students.remove(randIndex);;
             school.addEntranceStudent(tempColor);
-            students.remove(randIndex);
         }
     }
 
-    public List<Color> getStudents() {return students;}
+
+    /**
+     * @param index in the List of students
+     * @return the color of the drawed student
+     */
+    public Color drawStudent(int index){
+        return students.remove(index);
+    }
 
 
+    /**
+     * @return the current number of unused students
+     */
+    public int getStudentsSize() {return students.size();}
 
 }
