@@ -28,7 +28,7 @@ public class Board implements SaveData {
         notOwnedObjects = new NotOwnedObjects(gameMode);
         numOfPlayers = gameMode.getTeamPlayers() * gameMode.getTeamsNumber();
         // remember multithread implementation
-        if(gameMode.isExpertMode()) shop = new Shop();
+        if(gameMode.isExpertMode()) shop = new Shop(game);
         cloudsObserver = new CloudsObserver(gameMode.getCloudsNumber());
         Cloud cloud;
         for(int p = 0; p< gameMode.getCloudsNumber(); p++){

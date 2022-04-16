@@ -9,18 +9,17 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Class to represent the first Character
+ * Class to represent the Character 1
  * effect: take one student from the card and move it on an island of
  * your choice. Then draw a student from the bag and put it on this card.
  * @author zenomess
  */
 public class Character1 extends Character {
-    private int price;
     private List<Color> students;
     private final int numStudents = 4;
     private NotOwnedObjects notOwnedObjects;
 
-    public void Character1(Game game){
+    public  Character1(Game game){
         this.game = game;
         this.id =1; //attribute of the superclass
         price = 1;

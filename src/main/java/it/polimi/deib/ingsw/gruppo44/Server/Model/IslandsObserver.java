@@ -1,12 +1,13 @@
 package it.polimi.deib.ingsw.gruppo44.Server.Model;
 
+import it.polimi.deib.ingsw.gruppo44.MultipleObserver;
 import it.polimi.deib.ingsw.gruppo44.Observer;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.IslandsData;
 
 /**
  * Observer of the islands;
  */
-public class IslandsObserver{
+public class IslandsObserver implements MultipleObserver {
     private IslandsData islandsData;
     private Island[] islands;
 
@@ -20,6 +21,7 @@ public class IslandsObserver{
      * method used to update a single island
      * @param islandId
      */
+    @Override
     public void update(int islandId){
         boolean hasTower = islands[islandId].getHasTower();
         islandsData.setHasTower(islandId,hasTower);

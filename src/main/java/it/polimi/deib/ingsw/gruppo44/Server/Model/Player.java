@@ -23,7 +23,7 @@ public class Player {
      */
     public Player(GameMode gameMode, Board board){
         this.school = new School(this,gameMode.getPlayerEntranceStudents());
-        if(gameMode.isExpertMode()) this.money = 0;
+        if(gameMode.isExpertMode()) this.money = 1;//every player starts with one coin
         this.deck = new Card[]{Card.ONE, Card.TWO, Card.THREE, Card.FOUR, Card.FIVE, Card.SIX, Card.SEVEN, Card.EIGHT, Card.NINE, Card.TEN};
         notOwnedObjects = board.getNotOwnedObjects();
     }
