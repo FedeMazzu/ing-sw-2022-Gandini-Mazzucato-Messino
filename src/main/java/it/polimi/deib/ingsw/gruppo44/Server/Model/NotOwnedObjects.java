@@ -16,9 +16,6 @@ public class NotOwnedObjects{
 
     public NotOwnedObjects(GameMode gameMode){
         this.gameMode = gameMode;
-        //students = new HashMap<>();
-        //for(Color color : Color.values())
-        //students.put(color, 24);
         freeProfessors = new HashMap<>();
         for(Color color1 : Color.values())
             freeProfessors.put(color1, true);
