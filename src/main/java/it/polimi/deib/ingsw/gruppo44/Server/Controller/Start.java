@@ -37,6 +37,7 @@ public class Start implements Stage {
         gameController.setGame(game);
         gameController.setData(data);
         //saving the reference of the islands and clouds Data in the Virtual View
+        data.setBoardData(game.getBoard().getBoardObserver().getBoardData());
         data.setIslandsData(game.getBoard().getUnionFind().getIslandsObserver().getIslandsData());
         data.setCloudsData(game.getBoard().getCloudsObserver().getCloudsData());
 

@@ -63,58 +63,62 @@ public class Island implements Observable {
         }
 
         try{
-            if(getTowerColor().equals(bestTeam.getTower()) && getHasTower()) return;
-        }
-        catch (NullPointerException e){
-            e.getMessage(); //Non deve succedere nulla il messaggio e` per debug ç
-        }
+            if(bestTeam == null) throw new Exception();
+            if(getHasTower() && getTowerColor().equals(bestTeam.getTower())) throw new Exception();
 
-        //From here on if there are towers they are of a color that is not of the bestTeam
+            //From here on if there are towers they are of a color that is not of the bestTeam
 
-        if(getHasTower()){
-            //there is at least one tower
-            int islandSize = unionFind.getGroupSize(islandID);
-            for(Team t : unionFind.teams){
-                if(t.getTower() == getTowerColor()) t.setTowerCount(t.getTowerCount() + islandSize);
+            if(getHasTower()){
+                //there is at least one tower
+                int islandSize = unionFind.getGroupSize(islandID);
+                for(Team t : unionFind.teams){
+                    if(t.getTower() == getTowerColor()) t.setTowerCount(t.getTowerCount() + islandSize);
+                }
+                tower = bestTeam.getTower();
+                bestTeam.setTowerCount(bestTeam.getTowerCount() - islandSize); // negative count is ok as long as the win condition checks for it
             }
-            tower = bestTeam.getTower();
-            bestTeam.setTowerCount(bestTeam.getTowerCount() - islandSize); // negative count is ok as long as the win condition checks for it
+            else{
+                //there aren't any towers
+                tower = bestTeam.getTower();
+                bestTeam.setTowerCount(bestTeam.getTowerCount() - 1);
+                hasTower = true;
+            }
+
+            //check for merge conditions
+
+            int currGroup = unionFind.findGroup(islandID);
+            int pos = currGroup;
+
+            //forward
+            while(currGroup == unionFind.findGroup(pos)){
+                pos = (pos+1)%12;
+            }
+            Island forwardGroup = unionFind.getIsland(pos);
+            if(forwardGroup.hasTower && unionFind.getIsland(pos).getTowerColor().equals(tower)){
+                unionFind.merge(this,forwardGroup);
+            }
+
+            //check win conditions ç
+
+            //backward
+            pos = currGroup;
+            while(currGroup == unionFind.findGroup(pos)){
+                pos = (pos-1)%12;
+            }
+            Island backwardGroup = unionFind.getIsland(pos);
+            if(backwardGroup.hasTower && unionFind.getIsland(pos).getTowerColor().equals(tower)){
+                unionFind.merge(this,backwardGroup);
+            }
+
+            //check win conditions ç
+            notifyObserver();
         }
-        else{
-            //there aren't any towers
-            tower = bestTeam.getTower();
-            bestTeam.setTowerCount(bestTeam.getTowerCount() - 1);
-            hasTower = true;
+        catch (Exception e){
+            //In case there isn't a best team or if the color of the tower is the same of the best team
+            return;
         }
 
-        //check for merge conditions
 
-        int currGroup = unionFind.findGroup(islandID);
-        int pos = currGroup;
-
-        //forward
-        while(currGroup == unionFind.findGroup(pos)){
-            pos = (pos+1)%12;
-        }
-        Island forwardGroup = unionFind.getIsland(pos);
-        if(forwardGroup.hasTower && unionFind.getIsland(pos).getTowerColor().equals(tower)){
-            unionFind.merge(this,forwardGroup);
-        }
-
-        //check win conditions ç
-
-        //backward
-        pos = currGroup;
-        while(currGroup == unionFind.findGroup(pos)){
-            pos = (pos-1)%12;
-        }
-        Island backwardGroup = unionFind.getIsland(pos);
-        if(backwardGroup.hasTower && unionFind.getIsland(pos).getTowerColor().equals(tower)){
-            unionFind.merge(this,backwardGroup);
-        }
-
-        //check win conditions ç
-        notifyObserver();
     }
 
     public void addStudent(Color color) {

@@ -8,6 +8,7 @@ import java.util.List;
  * @author filippogandini
  */
 public class Data {
+    private BoardData boardData; //to trace mother nature position
     private List<SchoolData> schoolDataList;
     private IslandsData islandsData;
     private CloudsData cloudsData;
@@ -20,6 +21,10 @@ public class Data {
 
     public void setCloudsData(CloudsData cloudsData) {
         this.cloudsData = cloudsData;
+    }
+
+    public void setBoardData(BoardData boardData) {
+        this.boardData = boardData;
     }
 
     public void setIslandsData(IslandsData islandsData) {

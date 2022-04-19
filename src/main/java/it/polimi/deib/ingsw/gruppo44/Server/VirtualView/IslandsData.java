@@ -57,9 +57,12 @@ public class IslandsData {
     public void setGroup(int islandId, int value){
         group[islandId] = value;
     }
+
     /**
      * called for initialization and if the island gets a tower
      */
+
+
     public void setGroupSize(int islandId, int value){
         groupSize[islandId] = value;
     }

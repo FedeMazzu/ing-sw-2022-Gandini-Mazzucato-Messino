@@ -1,5 +1,7 @@
 package it.polimi.deib.ingsw.gruppo44.Server.Model;
 
+import it.polimi.deib.ingsw.gruppo44.Observable;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,7 +12,7 @@ import java.util.Map;
  * @author FedeMazzu
  */
 
-public class Board implements SaveData {
+public class Board implements SaveData, Observable {
     private int motherNaturePosition;
     private Map<Color, Player> professors;
     private List<Cloud> clouds;
@@ -18,6 +20,7 @@ public class Board implements SaveData {
     private UnionFind unionFind;
     private NotOwnedObjects notOwnedObjects;
     private int numOfPlayers;
+    private BoardObserver boardObserver;
     private CloudsObserver cloudsObserver;
 
     public Board(GameMode gameMode, Game game) {
@@ -27,6 +30,8 @@ public class Board implements SaveData {
         unionFind = new UnionFind(game);
         notOwnedObjects = new NotOwnedObjects(gameMode);
         numOfPlayers = gameMode.getTeamPlayers() * gameMode.getTeamsNumber();
+        boardObserver = new BoardObserver(this);
+        boardObserver.update();
         cloudsObserver = new CloudsObserver(gameMode.getCloudsNumber());
         Cloud cloud;
         for(int p = 0; p< gameMode.getCloudsNumber(); p++){
@@ -60,6 +65,13 @@ public class Board implements SaveData {
             }
         }
         unionFind.getIsland(motherNaturePosition).islandClaim();
+        notifyObserver();
+    }
+
+
+    @Override
+    public void notifyObserver() {
+        boardObserver.update();
     }
 
     public int getMotherNaturePosition() {
@@ -88,6 +100,10 @@ public class Board implements SaveData {
      */
     public List<Cloud> getClouds() {
         return clouds;
+    }
+
+    public BoardObserver getBoardObserver() {
+        return boardObserver;
     }
 
     public Shop getShop() {return shop;}
