@@ -19,6 +19,7 @@ public class School implements Observable {
     private int schoolTowersNumber;//note that it's just for the GUI, the towers are owned by the team, not the school. the Class lacks of the methods to manage this value;
     private SchoolObserver schoolObserver;
     private final int maxEntranceStudentsNum;
+    private final static int maxHallStudentsNum = 10;
     /**
      * Constructor. It initializes the maps keeping track of the students and professors
      * @param player associated to the school
@@ -45,24 +46,38 @@ public class School implements Observable {
      * method to add a student in the hall that checks(and provides) if the professor is earned
      * and if the player gets a coin
      * @param color of the student to add
+     * @return boolena which indicates if the student was added correctly
      */
-    public void addHallStudent(Color color){
-        hallStudents.put(color, hallStudents.get(color)+1);
-        earnProfessor(color);//earns the professor if deserved
-        if(hallStudents.get(color) % 3 ==0) player.addCoin();
-        notifyObserver();
+    public boolean addHallStudent(Color color) {
+        try {
+            int numStudents = hallStudents.get(color);
+            if(numStudents>= maxHallStudentsNum)throw  new Exception();
+            hallStudents.put(color, numStudents + 1);
+            earnProfessor(color);//earns the professor if deserved
+            if (hallStudents.get(color) % 3 == 0) player.addCoin();
+            notifyObserver();
+            return true;
+        }catch(Exception e){
+            System.out.println("Hall already full for this color");
+            return false;
+        }
     }
 
-    public void addEntranceStudent(Color color){
+    /**
+     * @param color of the student to add
+     * @return a boolean which indicates if the Entrance is already full;
+     */
+    public boolean addEntranceStudent(Color color){
         int actualEntranceStudentsNum = 0;
         try {
             for(Color col: Color.values()) actualEntranceStudentsNum += getEntranceStudentsNum(col);
             if(actualEntranceStudentsNum >= maxEntranceStudentsNum) throw new Exception();
             entranceStudents.put(color, entranceStudents.get(color) + 1);
             notifyObserver();
+            return true;
         } catch(Exception e){
-            //handle it ç
-            e.printStackTrace();
+            System.out.println("Entrance already full");
+            return false;
         }
     }
     public void addSchool(School school){
@@ -90,8 +105,9 @@ public class School implements Observable {
         if(earnProfessor){
             professors.put(color, true);
         }
-        notifyObserver();;
+        notifyObserver();
     }
+
     //METHOD ONLY FOR TESTING ç
     public void TESTsetProfessor(Color color){
         professors.put(color,true);

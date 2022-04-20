@@ -38,11 +38,13 @@ public class NotOwnedObjects{
      */
     public void fillCloud(Cloud cloud){
         Random rand = new Random();
+        boolean studentAddedCorrectly;
         int randIndex;
         for(int i=0; i<gameMode.getCloudStudents(); i++){
             randIndex = rand.nextInt(students.size());
-            Color tempColor = students.remove(randIndex);;
-            cloud.addStudent(tempColor);
+            Color tempColor = students.get(randIndex);;
+            studentAddedCorrectly = cloud.addStudent(tempColor);
+            if(studentAddedCorrectly) students.remove(tempColor);
         }
 
     }
@@ -53,11 +55,13 @@ public class NotOwnedObjects{
      */
     public void fillEntrance(School school){
         Random rand = new Random();
+        boolean studentAddedCorrectly;
         int randIndex;
         for(int i=0; i<school.getMaxEntranceStudentsNum(); i++){
             randIndex = rand.nextInt(students.size());
-            Color tempColor = students.remove(randIndex);;
-            school.addEntranceStudent(tempColor);
+            Color tempColor = students.get(randIndex);;
+            studentAddedCorrectly = school.addEntranceStudent(tempColor);
+            if(studentAddedCorrectly) students.remove(tempColor);
         }
     }
 

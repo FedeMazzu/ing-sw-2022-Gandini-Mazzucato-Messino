@@ -30,15 +30,22 @@ public class Cloud implements Observable {
         cloudsObserver.update(cloudId);
     }
 
-    public void addStudent(Color color){
+    /**
+     *
+     * @param color of the student to add
+     * @return a boolean which indicates if the cloud was filled correctly
+     */
+    public boolean addStudent(Color color){
         try{
             int numStudents = 0;
             for(Color col : Color.values()) numStudents += students.get(col);
             if(numStudents >= sizeMod) throw new Exception();
             students.put(color,students.get(color)+1);
             notifyObserver();
+            return true;
         }catch(Exception e ){
-            e.printStackTrace();
+            System.out.println("Cloud already full");
+            return false;
         }
 
     }
