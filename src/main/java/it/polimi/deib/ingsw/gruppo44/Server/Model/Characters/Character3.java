@@ -1,6 +1,5 @@
 package it.polimi.deib.ingsw.gruppo44.Server.Model.Characters;
 
-import it.polimi.deib.ingsw.gruppo44.Server.Model.Character;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Game;
 
 /**
@@ -21,5 +20,7 @@ public class Character3 extends Character {
         //ask islandId to the player
         int islandId = 4; //just for example
         game.getBoard().getUnionFind().getIsland(islandId).islandClaim();
+
+        raisePrice();
     }
 }

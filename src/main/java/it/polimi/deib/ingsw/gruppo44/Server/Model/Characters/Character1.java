@@ -1,6 +1,5 @@
 package it.polimi.deib.ingsw.gruppo44.Server.Model.Characters;
 
-import it.polimi.deib.ingsw.gruppo44.Server.Model.Character;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Color;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Game;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.NotOwnedObjects;
@@ -50,7 +49,8 @@ public class Character1 extends Character {
         int newStudentIndex = rand.nextInt(notOwnedObjects.getStudentsSize());
         Color newStudent = notOwnedObjects.drawStudent(newStudentIndex);
         students.add(newStudent);
-        price++;
+        // raises the price only after the first usage
+        raisePrice();
     }
 
 

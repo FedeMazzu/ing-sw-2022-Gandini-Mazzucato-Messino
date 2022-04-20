@@ -1,6 +1,5 @@
 package it.polimi.deib.ingsw.gruppo44.Server.Model.Characters;
 
-import it.polimi.deib.ingsw.gruppo44.Server.Model.Character;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Game;
 
 /**
@@ -20,5 +19,8 @@ public class Character4 extends Character {
 
     //should pass to Board's method moveMotherNature the correct value, avoiding repeating the move
     @Override
-    public void effect(){}
+    public void effect(){
+
+        raisePrice();
+    }
 }

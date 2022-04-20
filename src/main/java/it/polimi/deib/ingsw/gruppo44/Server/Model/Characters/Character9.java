@@ -1,6 +1,5 @@
 package it.polimi.deib.ingsw.gruppo44.Server.Model.Characters;
 
-import it.polimi.deib.ingsw.gruppo44.Server.Model.Character;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Game;
 
 /**
@@ -19,5 +18,6 @@ public class Character9 extends Character {
     @Override
     public void effect() {
 
+        raisePrice();
     }
 }

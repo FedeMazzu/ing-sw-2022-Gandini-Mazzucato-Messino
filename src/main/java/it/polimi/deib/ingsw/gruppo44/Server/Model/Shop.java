@@ -1,8 +1,8 @@
 package it.polimi.deib.ingsw.gruppo44.Server.Model;
 
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Characters.*;
+import it.polimi.deib.ingsw.gruppo44.Server.Model.Characters.Character;
 
-import javax.xml.stream.events.Characters;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
