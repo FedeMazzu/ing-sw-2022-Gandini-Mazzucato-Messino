@@ -1,5 +1,6 @@
 package it.polimi.deib.ingsw.gruppo44.Server.Model;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -7,7 +8,7 @@ import java.util.*;
  * @author zenomess
  */
 
-public class NotOwnedObjects{
+public class NotOwnedObjects implements Serializable {
     //private Map<Color, Integer> students;
     private Map<Color, Boolean> freeProfessors;
     private int bankMoney;

@@ -3,6 +3,7 @@ package it.polimi.deib.ingsw.gruppo44.Server.Model;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Characters.*;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Characters.Character;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -11,7 +12,7 @@ import java.util.Random;
  * class to create and manage the characters
  * @author filippogandini
  */
-public class Shop implements Creator{
+public class Shop implements Creator, Serializable {
     private Game game;
     private Random rand = new Random();
     private final int numOfCharacters= 12;

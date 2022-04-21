@@ -4,6 +4,7 @@ import it.polimi.deib.ingsw.gruppo44.MultipleObserver;
 import it.polimi.deib.ingsw.gruppo44.Observer;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.CloudsData;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
  * Observer of the clouds
  * @author filippogandini
  */
-public class CloudsObserver implements MultipleObserver {
+public class CloudsObserver implements MultipleObserver, Serializable {
     private List<Cloud> clouds;
     private CloudsData cloudsData;
 

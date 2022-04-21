@@ -3,6 +3,7 @@ package it.polimi.deib.ingsw.gruppo44.Server.VirtualView;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Color;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.GameMode;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.Map;
  * Note: the index of the List identifies the cloud
  * @author filippogandini
  */
-public class CloudsData {
+public class CloudsData implements Serializable {
     private List<Map<Color,Integer>> students;
 
     public CloudsData(int cloudsNumber){

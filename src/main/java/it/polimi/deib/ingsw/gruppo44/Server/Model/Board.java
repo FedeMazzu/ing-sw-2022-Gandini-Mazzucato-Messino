@@ -2,6 +2,7 @@ package it.polimi.deib.ingsw.gruppo44.Server.Model;
 
 import it.polimi.deib.ingsw.gruppo44.Observable;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.Map;
  * @author FedeMazzu
  */
 
-public class Board implements SaveData, Observable {
+public class Board implements Observable, Serializable {
     private int motherNaturePosition;
     private Map<Color, Player> professors;
     private List<Cloud> clouds;
@@ -108,11 +109,6 @@ public class Board implements SaveData, Observable {
 
     public Shop getShop() {return shop;}
 
-    /**
-     *  method to save the board's data
-     */
-    @Override
-    public void save(){}
 
 }
 

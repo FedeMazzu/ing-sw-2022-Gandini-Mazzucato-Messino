@@ -1,5 +1,6 @@
 package it.polimi.deib.ingsw.gruppo44.Server.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import java.util.List;
  * class to represent the teams
  * @author filippogandini
  */
-public class Team implements SaveData {
+public class Team implements Serializable {
     private List<Player> players;
     private int towerCount;
     private Tower tower;
@@ -23,11 +24,6 @@ public class Team implements SaveData {
         for(int i=0; i< gameMode.getTeamPlayers(); i++) players.add(new Player(gameMode,game.getBoard()));
     }
 
-    /**
-     * method to save the team's data
-     */
-    @Override
-    public void save(){}
 
     /**
      * method to add a player to the team

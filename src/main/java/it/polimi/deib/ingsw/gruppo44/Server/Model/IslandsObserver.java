@@ -4,10 +4,12 @@ import it.polimi.deib.ingsw.gruppo44.MultipleObserver;
 import it.polimi.deib.ingsw.gruppo44.Observer;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.IslandsData;
 
+import java.io.Serializable;
+
 /**
  * Observer of the islands;
  */
-public class IslandsObserver implements MultipleObserver {
+public class IslandsObserver implements MultipleObserver, Serializable {
     private IslandsData islandsData;
     private Island[] islands;
 

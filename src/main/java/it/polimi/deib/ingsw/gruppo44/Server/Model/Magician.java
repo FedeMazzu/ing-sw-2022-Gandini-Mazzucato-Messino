@@ -1,10 +1,12 @@
 package it.polimi.deib.ingsw.gruppo44.Server.Model;
 
+import java.io.Serializable;
+
 /**
  * enum to represent the magicians
  * @author filippogandini
  */
-public enum Magician {
+public enum Magician implements Serializable {
     KING("king",1),WITCH("Witch",2),MONK("Monk",3),WIZARD("Wizard",4);
     private String name;
     private int id;

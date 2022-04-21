@@ -1,5 +1,6 @@
 package it.polimi.deib.ingsw.gruppo44.Server.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
  * @author filippogandini
  */
 
-public class Player {
+public class Player implements Serializable {
     private String name;
     private School school;
     private int money;

@@ -2,6 +2,7 @@ package it.polimi.deib.ingsw.gruppo44.Server.Model;
 
 import it.polimi.deib.ingsw.gruppo44.Observable;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,7 +10,7 @@ import java.util.Map;
  * class to represent the islands
  * @author FedeMazzu
  */
-public class Island implements Observable {
+public class Island implements Observable, Serializable {
     private UnionFind unionFind;
     private Map<Color, Integer> students;
     private Tower tower;

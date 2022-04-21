@@ -1,10 +1,12 @@
 package it.polimi.deib.ingsw.gruppo44.Server.Model;
 
+import java.io.Serializable;
+
 /**
  * Enum to represent the possible types of games
  * @author filippogandini
  */
-public enum GameMode {
+public enum GameMode implements Serializable {
     TwoPlayersBasic(2,1,8,7,3,2,false),
     TwoPlayersExpert(2,1,8,7,3,2,true),
     ThreePlayersBasic(3,1,6,9,4,3,false),

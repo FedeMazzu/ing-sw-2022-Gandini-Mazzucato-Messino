@@ -38,23 +38,17 @@ class SchoolTest {
     @Test
     /**
      * tests the situation in the first round when the professors aren't owned by someone
-     * note that it also tests the private method earnProfessor
      */
     public void addHallStudent1__wocd(){
-        for(Color color: Color.values()){
-            if(color != Color.GREEN) school.addHallStudent(color);
-
+        school.addEntranceStudent(Color.GREEN);
+        school.addEntranceStudent(Color.GREEN);
+        int GreenEntranceStudents = school.getEntranceStudentsNum(Color.GREEN);
+        for(int i=0; i<GreenEntranceStudents; i++){
+            school.addHallStudent(Color.GREEN);
         }
-        for(Color color: Color.values()){
-            if(color != Color.GREEN) {
-                assertEquals(1, school.getHallStudentsNum(color));
-                assertTrue(school.hasProfessor(color));
-            }else{
-                assertEquals(0, school.getHallStudentsNum(color));
-                assertFalse(school.hasProfessor(color));
-            }
-        }
-        assertEquals(0,player.getMoney());
+        assertEquals(GreenEntranceStudents,school.getHallStudentsNum(Color.GREEN));
+        assertEquals(0,school.getEntranceStudentsNum(Color.GREEN));
+        assertEquals(0,school.getHallStudentsNum(Color.RED));
     }
     @Test
     /**
@@ -68,9 +62,11 @@ class SchoolTest {
         school.addSchool(school1);
         for(Color color: Color.values()){
             if(color != Color.GREEN){
+                school1.addEntranceStudent(color);
                 school1.addHallStudent(color);
             }
             //called after the method for school1, school shouldn't earn the professor except for GREEN
+            school.addEntranceStudent(color);
             school.addHallStudent(color);
         }
 
@@ -86,6 +82,8 @@ class SchoolTest {
 
         assertEquals(0,player.getMoney());
         //for testing the %3 branch
+        school.addEntranceStudent(Color.GREEN);
+        school.addEntranceStudent(Color.GREEN);
         school.addHallStudent(Color.GREEN);
         school.addHallStudent(Color.GREEN);
         assertEquals(1,player.getMoney());

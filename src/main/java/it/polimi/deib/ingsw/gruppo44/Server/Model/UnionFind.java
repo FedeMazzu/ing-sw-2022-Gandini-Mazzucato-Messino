@@ -2,6 +2,7 @@ package it.polimi.deib.ingsw.gruppo44.Server.Model;
 
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.IslandsData;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -10,7 +11,7 @@ import java.util.Random;
  * class to manage the islands
  * @author FedeMazzu
  */
-public class UnionFind {
+public class UnionFind implements Serializable {
 
     private Island [] islands;
     private int [] group; // where the ID of the group is sorted for each island

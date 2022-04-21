@@ -45,7 +45,7 @@ class SchoolDataTest {
         Player player2 = game.getTeams().get(1).getPlayers().get(0);
         School school1 = player2.getSchool();
         //school1 is needed to use the private method earnProfessor
-
+        school.addEntranceStudent(Color.PINK);
         school.addHallStudent(Color.PINK);
 
         assertTrue(schoolData.hasProfessor(Color.PINK));

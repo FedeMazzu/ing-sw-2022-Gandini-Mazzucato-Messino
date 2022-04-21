@@ -2,6 +2,7 @@ package it.polimi.deib.ingsw.gruppo44.Server.Model;
 
 import it.polimi.deib.ingsw.gruppo44.Observable;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,7 +11,7 @@ import java.util.Map;
  * @author zenomess
  */
 
-public class Cloud implements Observable {
+public class Cloud implements Observable, Serializable {
     private Map<Color, Integer> students;
     private int cloudId;
     private int sizeMod;

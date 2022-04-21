@@ -2,12 +2,14 @@ package it.polimi.deib.ingsw.gruppo44.Server.Model.Characters;
 
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Game;
 
+import java.io.Serializable;
+
 /**
  * abstract class to represent the characters
  * Factory pattern to instantiate the characters?
  * @author filippogandini
  */
-public abstract class Character {
+public abstract class Character implements Serializable {
     protected int price;
     protected boolean alreadyUsed = false;
     protected Game game;//Passed in the constructor. It must be protected for direct access in subclasses

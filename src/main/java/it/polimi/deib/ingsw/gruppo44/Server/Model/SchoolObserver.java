@@ -2,13 +2,14 @@ package it.polimi.deib.ingsw.gruppo44.Server.Model;
 import it.polimi.deib.ingsw.gruppo44.Observer;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.SchoolData;
 
+import java.io.Serializable;
 import java.util.Map;
 
 /**
  * School observer
  * @author filippogandini
  */
-public class SchoolObserver implements Observer {
+public class SchoolObserver implements Observer, Serializable {
     private School school;
     private SchoolData schoolData;
 

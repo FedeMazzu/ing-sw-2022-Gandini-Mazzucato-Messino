@@ -4,6 +4,7 @@ import it.polimi.deib.ingsw.gruppo44.Server.Model.Color;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Island;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Tower;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.Map;
  * @author filippogandini
  */
 
-public class IslandsData {
+public class IslandsData implements Serializable {
     private int group[]; //representing the connection between the island with the UnionFind conventions
     private List<Map<Color, Integer>> students;
     private Tower[] towers;

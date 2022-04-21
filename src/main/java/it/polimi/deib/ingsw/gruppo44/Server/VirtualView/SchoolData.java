@@ -6,6 +6,7 @@ import it.polimi.deib.ingsw.gruppo44.Server.Model.Magician;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Player;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.School;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,7 +14,7 @@ import java.util.Map;
 /**
  * School in the Virtual View
  */
-public class SchoolData {
+public class SchoolData implements Serializable {
     private Map<Color, Integer> hallStudents, entranceStudents;
     private Map<Color, Boolean> professors;
     //identifier

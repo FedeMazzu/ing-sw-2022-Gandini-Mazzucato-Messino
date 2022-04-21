@@ -2,6 +2,7 @@ package it.polimi.deib.ingsw.gruppo44.Server.Model;
 import it.polimi.deib.ingsw.gruppo44.Observable;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.SchoolData;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.Map;
  * class to represent the schools
  * @author filippogandini
  */
-public class School implements Observable {
+public class School implements Observable, Serializable {
     private Player player;
     private List<School> schools;
     private Map<Color, Integer> hallStudents, entranceStudents;
