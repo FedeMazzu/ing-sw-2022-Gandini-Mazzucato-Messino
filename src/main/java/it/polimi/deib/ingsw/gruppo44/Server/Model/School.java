@@ -51,6 +51,7 @@ public class School implements Observable {
     public boolean addHallStudent(Color color) {
         try {
             int numStudents = hallStudents.get(color);
+            if(!removeEntranceStudent(color)) throw new Exception();
             if(numStudents>= maxHallStudentsNum)throw  new Exception();
             hallStudents.put(color, numStudents + 1);
             earnProfessor(color);//earns the professor if deserved
@@ -58,9 +59,15 @@ public class School implements Observable {
             notifyObserver();
             return true;
         }catch(Exception e){
-            System.out.println("Hall already full for this color");
+            System.out.println("Hall already full for this color or entrance has no students of that color");
             return false;
         }
+    }
+
+    private boolean removeEntranceStudent(Color color){
+        if(entranceStudents.get(color) <= 0 ) return false;
+        entranceStudents.put(color,entranceStudents.get(color)-1);
+        return true;
     }
 
     /**

@@ -15,7 +15,7 @@ public class Start implements Stage {
     private final GameController gameController;
     private Game game;
     private Data data;
-    private Scanner sc= new Scanner(System.in);
+    private Scanner sc = new Scanner(System.in);
     private Map<Magician,Boolean> freeMagician;
     public Start(GameController gameController) {
         this.gameController = gameController;
@@ -25,6 +25,7 @@ public class Start implements Stage {
     }
 
     public void handle(){
+        Random rand = new Random();
         GameMode gameMode = null;
         try {
             gameMode = askGameMode();
@@ -36,6 +37,9 @@ public class Start implements Stage {
         data = new Data();
         gameController.setGame(game);
         gameController.setData(data);
+        TurnHandler turnHandler = new TurnHandler(gameMode);
+        gameController.setTurnHandler(turnHandler);
+        gameController.setGameMode(gameMode);
         //saving the reference of the islands and clouds Data in the Virtual View
         data.setBoardData(game.getBoard().getBoardObserver().getBoardData());
         data.setIslandsData(game.getBoard().getUnionFind().getIslandsObserver().getIslandsData());
@@ -48,30 +52,45 @@ public class Start implements Stage {
         Player player;
         SchoolData schoolData;
         School school;
-        for(int i=0; i< gameMode.getTeamsNumber(); i++) {
+        PriorityQueue<Ticket> turnOrder = turnHandler.getTurnOrder();
+        for(int i=0; i < gameMode.getTeamsNumber(); i++) {
             for (int j = 0; j < gameMode.getTeamPlayers(); j++) {
-                System.out.println("-----------------------------\n" +
-                        "Player "+j+" of the team "+i);
+
                 player = game.getTeams().get(i).getPlayers().get(j);
-                school = player.getSchool();
-                schoolData = school.getSchoolObserver().getSchoolData();
-                //to initialize the School entrance with random values
-                game.getBoard().getNotOwnedObjects().fillEntrance(school);
-                //ask input to the user
 
-                name = askName();
-                player.setName(name);
 
-                user = new User(player,askIP(),askPort());
-                gameController.addUser(user);
+                int randPrio = rand.nextInt(4); //random seed to start the game, 4 is the maximum priority possible
+                turnOrder.add(new Ticket(player,randPrio));
 
-                magician = askMagician();
-                player.setMagician(magician);
-                //
-                schoolData.setMagician(magician); //setting the identifier
-                data.addSchoolData(schoolData);
 
             }
+        }
+
+        while(!turnOrder.isEmpty()){
+
+            player = turnOrder.peek().player;
+
+            System.out.println("-----------------------------\n" +
+                    "Player with priority: "+turnOrder.peek().priority);
+            school = player.getSchool();
+            schoolData = school.getSchoolObserver().getSchoolData();
+            //to initialize the School entrance with random values
+            game.getBoard().getNotOwnedObjects().fillEntrance(school);
+            //ask input to the user
+            //where we look if we don't want duplicate names
+
+            name = askName();
+            player.setName(name);
+
+            user = new User(player,askIP(),askPort());
+            gameController.addUser(user);
+
+            magician = askMagician(); //we will need the user to talk to the right client
+            player.setMagician(magician);
+            //
+            schoolData.setMagician(magician); //setting the identifier
+            data.addSchoolData(schoolData);
+            turnHandler.endOfTurn(); //the player is put in the card deque and polled from the prioQ
         }
 
         //at the end

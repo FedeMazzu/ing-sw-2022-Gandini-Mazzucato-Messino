@@ -1,6 +1,7 @@
 package it.polimi.deib.ingsw.gruppo44.Server.Controller;
 
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Game;
+import it.polimi.deib.ingsw.gruppo44.Server.Model.GameMode;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.Data;
 
 import java.util.ArrayList;
@@ -17,6 +18,8 @@ public class GameController {
     private Stage stage;
     private GameStage gameStage;
     private boolean endGame;
+    private TurnHandler turnHandler;
+    private GameMode gameMode;
 
 
     public GameController() {
@@ -57,6 +60,8 @@ public class GameController {
         this.game = game;
     }
 
+    public Game getGame() { return game; }
+
     /**
      * method called from the START stage
      * @param data
@@ -84,6 +89,18 @@ public class GameController {
      */
     public void setGameStage(GameStage gameStage) {
         this.gameStage = gameStage;
+    }
+
+    public void setTurnHandler(TurnHandler turnHandler){ this.turnHandler = turnHandler; }
+
+    public void setGameMode(GameMode gameMode) { this.gameMode = gameMode; }
+
+    public GameMode getGameMode() {
+        return gameMode;
+    }
+
+    public TurnHandler getTurnHandler() {
+        return turnHandler;
     }
 
     public static void main(String[] args) {

@@ -5,5 +5,5 @@ package it.polimi.deib.ingsw.gruppo44.Server.Controller;
  * @author filippogandini
  */
 public enum GameStage {
-    START, PLANNING, ACTION, END;
+    START, PLANNING, ACTION, CLEANUP ,END;
 }
