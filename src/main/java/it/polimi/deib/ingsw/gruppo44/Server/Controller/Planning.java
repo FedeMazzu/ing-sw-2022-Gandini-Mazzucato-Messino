@@ -22,7 +22,7 @@ public class Planning implements Stage {
 
     @Override
     public void handle() {
-
+        System.out.println("-----------PLANNING PHASE----------------");
         while(!cardOrder.isEmpty()){
             Player currPlayer = cardOrder.poll();
             System.out.println("Player "+currPlayer.getMagician()+" choose a card: ");

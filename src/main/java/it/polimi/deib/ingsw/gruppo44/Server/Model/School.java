@@ -65,7 +65,7 @@ public class School implements Observable, Serializable {
         }
     }
 
-    private boolean removeEntranceStudent(Color color){
+    public boolean removeEntranceStudent(Color color){
         if(entranceStudents.get(color) <= 0 ) return false;
         entranceStudents.put(color,entranceStudents.get(color)-1);
         return true;

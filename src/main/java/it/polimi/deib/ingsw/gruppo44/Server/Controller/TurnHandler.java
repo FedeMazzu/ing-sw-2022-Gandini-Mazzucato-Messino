@@ -39,20 +39,6 @@ public class TurnHandler {
         }
     }
 
-    /**
-     * during the act phase each player gets their turn based on the value of the card they played during the prep phase
-     */
-
-    public void actPhaseManager(){
-        while(!turnOrder.isEmpty()){
-            currPlayer = turnOrder.peek().player;
-            // ASPETTA CHE SI FACCIA IL TURNO ç
-            endOfTurn();
-        }
-        roundCount++; //a round has ended when everybody got their turn
-        //CLEANUP STEP OF THE ROUND THAT HAS JUST ENDED ç
-    }
-
 
 
     public PriorityQueue<Ticket> getTurnOrder(){

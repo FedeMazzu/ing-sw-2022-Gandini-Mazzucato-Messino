@@ -44,6 +44,9 @@ public class GameController {
                 case ACTION:
                     stage = new Action(this);
                     break;
+                case CLEANUP:
+                    stage = new Cleanup(this);
+                    break;
                 default: //case END
                     stage = new End(this);
 
