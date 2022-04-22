@@ -21,6 +21,7 @@ public class Action implements Stage {
 
     @Override
     public void handle() {
+        boolean endGame = false;
         System.out.println("--------------ACTION PHASE--------------");
         while(!turnOrder.isEmpty()){
             Player currPlayer = turnOrder.peek().player;
@@ -135,9 +136,12 @@ public class Action implements Stage {
                 }
             }*/
             //check end of game conditions
+            endGame = gameController.checkEndOfGame();
+            if(endGame) break;
             gameController.getTurnHandler().endOfTurn();
 
         }
-        gameController.setGameStage(GameStage.CLEANUP);
+        if(endGame) gameController.setGameStage(GameStage.END);
+        else gameController.setGameStage(GameStage.CLEANUP);
     }
 }

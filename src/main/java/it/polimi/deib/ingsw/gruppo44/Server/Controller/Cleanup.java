@@ -27,7 +27,7 @@ public class Cleanup implements Stage {
                 System.out.println("Student: "+c+" "+cloud.getStudentsNum(c));
             }
         }
-        //check end of game conditions
+
         gameController.setGameStage(GameStage.PLANNING);
     }
 }

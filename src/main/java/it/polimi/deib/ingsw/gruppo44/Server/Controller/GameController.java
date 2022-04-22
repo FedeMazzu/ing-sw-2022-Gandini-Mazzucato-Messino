@@ -2,6 +2,8 @@ package it.polimi.deib.ingsw.gruppo44.Server.Controller;
 
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Game;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.GameMode;
+import it.polimi.deib.ingsw.gruppo44.Server.Model.Player;
+import it.polimi.deib.ingsw.gruppo44.Server.Model.Team;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.Data;
 
 import java.util.ArrayList;
@@ -54,6 +56,26 @@ public class GameController {
             stage.handle();
         }
     }
+
+    public boolean checkEndOfGame(){
+        boolean COND1 = false, COND2 = false, COND3 = false;
+        //team tower supply is empty COND1
+        for(Team team:game.getTeams()){
+            if(team.getTowerCount() == 0) COND1 = true;
+        }
+        //3 or less islands COND2
+        if(game.getBoard().getUnionFind().getSize() <= 3) COND2 = true;
+        //at the end of the round when there are no students in the bag OR a player has player their last card COND3
+        for(Team team:game.getTeams()){
+            for(Player p:team.getPlayers())
+                if(p.showAvailableCards().isEmpty()) COND3 = true;
+        }
+        if(game.getBoard().getNotOwnedObjects().getStudentsSize() <= 0) COND3 = true;
+
+        return COND1 || COND2 || COND3;
+
+    }
+
 
     /**
      * method called from the START stage

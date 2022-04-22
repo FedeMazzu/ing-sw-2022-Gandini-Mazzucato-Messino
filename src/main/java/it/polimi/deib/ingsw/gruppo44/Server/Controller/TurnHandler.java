@@ -16,12 +16,10 @@ public class TurnHandler {
     private ArrayDeque<Player> cardOrder;
     private Player currPlayer;
     private int numOfPlayers;
-    private int roundCount;
 
     public TurnHandler(GameMode gameMode){
         turnOrder = new PriorityQueue<Ticket>(new TicketComparator());
         cardOrder = new ArrayDeque<Player>();
-        roundCount = 0;
         numOfPlayers = gameMode.getTeamPlayers() * gameMode.getTeamsNumber();
     }
 
