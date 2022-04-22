@@ -28,7 +28,7 @@ class GameTest {
      */
     @Test
     public void saveGame__TwoPlayersBasic(){
-        game = new Game(GameMode.TwoPlayersBasic);
+        game = new Game("TestGame",GameMode.TwoPlayersBasic);
         Map<Color,Integer> cloudStudents = new HashMap<>();
         Map<Color,Integer> schoolStudents = new HashMap<>();
         Map<Color,Integer> islandStudents = new HashMap<>();
@@ -39,11 +39,11 @@ class GameTest {
             islandStudents.put(color,game.getBoard().getUnionFind().getIsland(6).getStudentNum(color));
         }
         //serialization
-        game.saveGame("savedGame.ser");
+        game.saveGame();
         game = null;
 
         //deserialization
-        game = Game.loadGame("savedGame.ser");
+        game = Game.loadGame("TestGame");
 
         //tests the serialization/deserialization of the clouds, schools, islands
         for(Color color: Color.values()){

@@ -20,7 +20,7 @@ class PlayerTest {
 
     @BeforeEach
     public void setUp() {
-        game = new Game(GameMode.TwoPlayersBasic);
+        game = new Game("TestGame",GameMode.TwoPlayersBasic);
         List<Team> teams = game.getTeams();
         //works because of the mood
         player = teams.get(0).getPlayers().get(0);

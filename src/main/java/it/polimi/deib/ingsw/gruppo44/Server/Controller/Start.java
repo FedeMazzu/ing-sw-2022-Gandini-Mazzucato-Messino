@@ -33,7 +33,7 @@ public class Start implements Stage {
             System.out.println("invalid input");
             System.exit(0);
         }
-        game = new Game(gameMode);
+        game = new Game(askGameName(),gameMode);
         data = new Data();
         gameController.setGame(game);
         gameController.setData(data);
@@ -95,6 +95,11 @@ public class Start implements Stage {
 
         //at the end
         gameController.setGameStage(GameStage.PLANNING);
+    }
+
+    private String askGameName() {
+        System.out.println("Insert the game name:");
+        return sc.next();
     }
 
 

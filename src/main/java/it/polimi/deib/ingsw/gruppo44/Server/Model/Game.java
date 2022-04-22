@@ -6,9 +6,11 @@ import java.util.List;
 
 /**
  * class to manage the game
+ * the name is the identifier
  * @author filippogandini
  */
 public class Game implements Serializable {
+    private final String name; //identifier
     private List<Team> teams;
     private Board board;
 
@@ -16,7 +18,8 @@ public class Game implements Serializable {
      * Constructor which initializes the game
      * @param gameMode
      */
-    public Game(GameMode gameMode){
+    public Game(String name, GameMode gameMode){
+        this.name = name;
         teams = new ArrayList<>();
         // the index i is necessary to count the initialized teams
         int i=0;
@@ -30,12 +33,11 @@ public class Game implements Serializable {
     }
 
     /**
-     * saves the current game on a file
-     * @param fileName
+     * saves the current game on a file named <GameName>.ser
      */
-    public void saveGame(String fileName){
+    public void saveGame(){
         try {
-            FileOutputStream fileOut = new FileOutputStream(fileName);
+            FileOutputStream fileOut = new FileOutputStream(name + ".ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(this);
             //needed?
@@ -49,12 +51,12 @@ public class Game implements Serializable {
 
     /**
      * loads the serialized game
-     * @param fileName
+     * @param gameName
      * @return the game deserialized
      */
-    public static Game loadGame(String fileName){
+    public static Game loadGame(String gameName){
         try {
-            FileInputStream fileIn = new FileInputStream(fileName);
+            FileInputStream fileIn = new FileInputStream(gameName + ".ser");
             ObjectInputStream in = new ObjectInputStream(fileIn);
             Game game = (Game) in.readObject();
 

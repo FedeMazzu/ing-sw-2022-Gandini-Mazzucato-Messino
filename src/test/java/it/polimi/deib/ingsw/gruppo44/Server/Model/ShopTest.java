@@ -28,7 +28,7 @@ class ShopTest {
      */
     @Test
     public void factoryMethod__wocd(){
-        game = new Game(GameMode.TwoPlayersExpert);
+        game = new Game("TestGame",GameMode.TwoPlayersExpert);
         shop = game.getBoard().getShop();
         assertEquals(shop.getRandomCharacterId(0)+1,shop.getCharacter(0).getId());
         assertEquals(shop.getRandomCharacterId(1)+1,shop.getCharacter(1).getId());
