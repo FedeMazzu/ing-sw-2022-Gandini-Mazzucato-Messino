@@ -4,13 +4,15 @@ import it.polimi.deib.ingsw.gruppo44.Server.Model.*;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.Data;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.SchoolData;
 
+import java.io.Serializable;
 import java.util.*;
 
 
 /**
- *
+ * stage to initialize the game
+ * @author
  */
-public class Start implements Stage {
+public class Start implements Stage, Serializable {
     private final GameStage gameStage = GameStage.START;
     private final GameController gameController;
     private Game game;
@@ -26,20 +28,13 @@ public class Start implements Stage {
 
     public void handle(){
         Random rand = new Random();
-        GameMode gameMode = null;
-        try {
-            gameMode = askGameMode();
-        } catch (InputMismatchException ime) {
-            System.out.println("invalid input");
-            System.exit(0);
-        }
-        game = new Game(askGameName(),gameMode);
+        GameMode gameMode= gameController.getGameMode();
+        game = new Game(gameMode);
         data = new Data();
         gameController.setGame(game);
         gameController.setData(data);
         TurnHandler turnHandler = new TurnHandler(gameMode);
         gameController.setTurnHandler(turnHandler);
-        gameController.setGameMode(gameMode);
         //saving the reference of the islands and clouds Data in the Virtual View
         data.setBoardData(game.getBoard().getBoardObserver().getBoardData());
         data.setIslandsData(game.getBoard().getUnionFind().getIslandsObserver().getIslandsData());
@@ -97,43 +92,7 @@ public class Start implements Stage {
         gameController.setGameStage(GameStage.PLANNING);
     }
 
-    private String askGameName() {
-        System.out.println("Insert the game name:");
-        return sc.next();
-    }
 
-
-    /**
-     * Temporary method used for trying
-     * @return gameMode
-     */
-    private GameMode askGameMode()throws InputMismatchException{
-        int a;
-        do {
-            System.out.println("Choose the game mode(number):\n1 - TwoPlayersBasic,\n" +
-                    "2 - TwoPlayersExpert(2,1,8,7,3,2,true),\n" +
-                    "3 - ThreePlayersBasic(3,1,6,9,4,3,false),\n" +
-                    "4 - ThreePlayersExpert(3,1,6,9,4,3,true),\n" +
-                    "5 - TeamBasic(2,2,8,7,3,4,false),\n" +
-                    "6 - TeamExpert(2,2,8,7,3,4,true);");
-
-            a = sc.nextInt();
-        } while (a < 1 || a > 6);
-        switch (a) {
-            case 1:
-                return GameMode.TwoPlayersBasic;
-            case 2:
-                return GameMode.TwoPlayersExpert;
-            case 3:
-                return GameMode.ThreePlayersBasic;
-            case 4:
-                return GameMode.ThreePlayersExpert;
-            case 5:
-                return GameMode.TeamBasic;
-            default:
-                return GameMode.TeamExpert;//else
-        }
-    }
 
     private String askName(){
         System.out.println("Insert your name:");

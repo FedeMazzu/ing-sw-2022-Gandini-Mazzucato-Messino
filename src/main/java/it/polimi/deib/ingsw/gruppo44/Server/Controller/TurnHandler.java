@@ -1,16 +1,20 @@
 package it.polimi.deib.ingsw.gruppo44.Server.Controller;
 
-
 import it.polimi.deib.ingsw.gruppo44.Server.Model.GameMode;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Player;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Game;
 
+import java.io.Serializable;
 import java.util.ArrayDeque;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
-public class TurnHandler {
+/**
+ * Class to manage the playing order
+ * @author FedeMazzu
+ */
+public class TurnHandler implements Serializable {
 
     private PriorityQueue<Ticket> turnOrder;
     private ArrayDeque<Player> cardOrder;
@@ -49,7 +53,7 @@ public class TurnHandler {
 
 }
 
-class TicketComparator implements Comparator<Ticket>{
+class TicketComparator implements Comparator<Ticket>,Serializable{
     //attenzione a quale deve essere l'ordine, sicuro 99% cosi` e` corretto ç
     public int compare(Ticket t1, Ticket t2){
         if(t1.priority > t2.priority) return 1;
@@ -59,7 +63,7 @@ class TicketComparator implements Comparator<Ticket>{
 
 }
 
-class Ticket {
+class Ticket implements Serializable {
     Player player;
     int priority;
 

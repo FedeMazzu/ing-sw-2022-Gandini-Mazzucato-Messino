@@ -21,7 +21,7 @@ class CloudsDataTest {
 
     @BeforeEach
     public void SetUp(){
-        game = new Game("TestGame",GameMode.TwoPlayersBasic);
+        game = new Game(GameMode.TwoPlayersBasic);
         cloud = game.getBoard().getClouds().get(0);
         cloudsData = game.getBoard().getCloudsObserver().getCloudsData();
     }

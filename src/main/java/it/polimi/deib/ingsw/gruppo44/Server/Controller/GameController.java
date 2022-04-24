@@ -6,6 +6,7 @@ import it.polimi.deib.ingsw.gruppo44.Server.Model.Player;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Team;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.Data;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,18 +14,23 @@ import java.util.List;
  * Class to manage the game stages
  * @author filippogandini
  */
-public class GameController {
-    private Game game;
+public class GameController implements Serializable, Runnable {
+    private Game game; //identifier
+    private final String gameName;
+    private final GameMode gameMode;
     private Data data;
     private List<User> users;
     private Stage stage;
     private GameStage gameStage;
     private boolean endGame;
     private TurnHandler turnHandler;
-    private GameMode gameMode;
 
 
-    public GameController() {
+
+    public GameController(String gameName, GameMode gameMode) {
+        this.gameName = gameName;
+        this.gameMode = gameMode;
+        this.gameStage = GameStage.START;
         users = new ArrayList<>();
     }
 
@@ -32,9 +38,9 @@ public class GameController {
      * method to manage the stages. The stages handle the current game procedures
      * and, at the end, update the attribute gameStage to the next.
      */
-    public void game(){
+    @Override
+    public void run(){
         endGame = false;
-        gameStage = GameStage.START;
         while(!endGame){
             switch (gameStage){
                 case START:
@@ -57,6 +63,10 @@ public class GameController {
         }
     }
 
+    /**
+     * checks if there are the conditions for ending the game
+     * @return a boolean value
+     */
     public boolean checkEndOfGame(){
         boolean COND1 = false, COND2 = false, COND3 = false;
         //team tower supply is empty COND1
@@ -74,6 +84,45 @@ public class GameController {
 
         return COND1 || COND2 || COND3;
 
+    }
+
+    /**
+     * saves the current game on a file named <GameName>.ser
+     */
+    public void saveGame(){
+        try {
+            FileOutputStream fileOut = new FileOutputStream(gameName + ".ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(this);
+            //needed?
+            // out.flush();
+            out.close();
+            fileOut.close();
+        }catch (IOException ioe){
+            ioe.printStackTrace();
+        }
+    }
+
+    /**
+     * loads the serialized gameController (which includes the game)
+     * @param parameterGameName
+     * @return the game deserialized
+     */
+    public static GameController loadGame(String parameterGameName){
+        try {
+            FileInputStream fileIn = new FileInputStream(parameterGameName + ".ser");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            GameController gameController = (GameController) in.readObject();
+
+            //needed?
+            // in.flush();
+            in.close();
+            fileIn.close();
+            return gameController;
+        }catch (IOException | ClassNotFoundException ioe){
+            ioe.printStackTrace();
+            return null;
+        }
     }
 
 
@@ -106,7 +155,7 @@ public class GameController {
     /**
      * method called from the END stage to quit che loop and end the game
      */
-    void EndGame(){endGame = true;}
+    void endGame(){endGame = true;}
 
     /**
      * method called from every stage at the end to move to the next stage
@@ -116,20 +165,19 @@ public class GameController {
         this.gameStage = gameStage;
     }
 
+
     public void setTurnHandler(TurnHandler turnHandler){ this.turnHandler = turnHandler; }
 
-    public void setGameMode(GameMode gameMode) { this.gameMode = gameMode; }
 
     public GameMode getGameMode() {
         return gameMode;
     }
 
-    public TurnHandler getTurnHandler() {
-        return turnHandler;
+    public String getGameName() {
+        return gameName;
     }
 
-    public static void main(String[] args) {
-        GameController gameController = new GameController();
-        gameController.game();
+    public TurnHandler getTurnHandler() {
+        return turnHandler;
     }
 }

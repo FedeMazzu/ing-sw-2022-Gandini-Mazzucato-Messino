@@ -2,11 +2,16 @@ package it.polimi.deib.ingsw.gruppo44.Server.Controller;
 
 import it.polimi.deib.ingsw.gruppo44.Server.Model.*;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
-public class Action implements Stage {
+/**
+ * stage to model the action phase
+ * @author
+ */
+public class Action implements Stage, Serializable {
     private final GameStage gameStage = GameStage.ACTION;
     private final GameController gameController;
     private PriorityQueue<Ticket> turnOrder;

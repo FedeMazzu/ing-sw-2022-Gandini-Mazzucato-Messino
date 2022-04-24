@@ -1,5 +1,6 @@
 package it.polimi.deib.ingsw.gruppo44.Server.VirtualView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import java.util.List;
  * class to manage the Virtual view data
  * @author filippogandini
  */
-public class Data {
+public class Data implements Serializable {
     private BoardData boardData; //to trace mother nature position
     private List<SchoolData> schoolDataList;
     private IslandsData islandsData;

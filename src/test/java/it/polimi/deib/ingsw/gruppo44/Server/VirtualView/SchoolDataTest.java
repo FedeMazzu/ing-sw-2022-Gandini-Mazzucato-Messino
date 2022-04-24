@@ -18,7 +18,7 @@ class SchoolDataTest {
     private Player player;
     @BeforeEach
     void setUp() {
-        game = new Game("TestGame",GameMode.TwoPlayersBasic);
+        game = new Game(GameMode.TwoPlayersBasic);
         player = game.getTeams().get(0).getPlayers().get(0);
         school = player.getSchool();
         schoolData = school.getSchoolObserver().getSchoolData();

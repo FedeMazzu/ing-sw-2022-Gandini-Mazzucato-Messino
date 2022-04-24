@@ -4,7 +4,13 @@ import it.polimi.deib.ingsw.gruppo44.Server.Model.Board;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Cloud;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Color;
 
-public class Cleanup implements Stage {
+import java.io.Serializable;
+
+/**
+ * stage to clean up the game before starting a new round
+ * @author
+ */
+public class Cleanup implements Stage, Serializable {
     private final GameStage gameStage = GameStage.CLEANUP;
     private final GameController gameController;
 

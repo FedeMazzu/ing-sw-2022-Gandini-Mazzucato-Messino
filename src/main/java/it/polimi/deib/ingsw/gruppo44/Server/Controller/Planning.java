@@ -3,11 +3,16 @@ package it.polimi.deib.ingsw.gruppo44.Server.Controller;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Game;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Player;
 
+import java.io.Serializable;
 import java.util.ArrayDeque;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
-public class Planning implements Stage {
+/**
+ * stage to model the planning phase
+ * @author
+ */
+public class Planning implements Stage, Serializable {
     private final GameStage gameStage = GameStage.PLANNING;
     private final GameController gameController;
     private ArrayDeque<Player> cardOrder;

@@ -4,7 +4,9 @@ import it.polimi.deib.ingsw.gruppo44.Server.Model.Color;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Player;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Team;
 
-public class End implements Stage {
+import java.io.Serializable;
+
+public class End implements Stage, Serializable {
     private final GameStage gameStage = GameStage.END;
     private final GameController gameController;
 
@@ -47,6 +49,6 @@ public class End implements Stage {
             System.out.println(player.getMagician()+" WON!");
         }
 
-        gameController.EndGame();
+        gameController.endGame();
     }
 }

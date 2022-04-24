@@ -12,7 +12,7 @@ class CloudTest {
 
     @BeforeEach
     public void SetUp(){
-        game = new Game("prova",GameMode.TwoPlayersBasic);
+        game = new Game(GameMode.TwoPlayersBasic);
         cloud = game.getBoard().getClouds().get(0);
     }
 

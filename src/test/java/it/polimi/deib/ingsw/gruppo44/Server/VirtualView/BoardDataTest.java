@@ -20,7 +20,7 @@ class BoardDataTest {
     private BoardData boardData;
     @BeforeEach
     void setUp() {
-        game = new Game("TestGame",GameMode.TwoPlayersExpert);
+        game = new Game(GameMode.TwoPlayersExpert);
         board = game.getBoard();
         boardData = board.getBoardObserver().getBoardData();
     }
