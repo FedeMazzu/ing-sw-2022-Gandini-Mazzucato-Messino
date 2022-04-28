@@ -58,24 +58,27 @@ public class ClientsHandler {
             try {
                 ObjectInputStream ois = user.getOis();
                 ObjectOutputStream oos = user.getOos();
-
-                //maybe I should create the enum in the server class
-                switch ((ClientChoice)ois.readObject()){
-                    case CreateGameCHOISE:
-                        CreateGameMESSAGE createGame = (CreateGameMESSAGE) ois.readObject();
-                        gamesManager.createGame(createGame.getGameName(),createGame.getGameMode(),user );
-                        break;
-                    case JoinGameCHOISE:
-                        Map<String, GameMode> openGames = gamesManager.getOpenGames();
-                        oos.writeObject(openGames);
-                        oos.flush();
-                        if(!openGames.isEmpty()) {
-                            String gameName = (String) ois.readObject();
-                            gamesManager.joinGame(gameName, user);
-                        }
-                        break;
-                    default: //case LoadGameCHOICE
-                        //
+                boolean gameJoined = false; //to manage the case in which there aren't game to join
+                while(!gameJoined) {
+                    switch ((ClientChoice) ois.readObject()) {
+                        case CreateGameCHOISE:
+                            CreateGameMESSAGE createGame = (CreateGameMESSAGE) ois.readObject();
+                            gamesManager.createGame(createGame.getGameName(), createGame.getGameMode(), user);
+                            gameJoined = true;
+                            break;
+                        case JoinGameCHOISE:
+                            Map<String, GameMode> openGames = gamesManager.getOpenGames();
+                            oos.writeObject(openGames);
+                            oos.flush();
+                            if (!openGames.isEmpty()) {
+                                String gameName = (String) ois.readObject();
+                                gamesManager.joinGame(gameName, user);
+                                gameJoined = true;
+                            }
+                            break;
+                        default: //case LoadGameCHOICE
+                            //
+                    }
                 }
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();

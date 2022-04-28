@@ -49,10 +49,10 @@ public class ClientController implements Runnable {
                     case SETUP:
                         stage = new Setup(this);
                         break;
-                    case ClientPLANNING:PLANNING:
+                    case ClientPLANNING:
                         stage = new ClientPlanning(this);
                         break;
-                    case ClientACTION:ACTION:
+                    case ClientACTION:
                         stage = new ClientAction(this);
                         break;
                     default: //case END

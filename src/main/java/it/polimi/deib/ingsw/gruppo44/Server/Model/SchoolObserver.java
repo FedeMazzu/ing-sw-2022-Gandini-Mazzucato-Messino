@@ -23,7 +23,14 @@ public class SchoolObserver implements Observer, Serializable {
     public void update() {
         updateNumStudents();
         updateProfessors();
+        schoolData.setPlayerMoney(school.getPlayer().getMoney());
+    }
 
+    /**
+     * called when a player earns or spends money
+     */
+    public void updateMoney(){
+        schoolData.setPlayerMoney(school.getPlayer().getMoney());
     }
 
     /**

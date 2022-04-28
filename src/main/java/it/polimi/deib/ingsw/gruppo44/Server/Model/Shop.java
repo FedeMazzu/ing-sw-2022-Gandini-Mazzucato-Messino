@@ -40,7 +40,7 @@ public class Shop implements Creator, Serializable {
         //creating the 3 random characters
         for(int i=0; i<3; i++){
 
-            //because randInt returns a value between 0  and randomCharacter-1
+            //because randInt returns a value between 0 and randomCharacter-1
             switch (randomCharacter[i]+1){
                 case 1 :
                     characters.add(new Character1(game));

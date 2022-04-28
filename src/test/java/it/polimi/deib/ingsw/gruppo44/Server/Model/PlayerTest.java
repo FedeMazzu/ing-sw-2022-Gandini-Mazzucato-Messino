@@ -18,14 +18,13 @@ import static org.junit.jupiter.api.Assertions.*;
 class PlayerTest {
     private Game game;
     private Player player;
-//To adjust
-   /* @BeforeEach
+
+    @BeforeEach
     public void setUp() {
         game = new Game(GameMode.TwoPlayersBasic);
         List<Team> teams = game.getTeams();
         //works because of the mood
         player = teams.get(0).getPlayers().get(0);
-        for(Card card : Card.values()) card.setPlayedFalse();
     }
 
     @AfterEach
@@ -49,20 +48,6 @@ class PlayerTest {
 
     }
 
-    @Test
-    public void playCard__woct(){
-        for(int i=1; i<=10; i++) { //the number of cards is fixed
-            assertFalse(player.getCard(i).isPlayed());
-        }
-
-        player.playCard(6);
-
-        for(int i=1; i<=10; i++) { //the number of cards is fixed
-            if(i == 6) assertTrue(player.getCard(i).isPlayed());
-            else assertFalse(player.getCard(i).isPlayed());
-        }
-
-    }
 
     @Test
     public void showAvailableCards__woct(){
@@ -82,5 +67,5 @@ class PlayerTest {
             }
         }
 
-    }*/
+    }
 }

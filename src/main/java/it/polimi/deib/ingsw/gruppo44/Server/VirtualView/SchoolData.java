@@ -17,8 +17,8 @@ import java.util.Map;
 public class SchoolData implements Serializable {
     private Map<Color, Integer> hallStudents, entranceStudents;
     private Map<Color, Boolean> professors;
-    //identifier
-    private Magician magician;
+    private int playerMoney;
+    private Magician magician; //identifier
 
     public SchoolData() {
         hallStudents = new HashMap<>();
@@ -43,6 +43,10 @@ public class SchoolData implements Serializable {
      */
     public void setProfessors(Color color,boolean value){
         professors.put(color,value);
+    }
+
+    public void setPlayerMoney(int playerCoins){
+        this.playerMoney = playerMoney;
     }
 
     /**

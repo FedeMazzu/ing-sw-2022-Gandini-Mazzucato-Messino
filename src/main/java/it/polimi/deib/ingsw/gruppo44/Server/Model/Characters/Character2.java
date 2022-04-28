@@ -4,7 +4,7 @@ import it.polimi.deib.ingsw.gruppo44.Server.Model.Game;
 
 /**
  * Class to represent the Character 2
- * effect: duirng this turn you take control of any number of Professors
+ * effect: during this turn you take control of any number of Professors
  * even if you have the same number of Students as the player who currently controls them
  * @author
  */

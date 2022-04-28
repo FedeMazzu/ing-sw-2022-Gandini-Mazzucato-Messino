@@ -126,7 +126,7 @@ public class Action implements Stage, Serializable {
 
             }
             //moving mother nature
-            oos.writeObject("How many steps? max "+Math.ceil(((double)turnOrder.peek().getPriority()/2.0)));
+            oos.writeObject("How many steps? max "+(int)Math.ceil(((double)turnOrder.peek().getPriority()/2.0)));
             oos.flush();
 
             int stepsChoice = ois.readInt();

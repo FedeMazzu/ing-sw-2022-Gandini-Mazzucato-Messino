@@ -27,6 +27,7 @@ public class ClientPlanning implements Stage {
     @Override
     public void handle() throws IOException, ClassNotFoundException, InterruptedException {
         System.out.println("Waiting for your turn of choosing a card");
+        //printing available cards
         System.out.println((ois.readObject()));
 
         //sending the chosen card

@@ -4,7 +4,7 @@ import it.polimi.deib.ingsw.gruppo44.Server.Model.Game;
 
 /**
  * Class to represent the Character 3
- * effect: choose an island and resolve island as idf Mother nature had ended her movement there.
+ * effect: choose an island and resolve island as if Mother nature had ended her movement there.
  * Mother nature will still move and the island where she ends her movement will also be resolved
  * @author filippogandini
  */
