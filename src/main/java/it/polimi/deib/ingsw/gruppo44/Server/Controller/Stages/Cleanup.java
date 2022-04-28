@@ -1,5 +1,8 @@
-package it.polimi.deib.ingsw.gruppo44.Server.Controller;
+package it.polimi.deib.ingsw.gruppo44.Server.Controller.Stages;
 
+import it.polimi.deib.ingsw.gruppo44.Common.Stage;
+import it.polimi.deib.ingsw.gruppo44.Server.Controller.GameController;
+import it.polimi.deib.ingsw.gruppo44.Server.Controller.GameStage;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Board;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Cloud;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Color;

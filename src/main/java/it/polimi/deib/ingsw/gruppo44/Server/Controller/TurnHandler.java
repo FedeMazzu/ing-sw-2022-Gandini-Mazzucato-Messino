@@ -1,8 +1,6 @@
 package it.polimi.deib.ingsw.gruppo44.Server.Controller;
-
-import it.polimi.deib.ingsw.gruppo44.Server.Model.GameMode;
+import it.polimi.deib.ingsw.gruppo44.Common.GameMode;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Player;
-import it.polimi.deib.ingsw.gruppo44.Server.Model.Game;
 
 import java.io.Serializable;
 import java.util.ArrayDeque;
@@ -33,7 +31,7 @@ public class TurnHandler implements Serializable {
 
     public void endOfTurn(){
         try{
-            Player p = turnOrder.poll().player;
+            Player p = turnOrder.poll().getPlayer();
             cardOrder.add(p);
         }
         catch (NullPointerException e){
@@ -56,21 +54,10 @@ public class TurnHandler implements Serializable {
 class TicketComparator implements Comparator<Ticket>,Serializable{
     //attenzione a quale deve essere l'ordine, sicuro 99% cosi` e` corretto ç
     public int compare(Ticket t1, Ticket t2){
-        if(t1.priority > t2.priority) return 1;
-        else if(t1.priority < t2.priority) return -1;
+        if(t1.getPriority() > t2.getPriority()) return 1;
+        else if(t1.getPriority() < t2.getPriority()) return -1;
         return 0;
     }
 
 }
 
-class Ticket implements Serializable {
-    Player player;
-    int priority;
-
-    public Ticket(Player p, int prio){
-        player = p;
-        priority = prio;
-    }
-
-
-}

@@ -1,5 +1,7 @@
 package it.polimi.deib.ingsw.gruppo44.Server.Model;
 
+import it.polimi.deib.ingsw.gruppo44.Common.GameMode;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,8 +20,9 @@ public class Team implements Serializable {
      * @param tower type of the team
      * @param gameMode which defines the number of player for Team
      */
-    public Team(Tower tower,GameMode gameMode,Game game) {
+    public Team(Tower tower, GameMode gameMode, Game game) {
         this.tower = tower;
+        towerCount = gameMode.getTeamTowers();
         players = new ArrayList<>();
         for(int i=0; i< gameMode.getTeamPlayers(); i++) players.add(new Player(gameMode,game.getBoard()));
     }

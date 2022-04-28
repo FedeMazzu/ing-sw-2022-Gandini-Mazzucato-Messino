@@ -1,5 +1,8 @@
 package it.polimi.deib.ingsw.gruppo44.Server.Model;
 
+import it.polimi.deib.ingsw.gruppo44.Common.GameMode;
+import it.polimi.deib.ingsw.gruppo44.Server.Controller.User;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,10 +15,12 @@ import java.util.List;
 
 public class Player implements Serializable {
     private String name;
+    private User user;
     private School school;
     private int money;
     private Magician magician; // the identifier of the player
     private Card[] deck;
+    private boolean[] playedCards;
     private NotOwnedObjects notOwnedObjects;
 
     /**
@@ -26,6 +31,7 @@ public class Player implements Serializable {
         this.school = new School(this,gameMode.getPlayerEntranceStudents());
         if(gameMode.isExpertMode()) this.money = 1;//every player starts with one coin
         this.deck = new Card[]{Card.ONE, Card.TWO, Card.THREE, Card.FOUR, Card.FIVE, Card.SIX, Card.SEVEN, Card.EIGHT, Card.NINE, Card.TEN};
+        playedCards = new boolean[10];
         notOwnedObjects = board.getNotOwnedObjects();
     }
 
@@ -37,18 +43,13 @@ public class Player implements Serializable {
         notOwnedObjects.giveCoin();
     }
 
+
     /**
      * method to signal the play of a card
      * @param value of the card played
      */
     public void playCard(int value){
-        Card playingCard;
-        for(Card card: deck){
-            if(value == card.getValue()){
-                card.playCard();
-                break;
-            }
-        }
+        playedCards[value-1] = true;
 
     }
     /**
@@ -75,13 +76,21 @@ public class Player implements Serializable {
     public List<Card> showAvailableCards(){
         List<Card> availableCards = new ArrayList<>();
         for(Card card : deck){
-            if(!card.isPlayed()) availableCards.add(card);
+            if(!playedCards[card.getValue()-1]) availableCards.add(card);
         }
         return availableCards;
     }
 
     public void setMagician(Magician magician) {
         this.magician = magician;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public User getUser() {
+        return user;
     }
 
     public void setName(String name) {

@@ -1,7 +1,6 @@
 package it.polimi.deib.ingsw.gruppo44.Server.VirtualView;
 
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Color;
-import it.polimi.deib.ingsw.gruppo44.Server.Model.GameMode;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package it.polimi.deib.ingsw.gruppo44.Server.Model;
+package it.polimi.deib.ingsw.gruppo44.Common;
 
 import java.io.Serializable;
 

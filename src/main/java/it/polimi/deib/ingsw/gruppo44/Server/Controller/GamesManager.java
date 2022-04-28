@@ -1,11 +1,8 @@
 package it.polimi.deib.ingsw.gruppo44.Server.Controller;
 
-import it.polimi.deib.ingsw.gruppo44.Server.Model.GameMode;
+import it.polimi.deib.ingsw.gruppo44.Common.GameMode;
 
-import java.util.HashMap;
-import java.util.InputMismatchException;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * class to manage the games
@@ -24,14 +21,20 @@ public class GamesManager {
     /**
      * Creates and runs the game
      */
-    public void createGame(){
-        String gameName = askGameName();
-        GameMode gameMode = askGameMode();
+    public void createGame(String gameName, GameMode gameMode, User creatorUser){
         GameController gameController = new GameController(gameName,gameMode);
+        gameController.addUser(creatorUser);
         games.put(gameName,gameController);
-
         new Thread(gameController).start();
     }
+
+
+    public void joinGame(String gameName,User joiningUser){
+        GameController gameController = games.get(gameName);
+        gameController.addUser(joiningUser);
+        //note that this just has to add the user to the appropriate GameController
+    }
+
 
     /**
      * loads a game from a file .ser and runs it
@@ -49,6 +52,17 @@ public class GamesManager {
     private String askGameName() {
         System.out.println("Insert the game name:");
         return sc.next();
+    }
+
+    /**
+     * @return the name and gameMode of the running games
+     */
+    public Map<String,GameMode> getOpenGames(){
+        Map<String,GameMode> openGames = new HashMap<>();
+        for(String s : games.keySet()){
+            openGames.put(s, games.get(s).getGameMode());
+        }
+        return openGames;
     }
 
 
@@ -85,8 +99,4 @@ public class GamesManager {
         }
     }
 
-    public static void main(String[] args) {
-        GamesManager gamesManager = new GamesManager();
-        gamesManager.createGame();
-    }
 }

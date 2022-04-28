@@ -2,7 +2,7 @@ package it.polimi.deib.ingsw.gruppo44.Server.VirtualView;
 
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Board;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Game;
-import it.polimi.deib.ingsw.gruppo44.Server.Model.GameMode;
+import it.polimi.deib.ingsw.gruppo44.Common.GameMode;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

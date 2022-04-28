@@ -1,9 +1,16 @@
-package it.polimi.deib.ingsw.gruppo44.Server.Controller;
+package it.polimi.deib.ingsw.gruppo44.Server.Controller.Stages;
 
+import it.polimi.deib.ingsw.gruppo44.Common.Stage;
+import it.polimi.deib.ingsw.gruppo44.Server.Controller.GameController;
+import it.polimi.deib.ingsw.gruppo44.Server.Controller.GameStage;
+import it.polimi.deib.ingsw.gruppo44.Server.Controller.User;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Color;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Player;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Team;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 public class End implements Stage, Serializable {
@@ -15,7 +22,7 @@ public class End implements Stage, Serializable {
     }
 
     @Override
-    public void handle() {
+    public void handle() throws IOException {
 
         Team tempWinner = gameController.getGame().getTeams().get(0);
         int tempMinScore = 9;
@@ -44,9 +51,21 @@ public class End implements Stage, Serializable {
                 }
             }
         }
+        User user;
+        ObjectOutputStream oos;
+        //ObjectInputStream ois;
+        String winningMessage ="";
         for(Player player : tempWinner.getPlayers()){
-            //print winners
-            System.out.println(player.getMagician()+" WON!");
+            winningMessage += player.getMagician()+" WON!";
+        }
+        for(Team team : gameController.getGame().getTeams()){
+            for(Player player : team.getPlayers()){
+                user = player.getUser();
+                oos = user.getOos();
+                oos.writeObject(winningMessage);
+                oos.flush();
+                user.closeSocket();
+            }
         }
 
         gameController.endGame();

@@ -1,7 +1,9 @@
 package it.polimi.deib.ingsw.gruppo44.Server.Controller;
 
+import it.polimi.deib.ingsw.gruppo44.Common.Stage;
+import it.polimi.deib.ingsw.gruppo44.Server.Controller.Stages.*;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Game;
-import it.polimi.deib.ingsw.gruppo44.Server.Model.GameMode;
+import it.polimi.deib.ingsw.gruppo44.Common.GameMode;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Player;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Team;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.Data;
@@ -59,7 +61,11 @@ public class GameController implements Serializable, Runnable {
                     stage = new End(this);
 
             }
-            stage.handle();
+            try {
+                stage.handle();
+            }catch (IOException | InterruptedException | ClassNotFoundException e){
+                e.printStackTrace();
+            }
         }
     }
 
@@ -71,7 +77,7 @@ public class GameController implements Serializable, Runnable {
         boolean COND1 = false, COND2 = false, COND3 = false;
         //team tower supply is empty COND1
         for(Team team:game.getTeams()){
-            if(team.getTowerCount() == 0) COND1 = true;
+            if(team.getTowerCount() <= 0) COND1 = true;
         }
         //3 or less islands COND2
         if(game.getBoard().getUnionFind().getSize() <= 3) COND2 = true;
@@ -145,17 +151,25 @@ public class GameController implements Serializable, Runnable {
     }
 
     /**
-     * method called from the START stage
+     * method called from the GamesManager
      * @param user
      */
-    public void addUser(User user){
+    public synchronized void addUser(User user){
         users.add(user);
+        notifyAll(); // to wake up the thread executing the while in the start waiting for the correct number of users
+    }
+
+    /**
+     * @return the number of users participating the game
+     */
+    public  synchronized int  getNumUsers(){
+        return users.size();
     }
 
     /**
      * method called from the END stage to quit che loop and end the game
      */
-    void endGame(){endGame = true;}
+    public void endGame(){endGame = true;}
 
     /**
      * method called from every stage at the end to move to the next stage
@@ -179,5 +193,9 @@ public class GameController implements Serializable, Runnable {
 
     public TurnHandler getTurnHandler() {
         return turnHandler;
+    }
+
+    public User getUser(int index){
+        return users.get(index);
     }
 }
