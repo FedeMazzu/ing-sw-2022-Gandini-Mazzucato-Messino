@@ -1,12 +1,16 @@
 package it.polimi.deib.ingsw.gruppo44.Server.Controller.Stages;
 
+import it.polimi.deib.ingsw.gruppo44.Common.GameMode;
 import it.polimi.deib.ingsw.gruppo44.Common.Stage;
 import it.polimi.deib.ingsw.gruppo44.Server.Controller.GameController;
 import it.polimi.deib.ingsw.gruppo44.Server.Controller.GameStage;
+import it.polimi.deib.ingsw.gruppo44.Server.Controller.User;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Board;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Cloud;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Color;
 
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 /**
@@ -16,13 +20,16 @@ import java.io.Serializable;
 public class Cleanup implements Stage, Serializable {
     private final GameStage gameStage = GameStage.CLEANUP;
     private final GameController gameController;
+    private final GameMode gameMode;
 
     public Cleanup(GameController gameController) {
+
         this.gameController = gameController;
+        this.gameMode = gameController.getGameMode();
     }
 
     @Override
-    public void handle() {
+    public void handle() throws IOException {
         System.out.println("--------------CLEANUP PHASE---------------");
         //fill clouds
         Board board= gameController.getGame().getBoard();
@@ -35,6 +42,13 @@ public class Cleanup implements Stage, Serializable {
             for(Color c : Color.values()){
                 System.out.println("Student: "+c+" "+cloud.getStudentsNum(c));
             }
+        }
+
+        for(int i=0;i<gameMode.getTeamsNumber()*gameMode.getTeamPlayers();i++){
+            User tempUser = gameController.getUser(i);
+            ObjectOutputStream oos = tempUser.getOos();
+            oos.writeObject(gameController.getData().getCloudsData());
+            oos.flush();
         }
 
         gameController.setGameStage(GameStage.PLANNING);

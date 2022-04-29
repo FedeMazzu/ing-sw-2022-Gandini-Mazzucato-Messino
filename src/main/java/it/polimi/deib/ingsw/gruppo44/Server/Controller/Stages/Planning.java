@@ -46,10 +46,15 @@ public class Planning implements Stage, Serializable {
             currUser = currPlayer.getUser();
             oos = currUser.getOos();
             ois = currUser.getOis();
+            //send to the next player the cards already played
+            User tempUser = cardOrder.peek().getUser();
+            oos = tempUser.getOos();
+            oos.writeObject(turnOrder);
+            oos.flush();
             //Card Choice
             cardValue = cardChoosing(currPlayer,ois,oos);
-
             turnOrder.add(new Ticket(currPlayer,cardValue));
+
         }
         gameController.setGameStage(GameStage.ACTION);
     }
@@ -76,6 +81,7 @@ public class Planning implements Stage, Serializable {
         cardValue = ois.readInt();
         cardsPlayedFromOtherPlayers.add(cardValue);
         currPlayer.playCard(cardValue);
+
         return cardValue;
     }
 }

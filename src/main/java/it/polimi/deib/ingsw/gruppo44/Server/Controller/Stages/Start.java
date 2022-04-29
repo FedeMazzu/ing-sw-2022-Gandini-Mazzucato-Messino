@@ -108,6 +108,13 @@ public class Start implements Stage, Serializable {
             turnHandler.endOfTurn(); //the player is put in the card deque and polled from the prioQ
         }
 
+        for(int i=0;i<gameMode.getTeamsNumber()*gameMode.getTeamPlayers();i++){
+            User tempUser = gameController.getUser(i);
+            oos = tempUser.getOos();
+            oos.writeObject(gameController.getData());
+            oos.flush();
+        }
+
         //at the end
         gameController.setGameStage(GameStage.PLANNING);
     }

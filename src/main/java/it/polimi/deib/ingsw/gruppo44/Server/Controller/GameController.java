@@ -150,6 +150,10 @@ public class GameController implements Serializable, Runnable {
         this.data = data;
     }
 
+    public Data getData() {
+        return data;
+    }
+
     /**
      * method called from the GamesManager
      * @param user

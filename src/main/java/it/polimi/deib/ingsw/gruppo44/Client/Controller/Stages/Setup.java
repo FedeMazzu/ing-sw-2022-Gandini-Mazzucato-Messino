@@ -3,6 +3,7 @@ package it.polimi.deib.ingsw.gruppo44.Client.Controller.Stages;
 import it.polimi.deib.ingsw.gruppo44.Client.Controller.ClientController;
 import it.polimi.deib.ingsw.gruppo44.Client.Controller.ClientStage;
 import it.polimi.deib.ingsw.gruppo44.Common.Stage;
+import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.Data;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -34,6 +35,7 @@ public class Setup implements Stage {
         oos.flush();
         askMagician();
         System.out.println("Magician set!");
+        Data data = (Data)ois.readObject();
         clientController.setClientStage(ClientStage.ClientPLANNING);
     }
 

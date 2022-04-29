@@ -31,4 +31,18 @@ public class Data implements Serializable {
     public void setIslandsData(IslandsData islandsData) {
         this.islandsData = islandsData;
     }
+
+    public CloudsData getCloudsData() { return cloudsData; }
+
+    public BoardData getBoardData() {
+        return boardData;
+    }
+
+    public List<SchoolData> getSchoolDataList() {
+        return schoolDataList;
+    }
+
+    public IslandsData getIslandsData() {
+        return islandsData;
+    }
 }
