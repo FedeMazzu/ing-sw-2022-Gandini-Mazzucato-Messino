@@ -45,13 +45,13 @@ public class NetworkHandler {
     }
 
     /**
-     * chekcs if the connection persists
+     * checks if the connection persists
      */
     private void superviseConnection(){
         new Thread(()-> {
             try {
                 InetAddress serverAddress = InetAddress.getByName(serverIp);
-                //note that this always work if you run the server in the same machine of the client
+                //note that this always work if you run the server on the same machine of the client
                 while (serverAddress.isReachable(5000)) {
                     try {
                         Thread.sleep(10000);
@@ -75,7 +75,7 @@ public class NetworkHandler {
         String IP;
         boolean correct;
         while(true) {
-            System.out.print("Enter your IP address:\n(convention xxx.xxx.xxx.xxx) -> ");
+            System.out.print("Enter server Ip address:\n(convention xxx.xxx.xxx.xxx) -> ");
             IP = sc.next();
             correct=false;
             if(IP.length() == 15){

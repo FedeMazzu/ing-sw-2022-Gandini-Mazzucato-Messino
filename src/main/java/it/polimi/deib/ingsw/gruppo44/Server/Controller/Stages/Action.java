@@ -40,113 +40,23 @@ public class Action implements Stage, Serializable {
         User currUser;
         ObjectInputStream ois;
         ObjectOutputStream oos;
-        String currData;
         while(!turnOrder.isEmpty()){
-            System.out.println("entered here");
             currPlayer = turnOrder.peek().getPlayer();
             currUser = currPlayer.getUser();
             oos = currUser.getOos();
             ois = currUser.getOis();
             School currSchool = currPlayer.getSchool();
 
-            currData = "In your school:\n";
-            for(Color c : Color.values()){
-                currData +="Student "+c+": "+currSchool.getEntranceStudentsNum(c)+"\n";
-            }
+            //Sending data to the user
+            sendData(currSchool,oos);
+            //Move students
+            moveStudents(currSchool,ois);
+            //Move MotherNature
+            moveMotherNature(ois,oos);
+            //Choosing cloud
+            chooseACloud(currPlayer,ois,oos);
 
-            currData+="Islands:\n";
-
-            for(int i=0;i<12;i++){
-                if(board.getUnionFind().getGroup(i)!=-1) continue;
-
-                currData+="Island ID: "+i+" ";
-                for(Color c: Color.values()){
-                    currData+=c+" "+board.getUnionFind().getIsland(i).getStudentNum(c)+"| ";
-                }
-                currData+="\n";
-            }
-            oos.writeObject(currData);
-            oos.flush();
-
-            //receiving client choices
-            MovingStudentsMESSAGE msm = (MovingStudentsMESSAGE) ois.readObject();
-            for(int i=0;i<gameController.getGameMode().getCloudStudents();i++){
-
-                if(msm.isOnisland(i)){
-                    switch (msm.getStudent(i)){
-                        case GREEN:
-                            currSchool.removeEntranceStudent(Color.GREEN);
-                            board.getUnionFind().getIsland(msm.getIslandId(i)).addStudent(Color.GREEN);
-                            break;
-                        case RED:
-                            currSchool.removeEntranceStudent(Color.RED);
-                            board.getUnionFind().getIsland(msm.getIslandId(i)).addStudent(Color.RED);
-                            break;
-                        case YELLOW:
-                            currSchool.removeEntranceStudent(Color.YELLOW);
-                            board.getUnionFind().getIsland(msm.getIslandId(i)).addStudent(Color.YELLOW);
-                            break;
-                        case PINK:
-                            currSchool.removeEntranceStudent(Color.PINK);
-                            board.getUnionFind().getIsland(msm.getIslandId(i)).addStudent(Color.PINK);
-                            break;
-                        case BLUE:
-                            currSchool.removeEntranceStudent(Color.BLUE);
-                            board.getUnionFind().getIsland(msm.getIslandId(i)).addStudent(Color.BLUE);
-                            break;
-                        default:
-                            System.out.println("Incorrect value");
-                            System.exit(0);
-                    }
-
-                }
-                else{
-                    switch (msm.getStudent(i)){
-                        case GREEN:
-                            currSchool.addHallStudent(Color.GREEN);
-                            break;
-                        case RED:
-                            currSchool.addHallStudent(Color.RED);
-                            break;
-                        case YELLOW:
-                            currSchool.addHallStudent(Color.YELLOW);
-                            break;
-                        case PINK:
-                            currSchool.addHallStudent(Color.PINK);
-                            break;
-                        case BLUE:
-                            currSchool.addHallStudent(Color.BLUE);
-                            break;
-                        default:
-                            System.out.println("Incorrect value");
-                            System.exit(0);
-                    }
-                }
-
-
-            }
-            //moving mother nature
-            oos.writeObject("How many steps? max "+(int)Math.ceil(((double)turnOrder.peek().getPriority()/2.0)));
-            oos.flush();
-
-            int stepsChoice = ois.readInt();
-            System.out.println("Position before: "+board.getMotherNaturePosition());
-            board.moveMotherNature(stepsChoice);
-            System.out.println("Position after: "+board.getMotherNaturePosition());
-
-            //choosing cloud
-            String cloudsData ="";
-            for(int i=0;i< board.getClouds().size();i++){
-                cloudsData+="Cloud ID "+i;
-                Cloud cloud = board.getClouds().get(i);
-                for(Color c : Color.values()){
-                    cloudsData+="Student: "+c+" "+cloud.getStudentsNum(c);
-                }
-            }
-            oos.writeObject(cloudsData);
-            oos.flush();
-            int cloudChosen = ois.readInt();
-            board.getClouds().get(cloudChosen).wipeCloud(currPlayer);
+            //checking the end of the game
             endGame = gameController.checkEndOfGame();
             if(endGame){
                 oos.writeBoolean(true);
@@ -157,7 +67,141 @@ public class Action implements Stage, Serializable {
             oos.flush();
             gameController.getTurnHandler().endOfTurn();
         }
+
         if(endGame) gameController.setGameStage(GameStage.END);
         else gameController.setGameStage(GameStage.CLEANUP);
+    }
+
+    /**
+     * sends the data to the user
+     * @param currSchool
+     * @param oos
+     * @throws IOException
+     */
+    private void sendData(School currSchool, ObjectOutputStream oos) throws IOException {
+        String currData;
+        currData = "In your school:\n";
+        for(Color c : Color.values()){
+            currData +="Student "+c+": "+currSchool.getEntranceStudentsNum(c)+"\n";
+        }
+
+        currData+="Islands:\n";
+
+        for(int i=0;i<12;i++){
+            if(board.getUnionFind().getGroup(i)!=-1) continue;
+
+            currData+="Island ID: "+i+" ";
+            for(Color c: Color.values()){
+                currData+=c+" "+board.getUnionFind().getIsland(i).getStudentNum(c)+"| ";
+            }
+            currData+="\n";
+        }
+        oos.writeObject(currData);
+        oos.flush();
+    }
+
+    /**
+     * manages the choice of a cloud
+     * @param currPlayer
+     * @param ois
+     * @param oos
+     * @throws IOException
+     */
+    private void chooseACloud(Player currPlayer,ObjectInputStream ois, ObjectOutputStream oos) throws IOException {
+        String cloudsData ="";
+        for(int i=0;i< board.getClouds().size();i++){
+            cloudsData+="Cloud ID "+i+":-";
+            Cloud cloud = board.getClouds().get(i);
+            for(Color c : Color.values()){
+                cloudsData+=" "+c+" "+cloud.getStudentsNum(c)+"|";
+            }
+            cloudsData +="\n";
+        }
+        oos.writeObject(cloudsData);
+        oos.flush();
+        int cloudChosen = ois.readInt();
+        board.getClouds().get(cloudChosen).wipeCloud(currPlayer);
+    }
+
+
+    /**
+     * manages the player moves of students
+     * @param currSchool
+     * @param ois
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    private void moveStudents(School currSchool, ObjectInputStream ois) throws IOException, ClassNotFoundException {
+        MovingStudentsMESSAGE msm = (MovingStudentsMESSAGE) ois.readObject();
+        for(int i=0;i<gameController.getGameMode().getCloudStudents();i++){
+
+            if(msm.isOnisland(i)){
+                switch (msm.getStudent(i)){
+                    case GREEN:
+                        currSchool.removeEntranceStudent(Color.GREEN);
+                        board.getUnionFind().getIsland(msm.getIslandId(i)).addStudent(Color.GREEN);
+                        break;
+                    case RED:
+                        currSchool.removeEntranceStudent(Color.RED);
+                        board.getUnionFind().getIsland(msm.getIslandId(i)).addStudent(Color.RED);
+                        break;
+                    case YELLOW:
+                        currSchool.removeEntranceStudent(Color.YELLOW);
+                        board.getUnionFind().getIsland(msm.getIslandId(i)).addStudent(Color.YELLOW);
+                        break;
+                    case PINK:
+                        currSchool.removeEntranceStudent(Color.PINK);
+                        board.getUnionFind().getIsland(msm.getIslandId(i)).addStudent(Color.PINK);
+                        break;
+                    case BLUE:
+                        currSchool.removeEntranceStudent(Color.BLUE);
+                        board.getUnionFind().getIsland(msm.getIslandId(i)).addStudent(Color.BLUE);
+                        break;
+                    default:
+                        System.out.println("Incorrect value");
+                        System.exit(0);
+                }
+
+            }
+            else{
+                switch (msm.getStudent(i)){
+                    case GREEN:
+                        currSchool.addHallStudent(Color.GREEN);
+                        break;
+                    case RED:
+                        currSchool.addHallStudent(Color.RED);
+                        break;
+                    case YELLOW:
+                        currSchool.addHallStudent(Color.YELLOW);
+                        break;
+                    case PINK:
+                        currSchool.addHallStudent(Color.PINK);
+                        break;
+                    case BLUE:
+                        currSchool.addHallStudent(Color.BLUE);
+                        break;
+                    default:
+                        System.out.println("Incorrect value");
+                        System.exit(0);
+                }
+            }
+
+
+        }
+    }
+
+    /**
+     * manages mother nature move
+     * @param oos
+     * @throws IOException
+     */
+    private void moveMotherNature(ObjectInputStream ois, ObjectOutputStream oos) throws IOException {
+        oos.writeObject("How many steps? max "+(int)Math.ceil(((double)turnOrder.peek().getPriority()/2.0)));
+        oos.flush();
+
+        int stepsChoice = ois.readInt();
+        System.out.println("Position before: "+board.getMotherNaturePosition());
+        board.moveMotherNature(stepsChoice);
+        System.out.println("Position after: "+board.getMotherNaturePosition());
     }
 }
