@@ -44,12 +44,6 @@ public class Cleanup implements Stage, Serializable {
             }
         }
 
-        for(int i=0;i<gameMode.getTeamsNumber()*gameMode.getTeamPlayers();i++){
-            User tempUser = gameController.getUser(i);
-            ObjectOutputStream oos = tempUser.getOos();
-            oos.writeObject(gameController.getData().getCloudsData());
-            oos.flush();
-        }
 
         gameController.setGameStage(GameStage.PLANNING);
     }

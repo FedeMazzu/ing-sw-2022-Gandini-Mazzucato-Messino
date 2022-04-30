@@ -6,6 +6,7 @@ import it.polimi.deib.ingsw.gruppo44.Server.Controller.GameStage;
 import it.polimi.deib.ingsw.gruppo44.Server.Controller.Ticket;
 import it.polimi.deib.ingsw.gruppo44.Server.Controller.User;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Card;
+import it.polimi.deib.ingsw.gruppo44.Server.Model.Magician;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Player;
 
 import java.io.IOException;
@@ -41,19 +42,29 @@ public class Planning implements Stage, Serializable {
         ObjectInputStream ois;
         ObjectOutputStream oos;
         int cardValue;
+
+        for(int i=0;i<gameController.getGameMode().getTeamsNumber()*gameController.getGameMode().getTeamPlayers();i++){
+            User tempUser = gameController.getUser(i);
+            oos = tempUser.getOos();
+            oos.writeObject(gameController.getData().getCloudsData());
+            oos.flush();
+        }
+
+        Map<Magician,Integer> playedCards = new HashMap<>();
+
         while(!cardOrder.isEmpty()){
             currPlayer = cardOrder.poll();
             currUser = currPlayer.getUser();
             oos = currUser.getOos();
             ois = currUser.getOis();
             //send to the next player the cards already played
-            User tempUser = cardOrder.peek().getUser();
-            oos = tempUser.getOos();
-            oos.writeObject(turnOrder);
+            oos = currUser.getOos();
+            oos.writeObject(playedCards);
             oos.flush();
             //Card Choice
             cardValue = cardChoosing(currPlayer,ois,oos);
             turnOrder.add(new Ticket(currPlayer,cardValue));
+            playedCards.put(currPlayer.getMagician(),cardValue);
 
         }
         gameController.setGameStage(GameStage.ACTION);

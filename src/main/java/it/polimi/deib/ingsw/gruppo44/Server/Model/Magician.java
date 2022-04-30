@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @author filippogandini
  */
 public enum Magician implements Serializable {
-    KING("king",1),WITCH("Witch",2),MONK("Monk",3),WIZARD("Wizard",4);
+    KING("King",1),WITCH("Witch",2),MONK("Monk",3),WIZARD("Wizard",4);
     private String name;
     private int id;
 

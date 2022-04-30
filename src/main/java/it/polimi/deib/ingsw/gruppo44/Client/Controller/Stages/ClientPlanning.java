@@ -3,12 +3,15 @@ package it.polimi.deib.ingsw.gruppo44.Client.Controller.Stages;
 import it.polimi.deib.ingsw.gruppo44.Client.Controller.ClientController;
 import it.polimi.deib.ingsw.gruppo44.Client.Controller.ClientStage;
 import it.polimi.deib.ingsw.gruppo44.Common.Stage;
+import it.polimi.deib.ingsw.gruppo44.Server.Controller.Ticket;
+import it.polimi.deib.ingsw.gruppo44.Server.Model.Card;
+import it.polimi.deib.ingsw.gruppo44.Server.Model.Magician;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.CloudsData;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * class to manage  the Client Planning
@@ -32,7 +35,7 @@ public class ClientPlanning implements Stage {
         CloudsData cloudsData = (CloudsData)ois.readObject();
 
         //print the prioQ
-        System.out.println((ois.readObject()));
+        System.out.println((Map<Magician,Integer>)(ois.readObject()));
 
         //printing available cards
         System.out.println((ois.readObject()));
