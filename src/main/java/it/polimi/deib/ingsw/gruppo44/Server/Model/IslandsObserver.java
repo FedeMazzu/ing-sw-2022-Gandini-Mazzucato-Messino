@@ -33,6 +33,7 @@ public class IslandsObserver implements MultipleObserver, Serializable {
             islandsData.setTower(islandId,islands[islandId].getTowerColor());
             //it can be called on every island
             UnionFind unionFind = islands[0].getUnionFind();
+            islandsData.setNumOfIslands(unionFind.getSize());
             //in general, it's necessary to reset the group value of all the islands
             for(int i=0; i<12;i++) {
                 islandsData.setGroup(i, unionFind.getGroup(i));

@@ -24,6 +24,7 @@ public class ClientController implements Runnable {
     private ClientStage clientStage;
     private boolean endGame;
     private GameMode gameMode;
+    private int turnNumber;
 
     public ClientController(ObjectInputStream ois, ObjectOutputStream oos) {
         this.ois = ois;
@@ -106,5 +107,13 @@ public class ClientController implements Runnable {
 
     public ObjectOutputStream getOos() {
         return oos;
+    }
+
+    public void setTurnNumber(int turnNumber) {
+        this.turnNumber = turnNumber;
+    }
+
+    public int getTurnNumber() {
+        return turnNumber;
     }
 }

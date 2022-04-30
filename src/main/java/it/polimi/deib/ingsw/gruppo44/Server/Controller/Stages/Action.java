@@ -7,11 +7,13 @@ import it.polimi.deib.ingsw.gruppo44.Server.Controller.GameStage;
 import it.polimi.deib.ingsw.gruppo44.Server.Controller.Ticket;
 import it.polimi.deib.ingsw.gruppo44.Server.Controller.User;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.*;
+import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.SchoolData;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
@@ -51,10 +53,46 @@ public class Action implements Stage, Serializable {
             sendData(currSchool,oos);
             //Move students
             moveStudents(currSchool,ois);
+
+            //sending data to other waiting players
+            for(int i=0;i<gameController.getGameMode().getTeamsNumber()*gameController.getGameMode().getTeamPlayers();i++){
+                User tempUser = gameController.getUser(i);
+                ObjectOutputStream tempOos = tempUser.getOos();
+                if(currUser.equals(tempUser)) continue;
+
+                tempOos.writeObject(currUser.getPlayer().getSchool().getSchoolObserver().getSchoolData());
+                tempOos.flush();
+                tempOos.writeObject(gameController.getData().getIslandsData());
+                tempOos.flush();
+            }
+
             //Move MotherNature
             moveMotherNature(ois,oos);
+
+            for(int i=0;i<gameController.getGameMode().getTeamsNumber()*gameController.getGameMode().getTeamPlayers();i++){
+                User tempUser = gameController.getUser(i);
+                ObjectOutputStream tempOos = tempUser.getOos();
+                if(currUser.equals(tempUser)) continue;
+
+                tempOos.writeObject(gameController.getData().getIslandsData());
+                tempOos.flush();
+                tempOos.writeInt(gameController.getData().getBoardData().getMotherNaturePosition());
+                tempOos.flush();
+            }
+
             //Choosing cloud
             chooseACloud(currPlayer,ois,oos);
+
+            for(int i=0;i<gameController.getGameMode().getTeamsNumber()*gameController.getGameMode().getTeamPlayers();i++){
+                User tempUser = gameController.getUser(i);
+                ObjectOutputStream tempOos = tempUser.getOos();
+                if(currUser.equals(tempUser)) continue;
+
+                tempOos.writeObject(gameController.getData().getCloudsData());
+                tempOos.flush();
+                tempOos.writeObject(currUser.getPlayer().getSchool().getSchoolObserver().getSchoolData());
+                tempOos.flush();
+            }
 
             //checking the end of the game
             endGame = gameController.checkEndOfGame();

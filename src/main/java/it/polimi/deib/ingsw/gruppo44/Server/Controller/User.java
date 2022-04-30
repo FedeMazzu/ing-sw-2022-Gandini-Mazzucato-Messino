@@ -50,6 +50,9 @@ public class User implements Serializable {
         return ois;
     }
 
+    public Player getPlayer() {
+        return player;
+    }
 
     public void setPlayer(Player player) {
         this.player = player;

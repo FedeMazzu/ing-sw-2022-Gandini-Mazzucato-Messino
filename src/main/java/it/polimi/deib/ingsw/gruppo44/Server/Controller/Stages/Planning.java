@@ -67,6 +67,14 @@ public class Planning implements Stage, Serializable {
             playedCards.put(currPlayer.getMagician(),cardValue);
 
         }
+        int turnNumber = 0;
+        for(Ticket ticket:turnOrder){
+            oos = ticket.getPlayer().getUser().getOos();
+            oos.writeInt(turnNumber);
+            oos.flush();
+            turnNumber++;
+        }
+
         gameController.setGameStage(GameStage.ACTION);
     }
 

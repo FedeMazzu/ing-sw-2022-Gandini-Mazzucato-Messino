@@ -22,10 +22,16 @@ public class IslandsData implements Serializable {
     private Tower[] towers;
     private boolean[] hasTower;
     private int [] groupSize;
+    private int numOfIslands;
 
     public IslandsData() {
         students = new ArrayList<>();
-        for (int i = 0; i < 12; i++) students.add(new HashMap<>());
+        for (int i = 0; i < 12; i++){
+            students.add(new HashMap<>());
+            for(Color color:Color.values()){
+                students.get(i).put(color,0);
+            }
+        }
         towers = new Tower[12];
         hasTower = new boolean[12];
         group = new int[12];
@@ -66,6 +72,14 @@ public class IslandsData implements Serializable {
 
     public void setGroupSize(int islandId, int value){
         groupSize[islandId] = value;
+    }
+
+    public void setNumOfIslands(int numOfIslands) {
+        this.numOfIslands = numOfIslands;
+    }
+
+    public int getNumOfIslands() {
+        return numOfIslands;
     }
 
     public int findGroup(int islandId){

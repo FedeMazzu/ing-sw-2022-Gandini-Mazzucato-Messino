@@ -34,7 +34,7 @@ public class ClientPlanning implements Stage {
 
         CloudsData cloudsData = (CloudsData)ois.readObject();
 
-        //print the prioQ
+        //print the map of the cards played by others
         System.out.println((Map<Magician,Integer>)(ois.readObject()));
 
         //printing available cards
@@ -45,6 +45,8 @@ public class ClientPlanning implements Stage {
         oos.writeInt(sc.nextInt());
         oos.flush();
 
+        //receiving the turnNumber of this round
+        clientController.setTurnNumber(ois.readInt());
 
         clientController.setClientStage(ClientStage.ClientACTION);
     }
