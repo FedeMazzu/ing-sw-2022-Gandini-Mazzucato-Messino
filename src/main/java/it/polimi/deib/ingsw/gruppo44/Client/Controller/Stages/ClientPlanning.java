@@ -30,24 +30,27 @@ public class ClientPlanning implements Stage {
     }
     @Override
     public void handle() throws IOException, ClassNotFoundException, InterruptedException {
-        System.out.println("Waiting for your turn of choosing a card");
 
         CloudsData cloudsData = (CloudsData)ois.readObject();
-
+        System.out.println("waiting for your turn of choosing a card");
         //print the map of the cards played by others
         System.out.println((Map<Magician,Integer>)(ois.readObject()));
 
         //printing available cards
         System.out.println((ois.readObject()));
 
-
         //sending the chosen card
         oos.writeInt(sc.nextInt());
         oos.flush();
 
-        //receiving the turnNumber of this round
-        clientController.setTurnNumber(ois.readInt());
+        System.out.println("Card played! waiting for others..");
 
-        clientController.setClientStage(ClientStage.ClientACTION);
+        //receiving the turnNumber of this round
+        int turnNumber = ois.readInt();
+        clientController.setTurnNumber(turnNumber);
+        System.out.println("Your turn number is "+turnNumber);
+
+        if(turnNumber == 0) clientController.setClientStage(ClientStage.ClientACTION);
+        else clientController.setClientStage(ClientStage.WaitingBeforeTurn);
     }
 }

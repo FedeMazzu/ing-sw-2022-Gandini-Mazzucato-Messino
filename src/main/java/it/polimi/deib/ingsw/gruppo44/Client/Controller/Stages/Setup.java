@@ -29,12 +29,13 @@ public class Setup implements Stage {
     @Override
     public void handle() throws IOException, ClassNotFoundException, InterruptedException {
         getStartingAck();
-
         //need to check if the name isn't already used
         oos.writeObject(askName());
         oos.flush();
         askMagician();
-        System.out.println("Magician set!");
+        System.out.println("Magician set! Waiting for others..");
+
+        //Receiving the data to draw the GUI
         Data data = (Data)ois.readObject();
         clientController.setClientStage(ClientStage.ClientPLANNING);
     }
@@ -55,7 +56,7 @@ public class Setup implements Stage {
             System.out.println("Waiting for you turn to select the magician..");
             String availableMagicians = (String) ois.readObject();
             System.out.println("Select your magician(number):");
-            System.out.println(availableMagicians);
+            System.out.print(availableMagicians);
 
             //send the chosen index corresponding to a magician
             oos.writeInt(sc.nextInt());

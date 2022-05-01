@@ -53,8 +53,14 @@ public class ClientController implements Runnable {
                     case ClientPLANNING:
                         stage = new ClientPlanning(this);
                         break;
+                    case WaitingBeforeTurn:
+                        stage = new WaitingBeforeTurn(this);
+                        break;
                     case ClientACTION:
                         stage = new ClientAction(this);
+                        break;
+                    case WaitingAfterTurn:
+                        stage = new WaitingAfterTurn(this);
                         break;
                     default: //case END
                         stage = new ClientEND(this);

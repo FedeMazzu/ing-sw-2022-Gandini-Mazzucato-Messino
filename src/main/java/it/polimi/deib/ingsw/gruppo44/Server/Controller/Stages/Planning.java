@@ -43,6 +43,7 @@ public class Planning implements Stage, Serializable {
         ObjectOutputStream oos;
         int cardValue;
 
+        //sending the clouds to all the users before they start playing the cards cards
         for(int i=0;i<gameController.getGameMode().getTeamsNumber()*gameController.getGameMode().getTeamPlayers();i++){
             User tempUser = gameController.getUser(i);
             oos = tempUser.getOos();

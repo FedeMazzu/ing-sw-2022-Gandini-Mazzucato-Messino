@@ -33,38 +33,7 @@ public class ClientAction implements Stage {
     }
     @Override
     public void handle() throws IOException, ClassNotFoundException, InterruptedException {
-        System.out.println("Waiting for your turn to move");
-        int counter = turnNumber;
-        while(counter>0){
-            System.out.println("Counter: "+counter);
-            //receive the outputs of the turnNumber players before you
-            //there will be 6 outputs per turn
-
-            //after moving the students
-            SchoolData schoolData = (SchoolData)ois.readObject();
-            IslandsData islandsData = (IslandsData)ois.readObject();
-            for(Color color: Color.values()) System.out.println("Color "+color+": "+schoolData.getEntranceStudentsNum(color));
-            for(int i = 0;i<12;i++){
-                //if(islandsData.findGroup(i) != -1) continue;
-                System.out.println("Island "+i);
-                for(Color color: Color.values()){
-                    System.out.println(color+": "+islandsData.getStudentsNum(i,color));
-                }
-            }
-
-            //after moving motherNature
-            islandsData = (IslandsData)ois.readObject();
-            int motherNaturePos = ois.readInt();
-
-            //after choosing cloud
-            CloudsData cloudsData = (CloudsData)ois.readObject();
-            schoolData = (SchoolData)ois.readObject();
-
-            counter--;
-        }
-
-
-
+        System.out.println("it's your turn to move");
         //printing the actual data (we could read it from schoolData)
         System.out.println(ois.readObject());
         //sending where to move the students
@@ -79,42 +48,19 @@ public class ClientAction implements Stage {
         oos.writeInt(sc.nextInt());
         oos.flush();
 
+        //RECEIVING THE INFORMATION ABOUT THE END OF THE GAME
+        boolean gameEnded = ois.readBoolean();
+        if (gameEnded){
+            clientController.setClientStage(ClientStage.ClientEND);
+            return;
+        }
+
         //CLOUDS
         System.out.println(ois.readObject());
         System.out.println("Choose a Cloud:");
         oos.writeInt(sc.nextInt());
         oos.flush();
 
-        //RECEIVING THE INFORMATION ABOUT THE NEXT STAGE
-        boolean gameEnded = ois.readBoolean();
-        if (gameEnded){
-            clientController.setClientStage(ClientStage.ClientEND);
-        }else{
-            clientController.setClientStage(ClientStage.ClientPLANNING);
-        }
-
-
-
-        //wait for others to play their turn
-        counter = turnNumber + 1;
-        int numberOfPlayers = clientController.getGameMode().getTeamPlayers() * clientController.getGameMode().getTeamsNumber();
-        while(numberOfPlayers - counter>0){
-            //receive the outputs of the turnNumber players after you
-            //there will be 6 outputs per turn
-
-            //after moving the students
-            SchoolData schoolData = (SchoolData)ois.readObject();
-            IslandsData islandsData = (IslandsData)ois.readObject();
-
-            //after moving motherNature
-            islandsData = (IslandsData) ois.readObject();
-            int motherNaturePos = ois.readInt();
-
-            //after choosing cloud
-            CloudsData cloudsData = (CloudsData)ois.readObject();
-            schoolData = (SchoolData)ois.readObject();
-
-            counter++;
-        }
+        clientController.setClientStage(ClientStage.WaitingAfterTurn);
     }
 }

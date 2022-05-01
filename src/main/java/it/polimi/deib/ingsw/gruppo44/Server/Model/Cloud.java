@@ -52,6 +52,20 @@ public class Cloud implements Observable, Serializable {
     }
 
     /**
+     * @return true if the cloud doesn't contain students
+     */
+    public boolean isEmpty(){
+        boolean isEmpty = true;
+        for(Color color : Color.values()){
+            if(students.get(color)>0){
+                isEmpty =false;
+                break;
+            }
+        }
+        return isEmpty;
+    }
+
+    /**
      * method to wipe the clouds clean
      */
     public void wipeCloud(Player player){

@@ -49,65 +49,101 @@ public class Action implements Stage, Serializable {
             ois = currUser.getOis();
             School currSchool = currPlayer.getSchool();
 
-            //Sending data to the user
+            //Sending data to the currUser
             sendData(currSchool,oos);
             //Move students
             moveStudents(currSchool,ois);
-
             //sending data to other waiting players
-            for(int i=0;i<gameController.getGameMode().getTeamsNumber()*gameController.getGameMode().getTeamPlayers();i++){
-                User tempUser = gameController.getUser(i);
-                ObjectOutputStream tempOos = tempUser.getOos();
-                if(currUser.equals(tempUser)) continue;
-
-                tempOos.writeObject(currUser.getPlayer().getSchool().getSchoolObserver().getSchoolData());
-                tempOos.flush();
-                tempOos.writeObject(gameController.getData().getIslandsData());
-                tempOos.flush();
-            }
+            sendStudentsMoveToOthers(currUser);
 
             //Move MotherNature
             moveMotherNature(ois,oos);
+            sendMotherNatureMOveToOthers(currUser);
+            if(endGame) break;
 
-            for(int i=0;i<gameController.getGameMode().getTeamsNumber()*gameController.getGameMode().getTeamPlayers();i++){
-                User tempUser = gameController.getUser(i);
-                ObjectOutputStream tempOos = tempUser.getOos();
-                if(currUser.equals(tempUser)) continue;
-
-                tempOos.writeObject(gameController.getData().getIslandsData());
-                tempOos.flush();
-                tempOos.writeInt(gameController.getData().getBoardData().getMotherNaturePosition());
-                tempOos.flush();
-            }
+            //checking the end of the game and sending the information to all the clients
+            endGame = gameController.checkEndOfGame();
+            sendEndGameInformation(endGame);
 
             //Choosing cloud
             chooseACloud(currPlayer,ois,oos);
+            sendCloudChoiceToOthers(currUser);
 
-            for(int i=0;i<gameController.getGameMode().getTeamsNumber()*gameController.getGameMode().getTeamPlayers();i++){
-                User tempUser = gameController.getUser(i);
-                ObjectOutputStream tempOos = tempUser.getOos();
-                if(currUser.equals(tempUser)) continue;
-
-                tempOos.writeObject(gameController.getData().getCloudsData());
-                tempOos.flush();
-                tempOos.writeObject(currUser.getPlayer().getSchool().getSchoolObserver().getSchoolData());
-                tempOos.flush();
-            }
-
-            //checking the end of the game
-            endGame = gameController.checkEndOfGame();
-            if(endGame){
-                oos.writeBoolean(true);
-                oos.flush();
-                break;
-            }
-            oos.writeBoolean(false);
-            oos.flush();
             gameController.getTurnHandler().endOfTurn();
         }
 
         if(endGame) gameController.setGameStage(GameStage.END);
         else gameController.setGameStage(GameStage.CLEANUP);
+    }
+
+
+    /**
+     * sends to all the clients if the game has ended
+     * @param endGame
+     * @throws IOException
+     */
+    private void sendEndGameInformation(boolean endGame) throws IOException {
+        for(int i=0;i<gameController.getGameMode().getTeamsNumber()*gameController.getGameMode().getTeamPlayers();i++){
+            User tempUser = gameController.getUser(i);
+            ObjectOutputStream tempOos = tempUser.getOos();
+            tempOos.writeBoolean(endGame);
+            tempOos.flush();
+        }
+    }
+
+
+    /**
+     * sends the information of the cloud chosen to the WaitingClients
+     * @param currUser
+     * @throws IOException
+     */
+    private void sendCloudChoiceToOthers(User currUser) throws IOException {
+        for(int i=0;i<gameController.getGameMode().getTeamsNumber()*gameController.getGameMode().getTeamPlayers();i++){
+            User tempUser = gameController.getUser(i);
+            ObjectOutputStream tempOos = tempUser.getOos();
+            if(currUser.equals(tempUser)) continue;
+
+            tempOos.writeObject(gameController.getData().getCloudsData());
+            tempOos.flush();
+            tempOos.writeObject(currUser.getPlayer().getSchool().getSchoolObserver().getSchoolData());
+            tempOos.flush();
+        }
+    }
+
+    /**
+     * sends the information of the mother nature move to the WaitingClients
+     * @param currUser
+     * @throws IOException
+     */
+    private void sendMotherNatureMOveToOthers(User currUser) throws IOException {
+        for(int i=0;i<gameController.getGameMode().getTeamsNumber()*gameController.getGameMode().getTeamPlayers();i++){
+            User tempUser = gameController.getUser(i);
+            ObjectOutputStream tempOos = tempUser.getOos();
+            if(currUser.equals(tempUser)) continue;
+
+            tempOos.writeObject(gameController.getData().getIslandsData());
+            tempOos.flush();
+            tempOos.writeInt(gameController.getData().getBoardData().getMotherNaturePosition());
+            tempOos.flush();
+        }
+    }
+
+    /**
+     * sends the information of the moved students to the WaitingClients
+     * @param currUser
+     * @throws IOException
+     */
+    private void sendStudentsMoveToOthers(User currUser) throws IOException {
+        for(int i=0;i<gameController.getGameMode().getTeamsNumber()*gameController.getGameMode().getTeamPlayers();i++){
+            User tempUser = gameController.getUser(i);
+            ObjectOutputStream tempOos = tempUser.getOos();
+            if(currUser.equals(tempUser)) continue;
+
+            tempOos.writeObject(currUser.getPlayer().getSchool().getSchoolObserver().getSchoolData());
+            tempOos.flush();
+            tempOos.writeObject(gameController.getData().getIslandsData());
+            tempOos.flush();
+        }
     }
 
     /**
@@ -148,12 +184,14 @@ public class Action implements Stage, Serializable {
     private void chooseACloud(Player currPlayer,ObjectInputStream ois, ObjectOutputStream oos) throws IOException {
         String cloudsData ="";
         for(int i=0;i< board.getClouds().size();i++){
-            cloudsData+="Cloud ID "+i+":-";
             Cloud cloud = board.getClouds().get(i);
-            for(Color c : Color.values()){
-                cloudsData+=" "+c+" "+cloud.getStudentsNum(c)+"|";
+            if(!cloud.isEmpty()) {
+                cloudsData+="Cloud ID "+i+":-";
+                for (Color c : Color.values()) {
+                    cloudsData += " " + c + " " + cloud.getStudentsNum(c) + "|";
+                }
+                cloudsData += "\n";
             }
-            cloudsData +="\n";
         }
         oos.writeObject(cloudsData);
         oos.flush();
