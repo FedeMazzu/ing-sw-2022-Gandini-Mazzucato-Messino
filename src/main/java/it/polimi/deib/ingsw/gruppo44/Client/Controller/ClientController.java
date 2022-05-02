@@ -1,15 +1,12 @@
 package it.polimi.deib.ingsw.gruppo44.Client.Controller;
 
 import it.polimi.deib.ingsw.gruppo44.Client.Controller.Stages.*;
-import it.polimi.deib.ingsw.gruppo44.Common.ClientChoice;
 import it.polimi.deib.ingsw.gruppo44.Common.GameMode;
 import it.polimi.deib.ingsw.gruppo44.Common.Stage;
-import it.polimi.deib.ingsw.gruppo44.Server.Controller.Stages.*;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -57,7 +54,10 @@ public class ClientController implements Runnable {
                         stage = new WaitingBeforeTurn(this);
                         break;
                     case ClientACTION:
-                        stage = new ClientAction(this);
+                        boolean usingCharacter = false;
+                        if(gameMode.isExpertMode())  usingCharacter = AskIfUsingCharacter();
+                        if (usingCharacter) stage = new ClientActionExpert(this);
+                        else stage = new ClientActionStandard(this);
                         break;
                     case WaitingAfterTurn:
                         stage = new WaitingAfterTurn(this);
@@ -74,6 +74,23 @@ public class ClientController implements Runnable {
         }
 
 
+    }
+
+    /**
+     * ask to the user if he wants to use a character at the start of the Action Phase in case of Expert Mode
+     * @return
+     */
+    private boolean AskIfUsingCharacter() throws IOException {
+        System.out.println("Do you want to use a Character?\n0 -> no\n1 -> yes");
+        if(sc.nextInt() ==1){
+            oos.writeBoolean(true);
+            oos.flush();
+            return true;
+        }else{
+            oos.writeBoolean(false);
+            oos.flush();
+            return false;
+        }
     }
 
 

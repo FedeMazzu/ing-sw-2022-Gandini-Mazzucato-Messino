@@ -36,6 +36,7 @@ public class Action implements Stage, Serializable {
 
     @Override
     public void handle() throws IOException, ClassNotFoundException {
+
         boolean endGame = false;
         System.out.println("--------------ACTION PHASE--------------");
         Player currPlayer;
@@ -47,34 +48,71 @@ public class Action implements Stage, Serializable {
             currUser = currPlayer.getUser();
             oos = currUser.getOos();
             ois = currUser.getOis();
-            School currSchool = currPlayer.getSchool();
+            boolean usingCharacter = false;
 
-            //Sending data to the currUser
-            sendData(currSchool,oos);
-            //Move students
-            moveStudents(currSchool,ois);
-            //sending data to other waiting players
-            sendStudentsMoveToOthers(currUser);
+            //the protocol changes if the Game Mode is Expert AND the player chooses to use a Character
+            if(gameController.getGameMode().isExpertMode())usingCharacter = ois.readBoolean();
 
-            //Move MotherNature
-            moveMotherNature(ois,oos);
-            sendMotherNatureMOveToOthers(currUser);
-            if(endGame) break;
+            if(usingCharacter) {
+                handleUsingCharacter(currUser);
+            } else {
+                //the protocol is the same in the standard mode and in the expert mode if the player doesn't use a character
 
-            //checking the end of the game and sending the information to all the clients
-            endGame = gameController.checkEndOfGame();
-            sendEndGameInformation(endGame);
 
-            //Choosing cloud
-            chooseACloud(currPlayer,ois,oos);
-            sendCloudChoiceToOthers(currUser);
+                School currSchool = currPlayer.getSchool();
+                //Sending data to the currUser
+                sendData(currSchool, oos);
+                //Move students
+                moveStudents(currSchool, ois);
+                //sending data to other waiting players
+                sendStudentsMoveToOthers(currUser);
 
-            gameController.getTurnHandler().endOfTurn();
+                //Move MotherNature
+                moveMotherNature(ois, oos);
+                sendMotherNatureMOveToOthers(currUser);
+                if (endGame) break;
+
+                //checking the end of the game and sending the information to all the clients
+                endGame = gameController.checkEndOfGame();
+                sendEndGameInformation(endGame);
+
+                //Choosing cloud
+                chooseACloud(currPlayer, ois, oos);
+                sendCloudChoiceToOthers(currUser);
+
+                gameController.getTurnHandler().endOfTurn();
+            }
+
         }
 
         if(endGame) gameController.setGameStage(GameStage.END);
         else gameController.setGameStage(GameStage.CLEANUP);
     }
+
+    /**
+     * handles the case oin the ExpertMode in which the player wants to use a character
+     * @param currUser
+     */
+    private void handleUsingCharacter(User currUser) throws IOException {
+        ObjectOutputStream oos = currUser.getOos();
+        ObjectInputStream ois = currUser.getOis();
+
+        //receiving the id of the Character
+        int characterId = ois.readInt();
+        switch (characterId){
+            case 1:
+                //handleCharacter1();
+                break;
+            case 2:
+                //handleCharacter2();
+                break;
+                //...
+            default:
+        }
+    }
+
+
+
 
 
     /**

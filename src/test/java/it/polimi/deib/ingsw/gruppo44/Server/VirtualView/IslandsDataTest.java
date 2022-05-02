@@ -21,7 +21,7 @@ class IslandsDataTest {
 
     @BeforeEach
     void setUp() {
-        game = new Game(GameMode.TwoPlayersBasic);
+        game = new Game(GameMode.TwoPlayersStandard);
         board = game.getBoard();
         uf = board.getUnionFind();
         islandsData = uf.getIslandsObserver().getIslandsData();

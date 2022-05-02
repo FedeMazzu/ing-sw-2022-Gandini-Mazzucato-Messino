@@ -17,7 +17,7 @@ class SchoolTest {
     private Player player;
     @BeforeEach
     void setUp() {
-        game = new Game(GameMode.TwoPlayersBasic);
+        game = new Game(GameMode.TwoPlayersStandard);
         player = game.getTeams().get(0).getPlayers().get(0);
         school = player.getSchool();
     }

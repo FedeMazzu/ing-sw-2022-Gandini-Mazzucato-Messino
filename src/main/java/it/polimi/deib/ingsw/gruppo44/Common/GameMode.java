@@ -7,11 +7,11 @@ import java.io.Serializable;
  * @author filippogandini
  */
 public enum GameMode implements Serializable {
-    TwoPlayersBasic(2,1,8,7,3,2,false),
+    TwoPlayersStandard(2,1,8,7,3,2,false),
     TwoPlayersExpert(2,1,8,7,3,2,true),
-    ThreePlayersBasic(3,1,6,9,4,3,false),
+    ThreePlayersStandard(3,1,6,9,4,3,false),
     ThreePlayersExpert(3,1,6,9,4,3,true),
-    TeamBasic(2,2,8,7,3,4,false),
+    TeamStandard(2,2,8,7,3,4,false),
     TeamExpert(2,2,8,7,3,4,true);
 
     private final int teamsNumber;

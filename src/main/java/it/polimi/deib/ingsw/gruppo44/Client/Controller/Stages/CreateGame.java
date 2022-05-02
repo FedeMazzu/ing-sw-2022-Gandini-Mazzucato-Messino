@@ -63,20 +63,20 @@ public class CreateGame implements Stage {
         } while (a < 1 || a > 6);
         switch (a) {
             case 1:
-                clientController.setGameMode(GameMode.TwoPlayersBasic);
-                return GameMode.TwoPlayersBasic;
+                clientController.setGameMode(GameMode.TwoPlayersStandard);
+                return GameMode.TwoPlayersStandard;
             case 2:
                 clientController.setGameMode(GameMode.TwoPlayersExpert);
                 return GameMode.TwoPlayersExpert;
             case 3:
-                clientController.setGameMode(GameMode.ThreePlayersBasic);
-                return GameMode.ThreePlayersBasic;
+                clientController.setGameMode(GameMode.ThreePlayersStandard);
+                return GameMode.ThreePlayersStandard;
             case 4:
                 clientController.setGameMode(GameMode.ThreePlayersExpert);
                 return GameMode.ThreePlayersExpert;
             case 5:
-                clientController.setGameMode(GameMode.TeamBasic);
-                return GameMode.TeamBasic;
+                clientController.setGameMode(GameMode.TeamStandard);
+                return GameMode.TeamStandard;
             default://else
                 clientController.setGameMode(GameMode.TeamExpert);
                 return GameMode.TeamExpert;

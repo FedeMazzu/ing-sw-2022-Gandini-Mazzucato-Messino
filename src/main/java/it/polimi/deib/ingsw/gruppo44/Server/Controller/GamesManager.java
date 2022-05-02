@@ -86,15 +86,15 @@ public class GamesManager {
         } while (a < 1 || a > 6);
         switch (a) {
             case 1:
-                return GameMode.TwoPlayersBasic;
+                return GameMode.TwoPlayersStandard;
             case 2:
                 return GameMode.TwoPlayersExpert;
             case 3:
-                return GameMode.ThreePlayersBasic;
+                return GameMode.ThreePlayersStandard;
             case 4:
                 return GameMode.ThreePlayersExpert;
             case 5:
-                return GameMode.TeamBasic;
+                return GameMode.TeamStandard;
             default://else
                 return GameMode.TeamExpert;
         }

@@ -18,14 +18,14 @@ import java.util.Scanner;
  * class to manage the Client Action
  * @author filippogandini
  */
-public class ClientAction implements Stage {
+public class ClientActionStandard implements Stage {
     private ClientController clientController;
     private ObjectInputStream ois;
     private ObjectOutputStream oos;
     private Scanner sc = new Scanner(System.in);
     private int turnNumber;
 
-    public ClientAction(ClientController clientController) {
+    public ClientActionStandard(ClientController clientController) {
         this.clientController = clientController;
         ois = clientController.getOis();
         oos = clientController.getOos();
