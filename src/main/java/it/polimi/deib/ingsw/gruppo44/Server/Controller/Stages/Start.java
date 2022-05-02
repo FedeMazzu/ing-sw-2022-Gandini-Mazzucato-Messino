@@ -42,6 +42,7 @@ public class Start implements Stage, Serializable {
         data.setIslandsData(game.getBoard().getUnionFind().getIslandsObserver().getIslandsData());
         data.setCloudsData(game.getBoard().getCloudsObserver().getCloudsData());
 
+        //Waiting for the players to join
         int numUsers = gameController.getNumUsers();
         while(numUsers < gameMode.getTeamPlayers()*gameMode.getTeamsNumber()) {
             synchronized (gameController) {
@@ -51,6 +52,7 @@ public class Start implements Stage, Serializable {
         }
         gameController.setGameIsFull(true);
         System.out.println("Start ready");
+
         String  name;
         Magician magician;
         Player player;
@@ -105,6 +107,7 @@ public class Start implements Stage, Serializable {
             player.setMagician(magician);
             //
             schoolData.setMagician(magician); //setting the identifier
+            schoolData.setPlayerName(name); //setting the name of the player who owns the school(for the GUI)
             data.addSchoolData(schoolData);
             turnHandler.endOfTurn(); //the player is put in the card deque and polled from the prioQ
         }

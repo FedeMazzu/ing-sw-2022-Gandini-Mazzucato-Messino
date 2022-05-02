@@ -15,7 +15,7 @@ public class SchoolObserver implements Observer, Serializable {
 
     public SchoolObserver(School school) {
         this.school = school;
-        schoolData = new SchoolData();
+        schoolData = new SchoolData(school.getPlayer().getTeamTower());
         update();
     }
 

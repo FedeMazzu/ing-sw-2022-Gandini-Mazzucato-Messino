@@ -1,10 +1,7 @@
 package it.polimi.deib.ingsw.gruppo44.Server.VirtualView;
 
 import it.polimi.deib.ingsw.gruppo44.Observer;
-import it.polimi.deib.ingsw.gruppo44.Server.Model.Color;
-import it.polimi.deib.ingsw.gruppo44.Server.Model.Magician;
-import it.polimi.deib.ingsw.gruppo44.Server.Model.Player;
-import it.polimi.deib.ingsw.gruppo44.Server.Model.School;
+import it.polimi.deib.ingsw.gruppo44.Server.Model.*;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -18,12 +15,15 @@ public class SchoolData implements Serializable {
     private Map<Color, Integer> hallStudents, entranceStudents;
     private Map<Color, Boolean> professors;
     private int playerMoney;
+    private String playerName;
+    private Tower teamTower;
     private Magician magician; //identifier
 
-    public SchoolData() {
+    public SchoolData( Tower teamTower) {
         hallStudents = new HashMap<>();
         entranceStudents = new HashMap<>();
         professors = new HashMap<>();
+        this.teamTower = teamTower;
     }
 
     /**
@@ -81,5 +81,9 @@ public class SchoolData implements Serializable {
         return magician;
     }
 
+    public void setPlayerName(String playerName) {this.playerName = playerName;}
 
+    public String getPlayerName() {return playerName;}
+
+    public Tower getTeamTower() {return teamTower;}
 }

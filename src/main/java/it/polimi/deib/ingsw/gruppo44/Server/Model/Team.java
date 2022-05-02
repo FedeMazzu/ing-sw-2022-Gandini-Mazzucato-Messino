@@ -24,7 +24,7 @@ public class Team implements Serializable {
         this.tower = tower;
         towerCount = gameMode.getTeamTowers();
         players = new ArrayList<>();
-        for(int i=0; i< gameMode.getTeamPlayers(); i++) players.add(new Player(gameMode,game.getBoard()));
+        for(int i=0; i< gameMode.getTeamPlayers(); i++) players.add(new Player(gameMode,game.getBoard(),tower));
     }
 
 

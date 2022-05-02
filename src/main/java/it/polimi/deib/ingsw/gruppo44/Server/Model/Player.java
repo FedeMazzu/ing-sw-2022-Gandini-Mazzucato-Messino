@@ -22,17 +22,19 @@ public class Player implements Serializable {
     private Card[] deck;
     private boolean[] playedCards;
     private NotOwnedObjects notOwnedObjects;
+    private Tower teamTower;
 
     /**
      * constructor, the other attributes are initialized by the setters called in the start stage of the Game controller
      * @param gameMode necessary to establish the max number of students allowed in the entrance
      */
-    public Player(GameMode gameMode, Board board){
+    public Player(GameMode gameMode, Board board, Tower teamTower){
         this.school = new School(this,gameMode.getPlayerEntranceStudents());
         if(gameMode.isExpertMode()) this.money = 1;//every player starts with one coin
         this.deck = new Card[]{Card.ONE, Card.TWO, Card.THREE, Card.FOUR, Card.FIVE, Card.SIX, Card.SEVEN, Card.EIGHT, Card.NINE, Card.TEN};
         playedCards = new boolean[10];
         notOwnedObjects = board.getNotOwnedObjects();
+        this.teamTower = teamTower;
     }
 
     /**
@@ -123,5 +125,5 @@ public class Player implements Serializable {
         return school;
     }
     public Magician getMagician() {return magician; }
-
+    public Tower getTeamTower() {return teamTower;}
 }
