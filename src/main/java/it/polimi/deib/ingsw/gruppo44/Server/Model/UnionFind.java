@@ -43,7 +43,7 @@ public class UnionFind implements Serializable {
         IslandsData islandsData = islandsObserver.getIslandsData();
         for(int i=0; i<12; i++){
             islands[i].setIslandsObserver(islandsObserver);
-            //to initialize the group values in the View
+            //to initialize the group values in the VirtualView
             islandsData.setGroup(i, group[i]);
             islandsData.setGroupSize(i,groupSize[i]);
         }

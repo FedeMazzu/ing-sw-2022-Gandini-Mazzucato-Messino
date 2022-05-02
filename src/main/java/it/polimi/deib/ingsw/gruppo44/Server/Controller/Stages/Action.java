@@ -101,8 +101,8 @@ public class Action implements Stage, Serializable {
         for(int i=0;i<gameController.getGameMode().getTeamsNumber()*gameController.getGameMode().getTeamPlayers();i++){
             User tempUser = gameController.getUser(i);
             ObjectOutputStream tempOos = tempUser.getOos();
+            tempOos.reset();//needed!
             if(currUser.equals(tempUser)) continue;
-
             tempOos.writeObject(gameController.getData().getCloudsData());
             tempOos.flush();
             tempOos.writeObject(currUser.getPlayer().getSchool().getSchoolObserver().getSchoolData());
@@ -134,12 +134,18 @@ public class Action implements Stage, Serializable {
      * @throws IOException
      */
     private void sendStudentsMoveToOthers(User currUser) throws IOException {
+        SchoolData schoolData = currUser.getPlayer().getSchool().getSchoolObserver().getSchoolData();
+        /*System.out.print("School updated: ");
+        for(Color color: Color.values()) System.out.print("Color "+color+": "+schoolData.getEntranceStudentsNum(color)+" | ");
+        System.out.println();*/
+
         for(int i=0;i<gameController.getGameMode().getTeamsNumber()*gameController.getGameMode().getTeamPlayers();i++){
             User tempUser = gameController.getUser(i);
             ObjectOutputStream tempOos = tempUser.getOos();
+            tempOos.reset();//needed!
             if(currUser.equals(tempUser)) continue;
 
-            tempOos.writeObject(currUser.getPlayer().getSchool().getSchoolObserver().getSchoolData());
+            tempOos.writeObject(schoolData);
             tempOos.flush();
             tempOos.writeObject(gameController.getData().getIslandsData());
             tempOos.flush();

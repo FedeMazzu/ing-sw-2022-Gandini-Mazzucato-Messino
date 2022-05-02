@@ -67,7 +67,9 @@ public class School implements Observable, Serializable {
 
     public boolean removeEntranceStudent(Color color){
         if(entranceStudents.get(color) <= 0 ) return false;
-        entranceStudents.put(color,entranceStudents.get(color)-1);
+        int previousNum = entranceStudents.get(color);
+        entranceStudents.put(color,previousNum-1);
+        notifyObserver();
         return true;
     }
 

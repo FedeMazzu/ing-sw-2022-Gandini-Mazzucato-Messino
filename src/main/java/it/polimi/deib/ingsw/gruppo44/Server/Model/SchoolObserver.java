@@ -36,7 +36,7 @@ public class SchoolObserver implements Observer, Serializable {
     /**
      * checks the students numbers of the school and updates schoolData
      */
-    public void updateNumStudents(){
+    private void updateNumStudents(){
         try {
             for (Color color : Color.values()) {
                 schoolData.setHallStudents(color, school.getHallStudentsNum(color));
@@ -48,7 +48,7 @@ public class SchoolObserver implements Observer, Serializable {
     }    /**
      * checks the professors of the school and updates this schoolData
      */
-    public void updateProfessors(){
+    private void updateProfessors(){
         try {
             for (Color color : Color.values()) {
                 schoolData.setProfessors(color, school.hasProfessor(color));

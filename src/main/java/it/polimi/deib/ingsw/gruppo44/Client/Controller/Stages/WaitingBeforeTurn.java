@@ -42,17 +42,9 @@ public class WaitingBeforeTurn implements Stage {
             SchoolData schoolData = (SchoolData)ois.readObject();
             IslandsData islandsData = (IslandsData)ois.readObject();
             System.out.println("A player has moved the students!");
+            //TEMPORARY
+            printSchoolAndIslandsUpdated(schoolData,islandsData);
 
-            /*
-            for(Color color: Color.values()) System.out.println("Color "+color+": "+schoolData.getEntranceStudentsNum(color));
-            for(int i = 0;i<12;i++){
-                //if(islandsData.findGroup(i) != -1) continue;
-                System.out.println("Island "+i);
-                for(Color color: Color.values()){
-                    System.out.println(color+": "+islandsData.getStudentsNum(i,color));
-                }
-            }
-            */
 
             //after moving motherNature
             islandsData = (IslandsData)ois.readObject();
@@ -69,12 +61,32 @@ public class WaitingBeforeTurn implements Stage {
             //after choosing cloud
             CloudsData cloudsData = (CloudsData)ois.readObject();
             schoolData = (SchoolData)ois.readObject();
-
             System.out.println("A player has chosen a cloud!");
-
+            //TEMPORARY
+            printSchoolUpdated(schoolData);
             counter--;
         }
         clientController.setClientStage(ClientStage.ClientACTION);
+    }
+
+    private void printSchoolUpdated(SchoolData schoolData) {
+        System.out.print("School updated: ");
+        for(Color color: Color.values()) System.out.print("Color "+color+": "+schoolData.getEntranceStudentsNum(color)+" | ");
+        System.out.println();
+    }
+
+    private void printSchoolAndIslandsUpdated(SchoolData schoolData,IslandsData islandsData) {
+        System.out.print("School updated: ");
+        for(Color color: Color.values()) System.out.print("Color "+color+": "+schoolData.getEntranceStudentsNum(color)+" | ");
+        System.out.println();
+        for(int i = 0;i<12;i++){
+            //if(islandsData.findGroup(i) != -1) continue;
+            System.out.println("Island "+i);
+            for(Color color: Color.values()){
+                System.out.print(color+": "+islandsData.getStudentsNum(i,color)+" | ");
+            }
+            System.out.println();
+        }
     }
 
 }

@@ -52,6 +52,9 @@ public class Island implements Observable, Serializable {
         return score;
     }
 
+    /**
+     * Does all the computation needed when mother nature ends on this island
+     */
     public void islandClaim(){
         int bestScore = 0;
         Team bestTeam = null;

@@ -16,6 +16,7 @@ public class IslandsObserver implements MultipleObserver, Serializable {
     public IslandsObserver(Island[] islands){
         this.islands = islands;
         islandsData = new IslandsData();
+        for(int i=0; i<islands.length; i++) update(i);
     }
 
 

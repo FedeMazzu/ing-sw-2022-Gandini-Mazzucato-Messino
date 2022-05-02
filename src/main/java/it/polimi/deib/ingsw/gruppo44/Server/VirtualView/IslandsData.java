@@ -28,10 +28,10 @@ public class IslandsData implements Serializable {
         students = new ArrayList<>();
         for (int i = 0; i < 12; i++){
             students.add(new HashMap<>());
-            for(Color color:Color.values()){
+            /*for(Color color:Color.values()){
                 students.get(i).put(color,0);
-            }
-        }
+            }*/
+           }
         towers = new Tower[12];
         hasTower = new boolean[12];
         group = new int[12];
