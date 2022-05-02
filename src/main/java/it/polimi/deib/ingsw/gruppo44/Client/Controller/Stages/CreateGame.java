@@ -37,11 +37,14 @@ public class CreateGame implements Stage {
         CreateGameMESSAGE createGameMESSAGE = new CreateGameMESSAGE(askGameName(),askGameMode());
         oos.writeObject(createGameMESSAGE);
         oos.flush();
-
-        clientController.setClientStage(ClientStage.SETUP);
         System.out.println("Waiting for the other players...");
+        getStartingAck();
+        clientController.setClientStage(ClientStage.SETUP);
     }
 
+    private boolean getStartingAck() throws IOException, ClassNotFoundException {
+        return ois.readBoolean();
+    }
 
 
     private GameMode askGameMode()throws InputMismatchException {

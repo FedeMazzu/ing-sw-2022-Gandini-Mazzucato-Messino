@@ -62,7 +62,8 @@ public class IslandsData implements Serializable {
      * called for initialization and if the island gets a tower
      */
     public void setGroup(int islandId, int value){
-        group[islandId] = value;
+        if(value == islandId) group[islandId] = -1;
+        else group[islandId] = value;
     }
 
     /**

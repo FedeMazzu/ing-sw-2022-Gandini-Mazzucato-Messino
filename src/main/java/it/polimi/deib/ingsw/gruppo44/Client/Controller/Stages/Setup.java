@@ -28,7 +28,7 @@ public class Setup implements Stage {
 
     @Override
     public void handle() throws IOException, ClassNotFoundException, InterruptedException {
-        getStartingAck();
+
         //need to check if the name isn't already used
         oos.writeObject(askName());
         oos.flush();
@@ -40,9 +40,7 @@ public class Setup implements Stage {
         clientController.setClientStage(ClientStage.ClientPLANNING);
     }
 
-    private void getStartingAck() throws IOException, ClassNotFoundException {
-        System.out.println(ois.readObject());
-    }
+
 
     private String askName() {
         System.out.println("Enter your nickname:");

@@ -29,9 +29,9 @@ public class GamesManager {
     }
 
 
-    public void joinGame(String gameName,User joiningUser){
+    public boolean joinGame(String gameName,User joiningUser){
         GameController gameController = games.get(gameName);
-        gameController.addUser(joiningUser);
+        return gameController.addUser(joiningUser);
         //note that this just has to add the user to the appropriate GameController
     }
 
@@ -60,6 +60,7 @@ public class GamesManager {
     public Map<String,GameMode> getOpenGames(){
         Map<String,GameMode> openGames = new HashMap<>();
         for(String s : games.keySet()){
+            if(games.get(s).getGameIsFull()) continue;
             openGames.put(s, games.get(s).getGameMode());
         }
         return openGames;

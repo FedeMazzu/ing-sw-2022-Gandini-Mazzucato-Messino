@@ -80,7 +80,7 @@ public class WaitingBeforeTurn implements Stage {
         for(Color color: Color.values()) System.out.print("Color "+color+": "+schoolData.getEntranceStudentsNum(color)+" | ");
         System.out.println();
         for(int i = 0;i<12;i++){
-            //if(islandsData.findGroup(i) != -1) continue;
+            if(islandsData.findGroup(i) != i) continue;
             System.out.println("Island "+i);
             for(Color color: Color.values()){
                 System.out.print(color+": "+islandsData.getStudentsNum(i,color)+" | ");

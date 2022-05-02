@@ -46,10 +46,10 @@ public class Start implements Stage, Serializable {
         while(numUsers < gameMode.getTeamPlayers()*gameMode.getTeamsNumber()) {
             synchronized (gameController) {
                 gameController.wait();
-                System.out.println(numUsers);
             }
             numUsers = gameController.getNumUsers();
         }
+        gameController.setGameIsFull(true);
         System.out.println("Start ready");
         String  name;
         Magician magician;
@@ -65,7 +65,8 @@ public class Start implements Stage, Serializable {
         //sending an ack that the correct amount of players has connected
         for(int i=0; i< gameController.getNumUsers(); i++){
             oos = gameController.getUser(i).getOos();
-            oos.writeObject("All the players have joined, game is starting...");
+            oos.writeBoolean(true);
+            oos.flush();
         }
 
         int randPrio;

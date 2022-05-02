@@ -25,6 +25,7 @@ public class GameController implements Serializable, Runnable {
     private Stage stage;
     private GameStage gameStage;
     private boolean endGame;
+    private boolean gameIsFull;
     private TurnHandler turnHandler;
 
 
@@ -158,9 +159,13 @@ public class GameController implements Serializable, Runnable {
      * method called from the GamesManager
      * @param user
      */
-    public synchronized void addUser(User user){
+    public synchronized boolean addUser(User user){
+        if(users.size() >= gameMode.getTeamPlayers()*gameMode.getTeamsNumber()){
+            return false;
+        }
         users.add(user);
         notifyAll(); // to wake up the thread executing the while in the start waiting for the correct number of users
+        return true;
     }
 
     /**
@@ -201,5 +206,13 @@ public class GameController implements Serializable, Runnable {
 
     public User getUser(int index){
         return users.get(index);
+    }
+
+    public void setGameIsFull(boolean gameIsFull) {
+        this.gameIsFull = gameIsFull;
+    }
+
+    public boolean getGameIsFull() {
+        return gameIsFull;
     }
 }

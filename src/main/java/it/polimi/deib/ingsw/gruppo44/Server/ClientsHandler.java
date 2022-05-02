@@ -72,8 +72,12 @@ public class ClientsHandler {
                             oos.flush();
                             if (!openGames.isEmpty()) {
                                 String gameName = (String) ois.readObject();
-                                gamesManager.joinGame(gameName, user);
-                                gameJoined = true;
+                                gameJoined = gamesManager.joinGame(gameName, user);
+
+                                if(!gameJoined){
+                                    oos.writeBoolean(false);
+                                    oos.flush();
+                                }
                             }
                             break;
                         default: //case LoadGameCHOICE

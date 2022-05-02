@@ -40,14 +40,26 @@ public class JoinGame implements Stage {
             clientController.setGameMode(openGames.get(gameChoice));
             oos.writeObject(gameChoice);
             oos.flush();
-
             System.out.println("Waiting for the other players...");
+            boolean ack = getStartingAck();
+            if(ack){
+                clientController.setClientStage(ClientStage.SETUP);
+            }
+            else{
+                System.out.println("There aren't available games with that name!");
+                clientController.askOptions();
+            }
 
-            clientController.setClientStage(ClientStage.SETUP);
+
         }else{
             System.out.println("There aren't available games!");
             clientController.askOptions();
         }
 
     }
+
+    private boolean getStartingAck() throws IOException, ClassNotFoundException {
+        return ois.readBoolean();
+    }
+
 }
