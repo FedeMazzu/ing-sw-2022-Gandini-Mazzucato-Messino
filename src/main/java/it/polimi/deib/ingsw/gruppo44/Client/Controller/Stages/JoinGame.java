@@ -41,6 +41,8 @@ public class JoinGame implements Stage {
             oos.writeObject(gameChoice);
             oos.flush();
             System.out.println("Waiting for the other players...");
+
+            //getting a bolean indicating if the game was joined correctly
             boolean ack = getStartingAck();
             if(ack){
                 clientController.setClientStage(ClientStage.SETUP);

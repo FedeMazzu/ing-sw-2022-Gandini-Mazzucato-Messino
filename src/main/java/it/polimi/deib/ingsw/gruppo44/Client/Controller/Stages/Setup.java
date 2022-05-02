@@ -29,7 +29,7 @@ public class Setup implements Stage {
     @Override
     public void handle() throws IOException, ClassNotFoundException, InterruptedException {
 
-        //need to check if the name isn't already used
+        //don't need to check if the name is already sed because the magician is the identifier
         oos.writeObject(askName());
         oos.flush();
         askMagician();

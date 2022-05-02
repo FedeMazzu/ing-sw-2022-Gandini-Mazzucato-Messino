@@ -38,6 +38,7 @@ public class CreateGame implements Stage {
         oos.writeObject(createGameMESSAGE);
         oos.flush();
         System.out.println("Waiting for the other players...");
+        //getting a boolean indicating if the game was joined correctly
         getStartingAck();
         clientController.setClientStage(ClientStage.SETUP);
     }
