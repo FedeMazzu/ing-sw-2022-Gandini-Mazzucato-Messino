@@ -38,12 +38,14 @@ public class Shop implements Creator, Serializable, Observable {
         //getting 3 random integers
         for(int i=0; i<3; i++){randomCharacter[i] = rand.nextInt(numOfCharacters);}
         //naively
+        randomCharacter[0] = 2;
         while(randomCharacter[0] == randomCharacter[1]){
             randomCharacter[1] = rand.nextInt(numOfCharacters);
         }
         while(randomCharacter[2] == randomCharacter[1] || randomCharacter[2] == randomCharacter[0] ){
             randomCharacter[2] = rand.nextInt(numOfCharacters);
         }
+
 
         //creating the 3 random characters
         for(int i=0; i<3; i++){
@@ -107,5 +109,12 @@ public class Shop implements Creator, Serializable, Observable {
      */
     public List<Character> getCharacters(){
         return characters;
+    }
+
+    public Character getSingleCharacter(int id){
+        for(Character character:characters){
+            if(character.getId() == id) return character;
+        }
+        return null;
     }
 }

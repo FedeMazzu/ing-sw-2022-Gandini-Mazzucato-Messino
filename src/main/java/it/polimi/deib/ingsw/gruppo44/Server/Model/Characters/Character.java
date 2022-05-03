@@ -18,10 +18,6 @@ public abstract class Character implements Serializable, Observable {
     protected Game game;//Passed in the constructor. It must be protected for direct access in subclasses
     protected int id; // It must be protected for direct access in subclasses
 
-    /**
-     * method to edit the game because of the effect
-     */
-    public abstract void effect();
 
     @Override
     public void notifyObserver() {

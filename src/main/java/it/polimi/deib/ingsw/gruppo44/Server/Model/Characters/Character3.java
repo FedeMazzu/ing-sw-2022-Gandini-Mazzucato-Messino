@@ -18,9 +18,9 @@ public class Character3 extends Character {
         this.price = 3;
     }
 
-    public void effect(){
+    public void effect(int islandId){
         //ask islandId to the player
-        int islandId = 4; //just for example
+        //int islandId = 4; //just for example
         game.getBoard().getUnionFind().getIsland(islandId).islandClaim();
 
         raisePrice();

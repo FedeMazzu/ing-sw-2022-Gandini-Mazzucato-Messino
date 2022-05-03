@@ -17,7 +17,7 @@ public class Character12 extends Character {
         this.id = 12;
         this.price = 3;
     }
-    @Override
+
     public void effect() {
 
         raisePrice();

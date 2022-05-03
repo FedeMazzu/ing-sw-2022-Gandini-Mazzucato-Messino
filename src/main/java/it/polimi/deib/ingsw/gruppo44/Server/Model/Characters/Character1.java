@@ -27,7 +27,7 @@ public class Character1 extends Character {
         students = new ArrayList<>();
     }
 
-    @Override
+
     public void effect() {
         // note that it's necessary to move the initialization here
         // because it needs to wait the instantiation of the board before getting the unionFind

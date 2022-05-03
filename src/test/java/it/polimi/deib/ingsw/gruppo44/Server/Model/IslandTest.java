@@ -54,6 +54,11 @@ class IslandTest {
     }
 
     @Test
+    public void IslandClaim__mergeForwBackw(){
+
+    }
+
+    @Test
     public void IslandClaim__merge_2P(){
         List<Team> teams = uf.teams;
         //give all prof to the first player

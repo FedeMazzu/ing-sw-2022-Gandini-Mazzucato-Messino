@@ -7,13 +7,14 @@ import it.polimi.deib.ingsw.gruppo44.Server.Controller.GameStage;
 import it.polimi.deib.ingsw.gruppo44.Server.Controller.Ticket;
 import it.polimi.deib.ingsw.gruppo44.Server.Controller.User;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.*;
+import it.polimi.deib.ingsw.gruppo44.Server.Model.Characters.Character;
+import it.polimi.deib.ingsw.gruppo44.Server.Model.Characters.Character3;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.SchoolData;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
@@ -27,6 +28,7 @@ public class Action implements Stage, Serializable {
     private PriorityQueue<Ticket> turnOrder;
     private Scanner sc = new Scanner(System.in);
     private Board board;
+    private boolean endGame;
 
     public Action(GameController gameController) {
         this.gameController = gameController;
@@ -37,7 +39,7 @@ public class Action implements Stage, Serializable {
     @Override
     public void handle() throws IOException, ClassNotFoundException {
 
-        boolean endGame = false;
+        endGame = false;
         System.out.println("--------------ACTION PHASE--------------");
         Player currPlayer;
         User currUser;
@@ -51,38 +53,22 @@ public class Action implements Stage, Serializable {
             boolean usingCharacter = false;
 
             //the protocol changes if the Game Mode is Expert AND the player chooses to use a Character
-            if(gameController.getGameMode().isExpertMode())  usingCharacter = ois.readBoolean();
+            if(gameController.getGameMode().isExpertMode()){
+                usingCharacter = ois.readBoolean();
+                sendCharacterBooleanToOthers(currUser,usingCharacter);
+            }
 
 
             if(usingCharacter) {
                 handleUsingCharacter(currUser);
+                if(endGame) break;
             } else {
                 //the protocol is the same in the standard mode and in the expert mode if the player doesn't use a character
+                playStandardTurn(currUser);
+                if(endGame) break;
 
-
-                School currSchool = currPlayer.getSchool();
-                //Sending data to the currUser
-                sendData(currSchool, oos);
-                //Move students
-                moveStudents(currSchool, ois);
-                //sending data to other waiting players
-                sendStudentsMoveToOthers(currUser);
-
-                //Move MotherNature
-                moveMotherNature(ois, oos);
-                sendMotherNatureMOveToOthers(currUser);
-                if (endGame) break;
-
-                //checking the end of the game and sending the information to all the clients
-                endGame = gameController.checkEndOfGame();
-                sendEndGameInformation(endGame);
-
-                //Choosing cloud
-                chooseACloud(currPlayer, ois, oos);
-                sendCloudChoiceToOthers(currUser);
-
-                gameController.getTurnHandler().endOfTurn();
             }
+            gameController.getTurnHandler().endOfTurn();
 
         }
 
@@ -90,16 +76,45 @@ public class Action implements Stage, Serializable {
         else gameController.setGameStage(GameStage.CLEANUP);
     }
 
+    private void playStandardTurn(User currUser) throws IOException, ClassNotFoundException {
+        Player currPlayer = currUser.getPlayer();
+        ObjectOutputStream oos = currUser.getOos();
+        ObjectInputStream ois = currUser.getOis();
+        School currSchool = currPlayer.getSchool();
+
+
+        //Sending data to the currUser
+        sendData(currSchool, oos);
+        //Move students
+        moveStudents(currSchool, ois);
+        //sending data to other waiting players
+        sendStudentsMoveToOthers(currUser);
+
+        //Move MotherNature
+        moveMotherNature(ois, oos);
+        sendMotherNatureMoveToOthers(currUser);
+
+
+        //checking the end of the game and sending the information to all the clients
+        endGame = gameController.checkEndOfGame();
+        sendEndGameInformation();
+        if (endGame) return;
+        //Choosing cloud
+        chooseACloud(currPlayer, ois, oos);
+        sendCloudChoiceToOthers(currUser);
+    }
+
     /**
      * handles the case oin the ExpertMode in which the player wants to use a character
      * @param currUser
      */
-    private void handleUsingCharacter(User currUser) throws IOException {
+    private void handleUsingCharacter(User currUser) throws IOException, ClassNotFoundException {
         ObjectOutputStream oos = currUser.getOos();
         ObjectInputStream ois = currUser.getOis();
 
         //receiving the id of the Character
         int characterId = ois.readInt();
+        sendCharacterChosenToOthers(currUser,characterId);
         switch (characterId){
             case 1:
                 //handleCharacter1();
@@ -108,23 +123,75 @@ public class Action implements Stage, Serializable {
                 //handleCharacter2();
                 break;
                 //...
+            case 3:
+                handleCharacter3(currUser);
+                break;
             default:
+        }
+    }
+
+    private void sendCharacterChosenToOthers(User currUser,int charId) throws IOException {
+        for(int i=0;i<gameController.getGameMode().getTeamsNumber()*gameController.getGameMode().getTeamPlayers();i++){
+            User tempUser = gameController.getUser(i);
+            if(tempUser == currUser) continue;
+            ObjectOutputStream tempOos = tempUser.getOos();
+            tempOos.writeInt(charId);
+            tempOos.flush();
+        }
+    }
+
+    private void sendCharacterBooleanToOthers(User currUser,boolean usingCharacter) throws IOException {
+        for(int i=0;i<gameController.getGameMode().getTeamsNumber()*gameController.getGameMode().getTeamPlayers();i++){
+            User tempUser = gameController.getUser(i);
+            if(tempUser == currUser) continue;
+            ObjectOutputStream tempOos = tempUser.getOos();
+            tempOos.writeBoolean(usingCharacter);
+            tempOos.flush();
+        }
+    }
+
+
+    public void sendUpdatedPrice(User currUser) throws IOException {
+        for(int i=0;i<gameController.getGameMode().getTeamsNumber()*gameController.getGameMode().getTeamPlayers();i++){
+            User tempUser = gameController.getUser(i);
+            ObjectOutputStream tempOos = tempUser.getOos();
+            tempOos.reset();//needed!
+            if(currUser.equals(tempUser)) continue;
+            tempOos.writeObject(gameController.getData().getBoardData().getCharacters());
+            tempOos.flush();
         }
     }
 
 
 
+    private void handleCharacter3(User user) throws IOException, ClassNotFoundException {
+        //DA MODIFICARE SE IL TIMING E` LIBERO DURANTE IL TURNO (IN QUEL CASO E` TUTO SBAGLIATO)
+        ObjectInputStream ois = user.getOis();
+        int islandChosen = ois.readInt();
+        Character char3 = board.getShop().getSingleCharacter(3);
+        ((Character3) char3).effect(islandChosen);
+        System.out.println(endGame);
+        endGame = gameController.checkEndOfGame();
+        System.out.println(endGame);
+        sendIslandDataToOthers(user);
+        sendEndGameInformation();
+        if(endGame) return;
+        sendUpdatedPrice(user);
+        playStandardTurn(user);
+    }
+
 
 
     /**
      * sends to all the clients if the game has ended
-     * @param endGame
+     * @param
      * @throws IOException
      */
-    private void sendEndGameInformation(boolean endGame) throws IOException {
+    private void sendEndGameInformation() throws IOException {
         for(int i=0;i<gameController.getGameMode().getTeamsNumber()*gameController.getGameMode().getTeamPlayers();i++){
             User tempUser = gameController.getUser(i);
             ObjectOutputStream tempOos = tempUser.getOos();
+            tempOos.reset();
             tempOos.writeBoolean(endGame);
             tempOos.flush();
         }
@@ -154,7 +221,7 @@ public class Action implements Stage, Serializable {
      * @param currUser
      * @throws IOException
      */
-    private void sendMotherNatureMOveToOthers(User currUser) throws IOException {
+    private void sendMotherNatureMoveToOthers(User currUser) throws IOException {
         for(int i=0;i<gameController.getGameMode().getTeamsNumber()*gameController.getGameMode().getTeamPlayers();i++){
             User tempUser = gameController.getUser(i);
             ObjectOutputStream tempOos = tempUser.getOos();
@@ -163,6 +230,16 @@ public class Action implements Stage, Serializable {
             tempOos.writeObject(gameController.getData().getIslandsData());
             tempOos.flush();
             tempOos.writeInt(gameController.getData().getBoardData().getMotherNaturePosition());
+            tempOos.flush();
+        }
+    }
+
+    private void sendIslandDataToOthers(User currUser) throws IOException {
+        for(int i=0;i<gameController.getGameMode().getTeamsNumber()*gameController.getGameMode().getTeamPlayers();i++){
+            User tempUser = gameController.getUser(i);
+            ObjectOutputStream tempOos = tempUser.getOos();
+            if(currUser.equals(tempUser)) continue;
+            tempOos.writeObject(gameController.getData().getIslandsData());
             tempOos.flush();
         }
     }
@@ -202,6 +279,7 @@ public class Action implements Stage, Serializable {
         currData = "In your school:\n";
         for(Color c : Color.values()){
             currData +="Student "+c+": "+currSchool.getEntranceStudentsNum(c)+"\n";
+            if(currSchool.hasProfessor(c)) currData += "Prof" + c + "\n";
         }
 
         currData+="Islands:\n";
@@ -212,6 +290,9 @@ public class Action implements Stage, Serializable {
             currData+="Island ID: "+i+" ";
             for(Color c: Color.values()){
                 currData+=c+" "+board.getUnionFind().getIsland(i).getStudentNum(c)+"| ";
+            }
+            if(board.getUnionFind().getIsland(i).getHasTower()){
+                currData+="Num Towers: "+board.getUnionFind().getGroupSize(i);
             }
             currData+="\n";
         }

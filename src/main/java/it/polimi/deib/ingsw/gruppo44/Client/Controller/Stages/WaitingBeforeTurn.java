@@ -11,6 +11,7 @@ import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.SchoolData;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -22,6 +23,7 @@ public class WaitingBeforeTurn implements Stage {
     private ClientController clientController;
     private ObjectInputStream ois;
     private int turnNumber;
+    private boolean gameEnd;
 
     public WaitingBeforeTurn(ClientController clientController) {
         this.clientController = clientController;
@@ -36,37 +38,82 @@ public class WaitingBeforeTurn implements Stage {
         //receiving the data when the player isn't moving yet
         while(counter>0){
             //receive the outputs of the turnNumber players before you
-            //there will be 6 outputs per turn
-
-            //after moving the students
-            SchoolData schoolData = (SchoolData)ois.readObject();
-            IslandsData islandsData = (IslandsData)ois.readObject();
-            System.out.println("A player has moved the students!");
-            //TEMPORARY
-            printSchoolAndIslandsUpdated(schoolData,islandsData);
-
-
-            //after moving motherNature
-            islandsData = (IslandsData)ois.readObject();
-            int motherNaturePos = ois.readInt();
-            System.out.println("A player has moved mother nature on the island: "+motherNaturePos+"!");
-
-            //RECEIVING THE INFORMATION ABOUT THE END OF THE TURN
-            boolean gameEnded = ois.readBoolean();
-            if (gameEnded){
-                clientController.setClientStage(ClientStage.ClientEND);
-                return;
+            boolean usingCharacter = false;
+            if(clientController.getGameMode().isExpertMode()) usingCharacter = ois.readBoolean();
+            if(usingCharacter){
+                characterWait();
+                if(gameEnd) return;
             }
-
-            //after choosing cloud
-            CloudsData cloudsData = (CloudsData)ois.readObject();
-            schoolData = (SchoolData)ois.readObject();
-            System.out.println("A player has chosen a cloud!");
-            //TEMPORARY
-            printSchoolUpdated(schoolData);
+            else{
+                standardWait();
+                if(gameEnd) return;
+            }
             counter--;
         }
         clientController.setClientStage(ClientStage.ClientACTION);
+    }
+
+    private void characterWait3() throws IOException, ClassNotFoundException {
+        IslandsData islandsData = (IslandsData) ois.readObject();
+        //print islands for debug
+        for(int i = 0;i<12;i++){
+            if(islandsData.findGroup(i) != i) continue;
+            System.out.println("Island "+i);
+            for(Color color: Color.values()){
+                System.out.print(color+": "+islandsData.getStudentsNum(i,color)+" | ");
+            }
+            System.out.println();
+        }
+        gameEnd = ois.readBoolean();
+        if(gameEnd){
+            clientController.setClientStage(ClientStage.ClientEND);
+            return;
+        }
+        Map<Integer,Integer> updatedBoard =(Map<Integer, Integer>) ois.readObject();
+        System.out.println(updatedBoard);
+        standardWait();
+    }
+
+    private void characterWait() throws IOException, ClassNotFoundException {
+        int charId = ois.readInt();
+        switch (charId){
+            case 1:
+                break;
+            case 3:
+                characterWait3();
+                break;
+        }
+    }
+
+    private void standardWait() throws IOException, ClassNotFoundException {
+        //there will be 6 outputs per turn
+
+        //after moving the students
+        SchoolData schoolData = (SchoolData)ois.readObject();
+        IslandsData islandsData = (IslandsData)ois.readObject();
+        System.out.println("A player has moved the students!");
+        //TEMPORARY
+        printSchoolAndIslandsUpdated(schoolData,islandsData);
+
+
+        //after moving motherNature
+        islandsData = (IslandsData)ois.readObject();
+        int motherNaturePos = ois.readInt();
+        System.out.println("A player has moved mother nature on the island: "+motherNaturePos+"!");
+
+        //RECEIVING THE INFORMATION ABOUT THE END OF THE TURN
+        gameEnd = ois.readBoolean();
+        if (gameEnd){
+            clientController.setClientStage(ClientStage.ClientEND);
+            return;
+        }
+
+        //after choosing cloud
+        CloudsData cloudsData = (CloudsData)ois.readObject();
+        schoolData = (SchoolData)ois.readObject();
+        System.out.println("A player has chosen a cloud!");
+        //TEMPORARY
+        printSchoolUpdated(schoolData);
     }
 
     private void printSchoolUpdated(SchoolData schoolData) {

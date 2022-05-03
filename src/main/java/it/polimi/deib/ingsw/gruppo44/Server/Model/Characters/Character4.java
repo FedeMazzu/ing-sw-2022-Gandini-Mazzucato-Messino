@@ -20,7 +20,7 @@ public class Character4 extends Character {
     }
 
     //should pass to Board's method moveMotherNature the correct value, avoiding repeating the move
-    @Override
+
     public void effect(){
 
         raisePrice();
