@@ -1,5 +1,6 @@
 package it.polimi.deib.ingsw.gruppo44.Server.Model.Characters;
 
+import it.polimi.deib.ingsw.gruppo44.Server.Model.BoardObserver;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Game;
 
 /**
@@ -9,7 +10,8 @@ import it.polimi.deib.ingsw.gruppo44.Server.Model.Game;
  * @author
  */
 public class Character2 extends Character {
-    public Character2(Game game) {
+    public Character2(Game game, BoardObserver boardObserver) {
+        this.boardObserver = boardObserver;
         this.game = game;
         this.id = 2;
         this.price = 2;

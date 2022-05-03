@@ -32,8 +32,7 @@ public class Board implements Observable, Serializable {
         unionFind = new UnionFind(game);
         notOwnedObjects = new NotOwnedObjects(gameMode);
         numOfPlayers = gameMode.getTeamPlayers() * gameMode.getTeamsNumber();
-        boardObserver = new BoardObserver(this);
-        boardObserver.update();
+        boardObserver = new BoardObserver(this,gameMode);
         cloudsObserver = new CloudsObserver(gameMode.getCloudsNumber());
         Cloud cloud;
         for(int p = 0; p< gameMode.getCloudsNumber(); p++){
@@ -45,7 +44,9 @@ public class Board implements Observable, Serializable {
         }
 
         // remember multithreading implementation
-        if(gameMode.isExpertMode()) shop = new Shop(game);
+        if(gameMode.isExpertMode()) shop = new Shop(game,boardObserver);
+
+        boardObserver.update();
 
     }
 

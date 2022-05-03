@@ -36,10 +36,24 @@ public class Setup implements Stage {
         System.out.println("Magician set! Waiting for others..");
 
         //Receiving the data to draw the GUI
-        Data data = (Data)ois.readObject();
+        receiveData(ois);
+
         clientController.setClientStage(ClientStage.ClientPLANNING);
     }
 
+    /**
+     * receives the data to draw the first window
+     * @param ois
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    private void receiveData(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+        Data data = (Data)ois.readObject();
+        if(clientController.getGameMode().isExpertMode()){
+            //printing the characters
+            System.out.println("Characters(Id=Price): "+data.getBoardData().getCharacters());
+        }
+    }
 
 
     private String askName() {

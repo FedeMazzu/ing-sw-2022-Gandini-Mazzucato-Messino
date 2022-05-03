@@ -51,7 +51,8 @@ public class Action implements Stage, Serializable {
             boolean usingCharacter = false;
 
             //the protocol changes if the Game Mode is Expert AND the player chooses to use a Character
-            if(gameController.getGameMode().isExpertMode())usingCharacter = ois.readBoolean();
+            if(gameController.getGameMode().isExpertMode())  usingCharacter = ois.readBoolean();
+
 
             if(usingCharacter) {
                 handleUsingCharacter(currUser);

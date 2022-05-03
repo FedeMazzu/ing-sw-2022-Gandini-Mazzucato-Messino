@@ -1,5 +1,6 @@
 package it.polimi.deib.ingsw.gruppo44.Server.Model.Characters;
 
+import it.polimi.deib.ingsw.gruppo44.Server.Model.BoardObserver;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Color;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Game;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.NotOwnedObjects;
@@ -18,7 +19,8 @@ public class Character1 extends Character {
     private List<Color> students;
     private final int numStudents = 4;
 
-    public  Character1(Game game){
+    public  Character1(Game game, BoardObserver boardObserver){
+        this.boardObserver = boardObserver;
         this.game = game;
         this.id =1; //attribute of the superclass
         this.price = 1;

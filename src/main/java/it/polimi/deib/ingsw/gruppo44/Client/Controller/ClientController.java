@@ -55,7 +55,7 @@ public class ClientController implements Runnable {
                         break;
                     case ClientACTION:
                         boolean usingCharacter = false;
-                        if(gameMode.isExpertMode())  usingCharacter = AskIfUsingCharacter();
+                        if(gameMode.isExpertMode()) usingCharacter = AskIfUsingCharacter();
                         if (usingCharacter) stage = new ClientActionExpert(this);
                         else stage = new ClientActionStandard(this);
                         break;
