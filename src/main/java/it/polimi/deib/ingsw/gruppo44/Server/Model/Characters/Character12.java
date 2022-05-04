@@ -1,7 +1,6 @@
 package it.polimi.deib.ingsw.gruppo44.Server.Model.Characters;
 
-import it.polimi.deib.ingsw.gruppo44.Server.Model.BoardObserver;
-import it.polimi.deib.ingsw.gruppo44.Server.Model.Game;
+import it.polimi.deib.ingsw.gruppo44.Server.Model.*;
 
 /**
  * Class to represent the Character 12
@@ -18,8 +17,19 @@ public class Character12 extends Character {
         this.price = 3;
     }
 
-    public void effect() {
-
+    public void effect(Color color) {
+        boolean wasRemoved;
+        NotOwnedObjects notOwnedObjects = game.getBoard().getNotOwnedObjects();
+        for(Team team: game.getTeams()){
+            for(Player player: team.getPlayers()){
+                for(int i=0; i<3; i++) {
+                    wasRemoved = player.getSchool().removeHallStudent(color);
+                    if(wasRemoved){
+                        notOwnedObjects.addStudent(color);
+                    }
+                }
+            }
+        }
         raisePrice();
     }
 }

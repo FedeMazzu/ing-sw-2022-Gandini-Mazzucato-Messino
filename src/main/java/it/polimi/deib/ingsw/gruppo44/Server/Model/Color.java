@@ -7,5 +7,5 @@ import java.io.Serializable;
  * @author filippogandini
  */
 public enum Color implements Serializable {
-    GREEN,BLUE,RED,YELLOW,PINK;
+    GREEN,RED,YELLOW,PINK,BLUE;
 }

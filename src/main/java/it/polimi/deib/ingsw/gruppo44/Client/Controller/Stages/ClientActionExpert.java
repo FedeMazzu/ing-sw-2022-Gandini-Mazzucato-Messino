@@ -4,6 +4,8 @@ import it.polimi.deib.ingsw.gruppo44.Client.Controller.ClientController;
 import it.polimi.deib.ingsw.gruppo44.Client.Controller.ClientStage;
 import it.polimi.deib.ingsw.gruppo44.Common.Messages.MovingStudentsMESSAGE;
 import it.polimi.deib.ingsw.gruppo44.Common.Stage;
+import it.polimi.deib.ingsw.gruppo44.Server.Model.Color;
+import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.SchoolData;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -77,7 +79,7 @@ public class ClientActionExpert implements Stage{
 
     }
 
-    private void handleCharacter() throws IOException {
+    private void handleCharacter() throws IOException, ClassNotFoundException {
         switch (currentCharacter){
             case 1:
                 break;
@@ -86,6 +88,8 @@ public class ClientActionExpert implements Stage{
             case 3:
                 handleCharacter3();
                 break;
+            case 12:
+                handleCharacter12();
         }
     }
 
@@ -97,5 +101,47 @@ public class ClientActionExpert implements Stage{
         System.out.println(endGame);
         endGame = ois.readBoolean();
         System.out.println(endGame);
+    }
+
+    private void handleCharacter12() throws IOException, ClassNotFoundException {
+        System.out.println("Select a color to apply the effect:");
+        System.out.println(" 1-GREEN \n 2-RED \n 3-YELLOW \n 4-PINK \n 5-BLUE");
+        int colorChoice = sc.nextInt();
+        switch (colorChoice){
+            case 1:
+                oos.writeObject(Color.GREEN);
+                oos.flush();
+                break;
+            case 2:
+                oos.writeObject(Color.RED);
+                oos.flush();
+                break;
+            case 3:
+                oos.writeObject(Color.YELLOW);
+                oos.flush();
+                break;
+            case 4:
+                oos.writeObject(Color.PINK);
+                oos.flush();
+                break;
+            case 5:
+                oos.writeObject(Color.BLUE);
+                oos.flush();
+            default:
+                System.out.println("you choose "+colorChoice );
+                System.out.println("incorrect value");
+                System.exit(0);
+                break;
+        }
+        int numOfUsers = clientController.getGameMode().getTeamPlayers()* clientController.getGameMode().getTeamsNumber();
+        for(int i=0; i< numOfUsers; i++){
+            SchoolData schoolData = (SchoolData) ois.readObject();
+            System.out.println("HALL of the School of the player:"+schoolData.getMagician()+":");
+            for(Color c: Color.values()){
+                System.out.print(c+" "+schoolData.getHallStudentsNum(c)+"| ");
+            }
+            System.out.println();
+        }
+
     }
 }

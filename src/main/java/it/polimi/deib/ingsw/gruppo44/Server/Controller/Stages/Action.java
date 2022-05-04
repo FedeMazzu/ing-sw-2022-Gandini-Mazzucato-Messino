@@ -8,7 +8,9 @@ import it.polimi.deib.ingsw.gruppo44.Server.Controller.Ticket;
 import it.polimi.deib.ingsw.gruppo44.Server.Controller.User;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.*;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Characters.Character;
+import it.polimi.deib.ingsw.gruppo44.Server.Model.Characters.Character12;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Characters.Character3;
+import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.Data;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.SchoolData;
 
 import java.io.IOException;
@@ -126,9 +128,50 @@ public class Action implements Stage, Serializable {
             case 3:
                 handleCharacter3(currUser);
                 break;
+            case 12:
+                handleCharacter12(currUser);
+                break;
             default:
         }
     }
+    private void handleCharacter3(User user) throws IOException, ClassNotFoundException {
+        //DA MODIFICARE SE IL TIMING E` LIBERO DURANTE IL TURNO (IN QUEL CASO E` TUTO SBAGLIATO)
+        ObjectInputStream ois = user.getOis();
+        int islandChosen = ois.readInt();
+        Character char3 = board.getShop().getSingleCharacter(3);
+        ((Character3) char3).effect(islandChosen);
+        endGame = gameController.checkEndOfGame();
+        sendIslandDataToOthers(user);
+        sendEndGameInformation();
+        if(endGame) return;
+        sendUpdatedPrice(user);
+        playStandardTurn(user);
+    }
+
+    /**
+     * handles the turn playing with the character 12
+     * @param user
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    private void handleCharacter12(User user) throws IOException, ClassNotFoundException {
+        ObjectInputStream ois = user.getOis();
+        Color colorChosen = (Color) ois.readObject();
+        Character char12 = board.getShop().getSingleCharacter(12);
+        ((Character12) char12).effect(colorChosen);
+
+        //Send the Schools to all the clients including the currUSer
+        for(int i=0;i<gameController.getGameMode().getTeamsNumber()*gameController.getGameMode().getTeamPlayers();i++){
+            ObjectOutputStream oosTemp = gameController.getUser(i).getOos();
+            for(SchoolData sd: gameController.getData().getSchoolDataList()){
+                oosTemp.writeObject(sd);
+                oosTemp.flush();
+            }
+        }
+        sendUpdatedPrice(user);
+        playStandardTurn(user);
+    }
+
 
     private void sendCharacterChosenToOthers(User currUser,int charId) throws IOException {
         for(int i=0;i<gameController.getGameMode().getTeamsNumber()*gameController.getGameMode().getTeamPlayers();i++){
@@ -161,25 +204,6 @@ public class Action implements Stage, Serializable {
             tempOos.flush();
         }
     }
-
-
-
-    private void handleCharacter3(User user) throws IOException, ClassNotFoundException {
-        //DA MODIFICARE SE IL TIMING E` LIBERO DURANTE IL TURNO (IN QUEL CASO E` TUTO SBAGLIATO)
-        ObjectInputStream ois = user.getOis();
-        int islandChosen = ois.readInt();
-        Character char3 = board.getShop().getSingleCharacter(3);
-        ((Character3) char3).effect(islandChosen);
-        System.out.println(endGame);
-        endGame = gameController.checkEndOfGame();
-        System.out.println(endGame);
-        sendIslandDataToOthers(user);
-        sendEndGameInformation();
-        if(endGame) return;
-        sendUpdatedPrice(user);
-        playStandardTurn(user);
-    }
-
 
 
     /**

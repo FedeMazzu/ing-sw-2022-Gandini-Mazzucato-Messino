@@ -26,6 +26,9 @@ public class ClientController implements Runnable {
     public ClientController(ObjectInputStream ois, ObjectOutputStream oos) {
         this.ois = ois;
         this.oos = oos;
+        MessagesMethods.oos = oos;
+        MessagesMethods.ois = ois;
+        MessagesMethods.clientController = this;
     }
 
     @Override

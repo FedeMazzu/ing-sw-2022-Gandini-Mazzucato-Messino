@@ -83,4 +83,8 @@ public class NotOwnedObjects implements Serializable {
      */
     public int getStudentsSize() {return students.size();}
 
+    public void addStudent(Color color){
+        students.add(color);
+    }
+
 }

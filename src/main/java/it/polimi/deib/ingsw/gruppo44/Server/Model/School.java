@@ -52,26 +52,41 @@ public class School implements Observable, Serializable {
     public boolean addHallStudent(Color color) {
         try {
             int numStudents = hallStudents.get(color);
-            if(!removeEntranceStudent(color)) throw new Exception();
-            if(numStudents>= maxHallStudentsNum)throw  new Exception();
+            if (!removeEntranceStudent(color)) throw new Exception();
+            if (numStudents >= maxHallStudentsNum) throw new Exception();
             hallStudents.put(color, numStudents + 1);
             earnProfessor(color);//earns the professor if deserved
             if (hallStudents.get(color) % 3 == 0) player.addCoin();
             notifyObserver();
             return true;
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Hall already full for this color or entrance has no students of that color");
             return false;
         }
     }
 
-    public boolean removeEntranceStudent(Color color){
-        if(entranceStudents.get(color) <= 0 ) return false;
-        int previousNum = entranceStudents.get(color);
-        entranceStudents.put(color,previousNum-1);
-        notifyObserver();
-        return true;
+    /**
+     * method called from the Character12 to play his effect
+     * removes a student of the passed color (if there are)
+     * @param color
+     * @return weather it was removed or there weren't
+     */
+    public boolean removeHallStudent(Color color){
+        try{
+            int numStudents = hallStudents.get(color);
+            if (numStudents<=0) throw new Exception();
+            hallStudents.put(color, numStudents-1);
+            //note that this lacks to update the count in the UnionFind
+            notifyObserver();
+            return true;
+        }catch(Exception e){
+            //do nothing... the effect of the character12 works like this
+
+            //necessary to update the count in the Not Owned Objects
+            return false;
+        }
     }
+
 
     /**
      * @param color of the student to add
@@ -90,6 +105,21 @@ public class School implements Observable, Serializable {
             return false;
         }
     }
+
+    /**
+     * removes a studnet from the entrance if exists at least one of the Color passed
+     * @param color
+     * @return a boolean representing whether the student was removed or there weren't
+     */
+    public boolean removeEntranceStudent(Color color){
+        if(entranceStudents.get(color) <= 0 ) return false;
+        int previousNum = entranceStudents.get(color);
+        entranceStudents.put(color,previousNum-1);
+        notifyObserver();
+        return true;
+    }
+
+
     public void addSchool(School school){
         schools.add(school);
     }

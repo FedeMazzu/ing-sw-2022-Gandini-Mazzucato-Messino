@@ -17,7 +17,7 @@ public class Character10 extends Character {
     }
 
     public void effect() {
-
+        //ATTENTION! SEE HOW ADDHALLSTUENTD METHOD IS IMPLEMENTED
         raisePrice();
     }
 }
