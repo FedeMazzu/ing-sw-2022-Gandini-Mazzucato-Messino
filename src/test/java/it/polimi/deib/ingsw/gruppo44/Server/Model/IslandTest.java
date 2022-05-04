@@ -55,6 +55,38 @@ class IslandTest {
 
     @Test
     public void IslandClaim__mergeForwBackw(){
+        List<Team> teams = uf.teams;
+        Island is;
+        //give all profs to first player
+        Team t1 = teams.get(0);
+        Player p1 = t1.getPlayers().get(0);
+        for(Color c:Color.values()){
+            p1.getSchool().TESTsetProfessor(c);
+        }
+        board.moveMotherNature(1);
+        is = board.getUnionFind().getIsland(board.getMotherNaturePosition());
+        assertTrue(is.getHasTower());
+        assertEquals(is.getTowerColor(), t1.getTower());
+
+        board.moveMotherNature(1);
+        is = board.getUnionFind().getIsland(board.getMotherNaturePosition());
+        assertTrue(is.getHasTower());
+        assertEquals(is.getTowerColor(), t1.getTower());
+        assertEquals(2,is.getUnionFind().getGroupSize(board.getMotherNaturePosition()));
+
+
+        //we built a island of size 2 with islands 1,2
+        //now we want to put a random student on island 0 and then try to build there
+        board.getUnionFind().getIsland(0).addStudent(Color.GREEN);
+        board.moveMotherNature(10);
+        //check the results
+        is = board.getUnionFind().getIsland(board.getMotherNaturePosition());
+        assertTrue(is.getHasTower());
+        assertEquals(is.getTowerColor(), t1.getTower());
+        assertEquals(3,is.getUnionFind().getGroupSize(board.getMotherNaturePosition()));
+
+
+
 
     }
 
