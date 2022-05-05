@@ -136,6 +136,9 @@ public class Action implements Stage, Serializable {
             case 9:
                 handleCharacter9(currUser);
                 break;
+            case 10:
+                handleCharacter10(currUser);
+                break;
             case 12:
                 handleCharacter12(currUser);
                 break;
@@ -203,6 +206,30 @@ public class Action implements Stage, Serializable {
 
     }
 
+    private void handleCharacter10(User user) throws IOException, ClassNotFoundException {
+        ObjectInputStream ois = user.getOis();
+        boolean swap = false;
+        swap = ois.readBoolean();
+        Color h1 = null ,e1 = null,h2 = null,e2 = null;
+        if(swap){
+           h1 = (Color) ois.readObject();
+           e1 = (Color) ois.readObject();
+
+           swap = ois.readBoolean();
+           if(swap){
+               h2 = (Color) ois.readObject();
+               e2 = (Color) ois.readObject();
+           }
+        }
+
+        Character char10 = board.getShop().getSingleCharacter(10);
+        ((Character10) char10).effect(h1,e1,h2,e2,user.getPlayer().getSchool());
+        sendSchoolDataToOthers(user);
+        sendUpdatedPrice(user);
+        playStandardTurn(user);
+
+    }
+
     /**
      * handles the turn playing with the character 12
      * @param user
@@ -225,6 +252,16 @@ public class Action implements Stage, Serializable {
         }
         sendUpdatedPrice(user);
         playStandardTurn(user);
+    }
+
+    private void sendSchoolDataToOthers(User currUser) throws IOException {
+        for(int i=0;i<gameController.getGameMode().getTeamsNumber()*gameController.getGameMode().getTeamPlayers();i++){
+            User tempUser = gameController.getUser(i);
+            if(tempUser == currUser) continue;
+            ObjectOutputStream tempOos = tempUser.getOos();
+            tempOos.writeObject(currUser.getPlayer().getSchool().getSchoolObserver().getSchoolData());
+            tempOos.flush();
+        }
     }
 
 

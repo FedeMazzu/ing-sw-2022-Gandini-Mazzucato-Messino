@@ -97,6 +97,9 @@ public class ClientActionExpert implements Stage{
             case 9:
                 handleCharacter9();
                 break;
+            case 10:
+                handleCharacter10();
+                break;
             case 12:
                 handleCharacter12();
                 break;
@@ -146,6 +149,7 @@ public class ClientActionExpert implements Stage{
             case 5:
                 oos.writeObject(Color.BLUE);
                 oos.flush();
+                break;
             default:
                 System.out.println("you choose "+colorChoice );
                 System.out.println("incorrect value");
@@ -153,6 +157,100 @@ public class ClientActionExpert implements Stage{
                 break;
         }
 
+    }
+
+    private void handleCharacter10() throws IOException {
+        System.out.println("You want to swap 2 students in your school?\n" +
+                "0 -> NO\n 1 -> YES");
+        int swapChoice = sc.nextInt();
+        if(swapChoice == 0){
+            oos.writeBoolean(false);
+            oos.flush();
+            return;
+        }
+        else{
+            oos.writeBoolean(true);
+            oos.flush();
+            System.out.println("Which 2 colors to swap? (First Hall then Entrance)");
+            System.out.println(" 1-GREEN \n 2-RED \n 3-YELLOW \n 4-PINK \n 5-BLUE");
+            int [] colorChoices = new int[2];
+            colorChoices[0] = sc.nextInt(); //Hall Student Color
+            colorChoices[1] = sc.nextInt(); //Entrance Student Color
+            for(int i=0;i<2;i++){
+                switch (colorChoices[i]){
+                    case 1:
+                        oos.writeObject(Color.GREEN);
+                        oos.flush();
+                        break;
+                    case 2:
+                        oos.writeObject(Color.RED);
+                        oos.flush();
+                        break;
+                    case 3:
+                        oos.writeObject(Color.YELLOW);
+                        oos.flush();
+                        break;
+                    case 4:
+                        oos.writeObject(Color.PINK);
+                        oos.flush();
+                        break;
+                    case 5:
+                        oos.writeObject(Color.BLUE);
+                        oos.flush();
+                        break;
+                    default:
+                        System.out.println("incorrect value");
+                        System.exit(0);
+                        break;
+                }
+            }
+            System.out.println("You want to swap 2 students in your school?\n" +
+                    "0 -> NO\n 1 -> YES");
+            swapChoice = sc.nextInt();
+            if(swapChoice == 0){
+                oos.writeBoolean(false);
+                oos.flush();
+                return;
+            }
+            else{
+                oos.writeBoolean(true);
+                oos.flush();
+                System.out.println("Which 2 colors to swap? (First Hall then Entrance)");
+                System.out.println(" 1-GREEN \n 2-RED \n 3-YELLOW \n 4-PINK \n 5-BLUE");
+                colorChoices[0] = sc.nextInt(); //Hall Student Color
+                colorChoices[1] = sc.nextInt(); //Entrance Student Color
+                for(int i=0;i<2;i++){
+                    switch (colorChoices[i]){
+                        case 1:
+                            oos.writeObject(Color.GREEN);
+                            oos.flush();
+                            break;
+                        case 2:
+                            oos.writeObject(Color.RED);
+                            oos.flush();
+                            break;
+                        case 3:
+                            oos.writeObject(Color.YELLOW);
+                            oos.flush();
+                            break;
+                        case 4:
+                            oos.writeObject(Color.PINK);
+                            oos.flush();
+                            break;
+                        case 5:
+                            oos.writeObject(Color.BLUE);
+                            oos.flush();
+                            break;
+                        default:
+                            System.out.println("incorrect value");
+                            System.exit(0);
+                            break;
+                    }
+                }
+
+            }
+
+        }
     }
 
     private void handleCharacter12() throws IOException, ClassNotFoundException {
@@ -179,6 +277,7 @@ public class ClientActionExpert implements Stage{
             case 5:
                 oos.writeObject(Color.BLUE);
                 oos.flush();
+                break;
             default:
                 System.out.println("you choose "+colorChoice );
                 System.out.println("incorrect value");

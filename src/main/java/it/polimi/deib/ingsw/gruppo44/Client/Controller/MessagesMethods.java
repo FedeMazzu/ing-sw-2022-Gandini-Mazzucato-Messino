@@ -1,6 +1,7 @@
 package it.polimi.deib.ingsw.gruppo44.Client.Controller;
 
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Color;
+import it.polimi.deib.ingsw.gruppo44.Server.Model.School;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.CloudsData;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.IslandsData;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.SchoolData;
@@ -109,6 +110,8 @@ public class MessagesMethods {
                 return characterWait8();
             case 9:
                 return characterWait9();
+            case 10:
+                return characterWait10();
             case 12:
                 return characterWait12();
             default:
@@ -151,8 +154,16 @@ public class MessagesMethods {
     }
 
     private static boolean characterWait9() throws IOException, ClassNotFoundException {
-        Color colorChosen =(Color) ois.readObject();
+        Color colorChosen = (Color) ois.readObject();
         System.out.println("The player chose: "+colorChosen);
+        Map<Integer,Integer> updatedPrices =(Map<Integer, Integer>) ois.readObject();
+        System.out.println(updatedPrices);
+        return MessagesMethods.standardWait();
+    }
+
+    private static boolean characterWait10() throws IOException, ClassNotFoundException {
+        SchoolData schoolData = (SchoolData) ois.readObject();
+        printSchoolUpdated(schoolData);
         Map<Integer,Integer> updatedPrices =(Map<Integer, Integer>) ois.readObject();
         System.out.println(updatedPrices);
         return MessagesMethods.standardWait();

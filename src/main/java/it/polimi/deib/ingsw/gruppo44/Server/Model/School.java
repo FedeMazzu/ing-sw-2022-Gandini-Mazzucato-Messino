@@ -47,7 +47,7 @@ public class School implements Observable, Serializable {
      * method to add a student in the hall that checks(and provides) if the professor is earned
      * and if the player gets a coin
      * @param color of the student to add
-     * @return boolena which indicates if the student was added correctly
+     * @return boolean which indicates if the student was added correctly
      */
     public boolean addHallStudent(Color color) {
         try {
@@ -63,6 +63,12 @@ public class School implements Observable, Serializable {
             System.out.println("Hall already full for this color or entrance has no students of that color");
             return false;
         }
+    }
+
+    public void swapStudentsForChar10(Color colorHall, Color colorEntrance){
+        removeHallStudent(colorHall);
+        addHallStudent(colorEntrance);
+        addEntranceStudent(colorHall);
     }
 
     /**
