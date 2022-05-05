@@ -18,7 +18,7 @@ public class Character6 extends Character {
     }
 
     public void effect() {
-
+        //managed in class UnionFind inside the influence score computation
         raisePrice();
     }
 }

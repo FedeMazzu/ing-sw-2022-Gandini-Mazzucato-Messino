@@ -97,11 +97,18 @@ public class MessagesMethods {
      */
     public static boolean characterWait() throws IOException, ClassNotFoundException {
         int charId = ois.readInt();
+        System.out.println("Character used "+charId);
         switch (charId){
             //case 1:
             //    break;
             case 3:
                 return characterWait3();
+            case 6:
+                return characterWait6();
+            case 8:
+                return characterWait8();
+            case 9:
+                return characterWait9();
             case 12:
                 return characterWait12();
             default:
@@ -126,7 +133,29 @@ public class MessagesMethods {
         //getting updated prices
         Map<Integer,Integer> updatedPrices =(Map<Integer, Integer>) ois.readObject();
         System.out.println(updatedPrices);
-         return MessagesMethods.standardWait();
+        return MessagesMethods.standardWait();
+    }
+
+    private static boolean characterWait6() throws IOException, ClassNotFoundException {
+        //getting updated prices
+        Map<Integer,Integer> updatedPrices =(Map<Integer, Integer>) ois.readObject();
+        System.out.println(updatedPrices);
+        return MessagesMethods.standardWait();
+    }
+
+    private static boolean characterWait8() throws IOException, ClassNotFoundException {
+        //getting updated prices
+        Map<Integer,Integer> updatedPrices =(Map<Integer, Integer>) ois.readObject();
+        System.out.println(updatedPrices);
+        return MessagesMethods.standardWait();
+    }
+
+    private static boolean characterWait9() throws IOException, ClassNotFoundException {
+        Color colorChosen =(Color) ois.readObject();
+        System.out.println("The player chose: "+colorChosen);
+        Map<Integer,Integer> updatedPrices =(Map<Integer, Integer>) ois.readObject();
+        System.out.println(updatedPrices);
+        return MessagesMethods.standardWait();
     }
     /**
      * handles the waiting while the MovingClient is using the Character12

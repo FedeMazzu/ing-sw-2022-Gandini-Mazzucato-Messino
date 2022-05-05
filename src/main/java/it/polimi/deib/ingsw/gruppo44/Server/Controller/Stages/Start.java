@@ -134,9 +134,8 @@ public class Start implements Stage, Serializable {
      */
     private Magician askMagician(ObjectInputStream ois,ObjectOutputStream oos) throws IOException {
         int choice;
-        String availableMagicians ="";
         while(true) {
-
+            String availableMagicians ="";
             for (Magician magician : Magician.values()) {
                 if (!freeMagician.get(magician)) {
                     availableMagicians += magician.getId() + " - " + magician.getName()+"\n";

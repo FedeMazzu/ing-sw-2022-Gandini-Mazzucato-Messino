@@ -19,12 +19,17 @@ public class UnionFind implements Serializable {
     private int [] groupSize;
     private IslandsObserver islandsObserver;
     public List<Team> teams;
+    private int characterUsed;
+    private int currTeamIndexForChar8;
+    private Color colorChosenForChar9;
 
     public UnionFind(Game game){
         islands = new Island[12];
         group = new int [12];
         groupSize = new int [12];
         size = 12;
+        characterUsed = 0;
+        currTeamIndexForChar8 = -1;
         ArrayList <Color> tempArr = new ArrayList<>();
         teams = game.getTeams();
         Random rand = new Random();
@@ -106,5 +111,27 @@ public class UnionFind implements Serializable {
         return islandsObserver;
     }
 
+    public void setCharacterUsed(int characterUsed) {
+        this.characterUsed = characterUsed;
+    }
 
+    public int getCharacterUsed() {
+        return characterUsed;
+    }
+
+    public int getCurrTeamIndexForChar8() {
+        return currTeamIndexForChar8;
+    }
+
+    public void setCurrTeamIndexForChar8(int currTeamIndexForChar8) {
+        this.currTeamIndexForChar8 = currTeamIndexForChar8;
+    }
+
+    public Color getColorChosenForChar9() {
+        return colorChosenForChar9;
+    }
+
+    public void setColorChosenForChar9(Color colorChosenForChar9) {
+        this.colorChosenForChar9 = colorChosenForChar9;
+    }
 }

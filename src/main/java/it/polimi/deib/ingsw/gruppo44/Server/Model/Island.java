@@ -38,17 +38,23 @@ public class Island implements Observable, Serializable {
      * @return the influence score of the passed team
      */
     private int influence(Team team){
-        int score;
+        int score = 0;
         School school;
-        if(!hasTower) score = 0;
-        else score = unionFind.getGroupSize(this.islandID);
+
+        if(unionFind.getCharacterUsed() != 6){
+            //character 6 ignores towers while counting influence in islands
+            if(!hasTower) score = 0;
+            else score = unionFind.getGroupSize(this.islandID);
+        }
 
         for(Player player : team.getPlayers()){
             school = player.getSchool();
             for(Color color : Color.values()){
+                if(unionFind.getCharacterUsed() == 9 && color.equals(unionFind.getColorChosenForChar9())) continue;
                 if(school.hasProfessor(color)) score += students.get(color);
             }
         }
+
         return score;
     }
 
@@ -57,14 +63,23 @@ public class Island implements Observable, Serializable {
      */
     public void islandClaim(){
         int bestScore = 0;
+        int secondBestScore = 0; //this is used to handle the equal influence case
         Team bestTeam = null;
+
         for(Team t : unionFind.teams){
             int tempScore = influence(t);
-            if(tempScore > bestScore){
+            //when using character 8 the team counts 2 more points in its influence score
+            if(unionFind.getCharacterUsed() == 8 && t.equals(unionFind.teams.get(unionFind.getCurrTeamIndexForChar8()))){
+                tempScore+=2;
+            }
+            if(tempScore >= bestScore){
+                secondBestScore = bestScore;
                 bestScore = tempScore;
                 bestTeam = t;
             }
         }
+
+        if(bestScore == secondBestScore) bestTeam = null; //this is used to handle the equal influence case
 
         try{
             if(bestTeam == null) throw new Exception();

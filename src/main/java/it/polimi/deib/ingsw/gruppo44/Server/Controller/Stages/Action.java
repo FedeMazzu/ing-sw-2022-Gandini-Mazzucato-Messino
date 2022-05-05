@@ -7,10 +7,9 @@ import it.polimi.deib.ingsw.gruppo44.Server.Controller.GameStage;
 import it.polimi.deib.ingsw.gruppo44.Server.Controller.Ticket;
 import it.polimi.deib.ingsw.gruppo44.Server.Controller.User;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.*;
-import it.polimi.deib.ingsw.gruppo44.Server.Model.Characters.Character;
-import it.polimi.deib.ingsw.gruppo44.Server.Model.Characters.Character12;
-import it.polimi.deib.ingsw.gruppo44.Server.Model.Characters.Character3;
+import it.polimi.deib.ingsw.gruppo44.Server.Model.Characters.*;
 
+import it.polimi.deib.ingsw.gruppo44.Server.Model.Characters.Character;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.SchoolData;
 
 import java.io.IOException;
@@ -128,6 +127,15 @@ public class Action implements Stage, Serializable {
             case 3:
                 handleCharacter3(currUser);
                 break;
+            case 6:
+                handleCharacter6(currUser);
+                break;
+            case 8:
+                handleCharacter8(currUser);
+                break;
+            case 9:
+                handleCharacter9(currUser);
+                break;
             case 12:
                 handleCharacter12(currUser);
                 break;
@@ -135,7 +143,7 @@ public class Action implements Stage, Serializable {
         }
     }
     private void handleCharacter3(User user) throws IOException, ClassNotFoundException {
-        //DA MODIFICARE SE IL TIMING E` LIBERO DURANTE IL TURNO (IN QUEL CASO E` TUTO SBAGLIATO)
+
         ObjectInputStream ois = user.getOis();
         int islandChosen = ois.readInt();
         Character char3 = board.getShop().getSingleCharacter(3);
@@ -146,6 +154,53 @@ public class Action implements Stage, Serializable {
         if(endGame) return;
         sendUpdatedPrice(user);
         playStandardTurn(user);
+    }
+
+    private void handleCharacter6(User user) throws IOException, ClassNotFoundException {
+        board.getUnionFind().setCharacterUsed(6);
+        Character char6 = board.getShop().getSingleCharacter(6);
+        ((Character6) char6).effect();
+        sendUpdatedPrice(user);
+        playStandardTurn(user);
+        board.getUnionFind().setCharacterUsed(0);
+    }
+
+    private void handleCharacter8(User user) throws IOException, ClassNotFoundException {
+        board.getUnionFind().setCharacterUsed(8);
+        Character char8 = board.getShop().getSingleCharacter(8);
+        ((Character8) char8).effect();
+        int index = 0;
+        for(Team t: gameController.getGame().getTeams()){
+            if(t.getPlayers().contains(user.getPlayer())){
+                board.getUnionFind().setCurrTeamIndexForChar8(index);
+                break;
+            }
+            index++;
+        }
+        sendUpdatedPrice(user);
+        playStandardTurn(user);
+        board.getUnionFind().setCharacterUsed(0);
+        board.getUnionFind().setCurrTeamIndexForChar8(-1);
+    }
+
+    private void handleCharacter9(User user) throws IOException, ClassNotFoundException {
+        board.getUnionFind().setCharacterUsed(9);
+        Character char9 = board.getShop().getSingleCharacter(9);
+        ((Character9) char9).effect();
+        ObjectInputStream ois = user.getOis();
+        Color colorChosen = (Color) ois.readObject();
+        board.getUnionFind().setColorChosenForChar9(colorChosen);
+        for(int i=0;i<gameController.getGameMode().getTeamsNumber()*gameController.getGameMode().getTeamPlayers();i++){
+            User tempUser = gameController.getUser(i);
+            if(tempUser == user) continue;
+            ObjectOutputStream tempOos = tempUser.getOos();
+            tempOos.writeObject(colorChosen);
+            tempOos.flush();
+        }
+        sendUpdatedPrice(user);
+        playStandardTurn(user);
+        board.getUnionFind().setCharacterUsed(0);
+
     }
 
     /**

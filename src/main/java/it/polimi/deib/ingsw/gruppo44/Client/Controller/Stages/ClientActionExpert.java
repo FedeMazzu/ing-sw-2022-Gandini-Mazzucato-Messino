@@ -88,8 +88,18 @@ public class ClientActionExpert implements Stage{
             case 3:
                 handleCharacter3();
                 break;
+            case 6:
+                handleCharacter6();
+                break;
+            case 8:
+                handleCharacter8();
+                break;
+            case 9:
+                handleCharacter9();
+                break;
             case 12:
                 handleCharacter12();
+                break;
         }
     }
 
@@ -101,6 +111,48 @@ public class ClientActionExpert implements Stage{
         System.out.println(endGame);
         endGame = ois.readBoolean();
         System.out.println(endGame);
+    }
+
+    private void handleCharacter6(){
+        System.out.println("Towers do not count towards influence score this turn!");
+    }
+
+    private void handleCharacter8(){
+        System.out.println("Your influence score will be 2 points higher this turn!");
+    }
+
+    private void handleCharacter9() throws IOException {
+
+        System.out.println("Select a color to apply the effect:");
+        System.out.println(" 1-GREEN \n 2-RED \n 3-YELLOW \n 4-PINK \n 5-BLUE");
+        int colorChoice = sc.nextInt();
+        switch (colorChoice){
+            case 1:
+                oos.writeObject(Color.GREEN);
+                oos.flush();
+                break;
+            case 2:
+                oos.writeObject(Color.RED);
+                oos.flush();
+                break;
+            case 3:
+                oos.writeObject(Color.YELLOW);
+                oos.flush();
+                break;
+            case 4:
+                oos.writeObject(Color.PINK);
+                oos.flush();
+                break;
+            case 5:
+                oos.writeObject(Color.BLUE);
+                oos.flush();
+            default:
+                System.out.println("you choose "+colorChoice );
+                System.out.println("incorrect value");
+                System.exit(0);
+                break;
+        }
+
     }
 
     private void handleCharacter12() throws IOException, ClassNotFoundException {
