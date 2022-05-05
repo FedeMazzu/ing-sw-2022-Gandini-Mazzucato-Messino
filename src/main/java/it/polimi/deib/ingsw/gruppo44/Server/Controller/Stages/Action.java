@@ -10,7 +10,7 @@ import it.polimi.deib.ingsw.gruppo44.Server.Model.*;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Characters.Character;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Characters.Character12;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Characters.Character3;
-import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.Data;
+
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.SchoolData;
 
 import java.io.IOException;
