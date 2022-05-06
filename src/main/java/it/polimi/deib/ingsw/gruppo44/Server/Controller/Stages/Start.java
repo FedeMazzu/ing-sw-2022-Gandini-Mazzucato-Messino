@@ -91,6 +91,12 @@ public class Start implements Stage, Serializable {
             player = turnOrder.peek().getPlayer();
             user = player.getUser();
             school = player.getSchool();
+            for(Team team:game.getTeams()){
+                for(Player p: team.getPlayers()){
+                    if(school.equals(p.getSchool())) continue;
+                    school.addSchool(p.getSchool());
+                }
+            }
             schoolData = school.getSchoolObserver().getSchoolData();
             //to initialize the School entrance with random values
             game.getBoard().getNotOwnedObjects().fillEntrance(school);

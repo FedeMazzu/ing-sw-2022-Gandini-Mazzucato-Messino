@@ -121,7 +121,7 @@ public class Action implements Stage, Serializable {
                 //handleCharacter1();
                 break;
             case 2:
-                //handleCharacter2();
+                handleCharacter2(currUser);
                 break;
                 //...
             case 3:
@@ -148,6 +148,18 @@ public class Action implements Stage, Serializable {
             default:
         }
     }
+
+    private void handleCharacter2(User user) throws IOException, ClassNotFoundException {
+
+        user.getPlayer().getSchool().setCharacter2Used(true);
+        Character char2 = board.getShop().getSingleCharacter(2);
+        ((Character2) char2).effect();
+        sendUpdatedPrice(user);
+        playStandardTurn(user);
+        user.getPlayer().getSchool().setCharacter2Used(false);
+
+    }
+
     private void handleCharacter3(User user) throws IOException, ClassNotFoundException {
 
         ObjectInputStream ois = user.getOis();
@@ -405,8 +417,8 @@ public class Action implements Stage, Serializable {
         String currData;
         currData = "In your school:\n";
         for(Color c : Color.values()){
-            currData +="Student "+c+": "+currSchool.getEntranceStudentsNum(c)+"\n";
-            if(currSchool.hasProfessor(c)) currData += "Prof" + c + "\n";
+            currData +="Student "+c+": "+currSchool.getEntranceStudentsNum(c);
+            currData +="Prof " + c + " " + currSchool.hasProfessor(c) +"\n";
         }
 
         currData+="Islands:\n";

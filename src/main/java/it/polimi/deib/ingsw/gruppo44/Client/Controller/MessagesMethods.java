@@ -102,6 +102,8 @@ public class MessagesMethods {
         switch (charId){
             //case 1:
             //    break;
+            case 2:
+                return characterWait2();
             case 3:
                 return characterWait3();
             case 4:
@@ -119,6 +121,13 @@ public class MessagesMethods {
             default:
                 return false;
         }
+    }
+
+    private static boolean characterWait2() throws IOException, ClassNotFoundException {
+        //getting updated prices
+        Map<Integer,Integer> updatedPrices =(Map<Integer, Integer>) ois.readObject();
+        System.out.println(updatedPrices);
+        return MessagesMethods.standardWait();
     }
 
     /**

@@ -21,11 +21,13 @@ public class School implements Observable, Serializable {
     private SchoolObserver schoolObserver;
     private final int maxEntranceStudentsNum;
     private final static int maxHallStudentsNum = 10;
+    private boolean character2Used;
     /**
      * Constructor. It initializes the maps keeping track of the students and professors
      * @param player associated to the school
      */
     public School(Player player,int entranceStudentsNum){
+        character2Used = false;
         this.player = player;
         schools = new ArrayList<>();
         hallStudents = new HashMap<>();
@@ -137,11 +139,15 @@ public class School implements Observable, Serializable {
     private void earnProfessor(Color color) {
         boolean earnProfessor = true;
         int numStudents = hallStudents.get(color);
-        int numStudentsOtherSchool;
+
+        System.out.println("STAMPA SCUOLE: \n"+schools);
         for(School s : schools) {
             if(s.hasProfessor(color)) {
                 if (s.hallStudents.get(color) >= numStudents) {
-                    earnProfessor = false;
+                    if(s.hallStudents.get(color) == numStudents && character2Used){
+                        s.professors.put(color,false);
+                    }
+                    else earnProfessor = false;
                 }else{
                     s.professors.put(color,false);
                 }
@@ -203,5 +209,9 @@ public class School implements Observable, Serializable {
 
     public SchoolObserver getSchoolObserver() {
         return schoolObserver;
+    }
+
+    public void setCharacter2Used(boolean character2Used) {
+        this.character2Used = character2Used;
     }
 }

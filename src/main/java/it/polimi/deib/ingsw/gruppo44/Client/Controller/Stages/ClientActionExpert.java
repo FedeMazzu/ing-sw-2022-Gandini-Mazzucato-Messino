@@ -84,6 +84,7 @@ public class ClientActionExpert implements Stage{
             case 1:
                 break;
             case 2:
+                handleCharacter2();
                 break;
             case 3:
                 handleCharacter3();
@@ -107,6 +108,10 @@ public class ClientActionExpert implements Stage{
                 handleCharacter12();
                 break;
         }
+    }
+
+    private void handleCharacter2(){
+        System.out.println("During this turn you get the professor also when you have the same amount of students");
     }
 
     private void handleCharacter3() throws IOException {
