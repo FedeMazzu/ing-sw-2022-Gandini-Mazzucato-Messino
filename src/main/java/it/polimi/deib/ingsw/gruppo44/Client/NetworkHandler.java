@@ -75,7 +75,7 @@ public class NetworkHandler {
         String IP;
         boolean correct;
         while(true) {
-            System.out.print("Enter server Ip address:\n(convention xxx.xxx.xxx.xxx) -> ");
+            System.out.print("Enter server Ip address:\n(convention 127.000.000.001) -> ");
             IP = sc.next();
             correct=false;
             if(IP.length() == 15){

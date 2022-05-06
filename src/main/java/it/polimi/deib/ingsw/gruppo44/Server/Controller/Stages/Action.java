@@ -127,6 +127,9 @@ public class Action implements Stage, Serializable {
             case 3:
                 handleCharacter3(currUser);
                 break;
+            case 4:
+                handleCharacter4(currUser);
+                break;
             case 6:
                 handleCharacter6(currUser);
                 break;
@@ -155,6 +158,14 @@ public class Action implements Stage, Serializable {
         sendIslandDataToOthers(user);
         sendEndGameInformation();
         if(endGame) return;
+        sendUpdatedPrice(user);
+        playStandardTurn(user);
+    }
+
+    private void handleCharacter4(User user) throws IOException, ClassNotFoundException {
+        // the effect is handled by the client
+        Character char4 = board.getShop().getSingleCharacter(4);
+        ((Character4) char4).effect();
         sendUpdatedPrice(user);
         playStandardTurn(user);
     }

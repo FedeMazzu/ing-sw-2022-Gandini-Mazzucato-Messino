@@ -19,10 +19,9 @@ public class Character4 extends Character {
         this.price = 1;
     }
 
-    //should pass to Board's method moveMotherNature the correct value, avoiding repeating the move
 
     public void effect(){
-
+        //client controller enables to move two steps more
         raisePrice();
     }
 }

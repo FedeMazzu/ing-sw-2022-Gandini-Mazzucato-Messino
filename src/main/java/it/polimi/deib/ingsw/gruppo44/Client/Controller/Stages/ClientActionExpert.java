@@ -88,6 +88,9 @@ public class ClientActionExpert implements Stage{
             case 3:
                 handleCharacter3();
                 break;
+            case 4:
+                handleCharacter4();
+                break;
             case 6:
                 handleCharacter6();
                 break;
@@ -114,6 +117,11 @@ public class ClientActionExpert implements Stage{
         System.out.println(endGame);
         endGame = ois.readBoolean();
         System.out.println(endGame);
+    }
+
+    private void handleCharacter4() {
+        //handle this with the check of possible moves
+        System.out.println("In this turn you can move mother nature up to two additional steps\nNOT HANDLED YET!");
     }
 
     private void handleCharacter6(){

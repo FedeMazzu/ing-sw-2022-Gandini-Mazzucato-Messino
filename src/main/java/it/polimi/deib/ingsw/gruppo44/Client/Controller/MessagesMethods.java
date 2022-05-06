@@ -104,6 +104,8 @@ public class MessagesMethods {
             //    break;
             case 3:
                 return characterWait3();
+            case 4:
+                return  characterWait4();
             case 6:
                 return characterWait6();
             case 8:
@@ -133,6 +135,13 @@ public class MessagesMethods {
             clientController.setClientStage(ClientStage.ClientEND);
             return gameEnd;
         }
+        //getting updated prices
+        Map<Integer,Integer> updatedPrices =(Map<Integer, Integer>) ois.readObject();
+        System.out.println(updatedPrices);
+        return MessagesMethods.standardWait();
+    }
+
+    private static boolean characterWait4() throws IOException, ClassNotFoundException {
         //getting updated prices
         Map<Integer,Integer> updatedPrices =(Map<Integer, Integer>) ois.readObject();
         System.out.println(updatedPrices);
