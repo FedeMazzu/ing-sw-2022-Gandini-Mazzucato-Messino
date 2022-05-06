@@ -418,7 +418,7 @@ public class Action implements Stage, Serializable {
         currData = "In your school:\n";
         for(Color c : Color.values()){
             currData +="Student "+c+": "+currSchool.getEntranceStudentsNum(c);
-            currData +="Prof " + c + " " + currSchool.hasProfessor(c) +"\n";
+            currData +="  Prof "+ currSchool.hasProfessor(c) +"\n";
         }
 
         currData+="Islands:\n";
