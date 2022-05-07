@@ -1,5 +1,6 @@
 package it.polimi.deib.ingsw.gruppo44.Common.Messages;
 
+import it.polimi.deib.ingsw.gruppo44.Client.GameData;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Color;
 
 import java.io.Serializable;
@@ -17,7 +18,7 @@ public class MovingStudentsMESSAGE implements Serializable {
         islandID = new int[movingStudentsNum];
     }
 
-    public void moveStudents(){
+    public void moveStudents(GameData gameData){
         Scanner sc = new Scanner(System.in);
         for(int i=0; i< movingStudents.length; i++){
             System.out.println("Choose a color: \n 1-GREEN \n 2-RED \n 3-YELLOW \n 4-PINK \n 5-BLUE");
@@ -48,6 +49,7 @@ public class MovingStudentsMESSAGE implements Serializable {
                 movingOnIsland[i] = true;
                 System.out.println("On which island?(0-11)");
                 islandID[i]= sc.nextInt();
+
 
             }else{
                 movingOnIsland[i] = false;

@@ -86,4 +86,8 @@ public class SchoolData implements Serializable {
     public String getPlayerName() {return playerName;}
 
     public Tower getTeamTower() {return teamTower;}
+
+    public int getPlayerMoney() {
+        return playerMoney;
+    }
 }

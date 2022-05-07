@@ -83,17 +83,14 @@ public class Action implements Stage, Serializable {
         ObjectInputStream ois = currUser.getOis();
         School currSchool = currPlayer.getSchool();
 
-
-        //Sending data to the currUser
-        sendData(currSchool, oos);
         //Move students
         moveStudents(currSchool, ois);
         //sending data to other waiting players
-        sendStudentsMoveToOthers(currUser);
+        sendStudentsMoveToAll(currUser);
 
         //Move MotherNature
         moveMotherNature(ois, oos);
-        sendMotherNatureMoveToOthers(currUser);
+        sendMotherNatureMoveToAll();
 
 
         //checking the end of the game and sending the information to all the clients
@@ -102,7 +99,7 @@ public class Action implements Stage, Serializable {
         if (endGame) return;
         //Choosing cloud
         chooseACloud(currPlayer, ois, oos);
-        sendCloudChoiceToOthers(currUser);
+        sendCloudChoiceToAll(currUser);
     }
 
     /**
@@ -167,7 +164,7 @@ public class Action implements Stage, Serializable {
         Character char3 = board.getShop().getSingleCharacter(3);
         ((Character3) char3).effect(islandChosen);
         endGame = gameController.checkEndOfGame();
-        sendIslandDataToOthers(user);
+        sendIslandDataToAll();
         sendEndGameInformation();
         if(endGame) return;
         sendUpdatedPrice(user);
@@ -314,7 +311,6 @@ public class Action implements Stage, Serializable {
             User tempUser = gameController.getUser(i);
             ObjectOutputStream tempOos = tempUser.getOos();
             tempOos.reset();//needed!
-            if(currUser.equals(tempUser)) continue;
             tempOos.writeObject(gameController.getData().getBoardData().getCharacters());
             tempOos.flush();
         }
@@ -342,12 +338,11 @@ public class Action implements Stage, Serializable {
      * @param currUser
      * @throws IOException
      */
-    private void sendCloudChoiceToOthers(User currUser) throws IOException {
+    private void sendCloudChoiceToAll(User currUser) throws IOException {
         for(int i=0;i<gameController.getGameMode().getTeamsNumber()*gameController.getGameMode().getTeamPlayers();i++){
             User tempUser = gameController.getUser(i);
             ObjectOutputStream tempOos = tempUser.getOos();
             tempOos.reset();//needed!
-            if(currUser.equals(tempUser)) continue;
             tempOos.writeObject(gameController.getData().getCloudsData());
             tempOos.flush();
             tempOos.writeObject(currUser.getPlayer().getSchool().getSchoolObserver().getSchoolData());
@@ -356,16 +351,13 @@ public class Action implements Stage, Serializable {
     }
 
     /**
-     * sends the information of the mother nature move to the WaitingClients
-     * @param currUser
+     * sends the information of the mother nature move to every client
      * @throws IOException
      */
-    private void sendMotherNatureMoveToOthers(User currUser) throws IOException {
+    private void sendMotherNatureMoveToAll() throws IOException {
         for(int i=0;i<gameController.getGameMode().getTeamsNumber()*gameController.getGameMode().getTeamPlayers();i++){
             User tempUser = gameController.getUser(i);
             ObjectOutputStream tempOos = tempUser.getOos();
-            if(currUser.equals(tempUser)) continue;
-
             tempOos.writeObject(gameController.getData().getIslandsData());
             tempOos.flush();
             tempOos.writeInt(gameController.getData().getBoardData().getMotherNaturePosition());
@@ -373,33 +365,27 @@ public class Action implements Stage, Serializable {
         }
     }
 
-    private void sendIslandDataToOthers(User currUser) throws IOException {
+    private void sendIslandDataToAll() throws IOException {
         for(int i=0;i<gameController.getGameMode().getTeamsNumber()*gameController.getGameMode().getTeamPlayers();i++){
             User tempUser = gameController.getUser(i);
             ObjectOutputStream tempOos = tempUser.getOos();
-            if(currUser.equals(tempUser)) continue;
             tempOos.writeObject(gameController.getData().getIslandsData());
             tempOos.flush();
         }
     }
 
     /**
-     * sends the information of the moved students to the WaitingClients
+     * sends the information of the moved students to every client
      * @param currUser
      * @throws IOException
      */
-    private void sendStudentsMoveToOthers(User currUser) throws IOException {
+    private void sendStudentsMoveToAll(User currUser) throws IOException {
         SchoolData schoolData = currUser.getPlayer().getSchool().getSchoolObserver().getSchoolData();
-        /*System.out.print("School updated: ");
-        for(Color color: Color.values()) System.out.print("Color "+color+": "+schoolData.getEntranceStudentsNum(color)+" | ");
-        System.out.println();*/
 
         for(int i=0;i<gameController.getGameMode().getTeamsNumber()*gameController.getGameMode().getTeamPlayers();i++){
             User tempUser = gameController.getUser(i);
             ObjectOutputStream tempOos = tempUser.getOos();
             tempOos.reset();//needed!
-            if(currUser.equals(tempUser)) continue;
-
             tempOos.writeObject(schoolData);
             tempOos.flush();
             tempOos.writeObject(gameController.getData().getIslandsData());
@@ -407,37 +393,6 @@ public class Action implements Stage, Serializable {
         }
     }
 
-    /**
-     * sends the data to the user
-     * @param currSchool
-     * @param oos
-     * @throws IOException
-     */
-    private void sendData(School currSchool, ObjectOutputStream oos) throws IOException {
-        String currData;
-        currData = "In your school:\n";
-        for(Color c : Color.values()){
-            currData +="Student "+c+": "+currSchool.getEntranceStudentsNum(c);
-            currData +="  Prof "+ currSchool.hasProfessor(c) +"\n";
-        }
-
-        currData+="Islands:\n";
-
-        for(int i=0;i<12;i++){
-            if(board.getUnionFind().getGroup(i)!=-1) continue;
-
-            currData+="Island ID: "+i+" ";
-            for(Color c: Color.values()){
-                currData+=c+" "+board.getUnionFind().getIsland(i).getStudentNum(c)+"| ";
-            }
-            if(board.getUnionFind().getIsland(i).getHasTower()){
-                currData+="Num Towers: "+board.getUnionFind().getGroupSize(i);
-            }
-            currData+="\n";
-        }
-        oos.writeObject(currData);
-        oos.flush();
-    }
 
     /**
      * manages the choice of a cloud

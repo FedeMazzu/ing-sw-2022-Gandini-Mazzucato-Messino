@@ -98,4 +98,11 @@ public class IslandsData implements Serializable {
 
     }
 
+    public int getGroup(int islandId) {
+        return group[islandId];
+    }
+
+    public boolean getHasTower(int islandId) {
+        return hasTower[islandId];
+    }
 }

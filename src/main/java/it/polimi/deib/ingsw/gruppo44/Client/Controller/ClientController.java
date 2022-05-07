@@ -1,6 +1,7 @@
 package it.polimi.deib.ingsw.gruppo44.Client.Controller;
 
 import it.polimi.deib.ingsw.gruppo44.Client.Controller.Stages.*;
+import it.polimi.deib.ingsw.gruppo44.Client.GameData;
 import it.polimi.deib.ingsw.gruppo44.Common.GameMode;
 import it.polimi.deib.ingsw.gruppo44.Common.Stage;
 
@@ -22,6 +23,7 @@ public class ClientController implements Runnable {
     private boolean endGame;
     private GameMode gameMode;
     private int turnNumber;
+    private GameData gameData;
 
     public ClientController(ObjectInputStream ois, ObjectOutputStream oos) {
         this.ois = ois;
@@ -142,4 +144,8 @@ public class ClientController implements Runnable {
     public int getTurnNumber() {
         return turnNumber;
     }
+
+    public GameData getGameData() {return gameData;}
+
+    public void setGameData(GameData gameData) {this.gameData = gameData;}
 }
