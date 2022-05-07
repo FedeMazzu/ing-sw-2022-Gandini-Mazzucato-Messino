@@ -244,7 +244,7 @@ public class Action implements Stage, Serializable {
 
         Character char10 = board.getShop().getSingleCharacter(10);
         ((Character10) char10).effect(h1,e1,h2,e2,user.getPlayer().getSchool());
-        sendSchoolDataToOthers(user);
+        sendSchoolDataToAll(user);
         sendUpdatedPrice(user);
         playStandardTurn(user);
 
@@ -272,12 +272,12 @@ public class Action implements Stage, Serializable {
         }
         sendUpdatedPrice(user);
         playStandardTurn(user);
+
     }
 
-    private void sendSchoolDataToOthers(User currUser) throws IOException {
+    private void sendSchoolDataToAll(User currUser) throws IOException {
         for(int i=0;i<gameController.getGameMode().getTeamsNumber()*gameController.getGameMode().getTeamPlayers();i++){
             User tempUser = gameController.getUser(i);
-            if(tempUser == currUser) continue;
             ObjectOutputStream tempOos = tempUser.getOos();
             tempOos.writeObject(currUser.getPlayer().getSchool().getSchoolObserver().getSchoolData());
             tempOos.flush();

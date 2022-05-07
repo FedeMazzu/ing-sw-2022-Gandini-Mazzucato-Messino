@@ -185,7 +185,7 @@ public class ClientActionExpert implements Stage{
 
     }
 
-    private void handleCharacter10() throws IOException {
+    private void handleCharacter10() throws IOException, ClassNotFoundException {
         System.out.println("You want to swap 2 students in your school?\n" +
                 "0 -> NO\n 1 -> YES");
         int swapChoice = sc.nextInt();
@@ -277,6 +277,7 @@ public class ClientActionExpert implements Stage{
             }
 
         }
+        MessagesMethods.receiveSchoolUpdated();
     }
 
     private void handleCharacter12() throws IOException, ClassNotFoundException {
