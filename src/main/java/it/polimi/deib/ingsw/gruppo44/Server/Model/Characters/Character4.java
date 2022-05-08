@@ -2,6 +2,7 @@ package it.polimi.deib.ingsw.gruppo44.Server.Model.Characters;
 
 import it.polimi.deib.ingsw.gruppo44.Server.Model.BoardObserver;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Game;
+import it.polimi.deib.ingsw.gruppo44.Server.Model.Player;
 
 /**
  * Class to represent the Character 4
@@ -20,8 +21,9 @@ public class Character4 extends Character {
     }
 
 
-    public void effect(){
+    public void effect(Player player){
         //client controller enables to move two steps more
+        player.spendMoney(price);
         raisePrice();
     }
 }

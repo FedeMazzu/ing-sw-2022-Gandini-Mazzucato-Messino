@@ -30,11 +30,13 @@ public class Action implements Stage, Serializable {
     private Scanner sc = new Scanner(System.in);
     private Board board;
     private boolean endGame;
+    private int userNum;
 
     public Action(GameController gameController) {
         this.gameController = gameController;
         this.turnOrder = gameController.getTurnHandler().getTurnOrder();
         this.board = gameController.getGame().getBoard();
+        userNum= gameController.getNumUsers();
     }
 
     @Override
@@ -150,23 +152,27 @@ public class Action implements Stage, Serializable {
 
         user.getPlayer().getSchool().setCharacter2Used(true);
         Character char2 = board.getShop().getSingleCharacter(2);
-        ((Character2) char2).effect();
+        ((Character2) char2).effect(user.getPlayer());
+
+        sendUpdatedMoneyToAll(user);
         sendUpdatedPrice(user);
         playStandardTurn(user);
         user.getPlayer().getSchool().setCharacter2Used(false);
 
     }
 
+
     private void handleCharacter3(User user) throws IOException, ClassNotFoundException {
 
         ObjectInputStream ois = user.getOis();
         int islandChosen = ois.readInt();
         Character char3 = board.getShop().getSingleCharacter(3);
-        ((Character3) char3).effect(islandChosen);
+        ((Character3) char3).effect(islandChosen,user.getPlayer());
         endGame = gameController.checkEndOfGame();
         sendIslandDataToAll();
         sendEndGameInformation();
         if(endGame) return;
+        sendUpdatedMoneyToAll(user);
         sendUpdatedPrice(user);
         playStandardTurn(user);
     }
@@ -174,7 +180,8 @@ public class Action implements Stage, Serializable {
     private void handleCharacter4(User user) throws IOException, ClassNotFoundException {
         // the effect is handled by the client
         Character char4 = board.getShop().getSingleCharacter(4);
-        ((Character4) char4).effect();
+        ((Character4) char4).effect(user.getPlayer());
+        sendUpdatedMoneyToAll(user);
         sendUpdatedPrice(user);
         playStandardTurn(user);
     }
@@ -182,7 +189,8 @@ public class Action implements Stage, Serializable {
     private void handleCharacter6(User user) throws IOException, ClassNotFoundException {
         board.getUnionFind().setCharacterUsed(6);
         Character char6 = board.getShop().getSingleCharacter(6);
-        ((Character6) char6).effect();
+        ((Character6) char6).effect(user.getPlayer());
+        sendUpdatedMoneyToAll(user);
         sendUpdatedPrice(user);
         playStandardTurn(user);
         board.getUnionFind().setCharacterUsed(0);
@@ -191,7 +199,7 @@ public class Action implements Stage, Serializable {
     private void handleCharacter8(User user) throws IOException, ClassNotFoundException {
         board.getUnionFind().setCharacterUsed(8);
         Character char8 = board.getShop().getSingleCharacter(8);
-        ((Character8) char8).effect();
+        ((Character8) char8).effect(user.getPlayer());
         int index = 0;
         for(Team t: gameController.getGame().getTeams()){
             if(t.getPlayers().contains(user.getPlayer())){
@@ -200,6 +208,7 @@ public class Action implements Stage, Serializable {
             }
             index++;
         }
+        sendUpdatedMoneyToAll(user);
         sendUpdatedPrice(user);
         playStandardTurn(user);
         board.getUnionFind().setCharacterUsed(0);
@@ -209,17 +218,18 @@ public class Action implements Stage, Serializable {
     private void handleCharacter9(User user) throws IOException, ClassNotFoundException {
         board.getUnionFind().setCharacterUsed(9);
         Character char9 = board.getShop().getSingleCharacter(9);
-        ((Character9) char9).effect();
+        ((Character9) char9).effect(user.getPlayer());
         ObjectInputStream ois = user.getOis();
         Color colorChosen = (Color) ois.readObject();
         board.getUnionFind().setColorChosenForChar9(colorChosen);
-        for(int i=0;i<gameController.getGameMode().getTeamsNumber()*gameController.getGameMode().getTeamPlayers();i++){
+        for(int i=0;i<userNum;i++){
             User tempUser = gameController.getUser(i);
             if(tempUser == user) continue;
             ObjectOutputStream tempOos = tempUser.getOos();
             tempOos.writeObject(colorChosen);
             tempOos.flush();
         }
+        sendUpdatedMoneyToAll(user);
         sendUpdatedPrice(user);
         playStandardTurn(user);
         board.getUnionFind().setCharacterUsed(0);
@@ -243,8 +253,9 @@ public class Action implements Stage, Serializable {
         }
 
         Character char10 = board.getShop().getSingleCharacter(10);
-        ((Character10) char10).effect(h1,e1,h2,e2,user.getPlayer().getSchool());
+        ((Character10) char10).effect(h1,e1,h2,e2,user.getPlayer().getSchool(),user.getPlayer());
         sendSchoolDataToAll(user);
+        sendUpdatedMoneyToAll(user);
         sendUpdatedPrice(user);
         playStandardTurn(user);
 
@@ -260,16 +271,17 @@ public class Action implements Stage, Serializable {
         ObjectInputStream ois = user.getOis();
         Color colorChosen = (Color) ois.readObject();
         Character char12 = board.getShop().getSingleCharacter(12);
-        ((Character12) char12).effect(colorChosen);
+        ((Character12) char12).effect(colorChosen,user.getPlayer());
 
         //Send the Schools to all the clients including the currUSer
-        for(int i=0;i<gameController.getGameMode().getTeamsNumber()*gameController.getGameMode().getTeamPlayers();i++){
+        for(int i=0;i<userNum;i++){
             ObjectOutputStream oosTemp = gameController.getUser(i).getOos();
             for(SchoolData sd: gameController.getData().getSchoolDataList()){
                 oosTemp.writeObject(sd);
                 oosTemp.flush();
             }
         }
+        sendUpdatedMoneyToAll(user);
         sendUpdatedPrice(user);
         playStandardTurn(user);
 
@@ -286,7 +298,7 @@ public class Action implements Stage, Serializable {
 
 
     private void sendCharacterChosenToOthers(User currUser,int charId) throws IOException {
-        for(int i=0;i<gameController.getGameMode().getTeamsNumber()*gameController.getGameMode().getTeamPlayers();i++){
+        for(int i=0;i<userNum;i++){
             User tempUser = gameController.getUser(i);
             if(tempUser == currUser) continue;
             ObjectOutputStream tempOos = tempUser.getOos();
@@ -296,7 +308,7 @@ public class Action implements Stage, Serializable {
     }
 
     private void sendCharacterBooleanToOthers(User currUser,boolean usingCharacter) throws IOException {
-        for(int i=0;i<gameController.getGameMode().getTeamsNumber()*gameController.getGameMode().getTeamPlayers();i++){
+        for(int i=0;i<userNum;i++){
             User tempUser = gameController.getUser(i);
             if(tempUser == currUser) continue;
             ObjectOutputStream tempOos = tempUser.getOos();
@@ -307,7 +319,7 @@ public class Action implements Stage, Serializable {
 
 
     public void sendUpdatedPrice(User currUser) throws IOException {
-        for(int i=0;i<gameController.getGameMode().getTeamsNumber()*gameController.getGameMode().getTeamPlayers();i++){
+        for(int i=0;i<userNum;i++){
             User tempUser = gameController.getUser(i);
             ObjectOutputStream tempOos = tempUser.getOos();
             tempOos.reset();//needed!
@@ -323,7 +335,7 @@ public class Action implements Stage, Serializable {
      * @throws IOException
      */
     private void sendEndGameInformation() throws IOException {
-        for(int i=0;i<gameController.getGameMode().getTeamsNumber()*gameController.getGameMode().getTeamPlayers();i++){
+        for(int i=0;i<userNum;i++){
             User tempUser = gameController.getUser(i);
             ObjectOutputStream tempOos = tempUser.getOos();
             tempOos.reset();
@@ -339,7 +351,7 @@ public class Action implements Stage, Serializable {
      * @throws IOException
      */
     private void sendCloudChoiceToAll(User currUser) throws IOException {
-        for(int i=0;i<gameController.getGameMode().getTeamsNumber()*gameController.getGameMode().getTeamPlayers();i++){
+        for(int i=0;i<userNum;i++){
             User tempUser = gameController.getUser(i);
             ObjectOutputStream tempOos = tempUser.getOos();
             tempOos.reset();//needed!
@@ -355,20 +367,23 @@ public class Action implements Stage, Serializable {
      * @throws IOException
      */
     private void sendMotherNatureMoveToAll() throws IOException {
-        for(int i=0;i<gameController.getGameMode().getTeamsNumber()*gameController.getGameMode().getTeamPlayers();i++){
+        for(int i=0;i<userNum;i++){
             User tempUser = gameController.getUser(i);
             ObjectOutputStream tempOos = tempUser.getOos();
+            tempOos.reset();
             tempOos.writeObject(gameController.getData().getIslandsData());
             tempOos.flush();
+            tempOos.reset();
             tempOos.writeInt(gameController.getData().getBoardData().getMotherNaturePosition());
             tempOos.flush();
         }
     }
 
     private void sendIslandDataToAll() throws IOException {
-        for(int i=0;i<gameController.getGameMode().getTeamsNumber()*gameController.getGameMode().getTeamPlayers();i++){
+        for(int i=0;i<userNum;i++){
             User tempUser = gameController.getUser(i);
             ObjectOutputStream tempOos = tempUser.getOos();
+            tempOos.reset();
             tempOos.writeObject(gameController.getData().getIslandsData());
             tempOos.flush();
         }
@@ -382,13 +397,29 @@ public class Action implements Stage, Serializable {
     private void sendStudentsMoveToAll(User currUser) throws IOException {
         SchoolData schoolData = currUser.getPlayer().getSchool().getSchoolObserver().getSchoolData();
 
-        for(int i=0;i<gameController.getGameMode().getTeamsNumber()*gameController.getGameMode().getTeamPlayers();i++){
+        for(int i=0;i<userNum;i++){
             User tempUser = gameController.getUser(i);
             ObjectOutputStream tempOos = tempUser.getOos();
             tempOos.reset();//needed!
             tempOos.writeObject(schoolData);
             tempOos.flush();
             tempOos.writeObject(gameController.getData().getIslandsData());
+            tempOos.flush();
+        }
+    }
+
+    /**
+     * sending the updated money pof the client who used a character to every user
+     * @param user
+     * @throws IOException
+     */
+    private void sendUpdatedMoneyToAll(User user) throws IOException {
+        for(int i=0;i<userNum;i++){
+            User tempUser = gameController.getUser(i);
+            ObjectOutputStream tempOos = tempUser.getOos();
+            tempOos.reset();
+            //it sends the schoolData which contains the updated money
+            tempOos.writeObject(user.getPlayer().getSchool().getSchoolObserver().getSchoolData());
             tempOos.flush();
         }
     }
@@ -500,4 +531,5 @@ public class Action implements Stage, Serializable {
         board.moveMotherNature(stepsChoice);
         System.out.println("Position after: "+board.getMotherNaturePosition());
     }
+
 }

@@ -45,7 +45,7 @@ public class SchoolData implements Serializable {
         professors.put(color,value);
     }
 
-    public void setPlayerMoney(int playerCoins){
+    public void setPlayerMoney(int playerMoney){
         this.playerMoney = playerMoney;
     }
 

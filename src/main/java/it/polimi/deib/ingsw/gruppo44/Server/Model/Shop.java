@@ -38,7 +38,7 @@ public class Shop implements Creator, Serializable, Observable {
         //getting 3 random integers
         for(int i=0; i<3; i++){randomCharacter[i] = rand.nextInt(numOfCharacters);}
         //naively
-        randomCharacter[0] = 1;
+        randomCharacter[0] = 3;
         while(randomCharacter[0] == randomCharacter[1]){
             randomCharacter[1] = rand.nextInt(numOfCharacters);
         }

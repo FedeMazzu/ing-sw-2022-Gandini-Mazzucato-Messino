@@ -28,16 +28,16 @@ public class ClientActionExpert implements Stage{
     private boolean endGame;
     private GameData gameData;
 
-    public ClientActionExpert(ClientController clientController) {
+    public ClientActionExpert(ClientController clientController,int charactreChoice) {
         this.clientController = clientController;
         ois = clientController.getOis();
         oos = clientController.getOos();
         turnNumber = clientController.getTurnNumber();
         gameData = clientController.getGameData();
+        currentCharacter = charactreChoice;
     }
     @Override
     public void handle() throws IOException, ClassNotFoundException, InterruptedException {
-        sendCharacterChoice();
         handleCharacter();
         if(endGame) clientController.setClientStage(ClientStage.ClientEND);
         else{
@@ -58,6 +58,7 @@ public class ClientActionExpert implements Stage{
             //sending the number of mother nature steps
             oos.writeInt(sc.nextInt());
             oos.flush();
+            //receving the pos and the updated islands
             MessagesMethods.receiveMotherNaturePos();
 
             //RECEIVING THE INFORMATION ABOUT THE END OF THE GAME
@@ -80,15 +81,6 @@ public class ClientActionExpert implements Stage{
 
     }
 
-
-    private void sendCharacterChoice() throws IOException {
-        System.out.println("Which Character do you want to use?( see from the GUI)");
-        currentCharacter = sc.nextInt();
-        oos.writeInt(currentCharacter);
-        oos.flush();
-        System.out.println("Character sent correctly");
-
-    }
 
     private void handleCharacter() throws IOException, ClassNotFoundException {
         switch (currentCharacter){
@@ -119,6 +111,9 @@ public class ClientActionExpert implements Stage{
                 handleCharacter12();
                 break;
         }
+        //receiving the updated money after using a character
+        MessagesMethods.receiveSchoolUpdated();
+        //receiving the updated prices
         MessagesMethods.receiveUpdatedPrices();
     }
 

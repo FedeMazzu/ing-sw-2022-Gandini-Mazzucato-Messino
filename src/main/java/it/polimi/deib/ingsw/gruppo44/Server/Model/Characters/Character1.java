@@ -9,6 +9,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+
+
+
+
+//NOT YET IMPLEMENTED
+
+
+
 /**
  * Class to represent the Character 1
  * effect: take one student from the card and move it on an island of

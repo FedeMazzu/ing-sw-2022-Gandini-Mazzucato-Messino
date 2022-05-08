@@ -35,6 +35,9 @@ public class GameData {
 
     public void putSchoolData(Magician magician, SchoolData schoolData){
         schoolDataMap.put(magician,schoolData);
+        if(clientMagician.equals(magician)){
+            clientMoney = schoolData.getPlayerMoney();
+        }
     }
 
     public void setClientMoney(int clientMoney) {
@@ -49,9 +52,6 @@ public class GameData {
         this.cloudsData = cloudsData;
     }
 
-    public void setSchoolDataMap(Map<Magician, SchoolData> schoolDataMap) {
-        this.schoolDataMap = schoolDataMap;
-    }
 
     public void setMotherNaturePosition(int motherNaturePosition) {
         this.motherNaturePosition = motherNaturePosition;
@@ -75,6 +75,23 @@ public class GameData {
 
     public IslandsData getIslandsData() {
         return islandsData;
+    }
+
+
+    /**
+     * @return a Map of the characters which have price <= clientMoney
+     */
+    public Map<Integer, Integer> getAffordableCharacters() {
+        Map<Integer,Integer> affordableCharacters = new HashMap<>();
+
+        //DEEP COPY
+        int price;
+        for(Integer characterId: characters.keySet()){
+            price = characters.get(characterId);
+            if(price <= clientMoney) affordableCharacters.put(characterId,price);
+        }
+
+        return affordableCharacters;
     }
 
     public void setData(Data data) {

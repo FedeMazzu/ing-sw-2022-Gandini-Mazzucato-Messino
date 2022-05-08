@@ -2,6 +2,8 @@ package it.polimi.deib.ingsw.gruppo44.Server.Model.Characters;
 
 import it.polimi.deib.ingsw.gruppo44.Server.Model.BoardObserver;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Game;
+import it.polimi.deib.ingsw.gruppo44.Server.Model.Player;
+
 
 /**
  * Class to represent the Character 6
@@ -17,8 +19,9 @@ public class Character6 extends Character {
         this.price = 3;
     }
 
-    public void effect() {
+    public void effect(Player player) {
         //managed in class UnionFind inside the influence score computation
+        player.spendMoney(price);
         raisePrice();
     }
 }

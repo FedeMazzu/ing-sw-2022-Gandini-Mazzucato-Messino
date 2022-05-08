@@ -8,6 +8,7 @@ import it.polimi.deib.ingsw.gruppo44.Common.Stage;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -24,6 +25,7 @@ public class ClientController implements Runnable {
     private GameMode gameMode;
     private int turnNumber;
     private GameData gameData;
+    private int characterChoice;
 
     public ClientController(ObjectInputStream ois, ObjectOutputStream oos) {
         this.ois = ois;
@@ -61,7 +63,7 @@ public class ClientController implements Runnable {
                     case ClientACTION:
                         boolean usingCharacter = false;
                         if(gameMode.isExpertMode()) usingCharacter = AskIfUsingCharacter();
-                        if (usingCharacter) stage = new ClientActionExpert(this);
+                        if (usingCharacter) stage = new ClientActionExpert(this,characterChoice);
                         else stage = new ClientActionStandard(this);
                         break;
                     case WaitingAfterTurn:
@@ -82,20 +84,31 @@ public class ClientController implements Runnable {
     }
 
     /**
-     * ask to the user if he wants to use a character at the start of the Action Phase in case of Expert Mode
+     * ask the user which character (if he can afford) at the start of the Action Phase in case of Expert Mode
      * @return
      */
     private boolean AskIfUsingCharacter() throws IOException {
-        System.out.println("Do you want to use a Character?\n0 -> no\n1 -> yes");
-        if(sc.nextInt() ==1){
-            oos.writeBoolean(true);
-            oos.flush();
-            return true;
-        }else{
-            oos.writeBoolean(false);
-            oos.flush();
-            return false;
+        int currMoney = gameData.getClientMoney();
+        Map<Integer,Integer> affordableCharacters = gameData.getAffordableCharacters();
+        if(!affordableCharacters.isEmpty()) {
+            System.out.print("you can afford these characters:\n" + affordableCharacters + "\n Which one do you want to use?(0 to avoid):->");
+            characterChoice = sc.nextInt();
+            if (characterChoice != 0) {
+                //communicating decision to use a character
+                oos.writeBoolean(true);
+                oos.flush();
+                // communicating the character to use
+                oos.writeInt(characterChoice);
+                oos.flush();
+                return true;
+            }
         }
+
+        //in case the list is empty or the client chooses to not use a character
+        oos.writeBoolean(false);
+        oos.flush();
+        return false;
+
     }
 
 

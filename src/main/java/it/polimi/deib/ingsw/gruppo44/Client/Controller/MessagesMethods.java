@@ -60,6 +60,7 @@ public class MessagesMethods {
         //updating GameData
         gameData.setCharacters(updatedPrices);
         System.out.println(updatedPrices);
+        System.out.println("------------------------------------------------------------------------------------------");
     }
 
     public static void receiveCloudsUpdated() throws IOException, ClassNotFoundException {
@@ -68,10 +69,12 @@ public class MessagesMethods {
     }
 
     public static void receiveMotherNaturePos() throws IOException, ClassNotFoundException {
+        System.out.println("Moving mother nature..");
         receiveIslandsUpdated();
         int motherNaturePos = ois.readInt();
         gameData.setMotherNaturePosition(motherNaturePos);
         System.out.println("A player has moved mother nature on the island: "+ motherNaturePos+"!");
+        System.out.println("------------------------------------------------------------------------------------------");
     }
 
     /**
@@ -83,12 +86,14 @@ public class MessagesMethods {
         gameData.putSchoolData(schoolData.getMagician(), schoolData);
 
         System.out.println("School of the "+schoolData.getMagician()+" updated: ");
+        System.out.println("Money: "+schoolData.getPlayerMoney());
         System.out.print("Entrance: ");
         for(Color color: Color.values()) System.out.print("Color "+color+": "+schoolData.getEntranceStudentsNum(color)+" | ");
         System.out.println();
         System.out.print("Hall: ");
-        for(Color color: Color.values()) System.out.print("Color "+color+": "+schoolData.getHallStudentsNum(color)+" | ");
+        for(Color color: Color.values()) System.out.print("Color "+color+": "+schoolData.getHallStudentsNum(color)+" "+schoolData.hasProfessor(color)+" | ");
         System.out.println();
+        System.out.println("------------------------------------------------------------------------------------------");
     }
 
     /**
@@ -114,6 +119,7 @@ public class MessagesMethods {
             currData+="\n";
         }
         System.out.println(currData);
+        System.out.println("------------------------------------------------------------------------------------------");
     }
 
     /**
@@ -132,7 +138,9 @@ public class MessagesMethods {
             currData+="Hall:";
             for(Color color: Color.values())  currData+="Color "+color+": "+sd.getHallStudentsNum(color)+" "+sd.hasProfessor(color)+"| ";
             currData+="\n";
+            currData += "........................................................................................\n";
         }
+
 
         currData+="Islands:\n";
         IslandsData islandsData = gameData.getIslandsData();;
@@ -149,6 +157,7 @@ public class MessagesMethods {
             currData+="\n";
         }
         System.out.println(currData);
+        System.out.println("------------------------------------------------------------------------------------------");
     }
 
     /**
@@ -185,7 +194,9 @@ public class MessagesMethods {
     }
 
     private static boolean characterWait2() throws IOException, ClassNotFoundException {
-
+        //receiving the MovingClient updated money
+        receiveSchoolUpdated();
+        //receiving the characters updated prices
         receiveUpdatedPrices();
         return MessagesMethods.standardWait();
     }
@@ -204,25 +215,33 @@ public class MessagesMethods {
             clientController.setClientStage(ClientStage.ClientEND);
             return gameEnd;
         }
-        //getting updated prices
+        //receiving the MovingClient updated money
+        receiveSchoolUpdated();
+        //receiving the characters updated prices
         receiveUpdatedPrices();
         return MessagesMethods.standardWait();
     }
 
     private static boolean characterWait4() throws IOException, ClassNotFoundException {
-        //getting updated prices
+        //receiving the MovingClient updated money
+        receiveSchoolUpdated();
+        //receiving the characters updated prices
         receiveUpdatedPrices();
         return MessagesMethods.standardWait();
     }
 
     private static boolean characterWait6() throws IOException, ClassNotFoundException {
-        //getting updated prices
+        //receiving the MovingClient updated money
+        receiveSchoolUpdated();
+        //receiving the characters updated prices
         receiveUpdatedPrices();
         return MessagesMethods.standardWait();
     }
 
     private static boolean characterWait8() throws IOException, ClassNotFoundException {
-        //getting updated prices
+        //receiving the MovingClient updated money
+        receiveSchoolUpdated();
+        //receiving the characters updated prices
         receiveUpdatedPrices();
         return MessagesMethods.standardWait();
     }
@@ -230,6 +249,9 @@ public class MessagesMethods {
     private static boolean characterWait9() throws IOException, ClassNotFoundException {
         Color colorChosen = (Color) ois.readObject();
         System.out.println("The player chose: "+colorChosen);
+        //receiving the MovingClient updated money
+        receiveSchoolUpdated();
+        //receiving the characters updated prices
         receiveUpdatedPrices();
         return MessagesMethods.standardWait();
     }
@@ -237,6 +259,9 @@ public class MessagesMethods {
     private static boolean characterWait10() throws IOException, ClassNotFoundException {
         SchoolData schoolData = (SchoolData) ois.readObject();
         receiveSchoolUpdated();
+        //receiving the MovingClient updated money (it's redundant in this case)
+        receiveSchoolUpdated();
+        //receiving the characters updated prices
         receiveUpdatedPrices();
         return MessagesMethods.standardWait();
     }
@@ -252,7 +277,9 @@ public class MessagesMethods {
             SchoolData schoolData = (SchoolData) ois.readObject();
             receiveSchoolUpdated();
         }
-
+        //receiving the MovingClient updated money
+        receiveSchoolUpdated();
+        //receiving the characters updated prices
         receiveUpdatedPrices();
         //continuing with the standard wait
         return MessagesMethods.standardWait();

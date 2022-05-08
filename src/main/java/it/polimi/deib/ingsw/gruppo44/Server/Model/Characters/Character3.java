@@ -2,6 +2,7 @@ package it.polimi.deib.ingsw.gruppo44.Server.Model.Characters;
 
 import it.polimi.deib.ingsw.gruppo44.Server.Model.BoardObserver;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Game;
+import it.polimi.deib.ingsw.gruppo44.Server.Model.Player;
 
 /**
  * Class to represent the Character 3
@@ -19,11 +20,11 @@ public class Character3 extends Character {
         this.price = 3;
     }
 
-    public void effect(int islandId){
+    public void effect(int islandId, Player player){
         //ask islandId to the player
         //int islandId = 4; //just for example
         game.getBoard().getUnionFind().getIsland(islandId).islandClaim();
-
+        player.spendMoney(price);
         raisePrice();
     }
 }

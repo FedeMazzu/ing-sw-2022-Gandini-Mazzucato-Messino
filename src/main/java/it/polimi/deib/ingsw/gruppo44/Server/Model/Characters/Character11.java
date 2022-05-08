@@ -3,6 +3,15 @@ package it.polimi.deib.ingsw.gruppo44.Server.Model.Characters;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.BoardObserver;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Game;
 
+
+
+//NOT YET HANDLED
+
+
+
+
+
+
 /**
  * Class to represent the Character 11
  * in set up draw four students and place them on this card

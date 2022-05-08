@@ -17,7 +17,7 @@ public class Character12 extends Character {
         this.price = 3;
     }
 
-    public void effect(Color color) {
+    public void effect(Color color, Player p) {
         boolean wasRemoved;
         NotOwnedObjects notOwnedObjects = game.getBoard().getNotOwnedObjects();
         for(Team team: game.getTeams()){
@@ -30,6 +30,7 @@ public class Character12 extends Character {
                 }
             }
         }
+        p.spendMoney(price);
         raisePrice();
     }
 }

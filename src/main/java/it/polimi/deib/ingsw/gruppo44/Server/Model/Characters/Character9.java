@@ -2,6 +2,7 @@ package it.polimi.deib.ingsw.gruppo44.Server.Model.Characters;
 
 import it.polimi.deib.ingsw.gruppo44.Server.Model.BoardObserver;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Game;
+import it.polimi.deib.ingsw.gruppo44.Server.Model.Player;
 
 /**
  * Class to represent the Character 9
@@ -18,8 +19,9 @@ public class Character9 extends Character {
         this.price = 3;
     }
 
-    public void effect() {
-
+    public void effect(Player player) {
+        //handled in UnionFind
+        player.spendMoney(price);
         raisePrice();
     }
 }

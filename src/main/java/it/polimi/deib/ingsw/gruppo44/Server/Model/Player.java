@@ -44,12 +44,13 @@ public class Player implements Serializable {
         money++;
         notOwnedObjects.giveCoin();
         school.getSchoolObserver().updateMoney();
+        System.out.println("Player money added "+money);
     }
 
-    public void spendCoin(){
+    public void spendMoney(int moneyToSpend){
         try{
-            if(money<=0) throw new Exception();
-            money--;
+            if(money < moneyToSpend) throw new Exception();
+            money -= moneyToSpend;
             school.getSchoolObserver().updateMoney();
         }catch (Exception e){
             System.out.println("You don't have money to spend");

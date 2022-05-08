@@ -3,6 +3,17 @@ package it.polimi.deib.ingsw.gruppo44.Server.Model.Characters;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.BoardObserver;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Game;
 
+
+
+
+//NOTE YET HANDLED
+
+
+
+
+
+
+
 /**
  * Class to represent the Character 5
  * In set up put the 4 No Entry tiles on this card.
