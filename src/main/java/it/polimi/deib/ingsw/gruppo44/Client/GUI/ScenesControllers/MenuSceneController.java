@@ -50,6 +50,7 @@ public class MenuSceneController {
         createButton.setVisible(true);
 
 
+
        /* oos.writeObject(ClientChoice.CreateGameCHOISE);
         oos.flush();
         //maybe need to check if the server receives the option
@@ -63,7 +64,7 @@ public class MenuSceneController {
         clientController.setClientStage(ClientStage.SETUP);*/
     }
 
-    public void create(ActionEvent actionEvent) throws IOException {
+    public void create(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
         ObjectOutputStream oos = Eriantys.getCurrentApplication().getOos();
         String name = nameTextField.getText();
         GameMode gameMode = gameModeListView.getSelectionModel().getSelectedItem();
@@ -83,6 +84,8 @@ public class MenuSceneController {
             createButton.setVisible(false);
             //label waiting for other players to join
             waitingLabel.setVisible(true);
+
+            getStartingAck();
 
         }
 
@@ -109,30 +112,30 @@ public class MenuSceneController {
             errorLabel.setText("There aren't available games");
             errorLabel.setVisible(true);
         }
-
-            /*
-            System.out.println(openGames);
-            String gameChoice = sc.next();
-            clientController.setGameMode(openGames.get(gameChoice));
-            oos.writeObject(gameChoice);
-            oos.flush();
-            System.out.println("Waiting for the other players...");
-
-            //getting a bolean indicating if the game was joined correctly
-            boolean ack = getStartingAck();
-            if(ack){
-                clientController.setClientStage(ClientStage.SETUP);
-            }
-            else{
-                System.out.println("There aren't available games with that name!");
-                clientController.askOptions();
-            }
-
-
-        }else{
-            System.out.println("There aren't available games!");
-            clientController.askOptions();
-        }*/
     }
 
+    public void join(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
+        ObjectOutputStream oos = Eriantys.getCurrentApplication().getOos();
+        Map<String, GameMode> gameChoice = openGamesListView.getSelectionModel().getSelectedItem();
+        String gameName = gameChoice.keySet().toString();
+        GameMode gameMode = gameChoice.get(gameName);
+        Eriantys.getCurrentApplication().setGameMode(gameMode);
+        System.out.println(gameName);
+        oos.writeObject(gameChoice);
+        oos.flush();
+
+        openGamesListView.setVisible(false);
+        openGamesLabel.setVisible(false);
+        joinButton.setVisible(false);
+        waitingLabel.setVisible(true);
+
+        getStartingAck();
+
+    }
+
+
+    private boolean getStartingAck() throws IOException, ClassNotFoundException {
+        ObjectInputStream ois = Eriantys.getCurrentApplication().getOis();
+        return ois.readBoolean();
+    }
 }

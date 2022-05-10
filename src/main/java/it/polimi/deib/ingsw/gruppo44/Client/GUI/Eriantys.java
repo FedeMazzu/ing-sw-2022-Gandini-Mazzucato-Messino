@@ -1,5 +1,6 @@
 package it.polimi.deib.ingsw.gruppo44.Client.GUI;
 
+import it.polimi.deib.ingsw.gruppo44.Common.GameMode;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,6 +18,7 @@ public class Eriantys extends Application {
     private ObjectInputStream ois;
     private ObjectOutputStream oos;
     private Stage stage;
+    private GameMode gameMode;
 
 
     @Override
@@ -59,5 +61,11 @@ public class Eriantys extends Application {
         launch(args);
     }
 
+    public GameMode getGameMode() {
+        return gameMode;
+    }
 
+    public void setGameMode(GameMode gameMode) {
+        this.gameMode = gameMode;
+    }
 }

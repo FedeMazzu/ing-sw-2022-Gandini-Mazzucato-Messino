@@ -52,9 +52,9 @@
             <Font name="Telugu MN" size="36.0" />
          </font>
       </Button>
-      <Label fx:id="errorLabel" layoutX="288.0" layoutY="39.0" text="Invalid input.. try again" textFill="#fc0000" visible="false">
+      <Label fx:id="errorLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="362.0" layoutY="29.0" text="Invalid input.. try again" textFill="#fc0000" visible="false">
          <font>
-            <Font name="Telugu MN" size="53.0" />
+            <Font name="Telugu MN" size="41.0" />
          </font>
       </Label>
       <Label fx:id="waitingLabel" layoutX="183.0" layoutY="54.0" text="Game created Correctly! Waiting for other players..." textFill="WHITE" visible="false">
@@ -68,7 +68,7 @@
             <Font name="Telugu MN" size="48.0" />
          </font>
       </Label>
-      <Button fx:id="joinButton" layoutX="108.0" layoutY="633.0" mnemonicParsing="false" text="Join" visible="false">
+      <Button fx:id="joinButton" layoutX="108.0" layoutY="633.0" mnemonicParsing="false" onAction="#join" text="Join" visible="false">
          <font>
             <Font name="Telugu MN" size="35.0" />
          </font>
