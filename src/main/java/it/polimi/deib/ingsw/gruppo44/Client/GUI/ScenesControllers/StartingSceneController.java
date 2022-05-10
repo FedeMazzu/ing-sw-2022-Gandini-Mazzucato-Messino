@@ -28,6 +28,26 @@ public class StartingSceneController {
     public void enterIp(ActionEvent actionEvent) throws IOException {
         String serverIp = ipTextField.getText();
         boolean correct = false;
+        String nuova = "";
+
+        if(serverIp.length()<15){
+           String temp = "";
+           for(int i=0;i<serverIp.length();i++){
+               temp = "00";
+               while(i<serverIp.length() && serverIp.charAt(i)!='.'){
+                   temp+=serverIp.charAt(i);
+                   i++;
+               }
+               if(temp.length()<3) break;
+               nuova+=temp.substring(temp.length()-3,temp.length());
+               nuova+=".";
+           }
+
+           if(nuova.length() == 16) serverIp = nuova.substring(0,nuova.length()-1);
+
+        }
+
+
         if (serverIp.length() == 15) {
             correct = true;
             for (int i = 0; i < 15; i++) {
