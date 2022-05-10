@@ -30,8 +30,14 @@ public class SchoolObserver implements Observer, Serializable {
      * called when a player earns or spends money
      */
     public void updateMoney(){
-        System.out.println("OBS Money Updated");
         schoolData.setPlayerMoney(school.getPlayer().getMoney());
+    }
+
+    /**
+     * called when a card is played
+     */
+    public void updateCards(){
+        schoolData.setAvailableCards((school.getPlayer().showAvailableCards()));
     }
 
     /**

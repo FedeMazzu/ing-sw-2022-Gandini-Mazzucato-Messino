@@ -1,15 +1,11 @@
 package it.polimi.deib.ingsw.gruppo44.Client;
 
 import it.polimi.deib.ingsw.gruppo44.Client.Controller.ClientController;
-import it.polimi.deib.ingsw.gruppo44.Common.ClientChoice;
-import it.polimi.deib.ingsw.gruppo44.Common.Messages.CreateGameMESSAGE;
-import it.polimi.deib.ingsw.gruppo44.Common.GameMode;
+import it.polimi.deib.ingsw.gruppo44.Client.GUI.Eriantys;
 
 import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
-import java.net.UnknownHostException;
-import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -25,30 +21,35 @@ public class NetworkHandler {
     private final int SERVERPORT = 59090;
     private String serverIp;
     private Scanner sc = new Scanner(System.in);
+    private boolean connectionEstablished;
 
-    public NetworkHandler(){
+    public NetworkHandler(String serverIp){
         // we pass the Ip and the port of the server we want to connect (that we ask the user)
         try { //open a socket
-            serverIp = askServerIP();
+            //serverIp = askServerIP();
             socket = new Socket(serverIp, SERVERPORT);
+            connectionEstablished = true;
             superviseConnection();
             System.out.println("Connection established.");
             oos = new ObjectOutputStream(socket.getOutputStream());
             ois = new ObjectInputStream(socket.getInputStream());
+            Eriantys eriantys = Eriantys.getCurrentApplication();
+            eriantys.setOis(ois);
+            eriantys.setOos(oos);
             clientController = new ClientController(ois,oos);
             new Thread(clientController).start();
             // remember to close the socket
         }catch (IOException ioe){
+            connectionEstablished = false;
             System.out.println("Server not found");
-            System.exit(0);
         }
     }
 
     /**
      * checks if the connection persists
      */
-    private void superviseConnection(){
-        new Thread(()-> {
+    private void superviseConnection() {
+        new Thread(() -> {
             try {
                 InetAddress serverAddress = InetAddress.getByName(serverIp);
                 //note that this always work if you run the server on the same machine of the client
@@ -68,36 +69,12 @@ public class NetworkHandler {
         }).start();
     }
 
-
-
-
-    private String askServerIP(){
-        String IP;
-        boolean correct;
-        while(true) {
-            System.out.print("Enter server Ip address:\n(convention 127.000.000.001) -> ");
-            IP = sc.next();
-            correct=false;
-            if(IP.length() == 15){
-                correct = true;
-                for(int i=0; i<15; i++){
-                    if(i==3 || i==7 || i==11){
-                        if(IP.charAt(i)!='.') {
-                            correct = false;
-                        }
-                    }else if(IP.charAt(i)<'0' || IP.charAt(i)>'9'){
-                        correct = false;
-                    }
-                }
-            }
-            if(correct) return IP;
-            else System.out.println("Incorrect IP, try again..");
-
-        }
+    public boolean isConnectionEstablished() {
+        return connectionEstablished;
     }
 
-
     public static void main(String[] args) {
-        NetworkHandler networkHandler = new NetworkHandler();
+        Eriantys.main(args);
+       // NetworkHandler networkHandler = new NetworkHandler();
     }
 }

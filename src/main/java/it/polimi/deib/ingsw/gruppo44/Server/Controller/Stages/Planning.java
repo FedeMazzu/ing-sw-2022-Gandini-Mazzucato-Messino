@@ -88,12 +88,12 @@ public class Planning implements Stage, Serializable {
      * @throws IOException
      */
     private int cardChoosing(Player currPlayer, ObjectInputStream ois, ObjectOutputStream oos)throws IOException {
-        List<Card> sendingCards;
+        List<Integer> sendingCards;
         sendingCards = currPlayer.showAvailableCards();
         int cardValue;
         System.out.println(sendingCards);
         for(int i=0; i< sendingCards.size() && sendingCards.size()>1;i++){
-            if(cardsPlayedFromOtherPlayers.contains(sendingCards.get(i).getValue())) sendingCards.remove(i--);
+            if(cardsPlayedFromOtherPlayers.contains(sendingCards.get(i))) sendingCards.remove(i--);
         }
         //sending the available cards
         oos.writeObject("Player "+currPlayer.getMagician()+" choose a card among:\n"+sendingCards);

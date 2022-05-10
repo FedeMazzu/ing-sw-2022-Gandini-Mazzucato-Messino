@@ -64,7 +64,7 @@ public class Player implements Serializable {
      */
     public void playCard(int value){
         playedCards[value-1] = true;
-
+        school.getSchoolObserver().updateCards();
     }
     /**
      * method to play a character. Game reference in player?
@@ -87,10 +87,10 @@ public class Player implements Serializable {
      * Perhaps this can be useful for the view
      * @return a list of the cards not played yet
      */
-    public List<Card> showAvailableCards(){
-        List<Card> availableCards = new ArrayList<>();
+    public List<Integer> showAvailableCards(){
+        List<Integer> availableCards = new ArrayList<>();
         for(Card card : deck){
-            if(!playedCards[card.getValue()-1]) availableCards.add(card);
+            if(!playedCards[card.getValue()-1]) availableCards.add(card.getValue());
         }
         return availableCards;
     }

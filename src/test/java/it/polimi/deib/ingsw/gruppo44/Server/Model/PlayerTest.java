@@ -51,7 +51,7 @@ class PlayerTest {
 
     @Test
     public void showAvailableCards__woct(){
-        List<Card> availableCards = new ArrayList<>();
+        List<Integer> availableCards = new ArrayList<>();
 
         // using some cards
         player.playCard(3);
@@ -61,9 +61,9 @@ class PlayerTest {
         //checking if the played cards aren't available and if the others are
         for(int i=1; i<=10; i++){
             if(i==3 || i==7){
-                assertFalse(availableCards.contains(player.getCard(i)));
+                assertFalse(availableCards.contains(player.getCard(i).getValue()));
             }else{
-                assertTrue(availableCards.contains(player.getCard(i)));
+                assertTrue(availableCards.contains(player.getCard(i).getValue()));
             }
         }
 

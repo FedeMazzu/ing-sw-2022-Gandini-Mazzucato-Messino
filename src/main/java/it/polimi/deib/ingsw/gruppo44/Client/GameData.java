@@ -1,6 +1,4 @@
 package it.polimi.deib.ingsw.gruppo44.Client;
-
-import it.polimi.deib.ingsw.gruppo44.Server.Model.Color;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Magician;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.CloudsData;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.Data;
@@ -8,6 +6,7 @@ import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.IslandsData;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.SchoolData;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,6 +17,7 @@ public class GameData {
     //curr Client data
     private Magician clientMagician;
     private int clientMoney;
+    private List<Integer> availableCards;
 
     // Game data
     private IslandsData islandsData;
@@ -37,6 +37,7 @@ public class GameData {
         schoolDataMap.put(magician,schoolData);
         if(clientMagician.equals(magician)){
             clientMoney = schoolData.getPlayerMoney();
+            availableCards = schoolData.getAvailableCards();
         }
     }
 
@@ -94,6 +95,14 @@ public class GameData {
         return affordableCharacters;
     }
 
+    public List<Integer> getAvailableCards() {
+        return availableCards;
+    }
+
+    public void setAvailableCards(List<Integer> availableCards) {
+        this.availableCards = availableCards;
+    }
+
     public void setData(Data data) {
         islandsData =data.getIslandsData();
         cloudsData = data.getCloudsData();
@@ -103,6 +112,7 @@ public class GameData {
             schoolDataMap.put(sd.getMagician(),sd);
             if(sd.getMagician().equals(clientMagician)){
                 clientMoney = sd.getPlayerMoney();
+                availableCards = sd.getAvailableCards();
             }
         }
     }

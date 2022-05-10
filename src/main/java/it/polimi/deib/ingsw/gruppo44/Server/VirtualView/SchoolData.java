@@ -18,6 +18,7 @@ public class SchoolData implements Serializable {
     private String playerName;
     private Tower teamTower;
     private Magician magician; //identifier
+    private List<Integer> availableCards;
 
     public SchoolData( Tower teamTower) {
         hallStudents = new HashMap<>();
@@ -89,5 +90,13 @@ public class SchoolData implements Serializable {
 
     public int getPlayerMoney() {
         return playerMoney;
+    }
+
+    public List<Integer> getAvailableCards() {
+        return availableCards;
+    }
+
+    public void setAvailableCards(List<Integer> availableCards) {
+        this.availableCards = availableCards;
     }
 }
