@@ -8,12 +8,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+
+
 import java.io.IOException;
 
 
 public class StartingSceneController {
     @FXML
-    private Button ipButton;
+    private Button button;
     @FXML
     private TextField ipTextField;
     @FXML
@@ -23,27 +25,28 @@ public class StartingSceneController {
 
     /**
      * manages the insertion of the server ip address
-     * @param actionEvent
+     * @param Event
      */
-    public void enterIp(ActionEvent actionEvent) throws IOException {
+    @FXML
+    public void enterIp(ActionEvent Event) throws IOException {
         String serverIp = ipTextField.getText();
         boolean correct = false;
         String nuova = "";
 
         if(serverIp.length()<15){
-           String temp = "";
-           for(int i=0;i<serverIp.length();i++){
-               temp = "00";
-               while(i<serverIp.length() && serverIp.charAt(i)!='.'){
-                   temp+=serverIp.charAt(i);
-                   i++;
-               }
-               if(temp.length()<3) break;
-               nuova+=temp.substring(temp.length()-3,temp.length());
-               nuova+=".";
-           }
+            String temp = "";
+            for(int i=0;i<serverIp.length();i++){
+                temp = "00";
+                while(i<serverIp.length() && serverIp.charAt(i)!='.'){
+                    temp+=serverIp.charAt(i);
+                    i++;
+                }
+                if(temp.length()<3) break;
+                nuova+=temp.substring(temp.length()-3,temp.length());
+                nuova+=".";
+            }
 
-           if(nuova.length() == 16) serverIp = nuova.substring(0,nuova.length()-1);
+            if(nuova.length() == 16) serverIp = nuova.substring(0,nuova.length()-1);
 
         }
 
@@ -73,6 +76,6 @@ public class StartingSceneController {
             errorIp.setVisible(true);
         }
 
-        }
+    }
 
 }
