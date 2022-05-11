@@ -1,14 +1,13 @@
 package it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers;
 
 
-import it.polimi.deib.ingsw.gruppo44.Client.Controller.ClientStage;
-import it.polimi.deib.ingsw.gruppo44.Client.Controller.MessagesMethods;
-import it.polimi.deib.ingsw.gruppo44.Client.GUI.Eriantys;
+import it.polimi.deib.ingsw.gruppo44.Client.Eriantys;
 import it.polimi.deib.ingsw.gruppo44.Client.GameData;
 import it.polimi.deib.ingsw.gruppo44.Common.ClientChoice;
 import it.polimi.deib.ingsw.gruppo44.Common.GameMode;
 import it.polimi.deib.ingsw.gruppo44.Common.Messages.CreateGameMESSAGE;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Magician;
+import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.Data;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,7 +21,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class MenuSceneController {
     @FXML
@@ -151,13 +149,19 @@ public class MenuSceneController {
     /**
      * select magician and nickname
      */
-    public void select (ActionEvent actionEvent) throws IOException {
+    public void select (ActionEvent actionEvent) throws IOException, ClassNotFoundException {
         ObjectOutputStream oos = Eriantys.getCurrentApplication().getOos();
+        ObjectInputStream ois = Eriantys.getCurrentApplication().getOis();
         //sending magician and name
-        oos.writeObject(magicianListView.getSelectionModel().getSelectedItem());
+        Magician magicianChoice = magicianListView.getSelectionModel().getSelectedItem();
+        Eriantys.getCurrentApplication().setGameData(new GameData(magicianChoice));
+        oos.writeObject(magicianChoice);
         oos.flush();
         oos.writeObject(nameLabel.getText());
+        oos.flush();
 
+        //receiving the data of the initialized game
+        Eriantys.getCurrentApplication().getGameData().setData((Data) ois.readObject());
         Eriantys.getCurrentApplication().switchToCardsScene();
 
     }

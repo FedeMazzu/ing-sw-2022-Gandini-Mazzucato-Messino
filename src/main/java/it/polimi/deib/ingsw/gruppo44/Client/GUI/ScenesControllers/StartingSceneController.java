@@ -1,6 +1,6 @@
 package it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers;
 
-import it.polimi.deib.ingsw.gruppo44.Client.GUI.Eriantys;
+import it.polimi.deib.ingsw.gruppo44.Client.Eriantys;
 import it.polimi.deib.ingsw.gruppo44.Client.NetworkHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,8 +8,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 
 
 import java.io.IOException;

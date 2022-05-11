@@ -25,6 +25,7 @@ public class SchoolData implements Serializable {
         entranceStudents = new HashMap<>();
         professors = new HashMap<>();
         this.teamTower = teamTower;
+        //naive initialization
     }
 
     /**

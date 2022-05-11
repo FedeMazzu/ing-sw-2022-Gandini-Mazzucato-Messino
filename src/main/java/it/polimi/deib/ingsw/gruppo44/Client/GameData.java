@@ -1,9 +1,12 @@
 package it.polimi.deib.ingsw.gruppo44.Client;
+import it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.CardsSceneController;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Magician;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.CloudsData;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.Data;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.IslandsData;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.SchoolData;
+import javafx.application.Platform;
+import javafx.scene.image.ImageView;
 
 import java.util.HashMap;
 import java.util.List;
@@ -37,7 +40,7 @@ public class GameData {
         schoolDataMap.put(magician,schoolData);
         if(clientMagician.equals(magician)){
             clientMoney = schoolData.getPlayerMoney();
-            availableCards = schoolData.getAvailableCards();
+            setAvailableCards(schoolData.getAvailableCards());
         }
     }
 
@@ -61,6 +64,7 @@ public class GameData {
     public void setCharacters(Map<Integer, Integer> characters) {
         this.characters = characters;
     }
+
 
     public Magician getClientMagician() {
         return clientMagician;
@@ -99,8 +103,15 @@ public class GameData {
         return availableCards;
     }
 
-    public void setAvailableCards(List<Integer> availableCards) {
-        this.availableCards = availableCards;
+    public void setAvailableCards(List<Integer> ParAvailableCards) {
+        this.availableCards = ParAvailableCards;
+        Platform.runLater(()->{
+            CardsSceneController csc = Eriantys.getCurrentApplication().getCardsSceneController();
+            ImageView[] images = csc.getImages();
+            for(int i=1; i<=10; i++){
+                if(!availableCards.contains(i)) images[i-1].setVisible(false);
+            }
+        });
     }
 
     public void setData(Data data) {
@@ -112,7 +123,7 @@ public class GameData {
             schoolDataMap.put(sd.getMagician(),sd);
             if(sd.getMagician().equals(clientMagician)){
                 clientMoney = sd.getPlayerMoney();
-                availableCards = sd.getAvailableCards();
+                setAvailableCards(sd.getAvailableCards());
             }
         }
     }

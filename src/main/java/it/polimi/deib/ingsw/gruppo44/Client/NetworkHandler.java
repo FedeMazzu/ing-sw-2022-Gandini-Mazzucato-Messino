@@ -1,7 +1,6 @@
 package it.polimi.deib.ingsw.gruppo44.Client;
 
 import it.polimi.deib.ingsw.gruppo44.Client.Controller.ClientController;
-import it.polimi.deib.ingsw.gruppo44.Client.GUI.Eriantys;
 
 import java.io.*;
 import java.net.InetAddress;

@@ -17,9 +17,9 @@
             <Glow level="0.25" />
          </effect>
       </TextField>
-      <Label fx:id="ipLabel" layoutX="275.0" layoutY="416.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="64.0" prefWidth="522.0" text="Insert the server IP address" textFill="WHITE" AnchorPane.bottomAnchor="240.0" AnchorPane.leftAnchor="279.0" AnchorPane.rightAnchor="279.0">
+      <Label fx:id="ipLabel" layoutX="302.0" layoutY="418.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="64.0" prefWidth="522.0" text="Insert the server IP address" textFill="WHITE" AnchorPane.bottomAnchor="238.0" AnchorPane.leftAnchor="302.0" AnchorPane.rightAnchor="256.0">
          <font>
-            <Font name="Telugu MN" size="43.0" />
+            <Font name="Telugu MN" size="37.0" />
          </font>
       </Label>
       <Label fx:id="errorIp" alignment="CENTER" layoutX="273.0" layoutY="566.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="64.0" minWidth="-Infinity" prefHeight="64.0" prefWidth="522.0" text="Incorrect IP, try again..." textFill="#ee0c0c" visible="false" AnchorPane.bottomAnchor="51.0" AnchorPane.leftAnchor="279.0" AnchorPane.rightAnchor="279.0">

@@ -1,22 +1,23 @@
-package it.polimi.deib.ingsw.gruppo44.Client.GUI;
+package it.polimi.deib.ingsw.gruppo44.Client;
 
+import it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.CardsSceneController;
 import it.polimi.deib.ingsw.gruppo44.Common.GameMode;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.Objects;
 
 public class Eriantys extends Application {
     private static Eriantys currentApplication;
     private ObjectInputStream ois;
     private ObjectOutputStream oos;
+    private CardsSceneController cardsSceneController;
+    private GameData gameData;
     private Stage stage;
     private GameMode gameMode;
 
@@ -76,4 +77,12 @@ public class Eriantys extends Application {
     public void setGameMode(GameMode gameMode) {
         this.gameMode = gameMode;
     }
+
+    public void setGameData(GameData gameData) {this.gameData = gameData;}
+
+    public GameData getGameData() {return gameData;}
+
+    public CardsSceneController getCardsSceneController() {return cardsSceneController;}
+
+    public void setCardsSceneController(CardsSceneController cardsSceneController) {this.cardsSceneController = cardsSceneController;}
 }
