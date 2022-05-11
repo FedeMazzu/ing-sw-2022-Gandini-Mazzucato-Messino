@@ -8,6 +8,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 
 import java.io.IOException;
@@ -63,7 +65,7 @@ public class StartingSceneController {
                 }
             }
         }
-        if (correct){
+        if (correct ){
             NetworkHandler nh =new NetworkHandler(serverIp);
             if(nh.isConnectionEstablished()){
                 Eriantys.getCurrentApplication().switchToMenuScene();
