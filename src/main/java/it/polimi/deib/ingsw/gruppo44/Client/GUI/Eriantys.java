@@ -29,6 +29,7 @@ public class Eriantys extends Application {
         Scene startingScene = new Scene(root);
         stage.setScene(startingScene);
         stage.setTitle("Eriantys");
+        stage.setResizable(false);
         //stage.setFullScreen(true);
         stage.show();
     }
@@ -38,6 +39,13 @@ public class Eriantys extends Application {
         stage.setScene(new Scene(root));
         stage.show();
     }
+
+    public void switchToCardsScene() throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/cardsScene.fxml"));
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
 
     public static Eriantys getCurrentApplication(){return currentApplication;}
 

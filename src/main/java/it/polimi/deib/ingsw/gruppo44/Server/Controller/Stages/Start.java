@@ -104,12 +104,11 @@ public class Start implements Stage, Serializable {
             //where we look if we don't want duplicate names
             ois = user.getOis();
             oos = user.getOos();
-            name = (String) ois.readObject();
-
-            player.setName(name);
-            user.setPlayer(player);
 
             magician = askMagician(ois,oos); //we will need the user to talk to the right client
+            name = (String) ois.readObject();
+            player.setName(name);
+            user.setPlayer(player);
             player.setMagician(magician);
             //
             schoolData.setMagician(magician); //setting the identifier
@@ -138,31 +137,26 @@ public class Start implements Stage, Serializable {
      * @return the chosen magician
      * @throws IOException
      */
-    private Magician askMagician(ObjectInputStream ois,ObjectOutputStream oos) throws IOException {
-        int choice;
+    private Magician askMagician(ObjectInputStream ois,ObjectOutputStream oos) throws IOException, ClassNotFoundException {
+        Magician choice;
+        List<Magician> availableMagicians = new ArrayList<>();
         while(true) {
-            String availableMagicians ="";
             for (Magician magician : Magician.values()) {
                 if (!freeMagician.get(magician)) {
-                    availableMagicians += magician.getId() + " - " + magician.getName()+"\n";
+                    availableMagicians.add(magician);
                 }
             }
             oos.writeObject(availableMagicians);
             oos.flush();
 
-            choice = ois.readInt();
+            choice = (Magician) ois.readObject();
             for (Magician magician : Magician.values()) {
-                if (choice == magician.getId())
+                if (choice.equals(magician))
                     if (!freeMagician.get(magician)) {
                         freeMagician.put(magician, true);
-                        oos.writeBoolean(true);
-                        oos.flush();
                         return magician;
                     }
             }
-            oos.writeBoolean(false);
-            oos.flush();
-            System.out.println("Magician already selected.. try again");
         }
     }
 

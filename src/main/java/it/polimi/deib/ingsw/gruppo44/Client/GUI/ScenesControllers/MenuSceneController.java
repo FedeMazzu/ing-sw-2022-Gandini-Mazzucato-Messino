@@ -2,10 +2,14 @@ package it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers;
 
 
 import it.polimi.deib.ingsw.gruppo44.Client.Controller.ClientStage;
+import it.polimi.deib.ingsw.gruppo44.Client.Controller.MessagesMethods;
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.Eriantys;
+import it.polimi.deib.ingsw.gruppo44.Client.GameData;
 import it.polimi.deib.ingsw.gruppo44.Common.ClientChoice;
 import it.polimi.deib.ingsw.gruppo44.Common.GameMode;
 import it.polimi.deib.ingsw.gruppo44.Common.Messages.CreateGameMESSAGE;
+import it.polimi.deib.ingsw.gruppo44.Server.Model.Magician;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
@@ -16,22 +20,31 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class MenuSceneController {
     @FXML
-    private Button createGameButton, joinGameButton, loadGameButton,createButton,joinButton;
+    private Button createGameButton, joinGameButton, loadGameButton,createButton,joinButton,selectButton;
     @FXML
-    private Label gameNameLabel, gameModeLabel, errorLabel, waitingLabel, openGamesLabel;
+    private Label gameNameLabel, gameModeLabel, errorLabel, waitingLabel, openGamesLabel,nameLabel,magicianLabel;
     @FXML
-    private TextField nameTextField;
+    private TextField gameNameTextField,nameTextField;
     @FXML
     private ListView<GameMode> gameModeListView;
     @FXML
     private ListView<Map<String, GameMode>> openGamesListView;
+    @FXML
+    private ListView<Magician> magicianListView;
 
     private GameMode[]gameModes = GameMode.values();
 
+    /**
+     * choose the option select a game
+     * @param actionEvent
+     * @throws IOException
+     */
     public void createGame(ActionEvent actionEvent) throws IOException {
         //communicating the decision to the server
         ObjectOutputStream oos = Eriantys.getCurrentApplication().getOos();
@@ -45,28 +58,21 @@ public class MenuSceneController {
         errorLabel.setVisible(false);
         gameNameLabel.setVisible(true);
         gameModeLabel.setVisible(true);
-        nameTextField.setVisible(true);
+        gameNameTextField.setVisible(true);
         gameModeListView.setVisible(true);
         createButton.setVisible(true);
 
-
-
-       /* oos.writeObject(ClientChoice.CreateGameCHOISE);
-        oos.flush();
-        //maybe need to check if the server receives the option
-
-        CreateGameMESSAGE createGameMESSAGE = new CreateGameMESSAGE(askGameName(),askGameMode());
-        oos.writeObject(createGameMESSAGE);
-        oos.flush();
-        System.out.println("Waiting for the other players...");
-        //getting a boolean indicating if the game was joined correctly
-        getStartingAck();
-        clientController.setClientStage(ClientStage.SETUP);*/
     }
 
+    /**
+     * create the game with the name and Mode selected
+     * @param actionEvent
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public void create(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
         ObjectOutputStream oos = Eriantys.getCurrentApplication().getOos();
-        String name = nameTextField.getText();
+        String name = gameNameTextField.getText();
         GameMode gameMode = gameModeListView.getSelectionModel().getSelectedItem();
         if(name.length()==0 || gameMode == null){
             errorLabel.setText("Invalid input... try again");
@@ -79,18 +85,24 @@ public class MenuSceneController {
             oos.flush();
             gameNameLabel.setVisible(false);
             gameModeLabel.setVisible(false);
-            nameTextField.setVisible(false);
+            gameNameTextField.setVisible(false);
             gameModeListView.setVisible(false);
             createButton.setVisible(false);
             //label waiting for other players to join
             waitingLabel.setVisible(true);
 
-            getStartingAck();
+            new Thread(this::getStartingAck).start();
 
         }
 
     }
 
+    /**
+     * choose the joinGame option
+     * @param action
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public void joinGame(ActionEvent action) throws IOException, ClassNotFoundException {
         ObjectOutputStream oos = Eriantys.getCurrentApplication().getOos();
         ObjectInputStream ois = Eriantys.getCurrentApplication().getOis();
@@ -114,28 +126,64 @@ public class MenuSceneController {
         }
     }
 
+    /**
+     * join the selected game
+     * @param actionEvent
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     public void join(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
         ObjectOutputStream oos = Eriantys.getCurrentApplication().getOos();
         Map<String, GameMode> gameChoice = openGamesListView.getSelectionModel().getSelectedItem();
-        String gameName = gameChoice.keySet().toString();
+        String gameName = (String)gameChoice.keySet().toArray()[0];
         GameMode gameMode = gameChoice.get(gameName);
         Eriantys.getCurrentApplication().setGameMode(gameMode);
-        System.out.println(gameName);
-        oos.writeObject(gameChoice);
+        oos.writeObject(gameName);
         oos.flush();
 
         openGamesListView.setVisible(false);
         openGamesLabel.setVisible(false);
         joinButton.setVisible(false);
         waitingLabel.setVisible(true);
+        new Thread(this::getStartingAck).start();
+    }
 
-        getStartingAck();
+    /**
+     * select magician and nickname
+     */
+    public void select (ActionEvent actionEvent) throws IOException {
+        ObjectOutputStream oos = Eriantys.getCurrentApplication().getOos();
+        //sending magician and name
+        oos.writeObject(magicianListView.getSelectionModel().getSelectedItem());
+        oos.flush();
+        oos.writeObject(nameLabel.getText());
+
+        Eriantys.getCurrentApplication().switchToCardsScene();
 
     }
 
 
-    private boolean getStartingAck() throws IOException, ClassNotFoundException {
-        ObjectInputStream ois = Eriantys.getCurrentApplication().getOis();
-        return ois.readBoolean();
+
+
+
+    private void getStartingAck(){
+        try {
+            ObjectInputStream ois = Eriantys.getCurrentApplication().getOis();
+            //getting starting ack
+            ois.readBoolean();
+            List<Magician> availableMagicians = (List<Magician>) ois.readObject();
+            Platform.runLater(()-> {
+                waitingLabel.setVisible(false);
+                magicianListView.getItems().addAll(availableMagicians);
+                nameLabel.setVisible(true);
+                magicianLabel.setVisible(true);
+                selectButton.setVisible(true);
+                magicianListView.setVisible(true);
+                nameTextField.setVisible(true);
+            });
+        }catch(IOException | ClassNotFoundException e){
+
+        }
     }
 }
+

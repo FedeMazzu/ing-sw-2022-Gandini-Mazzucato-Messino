@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.CardsSceneController">
+   <children>
+      <ImageView fx:id="im1" fitHeight="257.0" fitWidth="200.0" layoutX="50.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/cards/card1.png" />
+         </image></ImageView>
+      <ImageView fx:id="im2" fitHeight="257.0" fitWidth="200.0" layoutX="250.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/cards/card2.png" />
+         </image></ImageView>
+      <ImageView fx:id="im3" fitHeight="257.0" fitWidth="200.0" layoutX="450.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/cards/card3.png" />
+         </image></ImageView>
+      <ImageView fx:id="im4" fitHeight="257.0" fitWidth="200.0" layoutX="650.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/cards/card4.png" />
+         </image></ImageView>
+      <ImageView fx:id="im5" fitHeight="257.0" fitWidth="200.0" layoutX="850.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/cards/card5.png" />
+         </image></ImageView>
+      <ImageView fx:id="im6" fitHeight="257.0" fitWidth="200.0" layoutX="50.0" layoutY="320.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/cards/card6.png" />
+         </image></ImageView>
+      <ImageView fx:id="im7" fitHeight="257.0" fitWidth="200.0" layoutX="250.0" layoutY="320.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/cards/card7.png" />
+         </image></ImageView>
+      <ImageView fx:id="im8" fitHeight="257.0" fitWidth="200.0" layoutX="450.0" layoutY="320.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/cards/card8.png" />
+         </image></ImageView>
+      <ImageView fx:id="im9" fitHeight="257.0" fitWidth="200.0" layoutX="650.0" layoutY="320.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/cards/card9.png" />
+         </image></ImageView>
+      <ImageView fx:id="im10" fitHeight="257.0" fitWidth="200.0" layoutX="850.0" layoutY="320.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/cards/card10.png" />
+         </image></ImageView>
+   </children>
+</AnchorPane>
