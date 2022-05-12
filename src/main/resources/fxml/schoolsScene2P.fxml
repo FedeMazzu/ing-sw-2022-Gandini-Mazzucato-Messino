@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.SchoolsScene2pController">
+   <children>
+      <ImageView fitHeight="310.0" fitWidth="720.0" layoutX="30.0" layoutY="30.0" pickOnBounds="true" visible="false">
+         <image>
+            <Image url="@../images/School.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="875.0" layoutY="53.0" text="Nome">
+         <font>
+            <Font name="Verdana" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="876.0" layoutY="112.0" text="Mago">
+         <font>
+            <Font name="Verdana" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="882.0" layoutY="191.0" text="Soldi">
+         <font>
+            <Font name="Verdana" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="877.0" layoutY="396.0" text="Nome">
+         <font>
+            <Font name="Verdana" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="878.0" layoutY="455.0" text="Mago">
+         <font>
+            <Font name="Verdana" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="884.0" layoutY="534.0" text="Soldi">
+         <font>
+            <Font name="Verdana" size="30.0" />
+         </font>
+      </Label>
+      <Label fx:id="eg1" layoutX="141.0" layoutY="85.0" text="Label" />
+      <ImageView fitHeight="54.0" fitWidth="45.0" layoutX="50.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Coin.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="er1" layoutX="139.0" layoutY="135.0" text="Label" />
+      <ImageView fitHeight="54.0" fitWidth="45.0" layoutX="50.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Coin.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="ey1" layoutX="140.0" layoutY="176.0" text="Label" />
+      <ImageView fitHeight="54.0" fitWidth="45.0" layoutX="49.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Coin.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="ep1" layoutX="147.0" layoutY="222.0" text="Label" />
+      <ImageView fitHeight="54.0" fitWidth="45.0" layoutX="56.0" layoutY="209.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Coin.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="eb1" layoutX="148.0" layoutY="275.0" text="Label" />
+      <ImageView fitHeight="54.0" fitWidth="45.0" layoutX="57.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Coin.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="hg1" layoutX="314.0" layoutY="74.0" text="Label" />
+      <ImageView fitHeight="54.0" fitWidth="45.0" layoutX="223.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Coin.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="hr1" layoutX="336.0" layoutY="126.0" text="Label" />
+      <ImageView fitHeight="54.0" fitWidth="45.0" layoutX="245.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Coin.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="hy1" layoutX="340.0" layoutY="175.0" text="Label" />
+      <ImageView fitHeight="54.0" fitWidth="45.0" layoutX="249.0" layoutY="162.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Coin.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="hp1" layoutX="343.0" layoutY="223.0" text="Label" />
+      <ImageView fitHeight="54.0" fitWidth="45.0" layoutX="252.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Coin.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="hb1" layoutX="346.0" layoutY="274.0" text="Label" />
+      <ImageView fitHeight="54.0" fitWidth="45.0" layoutX="255.0" layoutY="261.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Coin.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="hp2" fitHeight="310.0" fitWidth="720.0" layoutX="47.0" layoutY="370.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/School.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="eg2" layoutX="158.0" layoutY="425.0" text="Label" />
+      <ImageView fitHeight="54.0" fitWidth="45.0" layoutX="67.0" layoutY="412.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Coin.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="er2" layoutX="156.0" layoutY="475.0" text="Label" />
+      <ImageView fitHeight="54.0" fitWidth="45.0" layoutX="67.0" layoutY="460.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Coin.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="ey2" layoutX="157.0" layoutY="516.0" text="Label" />
+      <ImageView fitHeight="54.0" fitWidth="45.0" layoutX="66.0" layoutY="503.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Coin.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="ep2" layoutX="164.0" layoutY="562.0" text="Label" />
+      <ImageView fitHeight="54.0" fitWidth="45.0" layoutX="73.0" layoutY="549.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Coin.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="eb2" layoutX="165.0" layoutY="615.0" text="Label" />
+      <ImageView fitHeight="54.0" fitWidth="45.0" layoutX="74.0" layoutY="602.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Coin.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="hg2" layoutX="331.0" layoutY="414.0" text="Label" />
+      <ImageView fitHeight="54.0" fitWidth="45.0" layoutX="240.0" layoutY="401.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Coin.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="hr2" layoutX="353.0" layoutY="466.0" text="Label" />
+      <ImageView fitHeight="54.0" fitWidth="45.0" layoutX="262.0" layoutY="453.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Coin.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="hy2" layoutX="357.0" layoutY="515.0" text="Label" />
+      <ImageView fitHeight="54.0" fitWidth="45.0" layoutX="266.0" layoutY="502.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Coin.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="hp2" layoutX="360.0" layoutY="563.0" text="Label" />
+      <ImageView fitHeight="54.0" fitWidth="45.0" layoutX="269.0" layoutY="550.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Coin.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="hb2" layoutX="363.0" layoutY="614.0" text="Label" />
+      <ImageView fitHeight="54.0" fitWidth="45.0" layoutX="272.0" layoutY="601.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Coin.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="pg1" fitHeight="54.0" fitWidth="45.0" layoutX="382.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Coin.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="pr1" fitHeight="54.0" fitWidth="45.0" layoutX="382.0" layoutY="105.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Coin.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="py1" fitHeight="54.0" fitWidth="45.0" layoutX="381.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Coin.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="pp1" fitHeight="54.0" fitWidth="45.0" layoutX="388.0" layoutY="194.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Coin.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="pb1" fitHeight="54.0" fitWidth="45.0" layoutX="389.0" layoutY="247.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Coin.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="pg2" fitHeight="54.0" fitWidth="45.0" layoutX="406.0" layoutY="384.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Coin.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="pr2" fitHeight="54.0" fitWidth="45.0" layoutX="406.0" layoutY="432.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Coin.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="py2" fitHeight="54.0" fitWidth="45.0" layoutX="405.0" layoutY="475.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Coin.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="pp2" fitHeight="54.0" fitWidth="45.0" layoutX="412.0" layoutY="521.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Coin.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="pb2" fitHeight="54.0" fitWidth="45.0" layoutX="413.0" layoutY="574.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Coin.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
