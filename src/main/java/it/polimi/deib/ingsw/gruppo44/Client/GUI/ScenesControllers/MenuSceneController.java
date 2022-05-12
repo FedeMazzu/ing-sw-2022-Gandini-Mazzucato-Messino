@@ -152,17 +152,36 @@ public class MenuSceneController {
     public void select (ActionEvent actionEvent) throws IOException, ClassNotFoundException {
         ObjectOutputStream oos = Eriantys.getCurrentApplication().getOos();
         ObjectInputStream ois = Eriantys.getCurrentApplication().getOis();
+
         //sending magician and name
         Magician magicianChoice = magicianListView.getSelectionModel().getSelectedItem();
-        Eriantys.getCurrentApplication().setGameData(new GameData(magicianChoice));
-        oos.writeObject(magicianChoice);
-        oos.flush();
-        oos.writeObject(nameLabel.getText());
-        oos.flush();
+        if(magicianChoice == null || nameLabel.getText().length() == 0){
+            errorLabel.setText("Invalid input");
+            errorLabel.setVisible(true);
+        }
+        else{
+            errorLabel.setVisible(false);
+            Eriantys.getCurrentApplication().setGameData(new GameData(magicianChoice));
+            oos.writeObject(magicianChoice);
+            oos.flush();
+            oos.writeObject(nameLabel.getText());
+            oos.flush();
 
-        //receiving the data of the initialized game
-        Eriantys.getCurrentApplication().getGameData().setData((Data) ois.readObject());
-        Eriantys.getCurrentApplication().switchToCardsScene();
+            //set components invisible while we wait for others to join
+            nameLabel.setVisible(false);
+            nameTextField.setVisible(false);
+            magicianListView.setVisible(false);
+            magicianLabel.setVisible(false);
+            selectButton.setVisible(false);
+
+            Eriantys.getCurrentApplication().switchToCardsScene();
+            waitingLabel.setText("Waiting for your turn of choosing a card");
+            waitingLabel.setVisible(true);
+            //receiving the data of the initialized game
+
+            Eriantys.getCurrentApplication().getGameData().setData((Data) ois.readObject());
+            new Thread(new WaitCards()).start();
+        }
 
     }
 

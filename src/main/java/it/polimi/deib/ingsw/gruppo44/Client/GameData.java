@@ -1,5 +1,6 @@
 package it.polimi.deib.ingsw.gruppo44.Client;
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.CardsSceneController;
+import it.polimi.deib.ingsw.gruppo44.Server.Model.Color;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Magician;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.CloudsData;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.Data;
@@ -42,6 +43,12 @@ public class GameData {
             clientMoney = schoolData.getPlayerMoney();
             setAvailableCards(schoolData.getAvailableCards());
         }
+        Platform.runLater(()->{
+
+
+
+
+        });
     }
 
     public void setClientMoney(int clientMoney) {
@@ -110,6 +117,7 @@ public class GameData {
             ImageView[] images = csc.getImages();
             for(int i=1; i<=10; i++){
                 if(!availableCards.contains(i)) images[i-1].setVisible(false);
+                else images[i-1].setOpacity(1.0);
             }
         });
     }
@@ -120,7 +128,7 @@ public class GameData {
         characters = data.getBoardData().getCharacters();
         motherNaturePosition = data.getBoardData().getMotherNaturePosition();
         for(SchoolData sd: data.getSchoolDataList()){
-            schoolDataMap.put(sd.getMagician(),sd);
+            putSchoolData(sd.getMagician(),sd);
             if(sd.getMagician().equals(clientMagician)){
                 clientMoney = sd.getPlayerMoney();
                 setAvailableCards(sd.getAvailableCards());
