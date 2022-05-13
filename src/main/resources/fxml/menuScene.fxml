@@ -82,7 +82,7 @@
          </font>
       </Label>
       <ListView fx:id="magicianListView" layoutX="89.0" layoutY="366.0" prefHeight="200.0" prefWidth="200.0" visible="false" />
-      <Button fx:id="selectButton" layoutX="133.0" layoutY="590.0" mnemonicParsing="false" onMouseClicked="#select" text="Select" visible="false">
+      <Button fx:id="selectButton" layoutX="133.0" layoutY="590.0" mnemonicParsing="false" onAction="#select" text="Select" visible="false">
          <font>
             <Font name="Telugu MN" size="28.0" />
          </font>

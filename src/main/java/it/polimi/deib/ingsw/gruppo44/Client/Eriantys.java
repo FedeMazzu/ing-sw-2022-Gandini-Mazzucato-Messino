@@ -50,6 +50,8 @@ public class Eriantys extends Application {
 
         Parent schools2P = FXMLLoader.load(getClass().getResource("/fxml/schoolsScene2P.fxml"));
         schoolScene2P = new Scene(schools2P);
+        //need to be called after creating the scene
+        schoolsScene2pController.buildDataStructures();
 
         //add here the loading of the other game scenes
     }
@@ -67,18 +69,10 @@ public class Eriantys extends Application {
     }
 
     public void switchToSchools2PScene() throws IOException {
-        //debug
-        Parent schools2P = FXMLLoader.load(getClass().getResource("/fxml/schoolsScene2P.fxml"));
-        schoolScene2P = new Scene(schools2P);
-
-        stage.setScene(schoolScene2P);
-        stage.show();
-        //fine debug
-
-        /*Platform.runLater(()->{
+        Platform.runLater(()->{
             stage.setScene(schoolScene2P);
             stage.show();
-        });*/
+        });
     }
 
 

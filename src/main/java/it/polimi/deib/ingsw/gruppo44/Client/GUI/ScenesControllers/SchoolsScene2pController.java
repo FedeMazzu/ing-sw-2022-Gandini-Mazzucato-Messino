@@ -29,36 +29,36 @@ public class SchoolsScene2pController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        Eriantys.getCurrentApplication().setSchoolsScene2pController(this);
 
+    }
+
+    public void buildDataStructures(){
         Scene currScene = pane.getScene();
 
 
-        Eriantys.getCurrentApplication().setSchoolsScene2pController(this);
 
         Map<Color,Label> hallStudents, entranceStudents;
         Map<Color,ImageView> prof;
 
-        hallStudents = new HashMap<>();
-        entranceStudents = new HashMap<>();
-        prof = new HashMap<>();
-
-
         for(Magician magician:Eriantys.getCurrentApplication().getMagicianId().keySet()){
             int mageId = Eriantys.getCurrentApplication().getMagicianId().get(magician);
+            hallStudents = new HashMap<>();
+            entranceStudents = new HashMap<>();
+            prof = new HashMap<>();
 
             for(Color color:Color.values()){
                 //hall Students
-                hallStudents.put(color,(Label)currScene.lookup("h"+color.getId()+mageId));
+                hallStudents.put(color,(Label)currScene.lookup("#h"+color.getId()+mageId));
                 //entrance Students
-                entranceStudents.put(color,(Label)currScene.lookup(("e"+color.getId()+mageId)));
+                entranceStudents.put(color,(Label)currScene.lookup(("#e"+color.getId()+mageId)));
                 //professors
-                prof.put(color,(ImageView)currScene.lookup("p"+color.getId()+mageId));
+                prof.put(color,(ImageView)currScene.lookup("#p"+color.getId()+mageId));
             }
 
             schoolInfo.put(magician,new SchoolGuiLogic(hallStudents,entranceStudents,prof));
 
         }
-
     }
 
     public Map<Magician, SchoolGuiLogic> getSchoolInfo() {

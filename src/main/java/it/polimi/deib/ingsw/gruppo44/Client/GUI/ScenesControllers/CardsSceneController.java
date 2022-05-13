@@ -1,8 +1,10 @@
 package it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers;
 
 import it.polimi.deib.ingsw.gruppo44.Client.Eriantys;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
@@ -17,6 +19,9 @@ import java.util.ResourceBundle;
 public class CardsSceneController implements Initializable {
     @FXML
     private ImageView im1,im2,im3,im4,im5,im6,im7,im8,im9,im10;
+    @FXML
+    private Button schoolsButton;
+
     private ImageView[]images;
     private ObjectOutputStream oos;
 
@@ -37,7 +42,6 @@ public class CardsSceneController implements Initializable {
             if(i==1) im1.setOpacity(0.98);
             else images[i-1].setOpacity(0.25);
         }
-        Eriantys.getCurrentApplication().switchToSchools2PScene();
     }
 
     @FXML
@@ -49,7 +53,6 @@ public class CardsSceneController implements Initializable {
             if(i==2) im2.setOpacity(0.98);
             else images[i-1].setOpacity(0.25);
         }
-        Eriantys.getCurrentApplication().switchToSchools2PScene();
     }
 
     @FXML
@@ -142,5 +145,11 @@ public class CardsSceneController implements Initializable {
 
 
 
+
+
     public ImageView[] getImages() {return images;}
+
+    public void switchToSchools(ActionEvent actionEvent) throws IOException {
+        Eriantys.getCurrentApplication().switchToSchools2PScene();
+    }
 }

@@ -48,7 +48,6 @@ public class GameData {
         Platform.runLater(()->{
 
             SchoolGuiLogic schoolGuiLogic = Eriantys.getCurrentApplication().getSchoolsScene2pController().getSchoolInfo().get(magician);
-
             //hallStudents update
             Map<Color, Label> hallStudents = schoolGuiLogic.getHallStudents();
             for(Color color:Color.values()){

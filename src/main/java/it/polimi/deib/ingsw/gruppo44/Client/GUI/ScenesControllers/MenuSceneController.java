@@ -153,15 +153,14 @@ public class MenuSceneController {
     /**
      * select magician and nickname
      */
-    public void select (MouseEvent mouseEvent) throws IOException, ClassNotFoundException {
+    public void select (ActionEvent actionEvent) throws IOException, ClassNotFoundException {
         ObjectOutputStream oos = Eriantys.getCurrentApplication().getOos();
         ObjectInputStream ois = Eriantys.getCurrentApplication().getOis();
 
         //sending magician and name
         Magician magicianChoice = magicianListView.getSelectionModel().getSelectedItem();
-        String name = nameLabel.getText();
-        if(magicianChoice == null || name.length() == 0){
-            errorLabel.setText("Invalid input");
+        String name = nameTextField.getText();
+        if(name.length() == 0 || magicianChoice == null){
             errorLabel.setVisible(true);
         }
         else{
@@ -186,10 +185,9 @@ public class MenuSceneController {
             //need to be in the event thread
             setMagicianId(data);
             //need to be after setMagicianId
-            Eriantys.getCurrentApplication().switchToSchools2PScene();
-            //Eriantys.getCurrentApplication().loadGameScenes();
+            Eriantys.getCurrentApplication().loadGameScenes();
             Eriantys.getCurrentApplication().getGameData().setData(data);
-            //new Thread(new WaitCards()).start();
+            new Thread(new WaitCards()).start();
 
         }
 
