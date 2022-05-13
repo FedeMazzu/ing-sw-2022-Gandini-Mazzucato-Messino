@@ -181,6 +181,7 @@ public class MenuSceneController {
 
             Eriantys.getCurrentApplication().getGameData().setData((Data) ois.readObject());
             new Thread(new WaitCards()).start();
+
         }
 
     }

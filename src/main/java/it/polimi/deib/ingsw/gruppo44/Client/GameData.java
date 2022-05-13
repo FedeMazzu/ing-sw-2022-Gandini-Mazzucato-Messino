@@ -122,18 +122,28 @@ public class GameData {
         });
     }
 
+    /**
+     *note that this method should(but it's not mandatory) be called just one time after the first setup
+     * @param data
+     */
     public void setData(Data data) {
+        Map<Magician, Integer> magicianId = new HashMap<>();
         islandsData =data.getIslandsData();
         cloudsData = data.getCloudsData();
         characters = data.getBoardData().getCharacters();
         motherNaturePosition = data.getBoardData().getMotherNaturePosition();
+        int i=1;
         for(SchoolData sd: data.getSchoolDataList()){
             putSchoolData(sd.getMagician(),sd);
+            magicianId.put(sd.getMagician(),i);
             if(sd.getMagician().equals(clientMagician)){
                 clientMoney = sd.getPlayerMoney();
                 setAvailableCards(sd.getAvailableCards());
             }
+            i++;
         }
+        //setting the magician ID to bind gui and logic
+        Eriantys.getCurrentApplication().setMagicianId(magicianId);
     }
 }
 

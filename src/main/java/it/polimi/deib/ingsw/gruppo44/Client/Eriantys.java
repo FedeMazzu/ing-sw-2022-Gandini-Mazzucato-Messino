@@ -2,6 +2,7 @@ package it.polimi.deib.ingsw.gruppo44.Client;
 
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.CardsSceneController;
 import it.polimi.deib.ingsw.gruppo44.Common.GameMode;
+import it.polimi.deib.ingsw.gruppo44.Server.Model.Magician;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,6 +12,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Map;
 
 public class Eriantys extends Application {
     private static Eriantys currentApplication;
@@ -20,6 +22,7 @@ public class Eriantys extends Application {
     private GameData gameData;
     private Stage stage;
     private GameMode gameMode;
+    private Map<Magician, Integer> magicianId;
 
 
     @Override
@@ -85,4 +88,13 @@ public class Eriantys extends Application {
     public CardsSceneController getCardsSceneController() {return cardsSceneController;}
 
     public void setCardsSceneController(CardsSceneController cardsSceneController) {this.cardsSceneController = cardsSceneController;}
+
+    public Map<Magician, Integer> getMagicianId() {
+        return magicianId;
+    }
+
+    public void setMagicianId(Map<Magician, Integer> magicianId) {
+        this.magicianId = magicianId;
+    }
 }
+
