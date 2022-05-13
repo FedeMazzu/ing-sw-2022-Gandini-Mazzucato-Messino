@@ -22,6 +22,7 @@ public class WaitCards implements Runnable{
             Eriantys.getCurrentApplication().getGameData().setCloudsData((CloudsData) ois.readObject());
 
             Map<Magician,Integer> playedCards =(Map<Magician, Integer>) ois.readObject();
+            System.out.println(playedCards);
             List<Integer> availableCards = Eriantys.getCurrentApplication().getGameData().getAvailableCards();
             Platform.runLater(()->{
                 ImageView [] images = Eriantys.getCurrentApplication().getCardsSceneController().getImages();
@@ -30,6 +31,8 @@ public class WaitCards implements Runnable{
                     if(playedCards.values().contains(i)) images[i-1].setOpacity(0.25);
                 }
             });
+
+            Eriantys.getCurrentApplication().switchToCardsScene();
 
 
         } catch (IOException | ClassNotFoundException e) {

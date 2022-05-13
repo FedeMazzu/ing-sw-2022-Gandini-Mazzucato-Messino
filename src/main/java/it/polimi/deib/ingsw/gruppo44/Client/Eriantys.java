@@ -4,6 +4,7 @@ import it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.CardsSceneCont
 import it.polimi.deib.ingsw.gruppo44.Common.GameMode;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Magician;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -23,6 +24,7 @@ public class Eriantys extends Application {
     private Stage stage;
     private GameMode gameMode;
     private Map<Magician, Integer> magicianId;
+    private Scene cardsScene;
 
 
     @Override
@@ -38,6 +40,12 @@ public class Eriantys extends Application {
         stage.show();
     }
 
+
+    public void loadGameScenes() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/cardsScene.fxml"));
+        cardsScene = new Scene(root);
+        //add here the loading of the other game scenes
+    }
     public void switchToMenuScene() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/menuScene.fxml"));
         stage.setScene(new Scene(root));
@@ -45,9 +53,10 @@ public class Eriantys extends Application {
     }
 
     public void switchToCardsScene() throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/cardsScene.fxml"));
-        stage.setScene(new Scene(root));
-        stage.show();
+        Platform.runLater(()->{
+            stage.setScene(cardsScene);
+            stage.show();
+        });
     }
 
 

@@ -8,6 +8,7 @@ import it.polimi.deib.ingsw.gruppo44.Common.GameMode;
 import it.polimi.deib.ingsw.gruppo44.Common.Messages.CreateGameMESSAGE;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Magician;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.Data;
+import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.SchoolData;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,9 +17,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -149,13 +153,14 @@ public class MenuSceneController {
     /**
      * select magician and nickname
      */
-    public void select (ActionEvent actionEvent) throws IOException, ClassNotFoundException {
+    public void select (MouseEvent mouseEvent) throws IOException, ClassNotFoundException {
         ObjectOutputStream oos = Eriantys.getCurrentApplication().getOos();
         ObjectInputStream ois = Eriantys.getCurrentApplication().getOis();
 
         //sending magician and name
         Magician magicianChoice = magicianListView.getSelectionModel().getSelectedItem();
-        if(magicianChoice == null || nameLabel.getText().length() == 0){
+        String name = nameLabel.getText();
+        if(magicianChoice == null || name.length() == 0){
             errorLabel.setText("Invalid input");
             errorLabel.setVisible(true);
         }
@@ -164,7 +169,7 @@ public class MenuSceneController {
             Eriantys.getCurrentApplication().setGameData(new GameData(magicianChoice));
             oos.writeObject(magicianChoice);
             oos.flush();
-            oos.writeObject(nameLabel.getText());
+            oos.writeObject(name);
             oos.flush();
 
             //set components invisible while we wait for others to join
@@ -174,20 +179,30 @@ public class MenuSceneController {
             magicianLabel.setVisible(false);
             selectButton.setVisible(false);
 
-            Eriantys.getCurrentApplication().switchToCardsScene();
             waitingLabel.setText("Waiting for your turn of choosing a card");
             waitingLabel.setVisible(true);
             //receiving the data of the initialized game
-
-            Eriantys.getCurrentApplication().getGameData().setData((Data) ois.readObject());
+            Data data = (Data) ois.readObject();
+            //need to be in the event thread
+            setMagicianId(data);
+            //need to be after setMagicianId
+            Eriantys.getCurrentApplication().loadGameScenes();
+            Eriantys.getCurrentApplication().getGameData().setData(data);
             new Thread(new WaitCards()).start();
 
         }
 
     }
 
-
-
+    private void setMagicianId(Data data) {
+        Map<Magician,Integer> magicianId= new HashMap<>();
+        int i=1;
+        for(SchoolData sd: data.getSchoolDataList()){
+            magicianId.put(sd.getMagician(),i);
+            i++;
+        }
+        Eriantys.getCurrentApplication().setMagicianId(magicianId);
+    }
 
 
     private void getStartingAck(){

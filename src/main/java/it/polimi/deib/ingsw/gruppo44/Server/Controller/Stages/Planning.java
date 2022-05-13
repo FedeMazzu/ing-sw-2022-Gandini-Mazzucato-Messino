@@ -95,9 +95,9 @@ public class Planning implements Stage, Serializable {
         for(int i=0; i< sendingCards.size() && sendingCards.size()>1;i++){
             if(cardsPlayedFromOtherPlayers.contains(sendingCards.get(i))) sendingCards.remove(i--);
         }
-        //sending the available cards
-        oos.writeObject("Player "+currPlayer.getMagician()+" choose a card among:\n"+sendingCards);
-        oos.flush();
+        //sending the available cards for std out
+        //oos.writeObject("Player "+currPlayer.getMagician()+" choose a card among:\n"+sendingCards);
+        //oos.flush();
         cardValue = ois.readInt();
         cardsPlayedFromOtherPlayers.add(cardValue);
         currPlayer.playCard(cardValue);
