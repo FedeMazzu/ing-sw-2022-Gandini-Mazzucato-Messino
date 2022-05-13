@@ -1,6 +1,7 @@
 package it.polimi.deib.ingsw.gruppo44.Client;
 
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.CardsSceneController;
+import it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.SchoolsScene2pController;
 import it.polimi.deib.ingsw.gruppo44.Common.GameMode;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Magician;
 import javafx.application.Application;
@@ -20,11 +21,13 @@ public class Eriantys extends Application {
     private ObjectInputStream ois;
     private ObjectOutputStream oos;
     private CardsSceneController cardsSceneController;
+    private SchoolsScene2pController schoolsScene2pController;
     private GameData gameData;
     private Stage stage;
     private GameMode gameMode;
     private Map<Magician, Integer> magicianId;
     private Scene cardsScene;
+    private Scene schoolScene2P;
 
 
     @Override
@@ -44,6 +47,10 @@ public class Eriantys extends Application {
     public void loadGameScenes() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/cardsScene.fxml"));
         cardsScene = new Scene(root);
+
+        Parent schools2P = FXMLLoader.load(getClass().getResource("/fxml/schoolsScene2P.fxml"));
+        schoolScene2P = new Scene(schools2P);
+
         //add here the loading of the other game scenes
     }
     public void switchToMenuScene() throws IOException {
@@ -52,11 +59,26 @@ public class Eriantys extends Application {
         stage.show();
     }
 
-    public void switchToCardsScene() throws IOException{
+    public void switchToCardsScene(){
         Platform.runLater(()->{
             stage.setScene(cardsScene);
             stage.show();
         });
+    }
+
+    public void switchToSchools2PScene() throws IOException {
+        //debug
+        Parent schools2P = FXMLLoader.load(getClass().getResource("/fxml/schoolsScene2P.fxml"));
+        schoolScene2P = new Scene(schools2P);
+
+        stage.setScene(schoolScene2P);
+        stage.show();
+        //fine debug
+
+        /*Platform.runLater(()->{
+            stage.setScene(schoolScene2P);
+            stage.show();
+        });*/
     }
 
 
@@ -68,6 +90,10 @@ public class Eriantys extends Application {
 
     public ObjectOutputStream getOos() {
         return oos;
+    }
+
+    public Scene getSchoolScene2P() {
+        return schoolScene2P;
     }
 
     public void setOis(ObjectInputStream ois) {
@@ -104,6 +130,14 @@ public class Eriantys extends Application {
 
     public void setMagicianId(Map<Magician, Integer> magicianId) {
         this.magicianId = magicianId;
+    }
+
+    public SchoolsScene2pController getSchoolsScene2pController() {
+        return schoolsScene2pController;
+    }
+
+    public void setSchoolsScene2pController(SchoolsScene2pController schoolsScene2pController) {
+        this.schoolsScene2pController = schoolsScene2pController;
     }
 }
 

@@ -7,5 +7,15 @@ import java.io.Serializable;
  * @author filippogandini
  */
 public enum Color implements Serializable {
-    GREEN,RED,YELLOW,PINK,BLUE;
+    GREEN('g'),RED('r'),YELLOW('y'),PINK('p'),BLUE('b');
+
+    private char id;
+
+    Color(char id){
+        this.id = id;
+    }
+
+    public char getId() {
+        return id;
+    }
 }

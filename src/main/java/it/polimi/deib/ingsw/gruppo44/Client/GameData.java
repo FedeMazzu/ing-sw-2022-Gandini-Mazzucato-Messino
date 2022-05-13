@@ -1,5 +1,6 @@
 package it.polimi.deib.ingsw.gruppo44.Client;
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.CardsSceneController;
+import it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.SchoolGuiLogic;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Color;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Magician;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.CloudsData;
@@ -7,6 +8,7 @@ import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.Data;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.IslandsData;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.SchoolData;
 import javafx.application.Platform;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
 import java.util.HashMap;
@@ -45,8 +47,25 @@ public class GameData {
         }
         Platform.runLater(()->{
 
+            SchoolGuiLogic schoolGuiLogic = Eriantys.getCurrentApplication().getSchoolsScene2pController().getSchoolInfo().get(magician);
 
+            //hallStudents update
+            Map<Color, Label> hallStudents = schoolGuiLogic.getHallStudents();
+            for(Color color:Color.values()){
+                hallStudents.get(color).setText("x"+schoolData.getHallStudentsNum(color));
+            }
 
+            //entranceStudents update
+            Map<Color, Label> entranceStudents = schoolGuiLogic.getEntranceStudents();
+            for(Color color:Color.values()){
+                entranceStudents.get(color).setText("x"+schoolData.getEntranceStudentsNum(color));
+            }
+
+            //prof update
+            Map<Color,ImageView> prof = schoolGuiLogic.getProf();
+            for(Color color:Color.values()){
+                prof.get(color).setVisible(schoolData.hasProfessor(color));
+            }
 
         });
     }
@@ -128,6 +147,7 @@ public class GameData {
         characters = data.getBoardData().getCharacters();
         motherNaturePosition = data.getBoardData().getMotherNaturePosition();
         for(SchoolData sd: data.getSchoolDataList()){
+            putSchoolData(sd.getMagician(),sd);
             if(sd.getMagician().equals(clientMagician)){
                 clientMoney = sd.getPlayerMoney();
                 setAvailableCards(sd.getAvailableCards());

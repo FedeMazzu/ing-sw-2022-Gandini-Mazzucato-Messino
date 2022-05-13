@@ -186,9 +186,10 @@ public class MenuSceneController {
             //need to be in the event thread
             setMagicianId(data);
             //need to be after setMagicianId
-            Eriantys.getCurrentApplication().loadGameScenes();
+            Eriantys.getCurrentApplication().switchToSchools2PScene();
+            //Eriantys.getCurrentApplication().loadGameScenes();
             Eriantys.getCurrentApplication().getGameData().setData(data);
-            new Thread(new WaitCards()).start();
+            //new Thread(new WaitCards()).start();
 
         }
 

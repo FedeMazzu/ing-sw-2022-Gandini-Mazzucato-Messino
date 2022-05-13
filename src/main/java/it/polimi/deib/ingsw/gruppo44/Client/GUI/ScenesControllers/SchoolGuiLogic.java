@@ -8,6 +8,11 @@ import java.util.Map;
 
 public class SchoolGuiLogic {
 
+    public SchoolGuiLogic(Map<Color, Label> hallStudents, Map<Color, Label> entranceStudents, Map<Color, ImageView> prof) {
+        this.hallStudents = hallStudents;
+        this.entranceStudents = entranceStudents;
+        this.prof = prof;
+    }
 
     private Map<Color, Label> hallStudents, entranceStudents;
     private Map<Color, ImageView> prof;
@@ -24,15 +29,4 @@ public class SchoolGuiLogic {
         return prof;
     }
 
-    public void setHallStudents(Map<Color, Label> hallStudents) {
-        this.hallStudents = hallStudents;
-    }
-
-    public void setEntranceStudents(Map<Color, Label> entranceStudents) {
-        this.entranceStudents = entranceStudents;
-    }
-
-    public void setProf(Map<Color, ImageView> prof) {
-        this.prof = prof;
-    }
 }

@@ -6,10 +6,16 @@ import it.polimi.deib.ingsw.gruppo44.Server.Model.Magician;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Team;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.SchoolData;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.temporal.TemporalQuery;
 import java.util.HashMap;
@@ -24,72 +30,39 @@ public class SchoolsScene2pController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        Map<Color,Label> hallStudents1, entranceStudents1, hallStudents2, entranceStudents2;
-        Map<Color,ImageView> prof1, prof2;
-
-        hallStudents1 = new HashMap<>();
-        entranceStudents1 = new HashMap<>();
-        hallStudents2 = new HashMap<>();
-        entranceStudents2 = new HashMap<>();
-        prof1 = new HashMap<>();
-        prof2 = new HashMap<>();
+        Scene currScene = pane.getScene();
 
 
-        //populate entranceStudents1
-        entranceStudents1.put(Color.GREEN,eg1);
-        entranceStudents1.put(Color.RED,er1);
-        entranceStudents1.put(Color.YELLOW,ey1);
-        entranceStudents1.put(Color.PINK,ep1);
-        entranceStudents1.put(Color.BLUE,eb1);
+        Eriantys.getCurrentApplication().setSchoolsScene2pController(this);
 
-        //populate entranceStudents2
-        entranceStudents2.put(Color.GREEN,eg2);
-        entranceStudents2.put(Color.RED,er2);
-        entranceStudents2.put(Color.YELLOW,ey2);
-        entranceStudents2.put(Color.PINK,ep2);
-        entranceStudents2.put(Color.BLUE,eb2);
+        Map<Color,Label> hallStudents, entranceStudents;
+        Map<Color,ImageView> prof;
 
-        //populate hallStudents1
-        hallStudents1.put(Color.GREEN,hg1);
-        hallStudents1.put(Color.RED,hr1);
-        hallStudents1.put(Color.YELLOW,hy1);
-        hallStudents1.put(Color.PINK,hp1);
-        hallStudents1.put(Color.BLUE,hb1);
-
-        //populate hallStudents2
-        hallStudents2.put(Color.GREEN,hg2);
-        hallStudents2.put(Color.RED,hr2);
-        hallStudents2.put(Color.YELLOW,hy2);
-        hallStudents2.put(Color.PINK,hp2);
-        hallStudents2.put(Color.BLUE,hb2);
-
-        //populate prof1
-        prof1.put(Color.GREEN,pg1);
-        prof1.put(Color.RED,pr1);
-        prof1.put(Color.YELLOW,py1);
-        prof1.put(Color.PINK,pp1);
-        prof1.put(Color.BLUE,pb1);
-
-        //populate prof1
-        prof2.put(Color.GREEN,pg2);
-        prof2.put(Color.RED,pr2);
-        prof2.put(Color.YELLOW,py2);
-        prof2.put(Color.PINK,pp2);
-        prof2.put(Color.BLUE,pb2);
-
-        SchoolGuiLogic schoolGuiLogic1 = new SchoolGuiLogic();
-        SchoolGuiLogic schoolGuiLogic2 = new SchoolGuiLogic();
-
-        schoolGuiLogic1.setEntranceStudents(entranceStudents1);
-        schoolGuiLogic1.setHallStudents(hallStudents1);
-        schoolGuiLogic1.setProf(prof1);
-
-        schoolGuiLogic2.setEntranceStudents(entranceStudents2);
-        schoolGuiLogic2.setHallStudents(hallStudents2);
-        schoolGuiLogic2.setProf(prof2);
+        hallStudents = new HashMap<>();
+        entranceStudents = new HashMap<>();
+        prof = new HashMap<>();
 
 
+        for(Magician magician:Eriantys.getCurrentApplication().getMagicianId().keySet()){
+            int mageId = Eriantys.getCurrentApplication().getMagicianId().get(magician);
 
+            for(Color color:Color.values()){
+                //hall Students
+                hallStudents.put(color,(Label)currScene.lookup("h"+color.getId()+mageId));
+                //entrance Students
+                entranceStudents.put(color,(Label)currScene.lookup(("e"+color.getId()+mageId)));
+                //professors
+                prof.put(color,(ImageView)currScene.lookup("p"+color.getId()+mageId));
+            }
+
+            schoolInfo.put(magician,new SchoolGuiLogic(hallStudents,entranceStudents,prof));
+
+        }
+
+    }
+
+    public Map<Magician, SchoolGuiLogic> getSchoolInfo() {
+        return schoolInfo;
     }
 
 
@@ -182,6 +155,9 @@ public class SchoolsScene2pController implements Initializable {
 
     @FXML
     private ImageView py2;
+
+    @FXML
+    private AnchorPane pane;
 
 
 }

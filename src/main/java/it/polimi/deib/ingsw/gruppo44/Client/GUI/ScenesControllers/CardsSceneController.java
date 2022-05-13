@@ -37,6 +37,7 @@ public class CardsSceneController implements Initializable {
             if(i==1) im1.setOpacity(0.98);
             else images[i-1].setOpacity(0.25);
         }
+        Eriantys.getCurrentApplication().switchToSchools2PScene();
     }
 
     @FXML
@@ -48,6 +49,7 @@ public class CardsSceneController implements Initializable {
             if(i==2) im2.setOpacity(0.98);
             else images[i-1].setOpacity(0.25);
         }
+        Eriantys.getCurrentApplication().switchToSchools2PScene();
     }
 
     @FXML
