@@ -48,23 +48,27 @@ public class GameData {
         Platform.runLater(()->{
 
             SchoolGuiLogic schoolGuiLogic = Eriantys.getCurrentApplication().getSchoolsScene2pController().getSchoolInfo().get(magician);
-            //hallStudents update
             Map<Color, Label> hallStudents = schoolGuiLogic.getHallStudents();
-            for(Color color:Color.values()){
-                hallStudents.get(color).setText("x"+schoolData.getHallStudentsNum(color));
-            }
-
-            //entranceStudents update
             Map<Color, Label> entranceStudents = schoolGuiLogic.getEntranceStudents();
-            for(Color color:Color.values()){
-                entranceStudents.get(color).setText("x"+schoolData.getEntranceStudentsNum(color));
-            }
-
-            //prof update
             Map<Color,ImageView> prof = schoolGuiLogic.getProf();
             for(Color color:Color.values()){
+                //hallStudents update
+                hallStudents.get(color).setText("x"+schoolData.getHallStudentsNum(color));
+                //entranceStudents update
+                entranceStudents.get(color).setText("x"+schoolData.getEntranceStudentsNum(color));
+                //prof update
                 prof.get(color).setVisible(schoolData.hasProfessor(color));
             }
+            //updating money
+            Label money = schoolGuiLogic.getMoney();
+            Integer currMoney = schoolData.getPlayerMoney();
+            money.setText(String.valueOf(currMoney));
+
+            //updating name and magician redundantly
+            Label magicianLabel = schoolGuiLogic.getMagician();
+            Label name = schoolGuiLogic.getName();
+            magicianLabel.setText(String.valueOf(magician));
+            name.setText(schoolData.getPlayerName());
 
         });
     }
