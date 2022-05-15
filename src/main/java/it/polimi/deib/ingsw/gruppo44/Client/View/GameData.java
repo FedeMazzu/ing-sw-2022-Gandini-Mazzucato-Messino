@@ -1,5 +1,6 @@
 package it.polimi.deib.ingsw.gruppo44.Client.View;
 import it.polimi.deib.ingsw.gruppo44.Client.Eriantys;
+import it.polimi.deib.ingsw.gruppo44.Client.GUI.Logic.CloudGuiLogic;
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.Logic.IslandGuiLogic;
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.CardsSceneController;
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.Logic.SchoolGuiLogic;
@@ -103,6 +104,17 @@ public class GameData {
 
     public void setCloudsData(CloudsData cloudsData) {
         this.cloudsData = cloudsData;
+        Platform.runLater(()->{
+            for (int i=0; i< Eriantys.getCurrentApplication().getGameMode().getCloudsNumber();i++){
+                CloudGuiLogic cgl = Eriantys.getCurrentApplication().getIslandsSceneController().getClouds().get(i);
+                //temporary
+                cgl.getCircle().setVisible(false);
+                Map<Color,Label> students= cgl.getStudents();
+                for(Color color: Color.values()){
+                    students.get(color).setText("x"+cloudsData.getStudentsNum(i,color));
+                }
+            }
+        });
     }
 
 
@@ -166,7 +178,7 @@ public class GameData {
 
     public void setData(Data data) {
         setIslandsData(data.getIslandsData());
-        cloudsData = data.getCloudsData();
+        setCloudsData(data.getCloudsData());
         characters = data.getBoardData().getCharacters();
         motherNaturePosition = data.getBoardData().getMotherNaturePosition();
         for(SchoolData sd: data.getSchoolDataList()){

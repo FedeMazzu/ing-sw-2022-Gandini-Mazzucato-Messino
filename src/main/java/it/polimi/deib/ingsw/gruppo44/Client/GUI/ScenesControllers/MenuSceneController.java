@@ -81,6 +81,7 @@ public class MenuSceneController {
             errorLabel.setVisible(true);
             //label with error
         }else{
+            Eriantys.getCurrentApplication().setGameMode(gameMode);
             errorLabel.setVisible(false);
             CreateGameMESSAGE createGameMESSAGE = new CreateGameMESSAGE(name,gameMode);
             oos.writeObject(createGameMESSAGE);

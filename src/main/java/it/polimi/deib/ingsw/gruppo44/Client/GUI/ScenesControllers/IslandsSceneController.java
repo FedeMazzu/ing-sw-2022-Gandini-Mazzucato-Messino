@@ -2,6 +2,7 @@ package it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers;
 
 
 import it.polimi.deib.ingsw.gruppo44.Client.Eriantys;
+import it.polimi.deib.ingsw.gruppo44.Client.GUI.Logic.CloudGuiLogic;
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.Logic.IslandGuiLogic;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Color;
 import javafx.event.ActionEvent;
@@ -25,6 +26,7 @@ import java.util.ResourceBundle;
 public class IslandsSceneController implements Initializable {
 
     private Map<Integer, IslandGuiLogic> islands;
+    private Map<Integer,CloudGuiLogic> clouds;
 
     @FXML
     private Label b0;
@@ -61,6 +63,12 @@ public class IslandsSceneController implements Initializable {
 
     @FXML
     private Label b9;
+
+    @FXML
+    private Label bcloud0;
+
+    @FXML
+    private Label bcloud1;
 
     @FXML
     private Circle c0;
@@ -102,6 +110,18 @@ public class IslandsSceneController implements Initializable {
     private Button cardsButton;
 
     @FXML
+    private Circle ccloud0;
+
+    @FXML
+    private Circle ccloud1;
+
+    @FXML
+    private ImageView cloud0;
+
+    @FXML
+    private ImageView cloud1;
+
+    @FXML
     private Label g0;
 
     @FXML
@@ -136,6 +156,12 @@ public class IslandsSceneController implements Initializable {
 
     @FXML
     private Label g9;
+
+    @FXML
+    private Label gcloud0;
+
+    @FXML
+    private Label gcloud1;
 
     @FXML
     private ImageView i0;
@@ -282,6 +308,12 @@ public class IslandsSceneController implements Initializable {
     private Label p9;
 
     @FXML
+    private Label pcloud0;
+
+    @FXML
+    private Label pcloud1;
+
+    @FXML
     private Label r0;
 
     @FXML
@@ -316,6 +348,12 @@ public class IslandsSceneController implements Initializable {
 
     @FXML
     private Label r9;
+
+    @FXML
+    private Label rcloud0;
+
+    @FXML
+    private Label rcloud1;
 
     @FXML
     private Button schoolsButton;
@@ -392,6 +430,12 @@ public class IslandsSceneController implements Initializable {
     @FXML
     private Label y9;
 
+    @FXML
+    private Label ycloud0;
+
+    @FXML
+    private Label ycloud1;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -407,7 +451,7 @@ public class IslandsSceneController implements Initializable {
         ImageView tower;
         ImageView motherNature;
         Label numTowers;
-
+        //islands
         for(int islandId = 0; islandId<12; islandId++){
             students = new HashMap<>();
             island = (ImageView)scene.lookup("#i"+islandId);
@@ -420,6 +464,19 @@ public class IslandsSceneController implements Initializable {
             }
             islands.put(islandId,new IslandGuiLogic(students,island,circle,tower,motherNature,numTowers));
         }
+
+        //clouds
+        clouds = new HashMap<>();
+        for(int cloudId=0; cloudId<Eriantys.getCurrentApplication().getGameMode().getCloudsNumber(); cloudId++){
+            students = new HashMap<>();
+            ImageView cloud = (ImageView) scene.lookup("#cloud"+cloudId);
+            Circle circle1 = (Circle) scene.lookup("#ccloud"+cloudId);
+            for(Color color: Color.values()){
+                students.put(color, (Label)scene.lookup("#"+color.getId()+"cloud"+cloudId));
+            }
+            clouds.put(cloudId,new CloudGuiLogic(students,cloud,circle1));
+        }
+
     }
 
     @FXML
@@ -434,5 +491,9 @@ public class IslandsSceneController implements Initializable {
 
     public Map<Integer, IslandGuiLogic> getIslands() {
         return islands;
+    }
+
+    public Map<Integer, CloudGuiLogic> getClouds() {
+        return clouds;
     }
 }
