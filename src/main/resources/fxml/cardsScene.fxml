@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" styleClass="bodybg" stylesheets="@../CSS/cards.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.CardsSceneController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" styleClass="cards" stylesheets="@../CSS/backgrounds.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.CardsSceneController">
    <children>
       <ImageView fx:id="im1" fitHeight="257.0" fitWidth="200.0" layoutX="50.0" layoutY="26.0" onMouseClicked="#ChooseIm1" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -48,9 +48,19 @@
          <image>
             <Image url="@../images/cards/card10.png" />
          </image></ImageView>
-      <Button fx:id="schoolsButton" layoutX="296.0" layoutY="661.0" mnemonicParsing="false" onAction="#switchToSchools" styleClass="buttons" stylesheets="@../CSS/buttons.css" text="Schools">
+      <Button fx:id="schoolsButton" layoutX="445.0" layoutY="660.0" mnemonicParsing="false" onAction="#switchToSchools" styleClass="buttons" stylesheets="@../CSS/buttons.css" text="Schools" visible="false">
          <font>
-            <Font size="30.0" />
+            <Font name="Telugu MN" size="30.0" />
+         </font>
+      </Button>
+      <Button layoutX="320.0" layoutY="660.0" mnemonicParsing="false" styleClass="buttons" stylesheets="@../CSS/buttons.css" text="Cards" underline="true">
+         <font>
+            <Font name="Telugu MN" size="30.0" />
+         </font>
+      </Button>
+      <Button fx:id="islandsButton" layoutX="600.0" layoutY="660.0" mnemonicParsing="false" onAction="#switchToIslands" prefHeight="58.0" prefWidth="154.0" styleClass="buttons" stylesheets="@../CSS/buttons.css" text="Islands" visible="false">
+         <font>
+            <Font name="Telugu MN" size="30.0" />
          </font>
       </Button>
    </children>

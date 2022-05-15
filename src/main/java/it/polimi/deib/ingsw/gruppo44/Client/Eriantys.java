@@ -1,7 +1,9 @@
 package it.polimi.deib.ingsw.gruppo44.Client;
 
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.CardsSceneController;
+import it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.IslandsSceneController;
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.SchoolsScene2pController;
+import it.polimi.deib.ingsw.gruppo44.Client.View.GameData;
 import it.polimi.deib.ingsw.gruppo44.Common.GameMode;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Magician;
 import javafx.application.Application;
@@ -22,12 +24,15 @@ public class Eriantys extends Application {
     private ObjectOutputStream oos;
     private CardsSceneController cardsSceneController;
     private SchoolsScene2pController schoolsScene2pController;
+    private IslandsSceneController islandsSceneController;
     private GameData gameData;
     private Stage stage;
     private GameMode gameMode;
     private Map<Magician, Integer> magicianId;
     private Scene cardsScene;
     private Scene schoolScene2P;
+    private Scene islandsScene;
+
 
 
     @Override
@@ -45,13 +50,20 @@ public class Eriantys extends Application {
 
 
     public void loadGameScenes() throws IOException {
+        //CARDS
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/cardsScene.fxml"));
         cardsScene = new Scene(root);
-
+        //SCHOOLS 2P
         Parent schools2P = FXMLLoader.load(getClass().getResource("/fxml/schoolsScene2P.fxml"));
         schoolScene2P = new Scene(schools2P);
         //need to be called after creating the scene
         schoolsScene2pController.buildDataStructures();
+
+        //ISLANDS
+        Parent islands = FXMLLoader.load(getClass().getResource("/fxml/islands.fxml"));
+        islandsScene = new Scene(islands);
+        //need to be called after creating the scene
+        islandsSceneController.buildDataStructures();
 
         //add here the loading of the other game scenes
     }
@@ -68,7 +80,14 @@ public class Eriantys extends Application {
         });
     }
 
-    public void switchToSchools2PScene() throws IOException {
+    public void switchToIslandsScene(){
+        Platform.runLater(()->{
+            stage.setScene(islandsScene);
+            stage.show();
+        });
+    }
+
+    public void switchToSchools2PScene() {
         Platform.runLater(()->{
             stage.setScene(schoolScene2P);
             stage.show();
@@ -132,6 +151,14 @@ public class Eriantys extends Application {
 
     public void setSchoolsScene2pController(SchoolsScene2pController schoolsScene2pController) {
         this.schoolsScene2pController = schoolsScene2pController;
+    }
+
+    public IslandsSceneController getIslandsSceneController() {
+        return islandsSceneController;
+    }
+
+    public void setIslandsSceneController(IslandsSceneController islandsSceneController) {
+        this.islandsSceneController = islandsSceneController;
     }
 }
 

@@ -1,0 +1,24 @@
+.starting{
+ -fx-background-image: url('/images/starting.jpeg');
+ -fx-background-size: 100% 100%;
+}
+
+.cards{
+ -fx-background-image: url("/images/colors.jpg");
+ -fx-background-size: 100% 100%;
+}
+
+.menu{
+ -fx-background-image: url('/images/menu.jpg');
+ -fx-background-size: 100% 100%;
+}
+
+.schools{
+ -fx-background-image: url('/images/grass.jpg');
+ -fx-background-size: 100% 100%;
+}
+
+.islands{
+ -fx-background-image: url('/images/sea.jpg');
+ -fx-background-size: 100% 100%;
+ }

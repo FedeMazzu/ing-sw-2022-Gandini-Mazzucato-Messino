@@ -1,26 +1,19 @@
 package it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers;
 
 import it.polimi.deib.ingsw.gruppo44.Client.Eriantys;
+import it.polimi.deib.ingsw.gruppo44.Client.GUI.Logic.SchoolGuiLogic;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Color;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Magician;
-import it.polimi.deib.ingsw.gruppo44.Server.Model.Team;
-import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.SchoolData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
-import java.io.IOException;
 import java.net.URL;
-import java.time.temporal.TemporalQuery;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -121,7 +114,7 @@ public class SchoolsScene2pController implements Initializable {
     private AnchorPane pane;
 
 
-    private Map<Magician,SchoolGuiLogic> schoolInfo = new HashMap<>();
+    private Map<Magician, SchoolGuiLogic> schoolInfo = new HashMap<>();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -168,5 +161,9 @@ public class SchoolsScene2pController implements Initializable {
 
     public void switchToCards(ActionEvent actionEvent) {
         Eriantys.getCurrentApplication().switchToCardsScene();
+    }
+
+    public void switchToIslands(ActionEvent actionEvent) {
+        Eriantys.getCurrentApplication().switchToIslandsScene();
     }
 }

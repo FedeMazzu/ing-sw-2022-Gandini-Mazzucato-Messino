@@ -20,7 +20,7 @@ public class CardsSceneController implements Initializable {
     @FXML
     private ImageView im1,im2,im3,im4,im5,im6,im7,im8,im9,im10;
     @FXML
-    private Button schoolsButton;
+    private Button schoolsButton,islandsButton;
 
     private ImageView[]images;
     private ObjectOutputStream oos;
@@ -42,6 +42,8 @@ public class CardsSceneController implements Initializable {
             if(i==1) im1.setOpacity(0.98);
             else images[i-1].setOpacity(0.25);
         }
+        schoolsButton.setVisible(true);
+        islandsButton.setVisible(true);
     }
 
     @FXML
@@ -53,6 +55,8 @@ public class CardsSceneController implements Initializable {
             if(i==2) im2.setOpacity(0.98);
             else images[i-1].setOpacity(0.25);
         }
+        schoolsButton.setVisible(true);
+        islandsButton.setVisible(true);
     }
 
     @FXML
@@ -64,6 +68,8 @@ public class CardsSceneController implements Initializable {
             if(i==3) im3.setOpacity(0.98);
             else images[i-1].setOpacity(0.25);
         }
+        schoolsButton.setVisible(true);
+        islandsButton.setVisible(true);
     }
 
     @FXML
@@ -75,6 +81,8 @@ public class CardsSceneController implements Initializable {
             if(i==4) im4.setOpacity(0.98);
             else images[i-1].setOpacity(0.25);
         }
+        schoolsButton.setVisible(true);
+        islandsButton.setVisible(true);
     }
 
     @FXML
@@ -86,6 +94,8 @@ public class CardsSceneController implements Initializable {
             if(i==5) im5.setOpacity(0.98);
             else images[i-1].setOpacity(0.25);
         }
+        schoolsButton.setVisible(true);
+        islandsButton.setVisible(true);
     }
 
     @FXML
@@ -97,6 +107,8 @@ public class CardsSceneController implements Initializable {
             if(i==6) im6.setOpacity(0.98);
             else images[i-1].setOpacity(0.25);
         }
+        schoolsButton.setVisible(true);
+        islandsButton.setVisible(true);
     }
 
     @FXML
@@ -108,6 +120,8 @@ public class CardsSceneController implements Initializable {
             if(i==7) im7.setOpacity(0.98);
             else images[i-1].setOpacity(0.25);
         }
+        schoolsButton.setVisible(true);
+        islandsButton.setVisible(true);
     }
 
     @FXML
@@ -119,6 +133,8 @@ public class CardsSceneController implements Initializable {
             if(i==8) im8.setOpacity(0.98);
             else images[i-1].setOpacity(0.25);
         }
+        schoolsButton.setVisible(true);
+        islandsButton.setVisible(true);
     }
 
     @FXML
@@ -130,6 +146,8 @@ public class CardsSceneController implements Initializable {
             if(i==9) im9.setOpacity(0.98);
             else images[i-1].setOpacity(0.25);
         }
+        schoolsButton.setVisible(true);
+        islandsButton.setVisible(true);
     }
 
     @FXML
@@ -141,6 +159,9 @@ public class CardsSceneController implements Initializable {
             if(i==10) im10.setOpacity(0.98);
             else images[i-1].setOpacity(0.25);
         }
+        schoolsButton.setVisible(true);
+        islandsButton.setVisible(true);
+
     }
 
 
@@ -151,5 +172,9 @@ public class CardsSceneController implements Initializable {
 
     public void switchToSchools(ActionEvent actionEvent) throws IOException {
         Eriantys.getCurrentApplication().switchToSchools2PScene();
+    }
+
+    public void switchToIslands(ActionEvent actionEvent) {
+        Eriantys.getCurrentApplication().switchToIslandsScene();
     }
 }

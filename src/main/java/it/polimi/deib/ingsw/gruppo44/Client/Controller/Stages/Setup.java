@@ -3,11 +3,10 @@ package it.polimi.deib.ingsw.gruppo44.Client.Controller.Stages;
 import it.polimi.deib.ingsw.gruppo44.Client.Controller.ClientController;
 import it.polimi.deib.ingsw.gruppo44.Client.Controller.ClientStage;
 import it.polimi.deib.ingsw.gruppo44.Client.Controller.MessagesMethods;
-import it.polimi.deib.ingsw.gruppo44.Client.GameData;
+import it.polimi.deib.ingsw.gruppo44.Client.View.GameData;
 import it.polimi.deib.ingsw.gruppo44.Common.Stage;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Magician;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.Data;
-import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.SchoolData;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

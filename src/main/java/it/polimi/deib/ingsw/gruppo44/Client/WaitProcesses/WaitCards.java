@@ -1,4 +1,4 @@
-package it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers;
+package it.polimi.deib.ingsw.gruppo44.Client.WaitProcesses;
 
 import it.polimi.deib.ingsw.gruppo44.Client.Eriantys;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Magician;

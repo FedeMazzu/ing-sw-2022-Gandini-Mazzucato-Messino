@@ -2,7 +2,8 @@ package it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers;
 
 
 import it.polimi.deib.ingsw.gruppo44.Client.Eriantys;
-import it.polimi.deib.ingsw.gruppo44.Client.GameData;
+import it.polimi.deib.ingsw.gruppo44.Client.View.GameData;
+import it.polimi.deib.ingsw.gruppo44.Client.WaitProcesses.WaitCards;
 import it.polimi.deib.ingsw.gruppo44.Common.ClientChoice;
 import it.polimi.deib.ingsw.gruppo44.Common.GameMode;
 import it.polimi.deib.ingsw.gruppo44.Common.Messages.CreateGameMESSAGE;
@@ -17,7 +18,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -36,7 +36,7 @@ public class MenuSceneController {
     @FXML
     private ListView<GameMode> gameModeListView;
     @FXML
-    private ListView<Map<String, GameMode>> openGamesListView;
+    private ListView<Map.Entry<String,GameMode>> openGamesListView;
     @FXML
     private ListView<Magician> magicianListView;
 
@@ -113,9 +113,9 @@ public class MenuSceneController {
         oos.flush();
         openGames = (Map<String, GameMode>) ois.readObject();
         if(!openGames.isEmpty()) {
-
-            openGamesListView.getItems().addAll(openGames);
-
+            for(Map.Entry<String,GameMode> game : openGames.entrySet()){
+                openGamesListView.getItems().add( game);
+            }
             createGameButton.setVisible(false);
             joinGameButton.setVisible(false);
             loadGameButton.setVisible(false);
@@ -136,9 +136,9 @@ public class MenuSceneController {
      */
     public void join(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
         ObjectOutputStream oos = Eriantys.getCurrentApplication().getOos();
-        Map<String, GameMode> gameChoice = openGamesListView.getSelectionModel().getSelectedItem();
-        String gameName = (String)gameChoice.keySet().toArray()[0];
-        GameMode gameMode = gameChoice.get(gameName);
+        Map.Entry<String, GameMode> gameChoice = openGamesListView.getSelectionModel().getSelectedItem();
+        String gameName = (String)gameChoice.getKey();
+        GameMode gameMode = gameChoice.getValue();
         Eriantys.getCurrentApplication().setGameMode(gameMode);
         oos.writeObject(gameName);
         oos.flush();

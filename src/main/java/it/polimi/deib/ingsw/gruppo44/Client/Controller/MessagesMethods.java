@@ -1,6 +1,6 @@
 package it.polimi.deib.ingsw.gruppo44.Client.Controller;
 
-import it.polimi.deib.ingsw.gruppo44.Client.GameData;
+import it.polimi.deib.ingsw.gruppo44.Client.View.GameData;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Color;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.CloudsData;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.IslandsData;

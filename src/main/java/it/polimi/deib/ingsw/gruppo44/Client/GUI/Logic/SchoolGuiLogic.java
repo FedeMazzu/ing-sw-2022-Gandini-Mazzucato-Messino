@@ -1,4 +1,4 @@
-package it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers;
+package it.polimi.deib.ingsw.gruppo44.Client.GUI.Logic;
 
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Color;
 import javafx.scene.control.Label;

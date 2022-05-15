@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1080.0" styleClass="bodybg" stylesheets="@../CSS/menu.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.MenuSceneController">
+<AnchorPane prefHeight="720.0" prefWidth="1080.0" styleClass="menu" stylesheets="@../CSS/backgrounds.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.MenuSceneController">
    <children>
       <Button fx:id="createGameButton" layoutX="49.0" layoutY="33.0" mnemonicParsing="false" onAction="#createGame" styleClass="buttons" stylesheets="@../CSS/buttons.css" text="Create Game">
          <font>

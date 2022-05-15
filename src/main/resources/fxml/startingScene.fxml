@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" styleClass="bodybg" stylesheets="@../CSS/starting.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.StartingSceneController">
+<AnchorPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" styleClass="starting" stylesheets="@../CSS/backgrounds.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.StartingSceneController">
    <children>
       <TextField fx:id="ipTextField" alignment="CENTER" layoutX="341.0" layoutY="493.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="360.0" style="-fx-border-color: #ABCDEF; -fx-background-radius: 12px; -fx-border-radius: 12px; -fx-border-width: 3px;" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="360.0" AnchorPane.rightAnchor="360.0">
          <font>

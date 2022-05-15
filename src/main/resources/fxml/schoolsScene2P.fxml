@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.SchoolsScene2pController">
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" styleClass="schools" stylesheets="@../CSS/backgrounds.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.SchoolsScene2pController">
    <children>
       <ImageView fitHeight="310.0" fitWidth="720.0" layoutX="60.0" layoutY="30.0" pickOnBounds="true" visible="false">
          <image>
@@ -16,32 +16,32 @@
       </ImageView>
       <Label fx:id="name1" layoutX="875.0" layoutY="53.0" text="Nome">
          <font>
-            <Font name="Verdana" size="30.0" />
+            <Font name="Telugu MN" size="30.0" />
          </font>
       </Label>
       <Label fx:id="magician1" layoutX="876.0" layoutY="112.0" text="Mago">
          <font>
-            <Font name="Verdana" size="30.0" />
+            <Font name="Telugu MN" size="30.0" />
          </font>
       </Label>
-      <Label fx:id="money1" layoutX="882.0" layoutY="191.0" text="Soldi">
+      <Label fx:id="money1" layoutX="950.0" layoutY="191.0" text="Soldi">
          <font>
-            <Font name="Verdana" size="30.0" />
+            <Font name="Telugu MN" size="30.0" />
          </font>
       </Label>
       <Label fx:id="name2" layoutX="877.0" layoutY="396.0" text="Nome">
          <font>
-            <Font name="Verdana" size="30.0" />
+            <Font name="Telugu MN" size="30.0" />
          </font>
       </Label>
       <Label fx:id="magician2" layoutX="878.0" layoutY="455.0" text="Mago">
          <font>
-            <Font name="Verdana" size="30.0" />
+            <Font name="Telugu MN" size="30.0" />
          </font>
       </Label>
-      <Label fx:id="money2" layoutX="884.0" layoutY="534.0" text="Soldi">
+      <Label fx:id="money2" layoutX="950.0" layoutY="534.0" text="Soldi">
          <font>
-            <Font name="Verdana" size="30.0" />
+            <Font name="Telugu MN" size="30.0" />
          </font>
       </Label>
       <Label fx:id="eg1" layoutX="110.0" layoutY="75.0" text="Label" translateY="5.0">
@@ -299,9 +299,29 @@
             <Font name="Telugu MN" size="22.0" />
          </font>
       </Label>
-      <Button fx:id="cardsButton" layoutX="291.0" layoutY="670.0" mnemonicParsing="false" onAction="#switchToCards" prefHeight="45.0" prefWidth="120.0" styleClass="buttons" stylesheets="@../CSS/buttons.css" text="Cards">
+      <Button fx:id="cardsButton" layoutX="320.0" layoutY="660.0" mnemonicParsing="false" onAction="#switchToCards" prefHeight="58.0" prefWidth="125.0" styleClass="buttons" stylesheets="@../CSS/buttons.css" text="Cards">
          <font>
-            <Font name="Telugu MN" size="18.0" />
+            <Font name="Telugu MN" size="30.0" />
+         </font>
+      </Button>
+      <Label layoutX="860.0" layoutY="540.0" text="Money:">
+         <font>
+            <Font name="Telugu MN" size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="860.0" layoutY="200.0" text="Money:">
+         <font>
+            <Font name="Telugu MN" size="22.0" />
+         </font>
+      </Label>
+      <Button layoutX="445.0" layoutY="660.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="154.0" styleClass="buttons" stylesheets="@../CSS/buttons.css" text="Schools" underline="true">
+         <font>
+            <Font name="Telugu MN" size="30.0" />
+         </font>
+      </Button>
+      <Button fx:id="islandsButton" layoutX="600.0" layoutY="660.0" mnemonicParsing="false" onAction="#switchToIslands" prefHeight="58.0" prefWidth="154.0" styleClass="buttons" stylesheets="@../CSS/buttons.css" text="Islands">
+         <font>
+            <Font name="Telugu MN" size="30.0" />
          </font>
       </Button>
    </children>

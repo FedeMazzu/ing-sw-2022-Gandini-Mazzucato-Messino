@@ -1,6 +1,8 @@
-package it.polimi.deib.ingsw.gruppo44.Client;
+package it.polimi.deib.ingsw.gruppo44.Client.View;
+import it.polimi.deib.ingsw.gruppo44.Client.Eriantys;
+import it.polimi.deib.ingsw.gruppo44.Client.GUI.Logic.IslandGuiLogic;
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.CardsSceneController;
-import it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.SchoolGuiLogic;
+import it.polimi.deib.ingsw.gruppo44.Client.GUI.Logic.SchoolGuiLogic;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Color;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Magician;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.CloudsData;
@@ -79,6 +81,24 @@ public class GameData {
 
     public void setIslandsData(IslandsData islandsData) {
         this.islandsData = islandsData;
+
+        Platform.runLater(()->{
+            for(int i=0; i<12; i++){
+                IslandGuiLogic igl = Eriantys.getCurrentApplication().getIslandsSceneController().getIslands().get(i);
+                igl.getMotherNature().setVisible(i==motherNaturePosition);
+                //Lacks of setting the typeof tower
+                //TEMPORARY
+                igl.getNumTowers().setVisible(false);
+                igl.getTower().setVisible(islandsData.getHasTower(i));
+                Map<Color,Label> students= igl.getStudents();
+                for(Color color: Color.values()){
+                    students.get(color).setText("x"+islandsData.getStudentsNum(i,color));
+                }
+
+            }
+        });
+
+
     }
 
     public void setCloudsData(CloudsData cloudsData) {
@@ -145,7 +165,7 @@ public class GameData {
     }
 
     public void setData(Data data) {
-        islandsData =data.getIslandsData();
+        setIslandsData(data.getIslandsData());
         cloudsData = data.getCloudsData();
         characters = data.getBoardData().getCharacters();
         motherNaturePosition = data.getBoardData().getMotherNaturePosition();

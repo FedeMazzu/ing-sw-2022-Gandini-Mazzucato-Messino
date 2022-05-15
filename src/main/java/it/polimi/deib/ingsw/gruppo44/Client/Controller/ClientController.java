@@ -1,7 +1,7 @@
 package it.polimi.deib.ingsw.gruppo44.Client.Controller;
 
 import it.polimi.deib.ingsw.gruppo44.Client.Controller.Stages.*;
-import it.polimi.deib.ingsw.gruppo44.Client.GameData;
+import it.polimi.deib.ingsw.gruppo44.Client.View.GameData;
 import it.polimi.deib.ingsw.gruppo44.Common.GameMode;
 import it.polimi.deib.ingsw.gruppo44.Common.Stage;
 
