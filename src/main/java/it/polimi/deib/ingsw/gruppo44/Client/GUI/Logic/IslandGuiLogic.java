@@ -15,6 +15,7 @@ public class IslandGuiLogic {
     private ImageView tower;
     private ImageView motherNature;
     private Label numTowers;
+    private boolean isCovered;
 
     public IslandGuiLogic(Map<Color, Label> students, Map<Color, ImageView> studentsSymbols, ImageView island, Circle circle, ImageView tower, ImageView motherNature, Label numTowers) {
         this.students = students;
@@ -24,6 +25,28 @@ public class IslandGuiLogic {
         this.tower = tower;
         this.motherNature = motherNature;
         this.numTowers = numTowers;
+        this.isCovered = false;
+    }
+
+    public void setAllInvisible(){
+        island.setVisible(false);
+        circle.setVisible(false);
+        tower.setVisible(false);
+        motherNature.setVisible(false);
+        numTowers.setVisible(false);
+        for(Color color:Color.values()){
+            students.get(color).setVisible(false);
+            studentsSymbols.get(color).setVisible(false);
+        }
+    }
+
+    public void coverMergedIsland(){
+        setAllInvisible();
+        isCovered = true;
+    }
+
+    public boolean isCovered() {
+        return isCovered;
     }
 
     public Map<Color, Label> getStudents() {

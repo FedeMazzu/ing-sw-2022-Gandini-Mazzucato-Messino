@@ -48,7 +48,7 @@
          <image>
             <Image url="@../images/cards/card10.png" />
          </image></ImageView>
-      <Button fx:id="schoolsButton" layoutX="445.0" layoutY="660.0" mnemonicParsing="false" onAction="#switchToSchools" styleClass="buttons" stylesheets="@../CSS/buttons.css" text="Schools" visible="false">
+      <Button fx:id="schoolsButton" layoutX="445.0" layoutY="660.0" mnemonicParsing="false" onAction="#switchToSchools" styleClass="buttons" stylesheets="@../CSS/buttons.css" text="Schools">
          <font>
             <Font name="Telugu MN" size="30.0" />
          </font>
@@ -58,7 +58,7 @@
             <Font name="Telugu MN" size="30.0" />
          </font>
       </Button>
-      <Button fx:id="islandsButton" layoutX="600.0" layoutY="660.0" mnemonicParsing="false" onAction="#switchToIslands" prefHeight="58.0" prefWidth="154.0" styleClass="buttons" stylesheets="@../CSS/buttons.css" text="Islands" visible="false">
+      <Button fx:id="islandsButton" layoutX="600.0" layoutY="660.0" mnemonicParsing="false" onAction="#switchToIslands" prefHeight="58.0" prefWidth="154.0" styleClass="buttons" stylesheets="@../CSS/buttons.css" text="Islands">
          <font>
             <Font name="Telugu MN" size="30.0" />
          </font>

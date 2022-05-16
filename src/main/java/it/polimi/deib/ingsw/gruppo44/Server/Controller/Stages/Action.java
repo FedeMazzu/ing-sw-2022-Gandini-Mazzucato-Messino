@@ -16,8 +16,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Scanner;
+
+import static it.polimi.deib.ingsw.gruppo44.Server.Model.Color.GREEN;
 
 /**
  * stage to model the action phase
@@ -85,10 +88,9 @@ public class Action implements Stage, Serializable {
         ObjectInputStream ois = currUser.getOis();
         School currSchool = currPlayer.getSchool();
 
-        //Move students
+        //Move students and send after each move
         moveStudents(currSchool, ois);
-        //sending data to other waiting players
-        sendStudentsMoveToAll(currUser);
+
 
         //Move MotherNature
         moveMotherNature(ois, oos);
@@ -459,30 +461,33 @@ public class Action implements Stage, Serializable {
      * @throws ClassNotFoundException
      */
     private void moveStudents(School currSchool, ObjectInputStream ois) throws IOException, ClassNotFoundException {
-        MovingStudentsMESSAGE msm = (MovingStudentsMESSAGE) ois.readObject();
-        for(int i=0;i<gameController.getGameMode().getCloudStudents();i++){
 
-            if(msm.isOnisland(i)){
-                switch (msm.getStudent(i)){
+
+        for(int i=0;i<gameController.getGameMode().getCloudStudents();i++){
+            Map<Color,Integer> entry = (Map<Color, Integer>) ois.readObject();
+            Color color = (Color) entry.keySet().toArray()[0];
+
+            if(entry.get(color) != -1){
+                switch (color){
                     case GREEN:
-                        currSchool.removeEntranceStudent(Color.GREEN);
-                        board.getUnionFind().getIsland(msm.getIslandId(i)).addStudent(Color.GREEN);
+                        currSchool.removeEntranceStudent(GREEN);
+                        board.getUnionFind().getIsland(entry.get(color)).addStudent(GREEN);
                         break;
                     case RED:
                         currSchool.removeEntranceStudent(Color.RED);
-                        board.getUnionFind().getIsland(msm.getIslandId(i)).addStudent(Color.RED);
+                        board.getUnionFind().getIsland(entry.get(color)).addStudent(Color.RED);
                         break;
                     case YELLOW:
                         currSchool.removeEntranceStudent(Color.YELLOW);
-                        board.getUnionFind().getIsland(msm.getIslandId(i)).addStudent(Color.YELLOW);
+                        board.getUnionFind().getIsland(entry.get(color)).addStudent(Color.YELLOW);
                         break;
                     case PINK:
                         currSchool.removeEntranceStudent(Color.PINK);
-                        board.getUnionFind().getIsland(msm.getIslandId(i)).addStudent(Color.PINK);
+                        board.getUnionFind().getIsland(entry.get(color)).addStudent(Color.PINK);
                         break;
                     case BLUE:
                         currSchool.removeEntranceStudent(Color.BLUE);
-                        board.getUnionFind().getIsland(msm.getIslandId(i)).addStudent(Color.BLUE);
+                        board.getUnionFind().getIsland(entry.get(color)).addStudent(Color.BLUE);
                         break;
                     default:
                         System.out.println("Incorrect value");
@@ -491,9 +496,9 @@ public class Action implements Stage, Serializable {
 
             }
             else{
-                switch (msm.getStudent(i)){
+                switch (color){
                     case GREEN:
-                        currSchool.addHallStudent(Color.GREEN);
+                        currSchool.addHallStudent(GREEN);
                         break;
                     case RED:
                         currSchool.addHallStudent(Color.RED);
@@ -512,7 +517,8 @@ public class Action implements Stage, Serializable {
                         System.exit(0);
                 }
             }
-
+            //send to everyone
+            sendStudentsMoveToAll(currSchool.getPlayer().getUser());
 
         }
     }

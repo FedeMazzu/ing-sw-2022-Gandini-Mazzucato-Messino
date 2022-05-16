@@ -1,6 +1,7 @@
 package it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers;
 
 
+import it.polimi.deib.ingsw.gruppo44.Client.Controller.MessagesMethods;
 import it.polimi.deib.ingsw.gruppo44.Client.Eriantys;
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.Logic.CloudGuiLogic;
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.Logic.IslandGuiLogic;
@@ -11,10 +12,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,6 +32,8 @@ public class IslandsSceneController implements Initializable {
 
     private Map<Integer, IslandGuiLogic> islands;
     private Map<Integer,CloudGuiLogic> clouds;
+
+    private int counter;
 
     @FXML
     private Label b0;
@@ -186,6 +193,9 @@ public class IslandsSceneController implements Initializable {
 
     @FXML
     private ImageView cloud3;
+
+    @FXML
+    private ListView<Color> entranceStudentsSelection;
 
     @FXML
     private Label g0;
@@ -581,7 +591,13 @@ public class IslandsSceneController implements Initializable {
     private Label rcloud3;
 
     @FXML
+    private Button schoolSelectionButton;
+
+    @FXML
     private Button schoolsButton;
+
+    @FXML
+    private Rectangle studentChoicePanel;
 
     @FXML
     private ImageView t0;
@@ -716,6 +732,7 @@ public class IslandsSceneController implements Initializable {
     private Label ycloud3;
 
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Eriantys.getCurrentApplication().setIslandsSceneController(this);
@@ -731,6 +748,7 @@ public class IslandsSceneController implements Initializable {
         ImageView tower;
         ImageView motherNature;
         Label numTowers;
+        this.counter = 0;
         //islands
         for(int islandId = 0; islandId<12; islandId++){
             students = new HashMap<>();
@@ -740,6 +758,8 @@ public class IslandsSceneController implements Initializable {
             tower = (ImageView)scene.lookup("#t"+islandId);
             motherNature = (ImageView)scene.lookup("#m"+islandId);
             numTowers = (Label) scene.lookup("#numT"+islandId);
+
+            circle.setVisible(false);
             for(Color color: Color.values()){
                 students.put(color, (Label)scene.lookup("#"+color.getId()+islandId));
                 studentsSymbols.put(color, (ImageView) scene.lookup("#"+color.getId()+"I"+islandId));
@@ -785,5 +805,101 @@ public class IslandsSceneController implements Initializable {
 
     public Map<Integer, CloudGuiLogic> getClouds() {
         return clouds;
+    }
+
+    public ListView<Color> getEntranceStudentsSelection(){
+        return entranceStudentsSelection;
+    }
+
+    public Button getSchoolSelectionButton(){
+        return schoolSelectionButton;
+    }
+
+    public Rectangle getStudentChoicePanel(){
+        return studentChoicePanel;
+    }
+
+    public void selectSchool(ActionEvent actionEvent) throws IOException {
+        moveEntranceStudent(-1);
+
+    }
+    public void selectIsland0(MouseEvent mouseEvent) throws IOException {
+        moveEntranceStudent(0);
+    }
+
+    public void selectIsland1(MouseEvent mouseEvent) throws IOException {
+        moveEntranceStudent(1);
+    }
+
+    public void selectIsland2(MouseEvent mouseEvent) throws IOException {
+        moveEntranceStudent(2);
+    }
+
+    public void selectIsland3(MouseEvent mouseEvent) throws IOException {
+        moveEntranceStudent(3);
+    }
+
+    public void selectIsland4(MouseEvent mouseEvent) throws IOException {
+        moveEntranceStudent(4);
+    }
+
+    public void selectIsland5(MouseEvent mouseEvent) throws IOException {
+        moveEntranceStudent(5);
+    }
+
+    public void selectIsland6(MouseEvent mouseEvent) throws IOException {
+        moveEntranceStudent(6);
+    }
+
+    public void selectIsland7(MouseEvent mouseEvent) throws IOException {
+        moveEntranceStudent(7);
+    }
+
+    public void selectIsland8(MouseEvent mouseEvent) throws IOException {
+        moveEntranceStudent(8);
+    }
+
+    public void selectIsland9(MouseEvent mouseEvent) throws IOException {
+        moveEntranceStudent(9);
+    }
+
+    public void selectIsland10(MouseEvent mouseEvent) throws IOException {
+        moveEntranceStudent(10);
+    }
+
+    public void selectIsland11(MouseEvent mouseEvent) throws IOException {
+        moveEntranceStudent(11);
+    }
+
+
+    private void moveEntranceStudent(int island) throws IOException {
+        //island is the island id of the selected island, -1 if it is a school
+
+        Map<Color,Integer> entry = new HashMap<>();
+        ObjectOutputStream oos = Eriantys.getCurrentApplication().getOos();
+        Color color = entranceStudentsSelection.getSelectionModel().getSelectedItem();
+        if(color != null){
+            entry.put(color,island);
+            oos.writeObject(entry);
+            oos.flush();
+        }
+        counter++;
+        entranceStudentsSelection.getItems().remove(color);
+        new Thread(()->{
+            try{
+                MessagesMethods.receiveSchoolUpdated();
+                MessagesMethods.receiveIslandsUpdated();
+            }
+            catch (Exception e){}
+        }).start();
+        if(counter >= 3){
+            counter = 0;
+            entranceStudentsSelection.getItems().clear();
+            //set the choice panel invisible
+            entranceStudentsSelection.setVisible(false);
+            studentChoicePanel.setVisible(false);
+            schoolSelectionButton.setVisible(false);
+            //make mother nature move
+        }
     }
 }

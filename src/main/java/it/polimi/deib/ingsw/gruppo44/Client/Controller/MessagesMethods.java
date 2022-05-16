@@ -1,7 +1,9 @@
 package it.polimi.deib.ingsw.gruppo44.Client.Controller;
 
+import it.polimi.deib.ingsw.gruppo44.Client.Eriantys;
 import it.polimi.deib.ingsw.gruppo44.Client.View.GameData;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Color;
+import it.polimi.deib.ingsw.gruppo44.Server.Model.Game;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.CloudsData;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.IslandsData;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.SchoolData;
@@ -16,10 +18,6 @@ import java.util.Map;
  * @author
  */
 public class MessagesMethods {
-    public static ObjectOutputStream oos;
-    public static ObjectInputStream ois;
-    public static ClientController clientController;
-    public static GameData gameData;
 
 
     /**
@@ -29,21 +27,22 @@ public class MessagesMethods {
      */
     public static boolean standardWait() throws IOException, ClassNotFoundException {
         //receive the outputs of the turnNumber players after you
-        //there will be 6 outputs per turn
 
         //after moving the students
         System.out.println("A player has moved the students!");
-        receiveSchoolUpdated();
-        receiveIslandsUpdated();
+        for(int i=0;i<Eriantys.getCurrentApplication().getGameMode().getCloudStudents();i++){
+            System.out.println("Il banano e` "+i);
+            receiveSchoolUpdated();
+            receiveIslandsUpdated();
+        }
 
         //after moving motherNature
         receiveMotherNaturePos();
 
 
         //RECEIVING THE INFORMATION ABOUT THE END OF THE TURN
-        boolean gameEnd = ois.readBoolean();
+        boolean gameEnd = Eriantys.getCurrentApplication().getOis().readBoolean();
         if (gameEnd){
-            clientController.setClientStage(ClientStage.ClientEND);
             return gameEnd;
         }
 
@@ -56,23 +55,23 @@ public class MessagesMethods {
 
     public static void receiveUpdatedPrices() throws IOException, ClassNotFoundException {
         //getting updated prices
-        Map<Integer,Integer> updatedPrices =(Map<Integer, Integer>) ois.readObject();
+        Map<Integer,Integer> updatedPrices =(Map<Integer, Integer>) Eriantys.getCurrentApplication().getOis().readObject();
         //updating GameData
-        gameData.setCharacters(updatedPrices);
+        Eriantys.getCurrentApplication().getGameData().setCharacters(updatedPrices);
         System.out.println(updatedPrices);
         System.out.println("------------------------------------------------------------------------------------------");
     }
 
     public static void receiveCloudsUpdated() throws IOException, ClassNotFoundException {
-        CloudsData cloudsData = (CloudsData)ois.readObject();
-        gameData.setCloudsData(cloudsData);
+        CloudsData cloudsData = (CloudsData)Eriantys.getCurrentApplication().getOis().readObject();
+        Eriantys.getCurrentApplication().getGameData().setCloudsData(cloudsData);
     }
 
     public static void receiveMotherNaturePos() throws IOException, ClassNotFoundException {
         System.out.println("Moving mother nature..");
         receiveIslandsUpdated();
-        int motherNaturePos = ois.readInt();
-        gameData.setMotherNaturePosition(motherNaturePos);
+        int motherNaturePos = Eriantys.getCurrentApplication().getOis().readInt();
+        Eriantys.getCurrentApplication().getGameData().setMotherNaturePosition(motherNaturePos);
         System.out.println("A player has moved mother nature on the island: "+ motherNaturePos+"!");
         System.out.println("------------------------------------------------------------------------------------------");
     }
@@ -81,9 +80,11 @@ public class MessagesMethods {
      * updates and prints a representation of the passed SchoolData
      */
     public static void receiveSchoolUpdated() throws IOException, ClassNotFoundException {
-        SchoolData schoolData = (SchoolData)ois.readObject();
+        System.out.println("PRIMA OIS");
+        SchoolData schoolData = (SchoolData)Eriantys.getCurrentApplication().getOis().readObject();
+        System.out.println("DOPO OIS");
         //updating game data
-        gameData.putSchoolData(schoolData.getMagician(), schoolData);
+        Eriantys.getCurrentApplication().getGameData().putSchoolData(schoolData.getMagician(), schoolData);
 
         System.out.println("School of the "+schoolData.getMagician()+" updated: ");
         System.out.println("Money: "+schoolData.getPlayerMoney());
@@ -100,9 +101,9 @@ public class MessagesMethods {
      * updates and prints a representation of the passed IslandsData
      */
     public static void receiveIslandsUpdated() throws IOException, ClassNotFoundException {
-        IslandsData islandsData =(IslandsData) ois.readObject();
+        IslandsData islandsData =(IslandsData) Eriantys.getCurrentApplication().getOis().readObject();
         //updating GameData
-        gameData.setIslandsData(islandsData);
+        Eriantys.getCurrentApplication().getGameData().setIslandsData(islandsData);
 
 
         String currData = "Islands updated:\n";
@@ -125,8 +126,9 @@ public class MessagesMethods {
     /**
      * method called from the Moving character to print a representation of the game
      */
+
     public static void printData() {
-        GameData gameData = clientController.getGameData();
+        GameData gameData = Eriantys.getCurrentApplication().getGameData();
         String currData;
         currData = "";
         for (SchoolData sd : gameData.getSchoolDataMap().values()){
@@ -166,8 +168,9 @@ public class MessagesMethods {
      * @throws ClassNotFoundException
      * @return  wether the game is ended or not
      */
+
     public static boolean characterWait() throws IOException, ClassNotFoundException {
-        int charId = ois.readInt();
+        int charId = Eriantys.getCurrentApplication().getOis().readInt();
         System.out.println("Character used "+charId);
         switch (charId){
             //case 1:
@@ -206,13 +209,14 @@ public class MessagesMethods {
      * @throws IOException
      * @throws ClassNotFoundException
      */
+
     private static boolean characterWait3() throws IOException, ClassNotFoundException {
-        IslandsData islandsData = (IslandsData) ois.readObject();
+        IslandsData islandsData = (IslandsData) Eriantys.getCurrentApplication().getOis().readObject();
         //print islands for debug
         receiveIslandsUpdated();
-        boolean gameEnd = ois.readBoolean();
+        boolean gameEnd = Eriantys.getCurrentApplication().getOis().readBoolean();
         if(gameEnd){
-            clientController.setClientStage(ClientStage.ClientEND);
+            //clientController.setClientStage(ClientStage.ClientEND);
             return gameEnd;
         }
         //receiving the MovingClient updated money
@@ -247,7 +251,7 @@ public class MessagesMethods {
     }
 
     private static boolean characterWait9() throws IOException, ClassNotFoundException {
-        Color colorChosen = (Color) ois.readObject();
+        Color colorChosen = (Color) Eriantys.getCurrentApplication().getOis().readObject();
         System.out.println("The player chose: "+colorChosen);
         //receiving the MovingClient updated money
         receiveSchoolUpdated();
@@ -257,7 +261,7 @@ public class MessagesMethods {
     }
 
     private static boolean characterWait10() throws IOException, ClassNotFoundException {
-        SchoolData schoolData = (SchoolData) ois.readObject();
+        SchoolData schoolData = (SchoolData) Eriantys.getCurrentApplication().getOis().readObject();
         receiveSchoolUpdated();
         //receiving the MovingClient updated money (it's redundant in this case)
         receiveSchoolUpdated();
@@ -270,11 +274,12 @@ public class MessagesMethods {
      * @throws IOException
      * @throws ClassNotFoundException
      */
+
     private static boolean characterWait12() throws IOException, ClassNotFoundException {
 
-        int numOfUsers = clientController.getGameMode().getTeamPlayers()* clientController.getGameMode().getTeamsNumber();
+        int numOfUsers = Eriantys.getCurrentApplication().getGameMode().getTeamPlayers()* Eriantys.getCurrentApplication().getGameMode().getTeamsNumber();
         for(int i=0; i< numOfUsers; i++){
-            SchoolData schoolData = (SchoolData) ois.readObject();
+            SchoolData schoolData = (SchoolData) Eriantys.getCurrentApplication().getOis().readObject();
             receiveSchoolUpdated();
         }
         //receiving the MovingClient updated money

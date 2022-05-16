@@ -1,6 +1,7 @@
 package it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers;
 
 import it.polimi.deib.ingsw.gruppo44.Client.Eriantys;
+import it.polimi.deib.ingsw.gruppo44.Client.WaitProcesses.WaitBefore;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -42,8 +43,7 @@ public class CardsSceneController implements Initializable {
             if(i==1) im1.setOpacity(0.98);
             else images[i-1].setOpacity(0.25);
         }
-        schoolsButton.setVisible(true);
-        islandsButton.setVisible(true);
+        new Thread(new WaitBefore()).start();
     }
 
     @FXML
@@ -55,8 +55,7 @@ public class CardsSceneController implements Initializable {
             if(i==2) im2.setOpacity(0.98);
             else images[i-1].setOpacity(0.25);
         }
-        schoolsButton.setVisible(true);
-        islandsButton.setVisible(true);
+        new Thread(new WaitBefore()).start();
     }
 
     @FXML
@@ -68,8 +67,7 @@ public class CardsSceneController implements Initializable {
             if(i==3) im3.setOpacity(0.98);
             else images[i-1].setOpacity(0.25);
         }
-        schoolsButton.setVisible(true);
-        islandsButton.setVisible(true);
+        new Thread(new WaitBefore()).start();
     }
 
     @FXML
@@ -81,8 +79,7 @@ public class CardsSceneController implements Initializable {
             if(i==4) im4.setOpacity(0.98);
             else images[i-1].setOpacity(0.25);
         }
-        schoolsButton.setVisible(true);
-        islandsButton.setVisible(true);
+        new Thread(new WaitBefore()).start();
     }
 
     @FXML
@@ -94,8 +91,7 @@ public class CardsSceneController implements Initializable {
             if(i==5) im5.setOpacity(0.98);
             else images[i-1].setOpacity(0.25);
         }
-        schoolsButton.setVisible(true);
-        islandsButton.setVisible(true);
+        new Thread(new WaitBefore()).start();
     }
 
     @FXML
@@ -107,8 +103,7 @@ public class CardsSceneController implements Initializable {
             if(i==6) im6.setOpacity(0.98);
             else images[i-1].setOpacity(0.25);
         }
-        schoolsButton.setVisible(true);
-        islandsButton.setVisible(true);
+        new Thread(new WaitBefore()).start();
     }
 
     @FXML
@@ -120,8 +115,7 @@ public class CardsSceneController implements Initializable {
             if(i==7) im7.setOpacity(0.98);
             else images[i-1].setOpacity(0.25);
         }
-        schoolsButton.setVisible(true);
-        islandsButton.setVisible(true);
+        new Thread(new WaitBefore()).start();
     }
 
     @FXML
@@ -133,8 +127,7 @@ public class CardsSceneController implements Initializable {
             if(i==8) im8.setOpacity(0.98);
             else images[i-1].setOpacity(0.25);
         }
-        schoolsButton.setVisible(true);
-        islandsButton.setVisible(true);
+        new Thread(new WaitBefore()).start();
     }
 
     @FXML
@@ -146,8 +139,7 @@ public class CardsSceneController implements Initializable {
             if(i==9) im9.setOpacity(0.98);
             else images[i-1].setOpacity(0.25);
         }
-        schoolsButton.setVisible(true);
-        islandsButton.setVisible(true);
+        new Thread(new WaitBefore()).start();
     }
 
     @FXML
@@ -159,9 +151,7 @@ public class CardsSceneController implements Initializable {
             if(i==10) im10.setOpacity(0.98);
             else images[i-1].setOpacity(0.25);
         }
-        schoolsButton.setVisible(true);
-        islandsButton.setVisible(true);
-
+        new Thread(new WaitBefore()).start();
     }
 
 

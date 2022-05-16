@@ -110,7 +110,7 @@ public class Setup implements Stage {
 
         GameData gameData = new GameData(magician);
         clientController.setGameData(gameData);
-        MessagesMethods.gameData =  gameData;
+        //MessagesMethods.gameData =  gameData;
     }
 }
 
