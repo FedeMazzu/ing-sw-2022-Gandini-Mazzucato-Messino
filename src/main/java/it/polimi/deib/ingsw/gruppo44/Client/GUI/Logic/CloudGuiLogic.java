@@ -10,17 +10,23 @@ import java.util.Map;
 
 public class CloudGuiLogic {
     private Map<Color, Label> students;
+    private Map<Color,ImageView> studentsSymbols;
     private ImageView cloud;
     private Circle circle;
 
-    public CloudGuiLogic(Map<Color, Label> students, ImageView cloud, Circle circle) {
+    public CloudGuiLogic(Map<Color, Label> students, Map<Color, ImageView> studentsSymbols, ImageView cloud, Circle circle) {
         this.students = students;
+        this.studentsSymbols = studentsSymbols;
         this.cloud = cloud;
         this.circle = circle;
     }
 
     public Map<Color, Label> getStudents() {
         return students;
+    }
+
+    public Map<Color, ImageView> getStudentsSymbols() {
+        return studentsSymbols;
     }
 
     public ImageView getCloud() {

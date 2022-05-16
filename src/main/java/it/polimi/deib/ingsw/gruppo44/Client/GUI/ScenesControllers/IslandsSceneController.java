@@ -65,10 +65,64 @@ public class IslandsSceneController implements Initializable {
     private Label b9;
 
     @FXML
+    private ImageView bI0;
+
+    @FXML
+    private ImageView bI1;
+
+    @FXML
+    private ImageView bI10;
+
+    @FXML
+    private ImageView bI11;
+
+    @FXML
+    private ImageView bI2;
+
+    @FXML
+    private ImageView bI3;
+
+    @FXML
+    private ImageView bI4;
+
+    @FXML
+    private ImageView bI5;
+
+    @FXML
+    private ImageView bI6;
+
+    @FXML
+    private ImageView bI7;
+
+    @FXML
+    private ImageView bI8;
+
+    @FXML
+    private ImageView bI9;
+
+    @FXML
+    private ImageView bIcloud0;
+
+    @FXML
+    private ImageView bIcloud1;
+
+    @FXML
+    private ImageView bIcloud2;
+
+    @FXML
+    private ImageView bIcloud3;
+
+    @FXML
     private Label bcloud0;
 
     @FXML
     private Label bcloud1;
+
+    @FXML
+    private Label bcloud2;
+
+    @FXML
+    private Label bcloud3;
 
     @FXML
     private Circle c0;
@@ -116,10 +170,22 @@ public class IslandsSceneController implements Initializable {
     private Circle ccloud1;
 
     @FXML
+    private Circle ccloud2;
+
+    @FXML
+    private Circle ccloud3;
+
+    @FXML
     private ImageView cloud0;
 
     @FXML
     private ImageView cloud1;
+
+    @FXML
+    private ImageView cloud2;
+
+    @FXML
+    private ImageView cloud3;
 
     @FXML
     private Label g0;
@@ -158,10 +224,64 @@ public class IslandsSceneController implements Initializable {
     private Label g9;
 
     @FXML
+    private ImageView gI0;
+
+    @FXML
+    private ImageView gI1;
+
+    @FXML
+    private ImageView gI10;
+
+    @FXML
+    private ImageView gI11;
+
+    @FXML
+    private ImageView gI2;
+
+    @FXML
+    private ImageView gI3;
+
+    @FXML
+    private ImageView gI4;
+
+    @FXML
+    private ImageView gI5;
+
+    @FXML
+    private ImageView gI6;
+
+    @FXML
+    private ImageView gI7;
+
+    @FXML
+    private ImageView gI8;
+
+    @FXML
+    private ImageView gI9;
+
+    @FXML
+    private ImageView gIcloud0;
+
+    @FXML
+    private ImageView gIcloud1;
+
+    @FXML
+    private ImageView gIcloud2;
+
+    @FXML
+    private ImageView gIcloud3;
+
+    @FXML
     private Label gcloud0;
 
     @FXML
     private Label gcloud1;
+
+    @FXML
+    private Label gcloud2;
+
+    @FXML
+    private Label gcloud3;
 
     @FXML
     private ImageView i0;
@@ -308,10 +428,64 @@ public class IslandsSceneController implements Initializable {
     private Label p9;
 
     @FXML
+    private ImageView pI0;
+
+    @FXML
+    private ImageView pI1;
+
+    @FXML
+    private ImageView pI10;
+
+    @FXML
+    private ImageView pI11;
+
+    @FXML
+    private ImageView pI2;
+
+    @FXML
+    private ImageView pI3;
+
+    @FXML
+    private ImageView pI4;
+
+    @FXML
+    private ImageView pI5;
+
+    @FXML
+    private ImageView pI6;
+
+    @FXML
+    private ImageView pI7;
+
+    @FXML
+    private ImageView pI8;
+
+    @FXML
+    private ImageView pI9;
+
+    @FXML
+    private ImageView pIcloud0;
+
+    @FXML
+    private ImageView pIcloud1;
+
+    @FXML
+    private ImageView pIcloud2;
+
+    @FXML
+    private ImageView pIcloud3;
+
+    @FXML
     private Label pcloud0;
 
     @FXML
     private Label pcloud1;
+
+    @FXML
+    private Label pcloud2;
+
+    @FXML
+    private Label pcloud3;
 
     @FXML
     private Label r0;
@@ -350,10 +524,61 @@ public class IslandsSceneController implements Initializable {
     private Label r9;
 
     @FXML
+    private ImageView rI0;
+
+    @FXML
+    private ImageView rI1;
+
+    @FXML
+    private ImageView rI10;
+
+    @FXML
+    private ImageView rI11;
+
+    @FXML
+    private ImageView rI2;
+
+    @FXML
+    private ImageView rI3;
+
+    @FXML
+    private ImageView rI4;
+
+    @FXML
+    private ImageView rI5;
+
+    @FXML
+    private ImageView rI7;
+
+    @FXML
+    private ImageView rI8;
+
+    @FXML
+    private ImageView rI9;
+
+    @FXML
+    private ImageView rIcloud0;
+
+    @FXML
+    private ImageView rIcloud1;
+
+    @FXML
+    private ImageView rIcloud2;
+
+    @FXML
+    private ImageView rIcloud3;
+
+    @FXML
     private Label rcloud0;
 
     @FXML
     private Label rcloud1;
+
+    @FXML
+    private Label rcloud2;
+
+    @FXML
+    private Label rcloud3;
 
     @FXML
     private Button schoolsButton;
@@ -431,10 +656,64 @@ public class IslandsSceneController implements Initializable {
     private Label y9;
 
     @FXML
+    private ImageView yI0;
+
+    @FXML
+    private ImageView yI1;
+
+    @FXML
+    private ImageView yI10;
+
+    @FXML
+    private ImageView yI11;
+
+    @FXML
+    private ImageView yI2;
+
+    @FXML
+    private ImageView yI3;
+
+    @FXML
+    private ImageView yI4;
+
+    @FXML
+    private ImageView yI5;
+
+    @FXML
+    private ImageView yI6;
+
+    @FXML
+    private ImageView yI7;
+
+    @FXML
+    private ImageView yI8;
+
+    @FXML
+    private ImageView yI9;
+
+    @FXML
+    private ImageView yIcloud0;
+
+    @FXML
+    private ImageView yIcloud1;
+
+    @FXML
+    private ImageView yIcloud2;
+
+    @FXML
+    private ImageView yIcloud3;
+
+    @FXML
     private Label ycloud0;
 
     @FXML
     private Label ycloud1;
+
+    @FXML
+    private Label ycloud2;
+
+    @FXML
+    private Label ycloud3;
 
 
     @Override
@@ -446,6 +725,7 @@ public class IslandsSceneController implements Initializable {
         islands = new HashMap<>();
 
         Map<Color,Label> students;
+        Map<Color,ImageView> studentsSymbols;
         ImageView island;
         Circle circle;
         ImageView tower;
@@ -454,6 +734,7 @@ public class IslandsSceneController implements Initializable {
         //islands
         for(int islandId = 0; islandId<12; islandId++){
             students = new HashMap<>();
+            studentsSymbols = new HashMap<>();
             island = (ImageView)scene.lookup("#i"+islandId);
             circle = (Circle)scene.lookup("#c"+islandId);
             tower = (ImageView)scene.lookup("#t"+islandId);
@@ -461,20 +742,29 @@ public class IslandsSceneController implements Initializable {
             numTowers = (Label) scene.lookup("#numT"+islandId);
             for(Color color: Color.values()){
                 students.put(color, (Label)scene.lookup("#"+color.getId()+islandId));
+                studentsSymbols.put(color, (ImageView) scene.lookup("#"+color.getId()+"I"+islandId));
             }
-            islands.put(islandId,new IslandGuiLogic(students,island,circle,tower,motherNature,numTowers));
+            islands.put(islandId,new IslandGuiLogic(students,studentsSymbols,island,circle,tower,motherNature,numTowers));
         }
 
         //clouds
         clouds = new HashMap<>();
         for(int cloudId=0; cloudId<Eriantys.getCurrentApplication().getGameMode().getCloudsNumber(); cloudId++){
             students = new HashMap<>();
+            studentsSymbols = new HashMap<>();
             ImageView cloud = (ImageView) scene.lookup("#cloud"+cloudId);
+            cloud.setVisible(true);
             Circle circle1 = (Circle) scene.lookup("#ccloud"+cloudId);
             for(Color color: Color.values()){
-                students.put(color, (Label)scene.lookup("#"+color.getId()+"cloud"+cloudId));
+                Label studentLabel = (Label)scene.lookup("#"+color.getId()+"cloud"+cloudId);
+                studentLabel.setVisible(true);
+                students.put(color, studentLabel);
+
+                ImageView studentsSymbol = (ImageView) scene.lookup("#"+color.getId()+"Icloud"+cloudId);
+                studentsSymbol.setVisible(true);
+                studentsSymbols.put(color, studentsSymbol);
             }
-            clouds.put(cloudId,new CloudGuiLogic(students,cloud,circle1));
+            clouds.put(cloudId,new CloudGuiLogic(students,studentsSymbols,cloud,circle1));
         }
 
     }

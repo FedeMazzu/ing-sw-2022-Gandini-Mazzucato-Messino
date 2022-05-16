@@ -76,9 +76,9 @@ public class GameData {
         });
     }
 
-    public void setClientMoney(int clientMoney) {
+   /* public void setClientMoney(int clientMoney) {
         this.clientMoney = clientMoney;
-    }
+    }*/
 
     public void setIslandsData(IslandsData islandsData) {
         this.islandsData = islandsData;
@@ -86,7 +86,6 @@ public class GameData {
         Platform.runLater(()->{
             for(int i=0; i<12; i++){
                 IslandGuiLogic igl = Eriantys.getCurrentApplication().getIslandsSceneController().getIslands().get(i);
-                igl.getMotherNature().setVisible(i==motherNaturePosition);
                 //Lacks of setting the typeof tower
                 //TEMPORARY
                 igl.getNumTowers().setVisible(false);
@@ -120,6 +119,13 @@ public class GameData {
 
     public void setMotherNaturePosition(int motherNaturePosition) {
         this.motherNaturePosition = motherNaturePosition;
+        Platform.runLater(()->{
+            for(int i=0; i<12; i++){
+                IslandGuiLogic igl = Eriantys.getCurrentApplication().getIslandsSceneController().getIslands().get(i);
+                igl.getMotherNature().setVisible(i==motherNaturePosition);
+
+            }
+        });
     }
 
     public void setCharacters(Map<Integer, Integer> characters) {
@@ -180,11 +186,12 @@ public class GameData {
         setIslandsData(data.getIslandsData());
         setCloudsData(data.getCloudsData());
         characters = data.getBoardData().getCharacters();
-        motherNaturePosition = data.getBoardData().getMotherNaturePosition();
+        setMotherNaturePosition(data.getBoardData().getMotherNaturePosition());
         for(SchoolData sd: data.getSchoolDataList()){
             putSchoolData(sd.getMagician(),sd);
             if(sd.getMagician().equals(clientMagician)){
-                clientMoney = sd.getPlayerMoney();
+                //money already updated when calling putDataSchool
+                //clientMoney = sd.getPlayerMoney();
                 setAvailableCards(sd.getAvailableCards());
             }
         }

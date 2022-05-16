@@ -182,13 +182,21 @@ public class MenuSceneController {
             waitingLabel.setText("Waiting for your turn of choosing a card");
             waitingLabel.setVisible(true);
             //receiving the data of the initialized game
-            Data data = (Data) ois.readObject();
-            //need to be in the event thread
-            setMagicianId(data);
-            //need to be after setMagicianId
-            Eriantys.getCurrentApplication().loadGameScenes();
-            Eriantys.getCurrentApplication().getGameData().setData(data);
-            new Thread(new WaitCards()).start();
+            new Thread(()->{
+                try {
+                Data data = (Data) ois.readObject();
+                //need to be in the event thread
+                setMagicianId(data);
+                //need to be after setMagicianId
+
+                    Eriantys.getCurrentApplication().loadGameScenes();
+                Eriantys.getCurrentApplication().getGameData().setData(data);
+                new Thread(new WaitCards()).start();
+                } catch (IOException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+            }).start();
 
         }
 
