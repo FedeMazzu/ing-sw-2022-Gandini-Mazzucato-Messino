@@ -36,6 +36,7 @@ public class IslandsData implements Serializable {
         hasTower = new boolean[12];
         group = new int[12];
         groupSize = new int[12];
+        numOfIslands = 12;
     }
 
     /**

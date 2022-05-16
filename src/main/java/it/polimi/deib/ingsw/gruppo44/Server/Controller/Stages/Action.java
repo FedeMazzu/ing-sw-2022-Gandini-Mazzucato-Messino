@@ -529,8 +529,6 @@ public class Action implements Stage, Serializable {
      * @throws IOException
      */
     private void moveMotherNature(ObjectInputStream ois, ObjectOutputStream oos) throws IOException {
-        oos.writeObject("How many steps? max "+(int)Math.ceil(((double)turnOrder.peek().getPriority()/2.0)));
-        oos.flush();
 
         int stepsChoice = ois.readInt();
         System.out.println("Position before: "+board.getMotherNaturePosition());

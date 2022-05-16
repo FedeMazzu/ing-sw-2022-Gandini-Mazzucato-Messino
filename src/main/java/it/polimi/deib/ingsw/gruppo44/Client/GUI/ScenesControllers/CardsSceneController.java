@@ -23,6 +23,8 @@ public class CardsSceneController implements Initializable {
     @FXML
     private Button schoolsButton,islandsButton;
 
+    private int lastCardSel;
+
     private ImageView[]images;
     private ObjectOutputStream oos;
 
@@ -43,6 +45,7 @@ public class CardsSceneController implements Initializable {
             if(i==1) im1.setOpacity(0.98);
             else images[i-1].setOpacity(0.25);
         }
+        lastCardSel = 1;
         new Thread(new WaitBefore()).start();
     }
 
@@ -55,6 +58,7 @@ public class CardsSceneController implements Initializable {
             if(i==2) im2.setOpacity(0.98);
             else images[i-1].setOpacity(0.25);
         }
+        lastCardSel = 2;
         new Thread(new WaitBefore()).start();
     }
 
@@ -67,6 +71,7 @@ public class CardsSceneController implements Initializable {
             if(i==3) im3.setOpacity(0.98);
             else images[i-1].setOpacity(0.25);
         }
+        lastCardSel = 3;
         new Thread(new WaitBefore()).start();
     }
 
@@ -79,6 +84,7 @@ public class CardsSceneController implements Initializable {
             if(i==4) im4.setOpacity(0.98);
             else images[i-1].setOpacity(0.25);
         }
+        lastCardSel = 4;
         new Thread(new WaitBefore()).start();
     }
 
@@ -91,6 +97,7 @@ public class CardsSceneController implements Initializable {
             if(i==5) im5.setOpacity(0.98);
             else images[i-1].setOpacity(0.25);
         }
+        lastCardSel = 5;
         new Thread(new WaitBefore()).start();
     }
 
@@ -103,6 +110,7 @@ public class CardsSceneController implements Initializable {
             if(i==6) im6.setOpacity(0.98);
             else images[i-1].setOpacity(0.25);
         }
+        lastCardSel = 6;
         new Thread(new WaitBefore()).start();
     }
 
@@ -115,6 +123,7 @@ public class CardsSceneController implements Initializable {
             if(i==7) im7.setOpacity(0.98);
             else images[i-1].setOpacity(0.25);
         }
+        lastCardSel = 7;
         new Thread(new WaitBefore()).start();
     }
 
@@ -127,6 +136,7 @@ public class CardsSceneController implements Initializable {
             if(i==8) im8.setOpacity(0.98);
             else images[i-1].setOpacity(0.25);
         }
+        lastCardSel = 8;
         new Thread(new WaitBefore()).start();
     }
 
@@ -139,6 +149,7 @@ public class CardsSceneController implements Initializable {
             if(i==9) im9.setOpacity(0.98);
             else images[i-1].setOpacity(0.25);
         }
+        lastCardSel = 9;
         new Thread(new WaitBefore()).start();
     }
 
@@ -151,12 +162,14 @@ public class CardsSceneController implements Initializable {
             if(i==10) im10.setOpacity(0.98);
             else images[i-1].setOpacity(0.25);
         }
+        lastCardSel = 10;
         new Thread(new WaitBefore()).start();
     }
 
 
-
-
+    public int getLastCardSel() {
+        return lastCardSel;
+    }
 
     public ImageView[] getImages() {return images;}
 

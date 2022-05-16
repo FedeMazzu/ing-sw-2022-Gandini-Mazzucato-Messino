@@ -132,6 +132,9 @@ public class GameData {
         this.characters = characters;
     }
 
+    public int getMotherNaturePosition() {
+        return motherNaturePosition;
+    }
 
     public Magician getClientMagician() {
         return clientMagician;

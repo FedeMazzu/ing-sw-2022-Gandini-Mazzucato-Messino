@@ -33,7 +33,8 @@ public class IslandsSceneController implements Initializable {
     private Map<Integer, IslandGuiLogic> islands;
     private Map<Integer,CloudGuiLogic> clouds;
 
-    private int counter;
+    private int phase; //0 student selection, 1 mother nature move, 2 cloud choice
+    private int counter; //num of student the player has already moved
 
     @FXML
     private Label b0;
@@ -749,6 +750,7 @@ public class IslandsSceneController implements Initializable {
         ImageView motherNature;
         Label numTowers;
         this.counter = 0;
+        this.phase = 0;
         //islands
         for(int islandId = 0; islandId<12; islandId++){
             students = new HashMap<>();
@@ -824,51 +826,64 @@ public class IslandsSceneController implements Initializable {
 
     }
     public void selectIsland0(MouseEvent mouseEvent) throws IOException {
-        moveEntranceStudent(0);
+        if(phase == 0) moveEntranceStudent(0);
+        else if(phase == 1) moveMotherNature(0);
+
     }
 
     public void selectIsland1(MouseEvent mouseEvent) throws IOException {
-        moveEntranceStudent(1);
+        if(phase == 0) moveEntranceStudent(1);
+        else if(phase == 1) moveMotherNature(1);
     }
 
     public void selectIsland2(MouseEvent mouseEvent) throws IOException {
-        moveEntranceStudent(2);
+        if(phase == 0) moveEntranceStudent(2);
+        else if(phase == 1) moveMotherNature(2);
     }
 
     public void selectIsland3(MouseEvent mouseEvent) throws IOException {
-        moveEntranceStudent(3);
+        if(phase == 0) moveEntranceStudent(3);
+        else if(phase == 1) moveMotherNature(3);
     }
 
     public void selectIsland4(MouseEvent mouseEvent) throws IOException {
-        moveEntranceStudent(4);
+        if(phase == 0) moveEntranceStudent(4);
+        else if(phase == 1) moveMotherNature(4);
     }
 
     public void selectIsland5(MouseEvent mouseEvent) throws IOException {
-        moveEntranceStudent(5);
+        if(phase == 0) moveEntranceStudent(5);
+        else if(phase == 1) moveMotherNature(5);
     }
 
     public void selectIsland6(MouseEvent mouseEvent) throws IOException {
-        moveEntranceStudent(6);
+        if(phase == 0) moveEntranceStudent(6);
+        else if(phase == 1) moveMotherNature(6);
     }
 
     public void selectIsland7(MouseEvent mouseEvent) throws IOException {
-        moveEntranceStudent(7);
+        if(phase == 0) moveEntranceStudent(7);
+        else if(phase == 1) moveMotherNature(7);
     }
 
     public void selectIsland8(MouseEvent mouseEvent) throws IOException {
-        moveEntranceStudent(8);
+        if(phase == 0) moveEntranceStudent(8);
+        else if(phase == 1) moveMotherNature(8);
     }
 
     public void selectIsland9(MouseEvent mouseEvent) throws IOException {
-        moveEntranceStudent(9);
+        if(phase == 0) moveEntranceStudent(9);
+        else if(phase == 1) moveMotherNature(9);
     }
 
     public void selectIsland10(MouseEvent mouseEvent) throws IOException {
-        moveEntranceStudent(10);
+        if(phase == 0) moveEntranceStudent(10);
+        else if(phase == 1) moveMotherNature(10);
     }
 
     public void selectIsland11(MouseEvent mouseEvent) throws IOException {
-        moveEntranceStudent(11);
+        if(phase == 0) moveEntranceStudent(11);
+        else if(phase == 1) moveMotherNature(11);
     }
 
 
@@ -893,6 +908,7 @@ public class IslandsSceneController implements Initializable {
             catch (Exception e){}
         }).start();
         if(counter >= 3){
+            phase = 1;
             counter = 0;
             entranceStudentsSelection.getItems().clear();
             //set the choice panel invisible
@@ -900,6 +916,47 @@ public class IslandsSceneController implements Initializable {
             studentChoicePanel.setVisible(false);
             schoolSelectionButton.setVisible(false);
             //make mother nature move
+            setupForMotherNature();
         }
     }
+
+    private void moveMotherNature(int islandTarget) throws IOException {
+        int currPos = Eriantys.getCurrentApplication().getGameData().getMotherNaturePosition();
+        int numOfIslands = Eriantys.getCurrentApplication().getGameData().getIslandsData().getNumOfIslands();
+        ObjectOutputStream oos = Eriantys.getCurrentApplication().getOos();
+        oos.writeInt((islandTarget-currPos)%numOfIslands);
+        oos.flush();
+        new Thread(()->{
+            try{
+                MessagesMethods.receiveMotherNaturePos();
+                boolean endGame = Eriantys.getCurrentApplication().getOis().readBoolean();
+            }
+            catch (Exception e){}
+
+        }).start();
+        phase = 2; //go in cloud choice phase
+    }
+
+    private void setupForMotherNature(){
+        int currPos = Eriantys.getCurrentApplication().getGameData().getMotherNaturePosition();
+        int currCard = Eriantys.getCurrentApplication().getCardsSceneController().getLastCardSel();
+        int numOfMoves = (int)Math.ceil(((double)currCard/2.0));
+
+
+        Eriantys.getCurrentApplication().getIslandsSceneController().getIslands().get(currPos).getCircle().setVisible(false);
+
+        for(int i=0,j=0;i<12;i++,j++){
+            IslandGuiLogic igl = Eriantys.getCurrentApplication().getIslandsSceneController().getIslands().get(i);
+            if(igl.isCovered()){
+                j--;
+                continue;
+            }
+            if(numOfMoves < Math.abs(j-currPos)) igl.getCircle().setVisible(false);
+        }
+
+
+    }
+
+
+
 }
