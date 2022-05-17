@@ -1,7 +1,7 @@
 package it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers;
 
 import it.polimi.deib.ingsw.gruppo44.Client.Eriantys;
-import it.polimi.deib.ingsw.gruppo44.Client.WaitProcesses.WaitBefore;
+import it.polimi.deib.ingsw.gruppo44.Client.WaitProcesses.Wait;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,8 +13,6 @@ import javafx.scene.input.MouseEvent;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class CardsSceneController implements Initializable {
@@ -46,7 +44,7 @@ public class CardsSceneController implements Initializable {
             else images[i-1].setOpacity(0.25);
         }
         lastCardSel = 1;
-        new Thread(new WaitBefore()).start();
+        new Thread(new Wait()).start();
     }
 
     @FXML
@@ -59,7 +57,7 @@ public class CardsSceneController implements Initializable {
             else images[i-1].setOpacity(0.25);
         }
         lastCardSel = 2;
-        new Thread(new WaitBefore()).start();
+        new Thread(new Wait()).start();
     }
 
     @FXML
@@ -72,7 +70,7 @@ public class CardsSceneController implements Initializable {
             else images[i-1].setOpacity(0.25);
         }
         lastCardSel = 3;
-        new Thread(new WaitBefore()).start();
+        new Thread(new Wait()).start();
     }
 
     @FXML
@@ -85,7 +83,7 @@ public class CardsSceneController implements Initializable {
             else images[i-1].setOpacity(0.25);
         }
         lastCardSel = 4;
-        new Thread(new WaitBefore()).start();
+        new Thread(new Wait()).start();
     }
 
     @FXML
@@ -98,7 +96,7 @@ public class CardsSceneController implements Initializable {
             else images[i-1].setOpacity(0.25);
         }
         lastCardSel = 5;
-        new Thread(new WaitBefore()).start();
+        new Thread(new Wait()).start();
     }
 
     @FXML
@@ -111,7 +109,7 @@ public class CardsSceneController implements Initializable {
             else images[i-1].setOpacity(0.25);
         }
         lastCardSel = 6;
-        new Thread(new WaitBefore()).start();
+        new Thread(new Wait()).start();
     }
 
     @FXML
@@ -124,7 +122,7 @@ public class CardsSceneController implements Initializable {
             else images[i-1].setOpacity(0.25);
         }
         lastCardSel = 7;
-        new Thread(new WaitBefore()).start();
+        new Thread(new Wait()).start();
     }
 
     @FXML
@@ -137,7 +135,7 @@ public class CardsSceneController implements Initializable {
             else images[i-1].setOpacity(0.25);
         }
         lastCardSel = 8;
-        new Thread(new WaitBefore()).start();
+        new Thread(new Wait()).start();
     }
 
     @FXML
@@ -150,7 +148,7 @@ public class CardsSceneController implements Initializable {
             else images[i-1].setOpacity(0.25);
         }
         lastCardSel = 9;
-        new Thread(new WaitBefore()).start();
+        new Thread(new Wait()).start();
     }
 
     @FXML
@@ -163,7 +161,7 @@ public class CardsSceneController implements Initializable {
             else images[i-1].setOpacity(0.25);
         }
         lastCardSel = 10;
-        new Thread(new WaitBefore()).start();
+        new Thread(new Wait()).start();
     }
 
 

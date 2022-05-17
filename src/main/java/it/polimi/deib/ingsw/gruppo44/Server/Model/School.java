@@ -146,10 +146,14 @@ public class School implements Observable, Serializable {
                 if (s.hallStudents.get(color) >= numStudents) {
                     if(s.hallStudents.get(color) == numStudents && character2Used){
                         s.professors.put(color,false);
+                        //need to be called on this school
+                        s.notifyObserver();
                     }
                     else earnProfessor = false;
                 }else{
                     s.professors.put(color,false);
+                    //need to be called on this school
+                    s.notifyObserver();
                 }
                 break; //because the professor can be owned at most by one school
             }

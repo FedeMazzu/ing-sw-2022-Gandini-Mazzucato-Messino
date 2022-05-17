@@ -14,7 +14,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
@@ -909,7 +908,7 @@ public class IslandsSceneController implements Initializable {
         new Thread(()->{
             try{
                 System.out.println("Prima scuole");
-                MessagesMethods.receiveSchoolUpdated();
+                MessagesMethods.receiveSchoolsUpdated();
                 MessagesMethods.receiveIslandsUpdated();
                 System.out.println("dopo tutto");
             }
@@ -1012,7 +1011,7 @@ public class IslandsSceneController implements Initializable {
         new Thread(()->{
             try {
                 MessagesMethods.receiveCloudsUpdated();
-                MessagesMethods.receiveSchoolUpdated();
+                MessagesMethods.receiveSchoolsUpdated();
                 synchronized (Eriantys.getCurrentApplication().getIslandsSceneController()){
                     Eriantys.getCurrentApplication().getIslandsSceneController().notifyAll(); //to wake up and go in wait after
                 }

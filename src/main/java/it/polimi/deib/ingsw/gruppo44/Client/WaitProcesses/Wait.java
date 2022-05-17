@@ -19,7 +19,7 @@ import java.io.ObjectOutputStream;
 import java.util.List;
 import java.util.Map;
 
-public class WaitBefore implements Runnable{
+public class Wait implements Runnable{
 
     private int turnNumber;
     private boolean gameEnd;

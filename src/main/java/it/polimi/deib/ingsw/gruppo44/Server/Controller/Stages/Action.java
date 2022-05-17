@@ -1,6 +1,5 @@
 package it.polimi.deib.ingsw.gruppo44.Server.Controller.Stages;
 
-import it.polimi.deib.ingsw.gruppo44.Common.Messages.MovingStudentsMESSAGE;
 import it.polimi.deib.ingsw.gruppo44.Common.Stage;
 import it.polimi.deib.ingsw.gruppo44.Server.Controller.GameController;
 import it.polimi.deib.ingsw.gruppo44.Server.Controller.GameStage;
@@ -256,7 +255,7 @@ public class Action implements Stage, Serializable {
 
         Character char10 = board.getShop().getSingleCharacter(10);
         ((Character10) char10).effect(h1,e1,h2,e2,user.getPlayer().getSchool(),user.getPlayer());
-        sendSchoolDataToAll(user);
+        sendSchoolsDataToAll();
         sendUpdatedMoneyToAll(user);
         sendUpdatedPrice(user);
         playStandardTurn(user);
@@ -289,12 +288,16 @@ public class Action implements Stage, Serializable {
 
     }
 
-    private void sendSchoolDataToAll(User currUser) throws IOException {
+
+    private void sendSchoolsDataToAll() throws IOException {
         for(int i=0;i<gameController.getGameMode().getTeamsNumber()*gameController.getGameMode().getTeamPlayers();i++){
             User tempUser = gameController.getUser(i);
             ObjectOutputStream tempOos = tempUser.getOos();
-            tempOos.writeObject(currUser.getPlayer().getSchool().getSchoolObserver().getSchoolData());
-            tempOos.flush();
+            tempOos.reset();
+            for(SchoolData sd: gameController.getData().getSchoolDataList()) {
+                tempOos.writeObject(sd);
+                tempOos.flush();
+            }
         }
     }
 
@@ -359,9 +362,8 @@ public class Action implements Stage, Serializable {
             tempOos.reset();//needed!
             tempOos.writeObject(gameController.getData().getCloudsData());
             tempOos.flush();
-            tempOos.writeObject(currUser.getPlayer().getSchool().getSchoolObserver().getSchoolData());
-            tempOos.flush();
         }
+        sendSchoolsDataToAll();
     }
 
     /**
@@ -393,21 +395,11 @@ public class Action implements Stage, Serializable {
 
     /**
      * sends the information of the moved students to every client
-     * @param currUser
      * @throws IOException
      */
-    private void sendStudentsMoveToAll(User currUser) throws IOException {
-        SchoolData schoolData = currUser.getPlayer().getSchool().getSchoolObserver().getSchoolData();
-
-        for(int i=0;i<userNum;i++){
-            User tempUser = gameController.getUser(i);
-            ObjectOutputStream tempOos = tempUser.getOos();
-            tempOos.reset();//needed!
-            tempOos.writeObject(schoolData);
-            tempOos.flush();
-            tempOos.writeObject(gameController.getData().getIslandsData());
-            tempOos.flush();
-        }
+    private void sendStudentsMoveToAll() throws IOException {
+        sendSchoolsDataToAll();
+        sendIslandDataToAll();
     }
 
     /**
@@ -519,7 +511,7 @@ public class Action implements Stage, Serializable {
                 }
             }
             //send to everyone
-            sendStudentsMoveToAll(currSchool.getPlayer().getUser());
+            sendStudentsMoveToAll();
 
         }
     }

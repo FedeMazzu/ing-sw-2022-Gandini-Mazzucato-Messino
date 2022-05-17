@@ -41,7 +41,7 @@ public class ClientActionStandard implements Stage {
         msm.moveStudents(gameData);
         oos.writeObject(msm);
         oos.flush();
-        MessagesMethods.receiveSchoolUpdated();
+        MessagesMethods.receiveSchoolsUpdated();
         MessagesMethods.receiveIslandsUpdated();
 
         //MOTHER NATURE
@@ -64,7 +64,7 @@ public class ClientActionStandard implements Stage {
         oos.writeInt(sc.nextInt());
         oos.flush();
         MessagesMethods.receiveCloudsUpdated();
-        MessagesMethods.receiveSchoolUpdated();
+        MessagesMethods.receiveSchoolsUpdated();
 
         clientController.setClientStage(ClientStage.WaitingAfterTurn);
     }

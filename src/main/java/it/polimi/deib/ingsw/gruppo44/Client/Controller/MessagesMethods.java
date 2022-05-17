@@ -3,7 +3,6 @@ package it.polimi.deib.ingsw.gruppo44.Client.Controller;
 import it.polimi.deib.ingsw.gruppo44.Client.Eriantys;
 import it.polimi.deib.ingsw.gruppo44.Client.View.GameData;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Color;
-import it.polimi.deib.ingsw.gruppo44.Server.Model.Game;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.CloudsData;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.IslandsData;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.SchoolData;
@@ -11,7 +10,6 @@ import javafx.application.Platform;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.Map;
 
 /**
@@ -33,7 +31,7 @@ public class MessagesMethods {
         System.out.println("A player has moved the students!");
         for(int i=0;i<Eriantys.getCurrentApplication().getGameMode().getCloudStudents();i++){
             //System.out.println("Il banano e` "+i);
-            receiveSchoolUpdated();
+            receiveSchoolsUpdated();
             receiveIslandsUpdated();
         }
 
@@ -56,7 +54,7 @@ public class MessagesMethods {
         //after choosing cloud
         receiveCloudsUpdated();
         System.out.println("A player has chosen a cloud!");
-        receiveSchoolUpdated();
+        receiveSchoolsUpdated();
         return false;
     }
 
@@ -86,14 +84,14 @@ public class MessagesMethods {
     /**
      * updates and prints a representation of the passed SchoolData
      */
-    public static void receiveSchoolUpdated() throws IOException, ClassNotFoundException {
-        System.out.println("PRIMA OIS");
-        SchoolData schoolData = (SchoolData)Eriantys.getCurrentApplication().getOis().readObject();
-        System.out.println("DOPO OIS");
-        //updating game data
-        Eriantys.getCurrentApplication().getGameData().putSchoolData(schoolData.getMagician(), schoolData);
-
-        System.out.println("School of the "+schoolData.getMagician()+" updated: ");
+    public static void receiveSchoolsUpdated() throws IOException, ClassNotFoundException {
+        ObjectInputStream ois = Eriantys.getCurrentApplication().getOis();
+        for(int i=0; i< Eriantys.getCurrentApplication().getGameMode().getTeamsNumber()*Eriantys.getCurrentApplication().getGameMode().getTeamPlayers();i++) {
+            SchoolData schoolData = (SchoolData) ois.readObject();
+            //updating game data
+            Eriantys.getCurrentApplication().getGameData().putSchoolData(schoolData.getMagician(), schoolData);
+        }
+        /*System.out.println("School of the "+schoolData.getMagician()+" updated: ");
         System.out.println("Money: "+schoolData.getPlayerMoney());
         System.out.print("Entrance: ");
         for(Color color: Color.values()) System.out.print("Color "+color+": "+schoolData.getEntranceStudentsNum(color)+" | ");
@@ -101,7 +99,7 @@ public class MessagesMethods {
         System.out.print("Hall: ");
         for(Color color: Color.values()) System.out.print("Color "+color+": "+schoolData.getHallStudentsNum(color)+" "+schoolData.hasProfessor(color)+" | ");
         System.out.println();
-        System.out.println("------------------------------------------------------------------------------------------");
+        System.out.println("------------------------------------------------------------------------------------------");*/
     }
 
     /**
@@ -205,7 +203,7 @@ public class MessagesMethods {
 
     private static boolean characterWait2() throws IOException, ClassNotFoundException {
         //receiving the MovingClient updated money
-        receiveSchoolUpdated();
+        receiveSchoolsUpdated();
         //receiving the characters updated prices
         receiveUpdatedPrices();
         return MessagesMethods.standardWait();
@@ -227,7 +225,7 @@ public class MessagesMethods {
             return gameEnd;
         }
         //receiving the MovingClient updated money
-        receiveSchoolUpdated();
+        receiveSchoolsUpdated();
         //receiving the characters updated prices
         receiveUpdatedPrices();
         return MessagesMethods.standardWait();
@@ -235,7 +233,7 @@ public class MessagesMethods {
 
     private static boolean characterWait4() throws IOException, ClassNotFoundException {
         //receiving the MovingClient updated money
-        receiveSchoolUpdated();
+        receiveSchoolsUpdated();
         //receiving the characters updated prices
         receiveUpdatedPrices();
         return MessagesMethods.standardWait();
@@ -243,7 +241,7 @@ public class MessagesMethods {
 
     private static boolean characterWait6() throws IOException, ClassNotFoundException {
         //receiving the MovingClient updated money
-        receiveSchoolUpdated();
+        receiveSchoolsUpdated();
         //receiving the characters updated prices
         receiveUpdatedPrices();
         return MessagesMethods.standardWait();
@@ -251,7 +249,7 @@ public class MessagesMethods {
 
     private static boolean characterWait8() throws IOException, ClassNotFoundException {
         //receiving the MovingClient updated money
-        receiveSchoolUpdated();
+        receiveSchoolsUpdated();
         //receiving the characters updated prices
         receiveUpdatedPrices();
         return MessagesMethods.standardWait();
@@ -261,7 +259,7 @@ public class MessagesMethods {
         Color colorChosen = (Color) Eriantys.getCurrentApplication().getOis().readObject();
         System.out.println("The player chose: "+colorChosen);
         //receiving the MovingClient updated money
-        receiveSchoolUpdated();
+        receiveSchoolsUpdated();
         //receiving the characters updated prices
         receiveUpdatedPrices();
         return MessagesMethods.standardWait();
@@ -269,9 +267,9 @@ public class MessagesMethods {
 
     private static boolean characterWait10() throws IOException, ClassNotFoundException {
         SchoolData schoolData = (SchoolData) Eriantys.getCurrentApplication().getOis().readObject();
-        receiveSchoolUpdated();
+        receiveSchoolsUpdated();
         //receiving the MovingClient updated money (it's redundant in this case)
-        receiveSchoolUpdated();
+        receiveSchoolsUpdated();
         //receiving the characters updated prices
         receiveUpdatedPrices();
         return MessagesMethods.standardWait();
@@ -287,10 +285,10 @@ public class MessagesMethods {
         int numOfUsers = Eriantys.getCurrentApplication().getGameMode().getTeamPlayers()* Eriantys.getCurrentApplication().getGameMode().getTeamsNumber();
         for(int i=0; i< numOfUsers; i++){
             SchoolData schoolData = (SchoolData) Eriantys.getCurrentApplication().getOis().readObject();
-            receiveSchoolUpdated();
+            receiveSchoolsUpdated();
         }
         //receiving the MovingClient updated money
-        receiveSchoolUpdated();
+        receiveSchoolsUpdated();
         //receiving the characters updated prices
         receiveUpdatedPrices();
         //continuing with the standard wait

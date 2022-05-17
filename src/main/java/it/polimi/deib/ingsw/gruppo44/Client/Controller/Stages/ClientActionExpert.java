@@ -50,7 +50,7 @@ public class ClientActionExpert implements Stage{
             msm.moveStudents(gameData);
             oos.writeObject(msm);
             oos.flush();
-            MessagesMethods.receiveSchoolUpdated();
+            MessagesMethods.receiveSchoolsUpdated();
             MessagesMethods.receiveIslandsUpdated();
 
             //MOTHER NATURE
@@ -74,7 +74,7 @@ public class ClientActionExpert implements Stage{
             oos.writeInt(sc.nextInt());
             oos.flush();
             MessagesMethods.receiveCloudsUpdated();
-            MessagesMethods.receiveSchoolUpdated();
+            MessagesMethods.receiveSchoolsUpdated();
 
             clientController.setClientStage(ClientStage.WaitingAfterTurn);
         }
@@ -112,7 +112,7 @@ public class ClientActionExpert implements Stage{
                 break;
         }
         //receiving the updated money after using a character
-        MessagesMethods.receiveSchoolUpdated();
+        MessagesMethods.receiveSchoolsUpdated();
         //receiving the updated prices
         MessagesMethods.receiveUpdatedPrices();
     }
@@ -272,7 +272,7 @@ public class ClientActionExpert implements Stage{
             }
 
         }
-        MessagesMethods.receiveSchoolUpdated();
+        MessagesMethods.receiveSchoolsUpdated();
     }
 
     private void handleCharacter12() throws IOException, ClassNotFoundException {
