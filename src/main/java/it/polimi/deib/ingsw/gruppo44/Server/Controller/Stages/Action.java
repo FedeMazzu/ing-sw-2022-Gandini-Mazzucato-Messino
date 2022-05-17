@@ -446,8 +446,9 @@ public class Action implements Stage, Serializable {
                 cloudsData += "\n";
             }
         }
-        oos.writeObject(cloudsData);
-        oos.flush();
+        //it isn't needed for the GUI
+        //oos.writeObject(cloudsData);
+        //oos.flush();
         int cloudChosen = ois.readInt();
         board.getClouds().get(cloudChosen).wipeCloud(currPlayer);
     }

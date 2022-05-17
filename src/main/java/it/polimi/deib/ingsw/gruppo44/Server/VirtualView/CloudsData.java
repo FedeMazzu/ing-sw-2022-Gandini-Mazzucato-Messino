@@ -34,6 +34,16 @@ public class CloudsData implements Serializable {
         return students.get(cloudId).get(color);
     }
 
-
+    public boolean isEmpty(int cloudId){
+        Map<Color,Integer> currStudents =students.get(cloudId);
+        boolean isEmpty=true;
+        for(Color color : Color.values()){
+            if(currStudents.get(color)>0){
+                isEmpty = false;
+                break;
+            }
+        }
+        return  isEmpty;
+    }
 
 }

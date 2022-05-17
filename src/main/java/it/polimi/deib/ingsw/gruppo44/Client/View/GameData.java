@@ -173,6 +173,10 @@ public class GameData {
         return availableCards;
     }
 
+    public CloudsData getCloudsData() {
+        return cloudsData;
+    }
+
     public void setAvailableCards(List<Integer> ParAvailableCards) {
         this.availableCards = ParAvailableCards;
         Platform.runLater(()->{

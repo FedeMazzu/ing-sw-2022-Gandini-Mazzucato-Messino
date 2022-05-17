@@ -57,6 +57,8 @@ public class WaitBefore implements Runnable{
     }
 
     public void playStandardTurn(){
+        //setting the phase attribute to "wake up" events
+        Eriantys.getCurrentApplication().getIslandsSceneController().setPhase(0);
         //put the student choice panel visible
         Platform.runLater(()->{
             Rectangle rectangle = Eriantys.getCurrentApplication().getIslandsSceneController().getStudentChoicePanel();

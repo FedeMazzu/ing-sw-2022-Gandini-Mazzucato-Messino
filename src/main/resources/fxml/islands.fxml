@@ -880,7 +880,7 @@
          </font>
       </Button>
       <Circle fx:id="ccloud0" fill="#fff72e" layoutX="446.0" layoutY="254.0" radius="87.0" scaleX="0.8" scaleY="0.8" stroke="BLACK" strokeType="INSIDE" visible="false" />
-      <ImageView fx:id="cloud0" fitHeight="190.0" fitWidth="186.0" layoutX="353.0" layoutY="162.0" pickOnBounds="true" preserveRatio="true" scaleX="0.8" scaleY="0.8" visible="false">
+      <ImageView fx:id="cloud0" fitHeight="190.0" fitWidth="186.0" layoutX="353.0" layoutY="162.0" onMouseClicked="#selectCloud0" pickOnBounds="true" preserveRatio="true" scaleX="0.8" scaleY="0.8" visible="false">
          <image>
             <Image url="@../images/Cloudnull.png" />
          </image>
@@ -936,7 +936,7 @@
          </font>
       </Label>
       <Circle fx:id="ccloud1" fill="#fff72e" layoutX="593.0" layoutY="252.0" radius="87.0" scaleX="0.8" scaleY="0.8" stroke="BLACK" strokeType="INSIDE" visible="false" />
-      <ImageView fx:id="cloud1" fitHeight="190.0" fitWidth="186.0" layoutX="500.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true" scaleX="0.8" scaleY="0.8" visible="false">
+      <ImageView fx:id="cloud1" fitHeight="190.0" fitWidth="186.0" layoutX="500.0" layoutY="160.0" onMouseClicked="#selectCloud1" pickOnBounds="true" preserveRatio="true" scaleX="0.8" scaleY="0.8" visible="false">
          <image>
             <Image url="@../images/Cloudnull.png" />
          </image>
@@ -992,7 +992,7 @@
          </font>
       </Label>
       <Circle fx:id="ccloud2" fill="#fff72e" layoutX="442.0" layoutY="402.0" radius="87.0" scaleX="0.8" scaleY="0.8" stroke="BLACK" strokeType="INSIDE" visible="false" />
-      <ImageView fx:id="cloud2" fitHeight="190.0" fitWidth="186.0" layoutX="349.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true" scaleX="0.8" scaleY="0.8" visible="false">
+      <ImageView fx:id="cloud2" fitHeight="190.0" fitWidth="186.0" layoutX="349.0" layoutY="310.0" onMouseClicked="#selectCloud2" pickOnBounds="true" preserveRatio="true" scaleX="0.8" scaleY="0.8" visible="false">
          <image>
             <Image url="@../images/Cloudnull.png" />
          </image>
@@ -1048,7 +1048,7 @@
          </font>
       </Label>
       <Circle fx:id="ccloud3" fill="#fff72e" layoutX="589.0" layoutY="400.0" radius="87.0" scaleX="0.8" scaleY="0.8" stroke="BLACK" strokeType="INSIDE" visible="false" />
-      <ImageView fx:id="cloud3" fitHeight="190.0" fitWidth="186.0" layoutX="496.0" layoutY="308.0" pickOnBounds="true" preserveRatio="true" scaleX="0.8" scaleY="0.8" visible="false">
+      <ImageView fx:id="cloud3" fitHeight="190.0" fitWidth="186.0" layoutX="496.0" layoutY="308.0" onMouseClicked="#selectCloud3" pickOnBounds="true" preserveRatio="true" scaleX="0.8" scaleY="0.8" visible="false">
          <image>
             <Image url="@../images/Cloudnull.png" />
          </image>

@@ -6,6 +6,7 @@ import it.polimi.deib.ingsw.gruppo44.Client.Eriantys;
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.Logic.CloudGuiLogic;
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.Logic.IslandGuiLogic;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Color;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -34,7 +35,7 @@ public class IslandsSceneController implements Initializable {
     private Map<Integer, IslandGuiLogic> islands;
     private Map<Integer,CloudGuiLogic> clouds;
 
-    private int phase; //0 student selection, 1 mother nature move, 2 cloud choice
+    private int phase; //-1 Nothing, 0 student selection, 1 mother nature move, 2 cloud choice
     private int counter; //num of student the player has already moved
 
     @FXML
@@ -751,7 +752,7 @@ public class IslandsSceneController implements Initializable {
         ImageView motherNature;
         Label numTowers;
         this.counter = 0;
-        this.phase = 0;
+        this.phase = -1;
         ImageView studentSym;
         //islands
         for(int islandId = 0; islandId<12; islandId++){
@@ -938,12 +939,24 @@ public class IslandsSceneController implements Initializable {
             try{
                 MessagesMethods.receiveMotherNaturePos();
                 boolean endGame = Eriantys.getCurrentApplication().getOis().readBoolean();
+                if(endGame) Eriantys.getCurrentApplication().switchToEndGameScene();
             }
             catch (Exception e){}
 
         }).start();
         phase = 2; //go in cloud choice phase
+        CloudGuiLogic cgl;
+        Circle cloudCircle;
+        for(int i=0; i<Eriantys.getCurrentApplication().getGameMode().getCloudsNumber(); i++){
+            if(!Eriantys.getCurrentApplication().getGameData().getCloudsData().isEmpty(i)){
+                cgl = clouds.get(i);
+                cloudCircle = cgl.getCircle();
+                cloudCircle.setVisible(true);
+            }
+
+        }
     }
+
 
     private void setupForMotherNature(){
         int currPos = Eriantys.getCurrentApplication().getGameData().getMotherNaturePosition();
@@ -966,5 +979,36 @@ public class IslandsSceneController implements Initializable {
     }
 
 
+    public void selectCloud0(MouseEvent mouseEvent) throws IOException {
+        if(phase == 2 && ccloud0.isVisible()) chooseCloud(0);
+    }
+    public void selectCloud1(MouseEvent mouseEvent) throws IOException {
+        if(phase == 2 && ccloud1.isVisible()) chooseCloud(1);
+    }
+    public void selectCloud2(MouseEvent mouseEvent) throws IOException {
+        if(phase == 2 && ccloud2.isVisible()) chooseCloud(2);
+    }
+    public void selectCloud3(MouseEvent mouseEvent) throws IOException {
+        if(phase == 2 && ccloud3.isVisible()) chooseCloud(3);
+    }
 
+    public void chooseCloud( int cloudId) throws IOException {
+        ObjectOutputStream oos = Eriantys.getCurrentApplication().getOos();
+        oos.writeInt(cloudId);
+        oos.flush();
+        for(CloudGuiLogic cgl: clouds.values()) cgl.getCircle().setVisible(false);
+        phase =-1;
+        new Thread(()->{
+            try {
+                MessagesMethods.receiveCloudsUpdated();
+                MessagesMethods.receiveSchoolUpdated();
+            } catch (IOException | ClassNotFoundException e) {
+
+            }
+        }).start();
+    }
+
+    public void setPhase(int phase) {
+        this.phase = phase;
+    }
 }

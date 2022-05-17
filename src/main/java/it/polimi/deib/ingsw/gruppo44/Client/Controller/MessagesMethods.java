@@ -43,7 +43,7 @@ public class MessagesMethods {
         //RECEIVING THE INFORMATION ABOUT THE END OF THE TURN
         boolean gameEnd = Eriantys.getCurrentApplication().getOis().readBoolean();
         if (gameEnd){
-            return gameEnd;
+            Eriantys.getCurrentApplication().switchToEndGameScene();
         }
 
         //after choosing cloud
