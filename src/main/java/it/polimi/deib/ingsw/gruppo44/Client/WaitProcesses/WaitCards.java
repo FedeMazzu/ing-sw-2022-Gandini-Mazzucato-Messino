@@ -20,7 +20,7 @@ public class WaitCards implements Runnable{
 
         try {
             Eriantys.getCurrentApplication().getGameData().setCloudsData((CloudsData) ois.readObject());
-
+            System.out.println("Dopo aver riempito le nuvole");
             Map<Magician,Integer> playedCards =(Map<Magician, Integer>) ois.readObject();
             System.out.println(playedCards);
             List<Integer> availableCards = Eriantys.getCurrentApplication().getGameData().getAvailableCards();

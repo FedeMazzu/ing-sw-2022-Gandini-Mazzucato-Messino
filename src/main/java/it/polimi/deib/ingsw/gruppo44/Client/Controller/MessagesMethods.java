@@ -31,7 +31,7 @@ public class MessagesMethods {
         //after moving the students
         System.out.println("A player has moved the students!");
         for(int i=0;i<Eriantys.getCurrentApplication().getGameMode().getCloudStudents();i++){
-            System.out.println("Il banano e` "+i);
+            //System.out.println("Il banano e` "+i);
             receiveSchoolUpdated();
             receiveIslandsUpdated();
         }

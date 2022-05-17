@@ -908,8 +908,10 @@ public class IslandsSceneController implements Initializable {
         entranceStudentsSelection.getItems().remove(color);
         new Thread(()->{
             try{
+                System.out.println("Prima scuole");
                 MessagesMethods.receiveSchoolUpdated();
                 MessagesMethods.receiveIslandsUpdated();
+                System.out.println("dopo tutto");
             }
             catch (Exception e){}
         }).start();
@@ -972,7 +974,7 @@ public class IslandsSceneController implements Initializable {
                 j--;
                 continue;
             }
-            if(numOfMoves < Math.abs(j-currPos)) igl.getCircle().setVisible(false);
+            if(((j-currPos)>0)&& (numOfMoves < (j-currPos))) igl.getCircle().setVisible(false);
         }
 
 
@@ -998,10 +1000,14 @@ public class IslandsSceneController implements Initializable {
         oos.flush();
         for(CloudGuiLogic cgl: clouds.values()) cgl.getCircle().setVisible(false);
         phase =-1;
+
         new Thread(()->{
             try {
                 MessagesMethods.receiveCloudsUpdated();
                 MessagesMethods.receiveSchoolUpdated();
+                synchronized (Eriantys.getCurrentApplication().getIslandsSceneController()){
+                    Eriantys.getCurrentApplication().getIslandsSceneController().notifyAll(); //to wake up and go in wait after
+                }
             } catch (IOException | ClassNotFoundException e) {
 
             }
@@ -1010,5 +1016,9 @@ public class IslandsSceneController implements Initializable {
 
     public void setPhase(int phase) {
         this.phase = phase;
+    }
+
+    public int getPhase() {
+        return phase;
     }
 }

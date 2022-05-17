@@ -15,6 +15,7 @@ import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +24,7 @@ public class WaitBefore implements Runnable{
     private int turnNumber;
     private boolean gameEnd;
 
+
     @Override
     public void run() {
         ObjectInputStream ois = Eriantys.getCurrentApplication().getOis();
@@ -30,6 +32,7 @@ public class WaitBefore implements Runnable{
             turnNumber = ois.readInt();
 
             int counter = turnNumber;
+            System.out.println("turn Number: "+turnNumber);
             //receiving the data when the player isn't moving yet
             while(counter>0){
                 //receive the outputs of the turnNumber players before you
@@ -52,7 +55,45 @@ public class WaitBefore implements Runnable{
 
         //remember to ask if the player wants to use any character and go in expert mode
         playStandardTurn();
+        while(Eriantys.getCurrentApplication().getIslandsSceneController().getPhase() != -1){
+            try {
+                synchronized (Eriantys.getCurrentApplication().getIslandsSceneController()){
+                    Eriantys.getCurrentApplication().getIslandsSceneController().wait();
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            waitAfter();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
+    }
+
+
+    public void waitAfter() throws IOException, ClassNotFoundException {
+        System.out.println("Siamo entrati in wait after");
+        int counter = turnNumber+1;
+        int numOfPlayers = Eriantys.getCurrentApplication().getGameMode().getTeamPlayers() * Eriantys.getCurrentApplication().getGameMode().getTeamsNumber();
+        ObjectInputStream ois = Eriantys.getCurrentApplication().getOis();
+
+        while (numOfPlayers - counter >0){
+            //receive the outputs of the turnNumber players after you
+            boolean usingCharacter = false;
+            if(Eriantys.getCurrentApplication().getGameMode().isExpertMode()) usingCharacter = ois.readBoolean();
+            if(usingCharacter){
+                gameEnd = MessagesMethods.characterWait();
+                if(gameEnd) return; //Switch to gameEnd scene
+            }
+            else{
+                gameEnd = MessagesMethods.standardWait();
+                if(gameEnd) return; //Switch to gameEnd scene
+            }
+            counter++;
+        }
+        new Thread(new WaitCards()).start();
 
     }
 

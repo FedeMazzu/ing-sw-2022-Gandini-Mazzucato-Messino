@@ -47,6 +47,7 @@ public class Planning implements Stage, Serializable {
         for(int i=0;i<gameController.getGameMode().getTeamsNumber()*gameController.getGameMode().getTeamPlayers();i++){
             User tempUser = gameController.getUser(i);
             oos = tempUser.getOos();
+            oos.reset(); //serve
             oos.writeObject(gameController.getData().getCloudsData());
             oos.flush();
         }
