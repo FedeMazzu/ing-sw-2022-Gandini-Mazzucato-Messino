@@ -941,7 +941,15 @@ public class IslandsSceneController implements Initializable {
             try{
                 MessagesMethods.receiveMotherNaturePos();
                 boolean endGame = Eriantys.getCurrentApplication().getOis().readBoolean();
-                if(endGame) Eriantys.getCurrentApplication().switchToEndGameScene();
+                if (endGame){
+                    String winningMagician =(String) Eriantys.getCurrentApplication().getOis().readObject();
+
+                    Platform.runLater(()->{
+                        Eriantys.getCurrentApplication().getEndGameSceneController().getWinLabel().setText(winningMagician);
+                    });
+
+                    Eriantys.getCurrentApplication().switchToEndGameScene();
+                }
             }
             catch (Exception e){}
 

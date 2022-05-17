@@ -86,13 +86,22 @@ public class GameData {
         Platform.runLater(()->{
             for(int i=0; i<12; i++){
                 IslandGuiLogic igl = Eriantys.getCurrentApplication().getIslandsSceneController().getIslands().get(i);
-                //Lacks of setting the typeof tower
-                //TEMPORARY
-                igl.getNumTowers().setVisible(false);
-                igl.getTower().setVisible(islandsData.getHasTower(i));
-                Map<Color,Label> students= igl.getStudents();
-                for(Color color: Color.values()){
-                    students.get(color).setText("x"+islandsData.getStudentsNum(i,color));
+                if(islandsData.getGroup(i) != -1){
+                    igl.coverMergedIsland();
+                }
+                else{
+                    //Lacks of setting the typeof tower
+                    //TEMPORARY
+                    if(islandsData.getHasTower(i) && islandsData.getGroupSize(i)>1){
+                        igl.getNumTowers().setText("x"+islandsData.getGroupSize(i));
+                        igl.getNumTowers().setVisible(true);
+                    }
+                    else igl.getNumTowers().setVisible(false);
+                    igl.getTower().setVisible(islandsData.getHasTower(i));
+                    Map<Color,Label> students= igl.getStudents();
+                    for(Color color: Color.values()){
+                        students.get(color).setText("x"+islandsData.getStudentsNum(i,color));
+                    }
                 }
 
             }

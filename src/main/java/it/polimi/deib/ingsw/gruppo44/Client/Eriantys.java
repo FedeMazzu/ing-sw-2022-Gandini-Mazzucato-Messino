@@ -1,6 +1,7 @@
 package it.polimi.deib.ingsw.gruppo44.Client;
 
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.CardsSceneController;
+import it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.EndGameSceneController;
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.IslandsSceneController;
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.SchoolsScene2pController;
 import it.polimi.deib.ingsw.gruppo44.Client.View.GameData;
@@ -25,6 +26,7 @@ public class Eriantys extends Application {
     private CardsSceneController cardsSceneController;
     private SchoolsScene2pController schoolsScene2pController;
     private IslandsSceneController islandsSceneController;
+    private EndGameSceneController endGameSceneController;
     private GameData gameData;
     private Stage stage;
     private GameMode gameMode;
@@ -128,6 +130,14 @@ public class Eriantys extends Application {
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    public EndGameSceneController getEndGameSceneController() {
+        return endGameSceneController;
+    }
+
+    public void setEndGameSceneController(EndGameSceneController endGameSceneController) {
+        this.endGameSceneController = endGameSceneController;
     }
 
     public GameMode getGameMode() {

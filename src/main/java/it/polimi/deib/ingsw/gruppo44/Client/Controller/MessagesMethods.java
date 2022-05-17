@@ -7,6 +7,7 @@ import it.polimi.deib.ingsw.gruppo44.Server.Model.Game;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.CloudsData;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.IslandsData;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.SchoolData;
+import javafx.application.Platform;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -43,6 +44,12 @@ public class MessagesMethods {
         //RECEIVING THE INFORMATION ABOUT THE END OF THE TURN
         boolean gameEnd = Eriantys.getCurrentApplication().getOis().readBoolean();
         if (gameEnd){
+            String winningMagician =(String) Eriantys.getCurrentApplication().getOis().readObject();
+
+            Platform.runLater(()->{
+                Eriantys.getCurrentApplication().getEndGameSceneController().getWinLabel().setText(winningMagician);
+            });
+
             Eriantys.getCurrentApplication().switchToEndGameScene();
         }
 
