@@ -32,6 +32,7 @@ public class Eriantys extends Application {
     private Scene cardsScene;
     private Scene schoolScene2P;
     private Scene islandsScene;
+    private Scene endGameScene;
 
 
 
@@ -65,7 +66,9 @@ public class Eriantys extends Application {
         //need to be called after creating the scene
         islandsSceneController.buildDataStructures();
 
-        //add here the loading of the other game scenes
+        //END GAME
+        Parent endGame = FXMLLoader.load(getClass().getResource("/fxml/endGameScene.fxml"));
+        endGameScene = new Scene(endGame);
     }
     public void switchToMenuScene() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/menuScene.fxml"));
@@ -90,6 +93,12 @@ public class Eriantys extends Application {
     public void switchToSchools2PScene() {
         Platform.runLater(()->{
             stage.setScene(schoolScene2P);
+            stage.show();
+        });
+    }
+    public void switchToEndGameScene() {
+        Platform.runLater(()->{
+            stage.setScene(endGameScene);
             stage.show();
         });
     }

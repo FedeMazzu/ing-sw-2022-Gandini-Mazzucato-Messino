@@ -767,7 +767,8 @@ public class IslandsSceneController implements Initializable {
             for(Color color: Color.values()){
                 students.put(color, (Label)scene.lookup("#"+color.getId()+islandId));
                 studentSym =(ImageView) scene.lookup("#"+color.getId()+"I"+islandId);
-                //studentSym.setImage(new  Image("File:///src/main/resources/images/pawns/"+color.getId()+"s.png",true));
+                //need to understand which is the pattern for initializing the images automatically
+                //studentSym.setImage(new  Image(getClass().getResource("/images/pawns/"+color.getId()+"s.png")));
                 studentsSymbols.put(color, studentSym);
             }
             islands.put(islandId,new IslandGuiLogic(students,studentsSymbols,island,circle,tower,motherNature,numTowers));
