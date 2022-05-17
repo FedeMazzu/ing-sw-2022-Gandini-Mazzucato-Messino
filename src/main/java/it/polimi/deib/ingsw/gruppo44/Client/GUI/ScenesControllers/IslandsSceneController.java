@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
@@ -751,6 +752,7 @@ public class IslandsSceneController implements Initializable {
         Label numTowers;
         this.counter = 0;
         this.phase = 0;
+        ImageView studentSym;
         //islands
         for(int islandId = 0; islandId<12; islandId++){
             students = new HashMap<>();
@@ -764,7 +766,9 @@ public class IslandsSceneController implements Initializable {
             circle.setVisible(false);
             for(Color color: Color.values()){
                 students.put(color, (Label)scene.lookup("#"+color.getId()+islandId));
-                studentsSymbols.put(color, (ImageView) scene.lookup("#"+color.getId()+"I"+islandId));
+                studentSym =(ImageView) scene.lookup("#"+color.getId()+"I"+islandId);
+                //studentSym.setImage(new  Image("File:///src/main/resources/images/pawns/"+color.getId()+"s.png",true));
+                studentsSymbols.put(color, studentSym);
             }
             islands.put(islandId,new IslandGuiLogic(students,studentsSymbols,island,circle,tower,motherNature,numTowers));
         }
@@ -827,63 +831,63 @@ public class IslandsSceneController implements Initializable {
     }
     public void selectIsland0(MouseEvent mouseEvent) throws IOException {
         if(phase == 0) moveEntranceStudent(0);
-        else if(phase == 1) moveMotherNature(0);
+        else if(phase == 1 && c0.isVisible()) moveMotherNature(0);
 
     }
 
     public void selectIsland1(MouseEvent mouseEvent) throws IOException {
         if(phase == 0) moveEntranceStudent(1);
-        else if(phase == 1) moveMotherNature(1);
+        else if(phase == 1 && c1.isVisible()) moveMotherNature(1);
     }
 
     public void selectIsland2(MouseEvent mouseEvent) throws IOException {
         if(phase == 0) moveEntranceStudent(2);
-        else if(phase == 1) moveMotherNature(2);
+        else if(phase == 1 && c2.isVisible()) moveMotherNature(2);
     }
 
     public void selectIsland3(MouseEvent mouseEvent) throws IOException {
         if(phase == 0) moveEntranceStudent(3);
-        else if(phase == 1) moveMotherNature(3);
+        else if(phase == 1 && c3.isVisible()) moveMotherNature(3);
     }
 
     public void selectIsland4(MouseEvent mouseEvent) throws IOException {
         if(phase == 0) moveEntranceStudent(4);
-        else if(phase == 1) moveMotherNature(4);
+        else if(phase == 1 && c4.isVisible()) moveMotherNature(4);
     }
 
     public void selectIsland5(MouseEvent mouseEvent) throws IOException {
-        if(phase == 0) moveEntranceStudent(5);
-        else if(phase == 1) moveMotherNature(5);
+        if(phase == 0 ) moveEntranceStudent(5);
+        else if(phase == 1 && c5.isVisible()) moveMotherNature(5);
     }
 
     public void selectIsland6(MouseEvent mouseEvent) throws IOException {
-        if(phase == 0) moveEntranceStudent(6);
-        else if(phase == 1) moveMotherNature(6);
+        if(phase == 0 ) moveEntranceStudent(6);
+        else if(phase == 1 && c6.isVisible()) moveMotherNature(6);
     }
 
     public void selectIsland7(MouseEvent mouseEvent) throws IOException {
         if(phase == 0) moveEntranceStudent(7);
-        else if(phase == 1) moveMotherNature(7);
+        else if(phase == 1 && c7.isVisible()) moveMotherNature(7);
     }
 
     public void selectIsland8(MouseEvent mouseEvent) throws IOException {
         if(phase == 0) moveEntranceStudent(8);
-        else if(phase == 1) moveMotherNature(8);
+        else if(phase == 1 && c8.isVisible()) moveMotherNature(8);
     }
 
     public void selectIsland9(MouseEvent mouseEvent) throws IOException {
         if(phase == 0) moveEntranceStudent(9);
-        else if(phase == 1) moveMotherNature(9);
+        else if(phase == 1 && c9.isVisible()) moveMotherNature(9);
     }
 
     public void selectIsland10(MouseEvent mouseEvent) throws IOException {
         if(phase == 0) moveEntranceStudent(10);
-        else if(phase == 1) moveMotherNature(10);
+        else if(phase == 1 && c10.isVisible()) moveMotherNature(10);
     }
 
     public void selectIsland11(MouseEvent mouseEvent) throws IOException {
         if(phase == 0) moveEntranceStudent(11);
-        else if(phase == 1) moveMotherNature(11);
+        else if(phase == 1 && c11.isVisible()) moveMotherNature(11);
     }
 
 
@@ -924,6 +928,9 @@ public class IslandsSceneController implements Initializable {
         int currPos = Eriantys.getCurrentApplication().getGameData().getMotherNaturePosition();
         int numOfIslands = Eriantys.getCurrentApplication().getGameData().getIslandsData().getNumOfIslands();
         ObjectOutputStream oos = Eriantys.getCurrentApplication().getOos();
+        for(IslandGuiLogic igl :islands.values()){
+            igl.getCircle().setVisible(false);
+        }
         oos.writeInt((islandTarget-currPos)%numOfIslands);
         oos.flush();
         new Thread(()->{

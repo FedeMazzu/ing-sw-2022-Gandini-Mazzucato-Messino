@@ -65,7 +65,7 @@
          </font></Label>
       <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="107.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/Coin.png" />
+            <Image url="@../images/pawns/gs.png" />
          </image>
       </ImageView>
       <Label fx:id="er1" layoutX="138.0" layoutY="151.0" text="Label" translateY="5.0">
@@ -151,52 +151,52 @@
          </font></Label>
       <ImageView fx:id="pg1" fitHeight="54.0" fitWidth="45.0" layoutX="433.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/Coin.png" />
+            <Image url="@../images/pawns/gp.png" />
          </image>
       </ImageView>
       <ImageView fx:id="pr1" fitHeight="54.0" fitWidth="45.0" layoutX="433.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/Coin.png" />
+            <Image url="@../images/pawns/rp.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="py1" fitHeight="54.0" fitWidth="45.0" layoutX="433.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="py1" fitHeight="54.0" fitWidth="45.0" layoutX="433.0" layoutY="222.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/Coin.png" />
+            <Image url="@../images/pawns/yp.png" />
          </image>
       </ImageView>
       <ImageView fx:id="pp1" fitHeight="54.0" fitWidth="45.0" layoutX="433.0" layoutY="293.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/Coin.png" />
+            <Image url="@../images/pawns/pp.png" />
          </image>
       </ImageView>
       <ImageView fx:id="pb1" fitHeight="54.0" fitWidth="45.0" layoutX="433.0" layoutY="369.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/Coin.png" />
+            <Image url="@../images/pawns/bp.png" />
          </image>
       </ImageView>
       <ImageView fx:id="pg2" fitHeight="54.0" fitWidth="45.0" layoutX="946.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/Coin.png" />
+            <Image url="@../images/pawns/gp.png" />
          </image>
       </ImageView>
       <ImageView fx:id="pr2" fitHeight="54.0" fitWidth="45.0" layoutX="946.0" layoutY="145.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/Coin.png" />
+            <Image url="@../images/pawns/rp.png" />
          </image>
       </ImageView>
       <ImageView fx:id="py2" fitHeight="54.0" fitWidth="45.0" layoutX="946.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/Coin.png" />
+            <Image url="@../images/pawns/yp.png" />
          </image>
       </ImageView>
       <ImageView fx:id="pp2" fitHeight="54.0" fitWidth="45.0" layoutX="946.0" layoutY="293.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/Coin.png" />
+            <Image url="@../images/pawns/pp.png" />
          </image>
       </ImageView>
       <ImageView fx:id="pb2" fitHeight="54.0" fitWidth="45.0" layoutX="946.0" layoutY="369.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/Coin.png" />
+            <Image url="@../images/pawns/bp.png" />
          </image>
       </ImageView>
       <Button fx:id="cardsButton" layoutX="320.0" layoutY="660.0" mnemonicParsing="false" onAction="#switchToCards" prefHeight="58.0" prefWidth="125.0" styleClass="buttons" stylesheets="@../CSS/buttons.css" text="Cards">
@@ -226,97 +226,97 @@
       </Button>
       <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="107.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/Coin.png" />
+            <Image url="@../images/pawns/rs.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="107.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/Coin.png" />
+            <Image url="@../images/pawns/ys.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="107.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/Coin.png" />
+            <Image url="@../images/pawns/ps.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="107.0" layoutY="376.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/Coin.png" />
+            <Image url="@../images/pawns/bs.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="278.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/Coin.png" />
+            <Image url="@../images/pawns/gs.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="282.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/Coin.png" />
+            <Image url="@../images/pawns/rs.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="282.0" layoutY="227.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/Coin.png" />
+            <Image url="@../images/pawns/ys.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="283.0" layoutY="302.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/Coin.png" />
+            <Image url="@../images/pawns/ps.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="283.0" layoutY="381.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="283.0" layoutY="380.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/Coin.png" />
+            <Image url="@../images/pawns/bs.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="622.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/Coin.png" />
+            <Image url="@../images/pawns/gs.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="622.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/Coin.png" />
+            <Image url="@../images/pawns/rs.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="622.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/Coin.png" />
+            <Image url="@../images/pawns/ys.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="622.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/Coin.png" />
+            <Image url="@../images/pawns/ps.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="622.0" layoutY="374.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/Coin.png" />
+            <Image url="@../images/pawns/bs.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="796.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/Coin.png" />
+            <Image url="@../images/pawns/gs.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="796.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="796.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/Coin.png" />
+            <Image url="@../images/pawns/rs.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="796.0" layoutY="229.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/Coin.png" />
+            <Image url="@../images/pawns/ys.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="796.0" layoutY="304.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/Coin.png" />
+            <Image url="@../images/pawns/ps.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="796.0" layoutY="378.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/Coin.png" />
+            <Image url="@../images/pawns/bs.png" />
          </image>
       </ImageView>
    </children>
