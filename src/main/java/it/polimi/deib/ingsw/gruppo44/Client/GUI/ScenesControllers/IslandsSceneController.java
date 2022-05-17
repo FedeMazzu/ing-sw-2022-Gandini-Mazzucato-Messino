@@ -970,20 +970,23 @@ public class IslandsSceneController implements Initializable {
 
     private void setupForMotherNature(){
         int currPos = Eriantys.getCurrentApplication().getGameData().getMotherNaturePosition();
+        int numOfIslands = Eriantys.getCurrentApplication().getGameData().getIslandsData().getNumOfIslands();
         int currCard = Eriantys.getCurrentApplication().getCardsSceneController().getLastCardSel();
         int numOfMoves = (int)Math.ceil(((double)currCard/2.0));
 
-
-        Eriantys.getCurrentApplication().getIslandsSceneController().getIslands().get(currPos).getCircle().setVisible(false);
-
-        for(int i=0,j=0;i<12;i++,j++){
+        //System.out.println("POSIZIONE CORRENTE "+currPos + " NUMERO ISOLE " + numOfIslands);
+        //first we obscure every island's circle
+        for(int i=0;i<12;i++){
             IslandGuiLogic igl = Eriantys.getCurrentApplication().getIslandsSceneController().getIslands().get(i);
-            if(igl.isCovered()){
-                j--;
-                continue;
-            }
-            if(((j-currPos)>0)&& (numOfMoves < (j-currPos))) igl.getCircle().setVisible(false);
+            igl.getCircle().setVisible(false);
         }
+        //then we light up every circle that is reachable from the currPos with that maximum number of jumps
+        for(int numJumps = 1; numJumps<=numOfMoves;numJumps++){
+            IslandGuiLogic igl = Eriantys.getCurrentApplication().getIslandsSceneController().getIslands().get((currPos+numJumps)%numOfIslands);
+            igl.getCircle().setVisible(true);
+            //System.out.println("metto visibile "+(currPos+numJumps)%numOfIslands);
+        }
+
 
 
     }
