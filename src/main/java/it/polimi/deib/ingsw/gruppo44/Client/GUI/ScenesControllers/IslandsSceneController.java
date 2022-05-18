@@ -935,7 +935,17 @@ public class IslandsSceneController implements Initializable {
         for(IslandGuiLogic igl :islands.values()){
             igl.getCircle().setVisible(false);
         }
-        oos.writeInt((islandTarget-currPos)%numOfIslands);
+        int pos = currPos;
+        int numOfJumps = 0;
+        while(pos != islandTarget){
+            if(islands.get(pos).isCovered()) pos = (pos+1)%12;
+            else{
+                pos = (pos+1)%12;
+                numOfJumps++;
+            }
+        }
+
+        oos.writeInt(numOfJumps);
         oos.flush();
         new Thread(()->{
             try{
