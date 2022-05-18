@@ -1,9 +1,6 @@
 package it.polimi.deib.ingsw.gruppo44.Client;
 
-import it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.CardsSceneController;
-import it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.EndGameSceneController;
-import it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.IslandsSceneController;
-import it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.SchoolsScene2pController;
+import it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.*;
 import it.polimi.deib.ingsw.gruppo44.Client.View.GameData;
 import it.polimi.deib.ingsw.gruppo44.Common.GameMode;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Magician;
@@ -26,6 +23,8 @@ public class Eriantys extends Application {
     private CardsSceneController cardsSceneController;
     private SchoolsScene2pController schoolsScene2pController;
     private IslandsSceneController islandsSceneController;
+
+    private ShopSceneController shopSceneController;
     private EndGameSceneController endGameSceneController;
     private GameData gameData;
     private Stage stage;
@@ -35,6 +34,9 @@ public class Eriantys extends Application {
     private Scene schoolScene2P;
     private Scene islandsScene;
     private Scene endGameScene;
+
+    private Scene shopScene;
+
 
 
 
@@ -68,6 +70,12 @@ public class Eriantys extends Application {
         //need to be called after creating the scene
         islandsSceneController.buildDataStructures();
 
+        //SHOP
+        if(gameMode.isExpertMode()) {
+            Parent shop = FXMLLoader.load(getClass().getResource("/fxml/shopScene.fxml"));
+            shopScene = new Scene(shop);
+        }
+
         //END GAME
         Parent endGame = FXMLLoader.load(getClass().getResource("/fxml/endGameScene.fxml"));
         endGameScene = new Scene(endGame);
@@ -95,6 +103,14 @@ public class Eriantys extends Application {
     public void switchToSchools2PScene() {
         Platform.runLater(()->{
             stage.setScene(schoolScene2P);
+            stage.show();
+        });
+
+    }
+
+    public void switchToShopScene(){
+        Platform.runLater(()->{
+            stage.setScene(shopScene);
             stage.show();
         });
     }
@@ -178,6 +194,14 @@ public class Eriantys extends Application {
 
     public void setIslandsSceneController(IslandsSceneController islandsSceneController) {
         this.islandsSceneController = islandsSceneController;
+    }
+
+    public ShopSceneController getShopSceneController() {
+        return shopSceneController;
+    }
+
+    public void setShopSceneController(ShopSceneController shopSceneController) {
+        this.shopSceneController = shopSceneController;
     }
 }
 
