@@ -17,6 +17,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+/**
+ * class to manage the Schools Scene
+ */
 public class SchoolsScene2pController implements Initializable {
     @FXML
     private Label name1,magician1,money1,name2,magician2,money2;
