@@ -45,7 +45,7 @@
       </ImageView>
       <ImageView fx:id="m7" fitHeight="50.0" fitWidth="49.0" layoutX="184.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/mothernature.png" />
+            <Image url="@../images/pawns/mothernature.png" />
          </image>
       </ImageView>
       <ImageView fx:id="t7" fitHeight="56.0" fitWidth="43.0" layoutX="178.0" layoutY="141.0" pickOnBounds="true" preserveRatio="true">
@@ -116,7 +116,7 @@
       </ImageView>
       <ImageView fx:id="m8" fitHeight="50.0" fitWidth="49.0" layoutX="355.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/mothernature.png" />
+            <Image url="@../images/pawns/mothernature.png" />
          </image>
       </ImageView>
       <ImageView fx:id="t8" fitHeight="56.0" fitWidth="43.0" layoutX="349.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
@@ -187,7 +187,7 @@
       </ImageView>
       <ImageView fx:id="m9" fitHeight="50.0" fitWidth="49.0" layoutX="532.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/mothernature.png" />
+            <Image url="@../images/pawns/mothernature.png" />
          </image>
       </ImageView>
       <ImageView fx:id="t9" fitHeight="56.0" fitWidth="43.0" layoutX="526.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
@@ -258,7 +258,7 @@
       </ImageView>
       <ImageView fx:id="m10" fitHeight="50.0" fitWidth="49.0" layoutX="719.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/mothernature.png" />
+            <Image url="@../images/pawns/mothernature.png" />
          </image>
       </ImageView>
       <ImageView fx:id="t10" fitHeight="56.0" fitWidth="43.0" layoutX="713.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
@@ -329,7 +329,7 @@
       </ImageView>
       <ImageView fx:id="m11" fitHeight="50.0" fitWidth="49.0" layoutX="878.0" layoutY="195.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/mothernature.png" />
+            <Image url="@../images/pawns/mothernature.png" />
          </image>
       </ImageView>
       <ImageView fx:id="t11" fitHeight="56.0" fitWidth="43.0" layoutX="872.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true">
@@ -400,7 +400,7 @@
       </ImageView>
       <ImageView fx:id="m6" fitHeight="50.0" fitWidth="49.0" layoutX="103.0" layoutY="342.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/mothernature.png" />
+            <Image url="@../images/pawns/mothernature.png" />
          </image>
       </ImageView>
       <ImageView fx:id="t6" fitHeight="56.0" fitWidth="43.0" layoutX="97.0" layoutY="299.0" pickOnBounds="true" preserveRatio="true">
@@ -466,7 +466,7 @@
       </ImageView>
       <ImageView fx:id="m0" fitHeight="50.0" fitWidth="49.0" layoutX="992.0" layoutY="335.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/mothernature.png" />
+            <Image url="@../images/pawns/mothernature.png" />
          </image>
       </ImageView>
       <ImageView fx:id="t0" fitHeight="56.0" fitWidth="43.0" layoutX="986.0" layoutY="292.0" pickOnBounds="true" preserveRatio="true">
@@ -532,7 +532,7 @@
       </ImageView>
       <ImageView fx:id="m5" fitHeight="50.0" fitWidth="49.0" layoutX="179.0" layoutY="509.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/mothernature.png" />
+            <Image url="@../images/pawns/mothernature.png" />
          </image>
       </ImageView>
       <ImageView fx:id="t5" fitHeight="56.0" fitWidth="43.0" layoutX="173.0" layoutY="466.0" pickOnBounds="true" preserveRatio="true">
@@ -598,7 +598,7 @@
       </ImageView>
       <ImageView fx:id="m4" fitHeight="50.0" fitWidth="49.0" layoutX="356.0" layoutY="550.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/mothernature.png" />
+            <Image url="@../images/pawns/mothernature.png" />
          </image>
       </ImageView>
       <ImageView fx:id="t4" fitHeight="56.0" fitWidth="43.0" layoutX="350.0" layoutY="507.0" pickOnBounds="true" preserveRatio="true">
@@ -664,7 +664,7 @@
       </ImageView>
       <ImageView fx:id="m3" fitHeight="50.0" fitWidth="49.0" layoutX="534.0" layoutY="562.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/mothernature.png" />
+            <Image url="@../images/pawns/mothernature.png" />
          </image>
       </ImageView>
       <ImageView fx:id="t3" fitHeight="56.0" fitWidth="43.0" layoutX="528.0" layoutY="519.0" pickOnBounds="true" preserveRatio="true">
@@ -750,7 +750,7 @@
       </ImageView>
       <ImageView fx:id="m2" fitHeight="50.0" fitWidth="49.0" layoutX="715.0" layoutY="565.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/mothernature.png" />
+            <Image url="@../images/pawns/mothernature.png" />
          </image>
       </ImageView>
       <ImageView fx:id="t2" fitHeight="56.0" fitWidth="43.0" layoutX="709.0" layoutY="522.0" pickOnBounds="true" preserveRatio="true">
@@ -821,7 +821,7 @@
       </ImageView>
       <ImageView fx:id="m1" fitHeight="50.0" fitWidth="49.0" layoutX="900.0" layoutY="510.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/mothernature.png" />
+            <Image url="@../images/pawns/mothernature.png" />
          </image>
       </ImageView>
       <ImageView fx:id="t1" fitHeight="56.0" fitWidth="43.0" layoutX="894.0" layoutY="467.0" pickOnBounds="true" preserveRatio="true">

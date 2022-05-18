@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
@@ -768,7 +769,7 @@ public class IslandsSceneController implements Initializable {
                 students.put(color, (Label)scene.lookup("#"+color.getId()+islandId));
                 studentSym =(ImageView) scene.lookup("#"+color.getId()+"I"+islandId);
                 //need to understand which is the pattern for initializing the images automatically
-                //studentSym.setImage(new  Image(getClass().getResource("/images/pawns/"+color.getId()+"s.png")));
+                studentSym.setImage(new Image("/images/pawns/"+color.getId()+"s.png"));
                 studentsSymbols.put(color, studentSym);
             }
             islands.put(islandId,new IslandGuiLogic(students,studentsSymbols,island,circle,tower,motherNature,numTowers));

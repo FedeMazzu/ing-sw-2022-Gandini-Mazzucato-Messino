@@ -12,6 +12,7 @@ import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.IslandsData;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.SchoolData;
 import javafx.application.Platform;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.util.HashMap;
@@ -92,9 +93,12 @@ public class GameData {
                 else{
                     //Lacks of setting the typeof tower
                     //TEMPORARY
-                    if(islandsData.getHasTower(i) && islandsData.getGroupSize(i)>1){
-                        igl.getNumTowers().setText("x"+islandsData.getGroupSize(i));
-                        igl.getNumTowers().setVisible(true);
+                    if(islandsData.getHasTower(i)){
+                        igl.getTower().setImage(new Image("/images/pawns/"+islandsData.getTowerType(i).getId()+"tower.png"));
+                        if(islandsData.getGroupSize(i)>1) {
+                            igl.getNumTowers().setText("x" + islandsData.getGroupSize(i));
+                            igl.getNumTowers().setVisible(true);
+                        }
                     }
                     else igl.getNumTowers().setVisible(false);
                     igl.getTower().setVisible(islandsData.getHasTower(i));

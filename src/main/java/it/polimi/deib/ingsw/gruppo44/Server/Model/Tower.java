@@ -7,5 +7,14 @@ import java.io.Serializable;
  * @author filippogandini
  */
 public enum Tower implements Serializable {
-    BLACK,WHITE,GREY;
+    BLACK("black"),WHITE("white"),GREY("grey");
+    private String Id;
+
+    private Tower(String id) {
+        Id = id;
+    }
+
+    public String getId() {
+        return Id;
+    }
 }

@@ -106,4 +106,7 @@ public class IslandsData implements Serializable {
     public boolean getHasTower(int islandId) {
         return hasTower[islandId];
     }
+    public Tower getTowerType(int islandId){
+        return towers[islandId];
+    }
 }
