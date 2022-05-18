@@ -734,6 +734,9 @@ public class IslandsSceneController implements Initializable {
     @FXML
     private Label ycloud3;
 
+    @FXML
+    private Button shopButton;
+
 
 
     @Override
@@ -754,6 +757,9 @@ public class IslandsSceneController implements Initializable {
         this.counter = 0;
         this.phase = -1;
         ImageView studentSym;
+        if(Eriantys.getCurrentApplication().getGameMode().isExpertMode()){
+            shopButton.setVisible(true);
+        }
         //islands
         for(int islandId = 0; islandId<12; islandId++){
             students = new HashMap<>();
@@ -800,6 +806,11 @@ public class IslandsSceneController implements Initializable {
     @FXML
     void switchToCards(ActionEvent event) {
         Eriantys.getCurrentApplication().switchToCardsScene();
+    }
+
+    @FXML
+    void switchToShopScene(ActionEvent event){
+        Eriantys.getCurrentApplication().switchToShopScene();
     }
 
     @FXML
@@ -938,11 +949,8 @@ public class IslandsSceneController implements Initializable {
         int pos = currPos;
         int numOfJumps = 0;
         while(pos != islandTarget){
-            if(islands.get(pos).isCovered()) pos = (pos+1)%12;
-            else{
-                pos = (pos+1)%12;
-                numOfJumps++;
-            }
+            pos = (pos+1)%12;
+            if(!islands.get(pos).isCovered()) numOfJumps++;
         }
 
         oos.writeInt(numOfJumps);
@@ -992,7 +1000,12 @@ public class IslandsSceneController implements Initializable {
         }
         //then we light up every circle that is reachable from the currPos with that maximum number of jumps
         for(int numJumps = 1; numJumps<=numOfMoves;numJumps++){
-            IslandGuiLogic igl = Eriantys.getCurrentApplication().getIslandsSceneController().getIslands().get((currPos+numJumps)%numOfIslands);
+            int pos = (currPos + numJumps)%12;
+            if(Eriantys.getCurrentApplication().getGameData().getIslandsData().getGroup(pos) != -1){
+                numOfMoves++;
+                continue;
+            }
+            IslandGuiLogic igl = Eriantys.getCurrentApplication().getIslandsSceneController().getIslands().get(pos);
             igl.getCircle().setVisible(true);
             //System.out.println("metto visibile "+(currPos+numJumps)%numOfIslands);
         }

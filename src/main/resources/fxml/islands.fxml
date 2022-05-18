@@ -1106,5 +1106,10 @@
       <Rectangle fx:id="studentChoicePanel" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="230.0" layoutX="270.0" layoutY="214.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="492.0" />
       <ListView fx:id="entranceStudentsSelection" layoutX="397.0" layoutY="227.0" prefHeight="200.0" prefWidth="200.0" visible="false" />
       <Button fx:id="schoolSelectionButton" layoutX="664.0" layoutY="318.0" mnemonicParsing="false" onAction="#selectSchool" text="School" visible="false" />
+      <Button fx:id="shopButton" layoutX="945.0" layoutY="660.0" mnemonicParsing="false" onAction="#switchToShopScene" prefHeight="58.0" prefWidth="125.0" styleClass="buttons" stylesheets="@../CSS/buttons.css" text="Shop" visible="false">
+         <font>
+            <Font name="Telugu MN" size="30.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

@@ -143,6 +143,15 @@ public class GameData {
 
     public void setCharacters(Map<Integer, Integer> characters) {
         this.characters = characters;
+        Platform.runLater(()->{
+            Label [] prices = Eriantys.getCurrentApplication().getShopSceneController().getPrices();
+            int index=0;
+            for(int i:characters.values()){
+                String text = String.valueOf(i);
+                prices[index].setText(text);
+                index++;
+            }
+        });
     }
 
     public int getMotherNaturePosition() {
@@ -205,7 +214,7 @@ public class GameData {
     public void setData(Data data) {
         setIslandsData(data.getIslandsData());
         setCloudsData(data.getCloudsData());
-        characters = data.getBoardData().getCharacters();
+        setCharacters(data.getBoardData().getCharacters());
         setMotherNaturePosition(data.getBoardData().getMotherNaturePosition());
         for(SchoolData sd: data.getSchoolDataList()){
             putSchoolData(sd.getMagician(),sd);

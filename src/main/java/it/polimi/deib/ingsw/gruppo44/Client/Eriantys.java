@@ -74,6 +74,7 @@ public class Eriantys extends Application {
         if(gameMode.isExpertMode()) {
             Parent shop = FXMLLoader.load(getClass().getResource("/fxml/shopScene.fxml"));
             shopScene = new Scene(shop);
+            shopSceneController.buildDataStructures();
         }
 
         //END GAME
