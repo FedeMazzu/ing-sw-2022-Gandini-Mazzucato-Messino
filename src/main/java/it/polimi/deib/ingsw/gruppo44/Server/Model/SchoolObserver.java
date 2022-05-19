@@ -13,9 +13,9 @@ public class SchoolObserver implements Observer, Serializable {
     private School school;
     private SchoolData schoolData;
 
-    public SchoolObserver(School school) {
+    public SchoolObserver(School school,int teamTowers) {
         this.school = school;
-        schoolData = new SchoolData(school.getPlayer().getTeamTower());
+        schoolData = new SchoolData(school.getPlayer().getTeamTower(),teamTowers);
         update();
     }
 
@@ -40,6 +40,10 @@ public class SchoolObserver implements Observer, Serializable {
      */
     public void updateCards(){
         schoolData.setAvailableCards((school.getPlayer().showAvailableCards()));
+    }
+
+    public void updateTowers(int numTowers){
+        schoolData.setNumTower(numTowers);
     }
 
     /**

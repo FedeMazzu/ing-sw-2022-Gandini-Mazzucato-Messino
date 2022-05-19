@@ -39,7 +39,7 @@
             <Font name="Telugu MN" size="30.0" />
          </font>
       </Label>
-      <Label fx:id="money1" layoutX="270.0" layoutY="581.0" text="Soldi">
+      <Label fx:id="money1" layoutX="229.0" layoutY="584.0" text="Soldi">
          <font>
             <Font name="Telugu MN" size="30.0" />
          </font>
@@ -54,7 +54,7 @@
             <Font name="Telugu MN" size="30.0" />
          </font>
       </Label>
-      <Label fx:id="money2" layoutX="786.0" layoutY="584.0" text="Soldi">
+      <Label fx:id="money2" layoutX="754.0" layoutY="584.0" text="Soldi">
          <font>
             <Font name="Telugu MN" size="30.0" />
          </font>
@@ -204,16 +204,6 @@
             <Font name="Telugu MN" size="30.0" />
          </font>
       </Button>
-      <Label layoutX="696.0" layoutY="590.0" text="Money:">
-         <font>
-            <Font name="Telugu MN" size="22.0" />
-         </font>
-      </Label>
-      <Label layoutX="180.0" layoutY="590.0" text="Money:">
-         <font>
-            <Font name="Telugu MN" size="22.0" />
-         </font>
-      </Label>
       <Button layoutX="445.0" layoutY="660.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="154.0" styleClass="buttons" stylesheets="@../CSS/buttons.css" text="Schools" underline="true">
          <font>
             <Font name="Telugu MN" size="30.0" />
@@ -319,5 +309,27 @@
             <Image url="@../images/pawns/bs.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="coin1" fitHeight="58.0" fitWidth="73.0" layoutX="172.0" layoutY="574.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Coin.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="coin2" fitHeight="58.0" fitWidth="73.0" layoutX="700.0" layoutY="574.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Coin.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="tower1" fitHeight="65.0" fitWidth="46.0" layoutX="314.0" layoutY="553.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="tower2" fitHeight="65.0" fitWidth="46.0" layoutX="848.0" layoutY="553.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="numTower1" layoutX="364.0" layoutY="584.0" prefHeight="38.0" prefWidth="58.0" text="x0">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Label>
+      <Label fx:id="numTower2" layoutX="894.0" layoutY="584.0" prefHeight="38.0" prefWidth="58.0" text="x0">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

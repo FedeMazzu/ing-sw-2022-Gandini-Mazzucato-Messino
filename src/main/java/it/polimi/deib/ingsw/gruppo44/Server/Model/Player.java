@@ -34,7 +34,7 @@ public class Player implements Serializable {
         playedCards = new boolean[10];
         notOwnedObjects = board.getNotOwnedObjects();
         this.teamTower = teamTower;
-        this.school = new School(this,gameMode.getPlayerEntranceStudents());
+        this.school = new School(this,gameMode.getPlayerEntranceStudents(),gameMode.getTeamTowers());
     }
 
     /**
@@ -127,4 +127,5 @@ public class Player implements Serializable {
     }
     public Magician getMagician() {return magician; }
     public Tower getTeamTower() {return teamTower;}
+
 }

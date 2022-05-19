@@ -48,7 +48,12 @@ public class Team implements Serializable {
         return tower;
     }
 
-    public void setTowerCount(int count) {this.towerCount = count;}
+    public void setTowerCount(int count) {
+        this.towerCount = count;
+        for(Player p: players){
+            p.getSchool().notifyObserverForTowers(count);
+        }
+    }
     public int getTowerCount(){return towerCount;}
 
 }

@@ -26,7 +26,7 @@ public class School implements Observable, Serializable {
      * Constructor. It initializes the maps keeping track of the students and professors
      * @param player associated to the school
      */
-    public School(Player player,int entranceStudentsNum){
+    public School(Player player,int entranceStudentsNum, int teamTowers){
         character2Used = false;
         this.player = player;
         schools = new ArrayList<>();
@@ -41,7 +41,7 @@ public class School implements Observable, Serializable {
             professors.put(color, false);
         }
         //it's necessary to instantiate it after the initialization of the maps
-        schoolObserver = new SchoolObserver(this);
+        schoolObserver = new SchoolObserver(this,teamTowers);
     }
 
 
@@ -178,6 +178,10 @@ public class School implements Observable, Serializable {
      */
     @Override
     public void notifyObserver(){ schoolObserver.update();}
+
+    public void notifyObserverForTowers(int numTowers){
+        schoolObserver.updateTowers(numTowers);
+    }
 
     /**
      * @param color of the professor to check

@@ -10,15 +10,19 @@ public class SchoolGuiLogic {
 
     private Map<Color, Label> hallStudents, entranceStudents;
     private Map<Color, ImageView> prof;
-    private Label name,money,magician;
+    private Label name,money,magician,numTower;
+    private ImageView coin,tower;
 
-    public SchoolGuiLogic(Map<Color, Label> hallStudents, Map<Color, Label> entranceStudents, Map<Color, ImageView> prof, Label name, Label money, Label magician) {
+    public SchoolGuiLogic(Map<Color, Label> hallStudents, Map<Color, Label> entranceStudents, Map<Color, ImageView> prof, Label name, Label money, Label magician, Label numTower, ImageView coin, ImageView tower) {
         this.hallStudents = hallStudents;
         this.entranceStudents = entranceStudents;
         this.prof = prof;
         this.name = name;
         this.money = money;
         this.magician = magician;
+        this.numTower = numTower;
+        this.coin = coin;
+        this.tower = tower;
     }
 
     public Map<Color, Label> getHallStudents() {
@@ -43,5 +47,17 @@ public class SchoolGuiLogic {
 
     public Label getMagician() {
         return magician;
+    }
+
+    public Label getNumTower() {
+        return numTower;
+    }
+
+    public ImageView getCoin() {
+        return coin;
+    }
+
+    public ImageView getTower() {
+        return tower;
     }
 }

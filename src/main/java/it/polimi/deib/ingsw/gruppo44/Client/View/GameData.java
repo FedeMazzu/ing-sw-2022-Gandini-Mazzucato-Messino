@@ -65,15 +65,25 @@ public class GameData {
                 prof.get(color).setVisible(schoolData.hasProfessor(color));
             }
             //updating money
-            Label money = schoolGuiLogic.getMoney();
-            Integer currMoney = schoolData.getPlayerMoney();
-            money.setText(String.valueOf(currMoney));
+            if(Eriantys.getCurrentApplication().getGameMode().isExpertMode()){
+                Label money = schoolGuiLogic.getMoney();
+                Integer currMoney = schoolData.getPlayerMoney();
+                money.setText(String.valueOf(currMoney));
+            }else{
+                schoolGuiLogic.getCoin().setVisible(false);
+                schoolGuiLogic.getMoney().setVisible(false);
+            }
 
             //updating name and magician redundantly
             Label magicianLabel = schoolGuiLogic.getMagician();
             Label name = schoolGuiLogic.getName();
             magicianLabel.setText(String.valueOf(magician));
             name.setText(schoolData.getPlayerName());
+
+            //updating the tower and the nuj of towers
+            String numTower = String.valueOf(schoolData.getNumTower());
+            schoolGuiLogic.getNumTower().setText(numTower);
+            schoolGuiLogic.getTower().setImage(new Image("/images/pawns/"+schoolData.getTeamTower().getId()+"tower.png"));
 
         });
     }

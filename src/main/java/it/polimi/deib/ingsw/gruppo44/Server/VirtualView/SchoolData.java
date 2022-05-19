@@ -17,14 +17,16 @@ public class SchoolData implements Serializable {
     private int playerMoney;
     private String playerName;
     private Tower teamTower;
+    private int numTower;
     private Magician magician; //identifier
     private List<Integer> availableCards;
 
-    public SchoolData( Tower teamTower) {
+    public SchoolData( Tower teamTower,int teamTowers) {
         hallStudents = new HashMap<>();
         entranceStudents = new HashMap<>();
         professors = new HashMap<>();
         this.teamTower = teamTower;
+        numTower = teamTowers;
         //naive initialization
     }
 
@@ -57,6 +59,14 @@ public class SchoolData implements Serializable {
      */
     public boolean hasProfessor(Color color){
         return professors.get(color);
+    }
+
+    public int getNumTower() {
+        return numTower;
+    }
+
+    public void setNumTower(int numTower) {
+        this.numTower = numTower;
     }
 
     /**

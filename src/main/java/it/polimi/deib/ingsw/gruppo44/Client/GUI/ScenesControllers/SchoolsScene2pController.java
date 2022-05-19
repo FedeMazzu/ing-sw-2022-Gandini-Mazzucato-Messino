@@ -131,6 +131,8 @@ public class SchoolsScene2pController implements Initializable {
         Map<Color,Label> hallStudents, entranceStudents;
         Map<Color,ImageView> prof;
         Label name, magicianLabel,money;
+        Label numTower;
+        ImageView coin,tower;
 
         for(Magician magician:Eriantys.getCurrentApplication().getMagicianId().keySet()){
             int mageId = Eriantys.getCurrentApplication().getMagicianId().get(magician);
@@ -141,6 +143,9 @@ public class SchoolsScene2pController implements Initializable {
             name = (Label)currScene.lookup("#name"+mageId);
             magicianLabel = (Label)currScene.lookup("#magician"+mageId);
             money = (Label)currScene.lookup("#money"+mageId);
+            numTower = (Label)currScene.lookup("#numTower"+mageId);
+            coin = (ImageView) currScene.lookup("#coin"+mageId);
+            tower = (ImageView) currScene.lookup("#tower"+mageId);
 
             for(Color color:Color.values()){
                 //hall Students
@@ -152,7 +157,7 @@ public class SchoolsScene2pController implements Initializable {
             }
 
 
-            schoolInfo.put(magician,new SchoolGuiLogic(hallStudents,entranceStudents,prof,name,money,magicianLabel));
+            schoolInfo.put(magician,new SchoolGuiLogic(hallStudents,entranceStudents,prof,name,money,magicianLabel,numTower,coin,tower));
 
         }
     }
