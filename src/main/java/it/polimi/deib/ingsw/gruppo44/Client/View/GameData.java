@@ -1,5 +1,6 @@
 package it.polimi.deib.ingsw.gruppo44.Client.View;
 import it.polimi.deib.ingsw.gruppo44.Client.Eriantys;
+import it.polimi.deib.ingsw.gruppo44.Client.GUI.Logic.CharacterGuiLogic;
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.Logic.CloudGuiLogic;
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.Logic.IslandGuiLogic;
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.CardsSceneController;
@@ -141,22 +142,15 @@ public class GameData {
         });
     }
 
-    public void setCharacters(Map<Integer, Integer> characters) {
-        this.characters = characters;
+
+    public void setCharacters(Map<Integer, Integer> currCharacters) {
+
         Platform.runLater(()->{
-            Label [] prices = Eriantys.getCurrentApplication().getShopSceneController().getPrices();
-            ImageView [] charImage = Eriantys.getCurrentApplication().getShopSceneController().getImages();
-            int index=0;
-            for(int i:characters.values()){
-                String text = String.valueOf(i);
-                prices[index].setText(text);
-                index++;
+            for(int val:currCharacters.keySet()){
+                if(currCharacters.get(val)!=characters.get(val))
+                    Eriantys.getCurrentApplication().getShopSceneController().cglFromId(val).getCoin().setVisible(true);
             }
-            index =0;
-            for(int i: characters.keySet()){
-                charImage[index].setImage(new Image("/images/characters/c"+i+".jpg"));
-                        index++;
-            }
+            this.characters = currCharacters;
         });
     }
 
@@ -220,7 +214,19 @@ public class GameData {
     public void setData(Data data) {
         setIslandsData(data.getIslandsData());
         setCloudsData(data.getCloudsData());
-        setCharacters(data.getBoardData().getCharacters());
+        characters = data.getBoardData().getCharacters();
+
+        Platform.runLater(()->{
+            List<CharacterGuiLogic> characterGuiLogicList = Eriantys.getCurrentApplication().getShopSceneController().getCharacters();
+            int index = 0;
+            for(int charId:characters.keySet()){
+                //characterGuiLogicList.get(index).getImage().setImage(new Image("/images/characters/c"+charId+".jpg"));
+                characterGuiLogicList.get(index).setId(charId);
+                index++;
+            }
+
+        });
+
         setMotherNaturePosition(data.getBoardData().getMotherNaturePosition());
         for(SchoolData sd: data.getSchoolDataList()){
             putSchoolData(sd.getMagician(),sd);
@@ -230,6 +236,9 @@ public class GameData {
                 setAvailableCards(sd.getAvailableCards());
             }
         }
+
+
+
     }
 }
 
