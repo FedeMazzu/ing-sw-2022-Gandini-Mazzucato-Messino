@@ -85,8 +85,7 @@ public class ShopSceneController implements Initializable {
                     (ImageView) currScene.lookup("#m"+(i+1)),
                     (Rectangle) currScene.lookup("#rect"+(i+1))
             );
-
-
+            characters.add(tempChar);
         }
     }
 

@@ -6,6 +6,7 @@ import it.polimi.deib.ingsw.gruppo44.Server.Model.Characters.Character;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
@@ -20,12 +21,21 @@ public class Shop implements Creator, Serializable, Observable {
     private int[] randomCharacter;
     private List<Character> characters;
     private BoardObserver boardObserver;
+    private final List<Integer> implementedCharacters= new LinkedList<>();
 
     public Shop(Game game,BoardObserver boardObserver){
         this.game = game;
         this.boardObserver = boardObserver;
         characters = new ArrayList<>();
         randomCharacter = new int[3];
+        implementedCharacters.add(2);
+        implementedCharacters.add(3);
+        implementedCharacters.add(4);
+        implementedCharacters.add(6);
+        implementedCharacters.add(8);
+        implementedCharacters.add(9);
+        implementedCharacters.add(10);
+        implementedCharacters.add(12);
         factoryMethod();
     }
 
@@ -36,15 +46,27 @@ public class Shop implements Creator, Serializable, Observable {
 
     public void factoryMethod(){
         //getting 3 random integers
-        for(int i=0; i<3; i++){randomCharacter[i] = rand.nextInt(numOfCharacters);}
-        //naively
-        randomCharacter[0] = 3;
-        while(randomCharacter[0] == randomCharacter[1]){
-            randomCharacter[1] = rand.nextInt(numOfCharacters);
+        int tempId;
+        int index=0;
+        while(index<3){
+            tempId = rand.nextInt(numOfCharacters);
+            System.out.println(tempId);
+            if(implementedCharacters.contains(tempId+1)) {
+                randomCharacter[index] = tempId;
+                index++;
+            }
         }
-        randomCharacter[1] = 11;
+        while(randomCharacter[0] == randomCharacter[1]){
+            tempId = rand.nextInt(numOfCharacters);
+            if(implementedCharacters.contains(tempId+1)) {
+                randomCharacter[1] = tempId;
+            }
+        }
         while(randomCharacter[2] == randomCharacter[1] || randomCharacter[2] == randomCharacter[0] ){
-            randomCharacter[2] = rand.nextInt(numOfCharacters);
+            tempId = rand.nextInt(numOfCharacters);
+            if(implementedCharacters.contains(tempId+1)) {
+                randomCharacter[2] = tempId;
+            }
         }
 
 

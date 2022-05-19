@@ -122,19 +122,19 @@ public class Wait implements Runnable{
             Map<Integer,Integer> affChars = Eriantys.getCurrentApplication().getGameData().getAffordableCharacters();
 
             if(Eriantys.getCurrentApplication().getGameMode().isExpertMode()){
-                for(int val:affChars.values())
+                for(int val:affChars.keySet()) {
                     Eriantys.getCurrentApplication().getShopSceneController().cglFromId(val).getHighlight().setVisible(false);
+                }
                 if(!affChars.isEmpty()){
-                    for(int val:affChars.values()){
+                    for(int val:affChars.keySet()){
                         Eriantys.getCurrentApplication().getShopSceneController().cglFromId(val).getHighlight().setVisible(true);
                     }
                     Eriantys.getCurrentApplication().switchToShopScene();
-                    System.out.println("arrived here");
                 }
             }
             else{
                 Eriantys.getCurrentApplication().switchToIslandsScene();
-                System.out.println("arrivedehegefdvjk");
+
             }
 
         });
