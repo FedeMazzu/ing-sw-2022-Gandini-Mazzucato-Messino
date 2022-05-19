@@ -11,6 +11,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.*;
 
@@ -19,7 +21,7 @@ public class ShopSceneController implements Initializable {
     private List<CharacterGuiLogic> characters;
 
     @FXML
-    private Button cardsbutton;
+    private Button cardsbutton,notBuyButton;
 
     @FXML
     private ImageView character1;
@@ -78,7 +80,6 @@ public class ShopSceneController implements Initializable {
         Scene currScene = rect1.getScene();
         characters = new ArrayList<>();
 
-
         for(int i=0;i<3;i++){
 
             CharacterGuiLogic tempChar = new CharacterGuiLogic((ImageView) currScene.lookup("#character"+(i+1)),
@@ -99,5 +100,20 @@ public class ShopSceneController implements Initializable {
 
     public List<CharacterGuiLogic> getCharacters() {
         return characters;
+    }
+
+    public void doNotBuy(ActionEvent actionEvent) throws IOException {
+        ObjectOutputStream oos = Eriantys.getCurrentApplication().getOos();
+        oos.writeBoolean(false);
+        oos.flush();
+        notBuyButton.setVisible(false);
+        for(CharacterGuiLogic cgl: characters){
+            cgl.getHighlight().setVisible(false);
+        }
+        Eriantys.getCurrentApplication().switchToIslandsScene();
+    }
+
+    public Button getNotBuyButton() {
+        return notBuyButton;
     }
 }

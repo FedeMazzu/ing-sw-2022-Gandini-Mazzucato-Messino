@@ -20,12 +20,12 @@
             <Font size="30.0" />
          </font>
       </Button>
-      <Button fx:id="schoolsbutton" layoutX="445.0" layoutY="660.0" mnemonicParsing="false" onAction="#switchToSchools" prefHeight="58.0" prefWidth="154.0" styleClass="buttons" stylesheets="@../CSS/buttons.css" text="Schools">
+      <Button fx:id="schoolsbutton" layoutX="445.0" layoutY="660.0" mnemonicParsing="false" onAction="#switchToSchools" prefHeight="58.0" prefWidth="154.0" styleClass="buttons" stylesheets="@../CSS/buttons.css" text="Schools" visible="false">
          <font>
             <Font size="30.0" />
          </font>
       </Button>
-      <Button fx:id="cardsbutton" layoutX="320.0" layoutY="660.0" mnemonicParsing="false" onAction="#switchToCards" prefHeight="58.0" prefWidth="125.0" styleClass="buttons" stylesheets="@../CSS/buttons.css" text="Cards">
+      <Button fx:id="cardsbutton" layoutX="320.0" layoutY="660.0" mnemonicParsing="false" onAction="#switchToCards" prefHeight="58.0" prefWidth="125.0" styleClass="buttons" stylesheets="@../CSS/buttons.css" text="Cards" visible="false">
          <font>
             <Font size="30.0" />
          </font>
@@ -50,5 +50,10 @@
             <Image url="@../images/Coin.png" />
          </image>
       </ImageView>
+      <Button fx:id="notBuyButton" layoutX="413.0" layoutY="510.0" mnemonicParsing="false" onAction="#doNotBuy" prefHeight="58.0" prefWidth="230.0" text="Do not buy!" visible="false">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
