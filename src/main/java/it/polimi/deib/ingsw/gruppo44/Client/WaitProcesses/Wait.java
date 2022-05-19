@@ -123,7 +123,24 @@ public class Wait implements Runnable{
             rectangle.setVisible(true);
             schoolSelButton.setVisible(true);
             entranceStudentsSel.setVisible(true);
-            Eriantys.getCurrentApplication().switchToIslandsScene();
+            Map<Integer,Integer> affChars = Eriantys.getCurrentApplication().getGameData().getAffordableCharacters();
+
+            if(Eriantys.getCurrentApplication().getGameMode().isExpertMode()){
+                for(int val:affChars.values())
+                    Eriantys.getCurrentApplication().getShopSceneController().cglFromId(val).getHighlight().setVisible(false);
+            }
+
+            if(Eriantys.getCurrentApplication().getGameMode().isExpertMode() && !affChars.isEmpty()){
+                //highlight affordable characters
+                for(int val:affChars.values()){
+                    Eriantys.getCurrentApplication().getShopSceneController().cglFromId(val).getHighlight().setVisible(true);
+                }
+
+                Eriantys.getCurrentApplication().switchToShopScene();
+            }
+            else{
+                Eriantys.getCurrentApplication().switchToIslandsScene();
+            }
 
 
         });

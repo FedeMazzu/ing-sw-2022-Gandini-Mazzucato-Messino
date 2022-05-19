@@ -1,6 +1,7 @@
 package it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers;
 
 import it.polimi.deib.ingsw.gruppo44.Client.Eriantys;
+import it.polimi.deib.ingsw.gruppo44.Client.GUI.Logic.CharacterGuiLogic;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,13 +12,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class ShopSceneController implements Initializable {
 
-    private ImageView [] images;
-    private Label [] prices;
-    private Rectangle [] highlights;
+    private List<CharacterGuiLogic> characters;
 
     @FXML
     private Button cardsbutton;
@@ -77,26 +76,29 @@ public class ShopSceneController implements Initializable {
 
     public void buildDataStructures(){
         Scene currScene = rect1.getScene();
-        images = new ImageView[3];
-        prices = new Label[3];
-        highlights = new Rectangle[3];
+        characters = new ArrayList<>();
+
+
         for(int i=0;i<3;i++){
-            images[i] = (ImageView) currScene.lookup("#character"+(i+1));
-            prices[i] = (Label) currScene.lookup("#character"+(i+1)+"Label");
-            highlights[i] = (Rectangle) currScene.lookup("#rect"+(i+1));
+
+            CharacterGuiLogic tempChar = new CharacterGuiLogic((ImageView) currScene.lookup("#character"+(i+1)),
+                    (ImageView) currScene.lookup("#m"+(i+1)),
+                    (Rectangle) currScene.lookup("#rect"+(i+1))
+            );
+
 
         }
     }
 
-    public ImageView[] getImages() {
-        return images;
+    public CharacterGuiLogic cglFromId(int id){
+        CharacterGuiLogic ans = null;
+        for(CharacterGuiLogic cgl:characters){
+            if(cgl.getId() == id) ans = cgl;
+        }
+        return ans;
     }
 
-    public Label[] getPrices() {
-        return prices;
-    }
-
-    public Rectangle[] getHighlights() {
-        return highlights;
+    public List<CharacterGuiLogic> getCharacters() {
+        return characters;
     }
 }
