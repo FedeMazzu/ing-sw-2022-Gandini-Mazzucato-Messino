@@ -145,11 +145,17 @@ public class GameData {
         this.characters = characters;
         Platform.runLater(()->{
             Label [] prices = Eriantys.getCurrentApplication().getShopSceneController().getPrices();
+            ImageView [] charImage = Eriantys.getCurrentApplication().getShopSceneController().getImages();
             int index=0;
             for(int i:characters.values()){
                 String text = String.valueOf(i);
                 prices[index].setText(text);
                 index++;
+            }
+            index =0;
+            for(int i: characters.keySet()){
+                charImage[index].setImage(new Image("/images/characters/c"+i+".jpg"));
+                        index++;
             }
         });
     }
