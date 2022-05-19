@@ -55,18 +55,14 @@ public class Wait implements Runnable{
 
         //remember to ask if the player wants to use any character and go in expert mode
         playStandardTurn();
-        while(Eriantys.getCurrentApplication().getIslandsSceneController().getPhase() != -1){
-            try {
-                synchronized (Eriantys.getCurrentApplication().getIslandsSceneController()){
+        try {
+            while(Eriantys.getCurrentApplication().getIslandsSceneController().getPhase() != -1) {
+                synchronized (Eriantys.getCurrentApplication().getIslandsSceneController()) {
                     Eriantys.getCurrentApplication().getIslandsSceneController().wait();
                 }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
-        }
-        try {
-            waitAfter();
-        } catch (IOException | ClassNotFoundException e) {
+                waitAfter();
+        } catch (IOException | ClassNotFoundException | InterruptedException e) {
             e.printStackTrace();
         }
 
@@ -128,20 +124,18 @@ public class Wait implements Runnable{
             if(Eriantys.getCurrentApplication().getGameMode().isExpertMode()){
                 for(int val:affChars.values())
                     Eriantys.getCurrentApplication().getShopSceneController().cglFromId(val).getHighlight().setVisible(false);
-            }
-
-            if(Eriantys.getCurrentApplication().getGameMode().isExpertMode() && !affChars.isEmpty()){
-                //highlight affordable characters
-                for(int val:affChars.values()){
-                    Eriantys.getCurrentApplication().getShopSceneController().cglFromId(val).getHighlight().setVisible(true);
+                if(!affChars.isEmpty()){
+                    for(int val:affChars.values()){
+                        Eriantys.getCurrentApplication().getShopSceneController().cglFromId(val).getHighlight().setVisible(true);
+                    }
+                    Eriantys.getCurrentApplication().switchToShopScene();
+                    System.out.println("arrived here");
                 }
-
-                Eriantys.getCurrentApplication().switchToShopScene();
             }
             else{
                 Eriantys.getCurrentApplication().switchToIslandsScene();
+                System.out.println("arrivedehegefdvjk");
             }
-
 
         });
     }
