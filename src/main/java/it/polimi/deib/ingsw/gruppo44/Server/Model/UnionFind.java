@@ -82,9 +82,9 @@ public class UnionFind implements Serializable {
         int group1 = findGroup(is1.getIslandID());
         int group2 = findGroup(is2.getIslandID());
         group[group2] = group1;
-        mergeInfluence(getIsland(group1),getIsland(group2)); //vanno passate  le isole dei capigruppi non le isole is1 e is2
+        mergeInfluence(getIsland(group1),getIsland(group2)); //pass the island in charge of each group1 and group2 not is1,is2!
         size--;
-        groupSize[group1] += groupSize[group2]; // groupSize[group2] will not be called again beacuse the parent is not -1
+        groupSize[group1] += groupSize[group2]; // groupSize[group2] will not be called again because the parent is not -1
     }
 
     private void mergeInfluence(Island is1, Island is2){

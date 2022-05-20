@@ -82,6 +82,7 @@ public class Island implements Observable, Serializable {
         if(bestScore == secondBestScore) bestTeam = null; //this is used to handle the equal influence case
 
         try{
+
             if(bestTeam == null) throw new Exception();
             if(getHasTower() && getTowerColor().equals(bestTeam.getTower())) throw new Exception();
 
@@ -112,8 +113,8 @@ public class Island implements Observable, Serializable {
             while(currGroup == unionFind.findGroup(pos)){
                 pos = (pos+1)%12;
             }
-            Island forwardGroup = unionFind.getIsland(pos);
-            if(forwardGroup.hasTower && unionFind.getIsland(pos).getTowerColor().equals(tower)){
+            Island forwardGroup = unionFind.getIsland(unionFind.findGroup(pos)); //instead of pos it should be findGroup(...)
+            if(forwardGroup.hasTower && unionFind.getIsland(unionFind.findGroup(pos)).getTowerColor().equals(tower)){
                 unionFind.merge(this,forwardGroup);
             }
 
@@ -121,13 +122,15 @@ public class Island implements Observable, Serializable {
 
             //backward
             pos = currGroup;
-            while(currGroup == unionFind.findGroup(pos)){
+            while(currGroup == unionFind.findGroup(pos>=0?pos:12+pos)){
                 pos = (pos-1)%12;
             }
-            Island backwardGroup = unionFind.getIsland(pos);
-            if(backwardGroup.hasTower && unionFind.getIsland(pos).getTowerColor().equals(tower)){
+            //in this cycle from pos can become negative hence the ternary op in the findGroups
+            Island backwardGroup = unionFind.getIsland(unionFind.findGroup(pos>=0?pos:12+pos)); //instead of pos it should be findGroup(...)
+            if(backwardGroup.hasTower && unionFind.getIsland(unionFind.findGroup(pos>=0?pos:12+pos)).getTowerColor().equals(tower)){
                 unionFind.merge(this,backwardGroup);
             }
+
 
             //check win conditions ç
             notifyObserver();
