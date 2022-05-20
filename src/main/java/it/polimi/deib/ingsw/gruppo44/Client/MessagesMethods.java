@@ -1,12 +1,15 @@
-package it.polimi.deib.ingsw.gruppo44.Client.Controller;
+package it.polimi.deib.ingsw.gruppo44.Client;
 
-import it.polimi.deib.ingsw.gruppo44.Client.Eriantys;
+import it.polimi.deib.ingsw.gruppo44.Client.GUI.Logic.IslandGuiLogic;
 import it.polimi.deib.ingsw.gruppo44.Client.View.GameData;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Color;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.CloudsData;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.IslandsData;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.SchoolData;
 import javafx.application.Platform;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -18,6 +21,37 @@ import java.util.Map;
  */
 public class MessagesMethods {
 
+    /**
+     * called to set the GUI for the moves
+     * NOTE THAT THIS METHOD MUST DE CALLED ON THE EVENT THREAD
+     */
+    public static void setForMovingStudents(){
+        //setting the phase attribute to "wake up" events
+        Eriantys.getCurrentApplication().getIslandsSceneController().setPhase(0);
+
+        Rectangle rectangle = Eriantys.getCurrentApplication().getIslandsSceneController().getStudentChoicePanel();
+        ListView<Color> entranceStudentsSel = Eriantys.getCurrentApplication().getIslandsSceneController().getEntranceStudentsSelection();
+        Button schoolSelButton = Eriantys.getCurrentApplication().getIslandsSceneController().getSchoolSelectionButton();
+        SchoolData schoolData = Eriantys.getCurrentApplication().getGameData().getSchoolDataMap().get(Eriantys.getCurrentApplication().getGameData().getClientMagician());
+
+        for(Color color:Color.values()){
+            int numOfStudents=schoolData.getEntranceStudentsNum(color);
+            for(int i=0;i<numOfStudents;i++){
+                entranceStudentsSel.getItems().add(color);
+            }
+        }
+
+        for(int i=0;i<12;i++){
+            IslandGuiLogic igl = Eriantys.getCurrentApplication().getIslandsSceneController().getIslands().get(i);
+            if(igl.isCovered()) continue;
+            igl.getCircle().setVisible(true);
+        }
+
+        rectangle.setVisible(true);
+        schoolSelButton.setVisible(true);
+        entranceStudentsSel.setVisible(true);
+        Eriantys.getCurrentApplication().switchToIslandsScene();
+    }
 
     /**
      * method called by the WaitingClient ( before and after) to get updates in a standard turn

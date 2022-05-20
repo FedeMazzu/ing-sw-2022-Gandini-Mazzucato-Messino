@@ -2,18 +2,11 @@ package it.polimi.deib.ingsw.gruppo44.Client.Controller.Stages;
 
 import it.polimi.deib.ingsw.gruppo44.Client.Controller.ClientController;
 import it.polimi.deib.ingsw.gruppo44.Client.Controller.ClientStage;
-import it.polimi.deib.ingsw.gruppo44.Client.Controller.MessagesMethods;
+import it.polimi.deib.ingsw.gruppo44.Client.MessagesMethods;
 import it.polimi.deib.ingsw.gruppo44.Common.Stage;
-import it.polimi.deib.ingsw.gruppo44.Server.Model.Color;
-import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.CloudsData;
-import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.IslandsData;
-import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.SchoolData;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.Map;
-import java.util.Scanner;
 
 /**
  * stage to manage the client waiting to play his turn and receiving the updates of the moves made

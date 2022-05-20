@@ -216,7 +216,7 @@ public class GameData {
             ImageView[] images = csc.getImages();
             for(int i=1; i<=10; i++){
                 if(!availableCards.contains(i)) images[i-1].setVisible(false);
-                else images[i-1].setOpacity(1.0);
+                else images[i-1].setOpacity(0.98);
             }
         });
     }
@@ -225,18 +225,18 @@ public class GameData {
         setIslandsData(data.getIslandsData());
         setCloudsData(data.getCloudsData());
         characters = data.getBoardData().getCharacters();
+        if(Eriantys.getCurrentApplication().getGameMode().isExpertMode()) {
+            Platform.runLater(() -> {
+                List<CharacterGuiLogic> characterGuiLogicList = Eriantys.getCurrentApplication().getShopSceneController().getCharacters();
+                int index = 0;
+                for (int charId : characters.keySet()) {
+                    characterGuiLogicList.get(index).getImage().setImage(new Image("/images/characters/c" + charId + ".jpg"));
+                    characterGuiLogicList.get(index).setId(charId);
+                    index++;
+                }
 
-        Platform.runLater(()->{
-            List<CharacterGuiLogic> characterGuiLogicList = Eriantys.getCurrentApplication().getShopSceneController().getCharacters();
-            int index = 0;
-            for(int charId:characters.keySet()){
-                characterGuiLogicList.get(index).getImage().setImage(new Image("/images/characters/c"+charId+".jpg"));
-                characterGuiLogicList.get(index).setId(charId);
-                index++;
-            }
-
-        });
-
+            });
+        }
         setMotherNaturePosition(data.getBoardData().getMotherNaturePosition());
         for(SchoolData sd: data.getSchoolDataList()){
             putSchoolData(sd.getMagician(),sd);

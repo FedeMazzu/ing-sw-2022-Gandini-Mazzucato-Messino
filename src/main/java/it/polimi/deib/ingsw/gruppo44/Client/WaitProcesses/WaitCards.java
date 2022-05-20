@@ -27,7 +27,10 @@ public class WaitCards implements Runnable{
             Platform.runLater(()->{
                 ImageView [] images = Eriantys.getCurrentApplication().getCardsSceneController().getImages();
                 for(int i=1;i<=10;i++){
-                    if(availableCards.contains(i)) images[i-1].setVisible(true);
+                    if(availableCards.contains(i)) {
+                        images[i-1].setVisible(true);
+                        images[i-1].setOpacity(1);
+                    }
                     if(playedCards.values().contains(i)) images[i-1].setOpacity(0.25);
                 }
             });

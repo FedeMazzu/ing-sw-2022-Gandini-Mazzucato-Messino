@@ -1,7 +1,7 @@
 package it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers;
 
 
-import it.polimi.deib.ingsw.gruppo44.Client.Controller.MessagesMethods;
+import it.polimi.deib.ingsw.gruppo44.Client.MessagesMethods;
 import it.polimi.deib.ingsw.gruppo44.Client.Eriantys;
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.Logic.CloudGuiLogic;
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.Logic.IslandGuiLogic;
@@ -35,7 +35,7 @@ public class IslandsSceneController implements Initializable {
     private Map<Integer, IslandGuiLogic> islands;
     private Map<Integer,CloudGuiLogic> clouds;
 
-    private int phase; //-1 Nothing, 0 student selection, 1 mother nature move, 2 cloud choice
+    private int phase; //-2Nothing,-1 WaitAfter, 0 student selection, 1 mother nature move, 2 cloud choice
     private int counter; //num of student the player has already moved
 
     @FXML
@@ -755,7 +755,7 @@ public class IslandsSceneController implements Initializable {
         ImageView motherNature;
         Label numTowers;
         this.counter = 0;
-        this.phase = -1;
+        this.phase = -2;
         ImageView studentSym;
         if(Eriantys.getCurrentApplication().getGameMode().isExpertMode()){
             shopButton.setVisible(true);
@@ -910,32 +910,33 @@ public class IslandsSceneController implements Initializable {
         Map<Color,Integer> entry = new HashMap<>();
         ObjectOutputStream oos = Eriantys.getCurrentApplication().getOos();
         Color color = entranceStudentsSelection.getSelectionModel().getSelectedItem();
-        if(color != null){
-            entry.put(color,island);
+        if(color != null) {
+            entry.put(color, island);
             oos.writeObject(entry);
             oos.flush();
-        }
-        counter++;
-        entranceStudentsSelection.getItems().remove(color);
-        new Thread(()->{
-            try{
-                System.out.println("Prima scuole");
-                MessagesMethods.receiveSchoolsUpdated();
-                MessagesMethods.receiveIslandsUpdated();
-                System.out.println("dopo tutto");
+
+            counter++;
+            entranceStudentsSelection.getItems().remove(color);
+            new Thread(() -> {
+                try {
+                    System.out.println("Prima scuole");
+                    MessagesMethods.receiveSchoolsUpdated();
+                    MessagesMethods.receiveIslandsUpdated();
+                    System.out.println("dopo tutto");
+                } catch (Exception e) {
+                }
+            }).start();
+            if (counter >= 3) {
+                phase = 1;
+                counter = 0;
+                entranceStudentsSelection.getItems().clear();
+                //set the choice panel invisible
+                entranceStudentsSelection.setVisible(false);
+                studentChoicePanel.setVisible(false);
+                schoolSelectionButton.setVisible(false);
+                //make mother nature move
+                setupForMotherNature();
             }
-            catch (Exception e){}
-        }).start();
-        if(counter >= 3){
-            phase = 1;
-            counter = 0;
-            entranceStudentsSelection.getItems().clear();
-            //set the choice panel invisible
-            entranceStudentsSelection.setVisible(false);
-            studentChoicePanel.setVisible(false);
-            schoolSelectionButton.setVisible(false);
-            //make mother nature move
-            setupForMotherNature();
         }
     }
 

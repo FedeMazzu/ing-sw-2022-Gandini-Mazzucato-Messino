@@ -2,6 +2,7 @@ package it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers;
 
 import it.polimi.deib.ingsw.gruppo44.Client.Eriantys;
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.Logic.CharacterGuiLogic;
+import it.polimi.deib.ingsw.gruppo44.Client.MessagesMethods;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -110,7 +111,7 @@ public class ShopSceneController implements Initializable {
         for(CharacterGuiLogic cgl: characters){
             cgl.getHighlight().setVisible(false);
         }
-        Eriantys.getCurrentApplication().switchToIslandsScene();
+        MessagesMethods.setForMovingStudents();
     }
 
     public Button getNotBuyButton() {

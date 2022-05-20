@@ -2,7 +2,7 @@ package it.polimi.deib.ingsw.gruppo44.Client.Controller.Stages;
 
 import it.polimi.deib.ingsw.gruppo44.Client.Controller.ClientController;
 import it.polimi.deib.ingsw.gruppo44.Client.Controller.ClientStage;
-import it.polimi.deib.ingsw.gruppo44.Client.Controller.MessagesMethods;
+import it.polimi.deib.ingsw.gruppo44.Client.MessagesMethods;
 import it.polimi.deib.ingsw.gruppo44.Client.View.GameData;
 import it.polimi.deib.ingsw.gruppo44.Common.Messages.MovingStudentsMESSAGE;
 import it.polimi.deib.ingsw.gruppo44.Common.Stage;

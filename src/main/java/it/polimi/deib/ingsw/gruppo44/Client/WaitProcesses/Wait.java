@@ -1,22 +1,12 @@
 package it.polimi.deib.ingsw.gruppo44.Client.WaitProcesses;
 
-import it.polimi.deib.ingsw.gruppo44.Client.Controller.ClientController;
-import it.polimi.deib.ingsw.gruppo44.Client.Controller.ClientStage;
-import it.polimi.deib.ingsw.gruppo44.Client.Controller.MessagesMethods;
+import it.polimi.deib.ingsw.gruppo44.Client.MessagesMethods;
 import it.polimi.deib.ingsw.gruppo44.Client.Eriantys;
-import it.polimi.deib.ingsw.gruppo44.Client.GUI.Logic.IslandGuiLogic;
-import it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.IslandsSceneController;
-import it.polimi.deib.ingsw.gruppo44.Server.Model.Color;
-import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.SchoolData;
 import javafx.application.Platform;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.List;
 import java.util.Map;
 
 public class Wait implements Runnable{
@@ -94,34 +84,11 @@ public class Wait implements Runnable{
     }
 
     public void playStandardTurn(){
-        //setting the phase attribute to "wake up" events
-        Eriantys.getCurrentApplication().getIslandsSceneController().setPhase(0);
+        Eriantys.getCurrentApplication().getIslandsSceneController().setPhase(-2);
         //put the student choice panel visible
         Platform.runLater(()->{
-            Rectangle rectangle = Eriantys.getCurrentApplication().getIslandsSceneController().getStudentChoicePanel();
-            ListView <Color> entranceStudentsSel = Eriantys.getCurrentApplication().getIslandsSceneController().getEntranceStudentsSelection();
-            Button schoolSelButton = Eriantys.getCurrentApplication().getIslandsSceneController().getSchoolSelectionButton();
-            SchoolData schoolData = Eriantys.getCurrentApplication().getGameData().getSchoolDataMap().get(Eriantys.getCurrentApplication().getGameData().getClientMagician());
-
-            for(Color color:Color.values()){
-                int numOfStudents=schoolData.getEntranceStudentsNum(color);
-                for(int i=0;i<numOfStudents;i++){
-                    entranceStudentsSel.getItems().add(color);
-                }
-            }
-
-            for(int i=0;i<12;i++){
-                IslandGuiLogic igl = Eriantys.getCurrentApplication().getIslandsSceneController().getIslands().get(i);
-                if(igl.isCovered()) continue;
-                igl.getCircle().setVisible(true);
-            }
-
-            rectangle.setVisible(true);
-            schoolSelButton.setVisible(true);
-            entranceStudentsSel.setVisible(true);
-            Map<Integer,Integer> affChars = Eriantys.getCurrentApplication().getGameData().getAffordableCharacters();
-
             if(Eriantys.getCurrentApplication().getGameMode().isExpertMode()){
+                Map<Integer,Integer> affChars = Eriantys.getCurrentApplication().getGameData().getAffordableCharacters();
                 ObjectOutputStream oos =Eriantys.getCurrentApplication().getOos();
                 for(int val:affChars.keySet()) {
                     Eriantys.getCurrentApplication().getShopSceneController().cglFromId(val).getHighlight().setVisible(false);
@@ -138,15 +105,15 @@ public class Wait implements Runnable{
                         oos.writeBoolean(false);
                         oos.flush();
                     } catch (IOException e) {e.printStackTrace();}
-                    Eriantys.getCurrentApplication().switchToIslandsScene();
+                    MessagesMethods.setForMovingStudents();
                 }
             }
             else{
-                Eriantys.getCurrentApplication().switchToIslandsScene();
-
+                MessagesMethods.setForMovingStudents();
             }
 
         });
     }
+
 
 }
