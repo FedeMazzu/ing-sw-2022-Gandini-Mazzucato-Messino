@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
@@ -116,5 +117,35 @@ public class ShopSceneController implements Initializable {
 
     public Button getNotBuyButton() {
         return notBuyButton;
+    }
+
+    public void effectImage1(MouseEvent mouseEvent) throws IOException {
+        sendCharacter(characters.get(0).getId());
+    }
+    public void effectImage2(MouseEvent mouseEvent) throws IOException {
+        sendCharacter(characters.get(1).getId());
+
+    }
+    public void effectImage3(MouseEvent mouseEvent) throws IOException {
+        sendCharacter(characters.get(2).getId());
+
+    }
+
+    private void sendCharacter(int id) throws IOException {
+        ObjectOutputStream oos = Eriantys.getCurrentApplication().getOos();
+
+        //sending the server the decision of using a character
+        oos.writeBoolean(true);
+        oos.flush();
+
+        //sending the character id used
+        oos.writeInt(id);
+        oos.flush();
+
+        notBuyButton.setVisible(false);
+        for(CharacterGuiLogic cgl: characters) cgl.getHighlight().setVisible(false);
+
+        MessagesMethods.setForMovingStudents();
+
     }
 }

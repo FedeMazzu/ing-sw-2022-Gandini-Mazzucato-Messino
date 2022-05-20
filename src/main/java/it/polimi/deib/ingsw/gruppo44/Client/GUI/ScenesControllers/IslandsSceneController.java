@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -736,6 +737,8 @@ public class IslandsSceneController implements Initializable {
 
     @FXML
     private Button shopButton;
+    @FXML
+    private TextArea infoTA;
 
 
 
@@ -795,6 +798,7 @@ public class IslandsSceneController implements Initializable {
                 students.put(color, studentLabel);
 
                 ImageView studentsSymbol = (ImageView) scene.lookup("#"+color.getId()+"Icloud"+cloudId);
+                studentsSymbol.setImage(new Image("/images/pawns/"+color.getId()+"s.png"));
                 studentsSymbol.setVisible(true);
                 studentsSymbols.put(color, studentsSymbol);
             }
@@ -976,6 +980,7 @@ public class IslandsSceneController implements Initializable {
         phase = 2; //go in cloud choice phase
         CloudGuiLogic cgl;
         Circle cloudCircle;
+        writeInInfo("Choose a cloud");
         for(int i=0; i<Eriantys.getCurrentApplication().getGameMode().getCloudsNumber(); i++){
             if(!Eriantys.getCurrentApplication().getGameData().getCloudsData().isEmpty(i)){
                 cgl = clouds.get(i);
@@ -1011,7 +1016,7 @@ public class IslandsSceneController implements Initializable {
             //System.out.println("metto visibile "+(currPos+numJumps)%numOfIslands);
         }
 
-
+        writeInInfo("Move Mother nature");
 
     }
 
@@ -1047,6 +1052,8 @@ public class IslandsSceneController implements Initializable {
 
             }
         }).start();
+        writeInInfo("A player is choosing a card");
+
     }
 
     public void setPhase(int phase) {
@@ -1055,5 +1062,12 @@ public class IslandsSceneController implements Initializable {
 
     public int getPhase() {
         return phase;
+    }
+
+    public TextArea getInfoTA() {
+        return infoTA;
+    }
+    public void writeInInfo(String text){
+        infoTA.setText(text+"\n"+infoTA.getText());
     }
 }

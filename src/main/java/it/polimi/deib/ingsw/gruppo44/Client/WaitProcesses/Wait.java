@@ -22,7 +22,8 @@ public class Wait implements Runnable{
             turnNumber = ois.readInt();
 
             int counter = turnNumber;
-            System.out.println("turn Number: "+turnNumber);
+
+            //WAIT BEFORE
             //receiving the data when the player isn't moving yet
             while(counter>0){
                 //receive the outputs of the turnNumber players before you
@@ -40,10 +41,6 @@ public class Wait implements Runnable{
             }
         }
         catch (Exception e){}
-        //it's your turn to move
-        //we show entrance students table
-
-        //remember to ask if the player wants to use any character and go in expert mode
         playStandardTurn();
         try {
             while(Eriantys.getCurrentApplication().getIslandsSceneController().getPhase() != -1) {
@@ -60,7 +57,6 @@ public class Wait implements Runnable{
 
 
     public void waitAfter() throws IOException, ClassNotFoundException {
-        System.out.println("Siamo entrati in wait after");
         int counter = turnNumber+1;
         int numOfPlayers = Eriantys.getCurrentApplication().getGameMode().getTeamPlayers() * Eriantys.getCurrentApplication().getGameMode().getTeamsNumber();
         ObjectInputStream ois = Eriantys.getCurrentApplication().getOis();

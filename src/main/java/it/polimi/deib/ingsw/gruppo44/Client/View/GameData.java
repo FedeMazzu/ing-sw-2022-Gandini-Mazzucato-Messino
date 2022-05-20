@@ -115,8 +115,17 @@ public class GameData {
                     igl.getTower().setVisible(islandsData.getHasTower(i));
                     Map<Color,Label> students= igl.getStudents();
                     for(Color color: Color.values()){
-                        students.get(color).setText("x"+islandsData.getStudentsNum(i,color));
+                        int studentsNum = islandsData.getStudentsNum(i,color);
+                        if(studentsNum == 0){
+                            igl.getStudents().get(color).setVisible(false);
+                            igl.getStudentsSymbols().get(color).setVisible(false);
+                        }else {
+                            students.get(color).setText("x" + studentsNum);
+                            igl.getStudents().get(color).setVisible(true);
+                            igl.getStudentsSymbols().get(color).setVisible(true);
+                        }
                     }
+
                 }
 
             }
@@ -134,7 +143,15 @@ public class GameData {
                 cgl.getCircle().setVisible(false);
                 Map<Color,Label> students= cgl.getStudents();
                 for(Color color: Color.values()){
-                    students.get(color).setText("x"+cloudsData.getStudentsNum(i,color));
+                    int numStudents = cloudsData.getStudentsNum(i,color);
+                    if(numStudents==0) {
+                        cgl.getStudentsSymbols().get(color).setVisible(false);
+                        cgl.getStudents().get(color).setVisible(false);
+                    }else{
+                        students.get(color).setText("x" + numStudents);
+                        cgl.getStudentsSymbols().get(color).setVisible(true);
+                        cgl.getStudents().get(color).setVisible(true);
+                    }
                 }
             }
         });

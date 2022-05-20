@@ -28,7 +28,7 @@ public class MessagesMethods {
     public static void setForMovingStudents(){
         //setting the phase attribute to "wake up" events
         Eriantys.getCurrentApplication().getIslandsSceneController().setPhase(0);
-
+        Platform.runLater(()->{Eriantys.getCurrentApplication().getIslandsSceneController().writeInInfo("Move the students");});
         Rectangle rectangle = Eriantys.getCurrentApplication().getIslandsSceneController().getStudentChoicePanel();
         ListView<Color> entranceStudentsSel = Eriantys.getCurrentApplication().getIslandsSceneController().getEntranceStudentsSelection();
         Button schoolSelButton = Eriantys.getCurrentApplication().getIslandsSceneController().getSchoolSelectionButton();
@@ -63,14 +63,17 @@ public class MessagesMethods {
 
         //after moving the students
         System.out.println("A player has moved the students!");
+        Platform.runLater(()->{Eriantys.getCurrentApplication().getIslandsSceneController().writeInInfo("A player is moving the students");});
         for(int i=0;i<Eriantys.getCurrentApplication().getGameMode().getCloudStudents();i++){
             //System.out.println("Il banano e` "+i);
             receiveSchoolsUpdated();
             receiveIslandsUpdated();
         }
 
-        //after moving motherNature
+        //after moving motherNature;
         receiveMotherNaturePos();
+        Platform.runLater(()->{Eriantys.getCurrentApplication().getIslandsSceneController().writeInInfo("A player moved MotherNature");});
+
 
 
         //RECEIVING THE INFORMATION ABOUT THE END OF THE TURN
@@ -89,6 +92,7 @@ public class MessagesMethods {
         receiveCloudsUpdated();
         System.out.println("A player has chosen a cloud!");
         receiveSchoolsUpdated();
+        Platform.runLater(()->{Eriantys.getCurrentApplication().getIslandsSceneController().writeInInfo("A player choose a cloud");});
         return false;
     }
 
@@ -210,6 +214,7 @@ public class MessagesMethods {
 
     public static boolean characterWait() throws IOException, ClassNotFoundException {
         int charId = Eriantys.getCurrentApplication().getOis().readInt();
+        Platform.runLater(()->{Eriantys.getCurrentApplication().getIslandsSceneController().writeInInfo("A player choose to use character"+charId);});
         System.out.println("Character used "+charId);
         switch (charId){
             //case 1:

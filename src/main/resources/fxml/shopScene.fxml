@@ -9,12 +9,12 @@
 
 <AnchorPane prefHeight="720.0" prefWidth="1080.0" styleClass="cards" stylesheets="@../CSS/backgrounds.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.ShopSceneController">
    <children>
-      <Rectangle fx:id="rect3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="388.0" layoutX="732.0" layoutY="66.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="230.0" />
-      <Rectangle fx:id="rect2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="388.0" layoutX="383.0" layoutY="66.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="260.0" />
-      <Rectangle fx:id="rect1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="394.0" layoutX="27.0" layoutY="66.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="267.0" />
-      <ImageView fx:id="character1" fitHeight="285.0" fitWidth="186.0" layoutX="67.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="character2" fitHeight="374.0" fitWidth="216.0" layoutX="388.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="character3" fitHeight="388.0" fitWidth="230.0" layoutX="747.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true" />
+      <Rectangle fx:id="rect3" arcHeight="5.0" arcWidth="5.0" fill="#e7ff4d" height="445.0" layoutX="732.0" layoutY="66.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="330.0" />
+      <Rectangle fx:id="rect2" arcHeight="5.0" arcWidth="5.0" fill="#e7ff4d" height="445.0" layoutX="383.0" layoutY="66.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="330.0" />
+      <Rectangle fx:id="rect1" arcHeight="5.0" arcWidth="5.0" fill="#e7ff4d" height="445.0" layoutX="27.0" layoutY="66.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="330.0" />
+      <ImageView fx:id="character1" fitHeight="423.0" fitWidth="309.0" layoutX="38.0" layoutY="77.0" onMouseClicked="#effectImage1" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="character2" fitHeight="423.0" fitWidth="309.0" layoutX="394.0" layoutY="77.0" onMouseClicked="#effectImage2" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="character3" fitHeight="423.0" fitWidth="309.0" layoutX="743.0" layoutY="77.0" onMouseClicked="#effectImage3" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="islandsbutton" layoutX="600.0" layoutY="660.0" mnemonicParsing="false" onAction="#switchToIslands" prefHeight="58.0" prefWidth="154.0" styleClass="buttons" stylesheets="@../CSS/buttons.css" text="Islands">
          <font>
             <Font size="30.0" />
@@ -45,7 +45,7 @@
             <Image url="@../images/Coin.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="m3" fitHeight="80.0" fitWidth="72.0" layoutX="909.0" layoutY="138.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="m3" fitHeight="80.0" fitWidth="72.0" layoutX="963.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/Coin.png" />
          </image>
