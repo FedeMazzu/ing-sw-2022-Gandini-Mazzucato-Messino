@@ -38,6 +38,7 @@ public class IslandsSceneController implements Initializable {
 
     private int phase; //-2Nothing,-1 WaitAfter, 0 student selection, 1 mother nature move, 2 cloud choice
     private int counter; //num of student the player has already moved
+    private boolean usingCharacter3;
 
     @FXML
     private Label b0;
@@ -747,6 +748,7 @@ public class IslandsSceneController implements Initializable {
         Eriantys.getCurrentApplication().setIslandsSceneController(this);
     }
     public void buildDataStructures(){
+        usingCharacter3 = false;
         Scene scene = b0.getScene();
         islands = new HashMap<>();
 
@@ -847,64 +849,112 @@ public class IslandsSceneController implements Initializable {
 
     }
     public void selectIsland0(MouseEvent mouseEvent) throws IOException {
-        if(phase == 0) moveEntranceStudent(0);
-        else if(phase == 1 && c0.isVisible()) moveMotherNature(0);
-
+        if(usingCharacter3){
+            sendIslandForCharacter3(0);
+        }else {
+            if (phase == 0) moveEntranceStudent(0);
+            else if (phase == 1 && c0.isVisible()) moveMotherNature(0);
+        }
     }
 
     public void selectIsland1(MouseEvent mouseEvent) throws IOException {
-        if(phase == 0) moveEntranceStudent(1);
-        else if(phase == 1 && c1.isVisible()) moveMotherNature(1);
+        if(usingCharacter3){
+            sendIslandForCharacter3(1);
+        }else {
+            if (phase == 0) moveEntranceStudent(1);
+            else if (phase == 1 && c1.isVisible()) moveMotherNature(1);
+        }
     }
 
+
     public void selectIsland2(MouseEvent mouseEvent) throws IOException {
-        if(phase == 0) moveEntranceStudent(2);
-        else if(phase == 1 && c2.isVisible()) moveMotherNature(2);
+        if(usingCharacter3){
+            sendIslandForCharacter3(2);
+        }else {
+            if (phase == 0) moveEntranceStudent(2);
+            else if (phase == 1 && c2.isVisible()) moveMotherNature(2);
+        }
     }
 
     public void selectIsland3(MouseEvent mouseEvent) throws IOException {
-        if(phase == 0) moveEntranceStudent(3);
-        else if(phase == 1 && c3.isVisible()) moveMotherNature(3);
+        if(usingCharacter3){
+            sendIslandForCharacter3(3);
+        }else {
+            if (phase == 0) moveEntranceStudent(3);
+            else if (phase == 1 && c3.isVisible()) moveMotherNature(3);
+        }
     }
 
     public void selectIsland4(MouseEvent mouseEvent) throws IOException {
-        if(phase == 0) moveEntranceStudent(4);
-        else if(phase == 1 && c4.isVisible()) moveMotherNature(4);
+        if(usingCharacter3){
+            sendIslandForCharacter3(4);
+        }else {
+            if (phase == 0) moveEntranceStudent(4);
+            else if (phase == 1 && c4.isVisible()) moveMotherNature(4);
+        }
     }
 
     public void selectIsland5(MouseEvent mouseEvent) throws IOException {
-        if(phase == 0 ) moveEntranceStudent(5);
-        else if(phase == 1 && c5.isVisible()) moveMotherNature(5);
+        if(usingCharacter3){
+            sendIslandForCharacter3(5);
+        }else {
+            if (phase == 0) moveEntranceStudent(5);
+            else if (phase == 1 && c5.isVisible()) moveMotherNature(5);
+        }
     }
 
     public void selectIsland6(MouseEvent mouseEvent) throws IOException {
-        if(phase == 0 ) moveEntranceStudent(6);
-        else if(phase == 1 && c6.isVisible()) moveMotherNature(6);
+        if(usingCharacter3){
+            sendIslandForCharacter3(6);
+        }else {
+            if (phase == 0) moveEntranceStudent(6);
+            else if (phase == 1 && c6.isVisible()) moveMotherNature(6);
+        }
     }
 
     public void selectIsland7(MouseEvent mouseEvent) throws IOException {
-        if(phase == 0) moveEntranceStudent(7);
-        else if(phase == 1 && c7.isVisible()) moveMotherNature(7);
+        if(usingCharacter3){
+            sendIslandForCharacter3(7);
+        }else {
+            if (phase == 0) moveEntranceStudent(7);
+            else if (phase == 1 && c7.isVisible()) moveMotherNature(7);
+        }
     }
 
     public void selectIsland8(MouseEvent mouseEvent) throws IOException {
-        if(phase == 0) moveEntranceStudent(8);
-        else if(phase == 1 && c8.isVisible()) moveMotherNature(8);
+        if(usingCharacter3){
+            sendIslandForCharacter3(8);
+        }else {
+            if (phase == 0) moveEntranceStudent(8);
+            else if (phase == 1 && c8.isVisible()) moveMotherNature(8);
+        }
     }
 
     public void selectIsland9(MouseEvent mouseEvent) throws IOException {
-        if(phase == 0) moveEntranceStudent(9);
-        else if(phase == 1 && c9.isVisible()) moveMotherNature(9);
+        if(usingCharacter3){
+            sendIslandForCharacter3(9);
+        }else {
+            if (phase == 0) moveEntranceStudent(9);
+            else if (phase == 1 && c9.isVisible()) moveMotherNature(9);
+        }
     }
 
     public void selectIsland10(MouseEvent mouseEvent) throws IOException {
-        if(phase == 0) moveEntranceStudent(10);
-        else if(phase == 1 && c10.isVisible()) moveMotherNature(10);
+        if(usingCharacter3){
+            sendIslandForCharacter3(10);
+        }else {
+            if (phase == 0) moveEntranceStudent(10);
+            else if (phase == 1 && c10.isVisible()) moveMotherNature(10);
+        }
     }
 
     public void selectIsland11(MouseEvent mouseEvent) throws IOException {
-        if(phase == 0) moveEntranceStudent(11);
-        else if(phase == 1 && c11.isVisible()) moveMotherNature(11);
+        if(usingCharacter3){
+            sendIslandForCharacter3(11);
+        }else {
+            if (phase == 0) moveEntranceStudent(11);
+            else if (phase == 1 && c11.isVisible()) moveMotherNature(11);
+        }
     }
 
 
@@ -1069,5 +1119,16 @@ public class IslandsSceneController implements Initializable {
     }
     public void writeInInfo(String text){
         infoTA.setText(text+"\n"+infoTA.getText());
+    }
+
+    public void setUsingCharacter3True() {
+        this.usingCharacter3 = true;
+    }
+
+    private void sendIslandForCharacter3(int islandId) throws IOException {
+        usingCharacter3 =false;
+        ObjectOutputStream oos = Eriantys.getCurrentApplication().getOos();
+        oos.writeInt(islandId);
+        oos.flush();
     }
 }

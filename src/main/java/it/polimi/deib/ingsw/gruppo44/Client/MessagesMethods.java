@@ -217,8 +217,6 @@ public class MessagesMethods {
         Platform.runLater(()->{Eriantys.getCurrentApplication().getIslandsSceneController().writeInInfo("A player choose to use character"+charId);});
         System.out.println("Character used "+charId);
         switch (charId){
-            //case 1:
-            //    break;
             case 2:
                 return characterWait2();
             case 3:
@@ -255,12 +253,9 @@ public class MessagesMethods {
      */
 
     private static boolean characterWait3() throws IOException, ClassNotFoundException {
-        IslandsData islandsData = (IslandsData) Eriantys.getCurrentApplication().getOis().readObject();
-        //print islands for debug
         receiveIslandsUpdated();
         boolean gameEnd = Eriantys.getCurrentApplication().getOis().readBoolean();
         if(gameEnd){
-            //clientController.setClientStage(ClientStage.ClientEND);
             return gameEnd;
         }
         //receiving the MovingClient updated money
@@ -296,7 +291,8 @@ public class MessagesMethods {
 
     private static boolean characterWait9() throws IOException, ClassNotFoundException {
         Color colorChosen = (Color) Eriantys.getCurrentApplication().getOis().readObject();
-        System.out.println("The player chose: "+colorChosen);
+        Platform.runLater(()->{Eriantys.getCurrentApplication().getIslandsSceneController().writeInInfo("The player choose: "+colorChosen);});
+
         //receiving the MovingClient updated money
         receiveSchoolsUpdated();
         //receiving the characters updated prices
@@ -321,12 +317,6 @@ public class MessagesMethods {
 
     private static boolean characterWait12() throws IOException, ClassNotFoundException {
 
-        int numOfUsers = Eriantys.getCurrentApplication().getGameMode().getTeamPlayers()* Eriantys.getCurrentApplication().getGameMode().getTeamsNumber();
-        for(int i=0; i< numOfUsers; i++){
-            SchoolData schoolData = (SchoolData) Eriantys.getCurrentApplication().getOis().readObject();
-            receiveSchoolsUpdated();
-        }
-        //receiving the MovingClient updated money
         receiveSchoolsUpdated();
         //receiving the characters updated prices
         receiveUpdatedPrices();

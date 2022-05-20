@@ -31,11 +31,17 @@ public class Wait implements Runnable{
                 if(Eriantys.getCurrentApplication().getGameMode().isExpertMode()) usingCharacter = ois.readBoolean();
                 if(usingCharacter){
                     gameEnd = MessagesMethods.characterWait();
-                    if(gameEnd) return; //Switch to gameEnd scene
+                    if(gameEnd){
+                        Eriantys.getCurrentApplication().switchToEndGameScene();
+                        return;
+                    }
                 }
                 else{
                     gameEnd = MessagesMethods.standardWait();
-                    if(gameEnd) return; //Switch to gameEnd scene
+                    if(gameEnd){
+                        Eriantys.getCurrentApplication().switchToEndGameScene();
+                        return;
+                    }
                 }
                 counter--;
             }

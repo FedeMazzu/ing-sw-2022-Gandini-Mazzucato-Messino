@@ -117,9 +117,6 @@ public class Action implements Stage, Serializable {
         int characterId = ois.readInt();
         sendCharacterChosenToOthers(currUser,characterId);
         switch (characterId){
-            case 1:
-                //handleCharacter1();
-                break;
             case 2:
                 handleCharacter2(currUser);
                 break;
@@ -274,14 +271,6 @@ public class Action implements Stage, Serializable {
         Character char12 = board.getShop().getSingleCharacter(12);
         ((Character12) char12).effect(colorChosen,user.getPlayer());
 
-        //Send the Schools to all the clients including the currUSer
-        for(int i=0;i<userNum;i++){
-            ObjectOutputStream oosTemp = gameController.getUser(i).getOos();
-            for(SchoolData sd: gameController.getData().getSchoolDataList()){
-                oosTemp.writeObject(sd);
-                oosTemp.flush();
-            }
-        }
         sendUpdatedMoneyToAll(user);
         sendUpdatedPrice(user);
         playStandardTurn(user);
@@ -408,14 +397,7 @@ public class Action implements Stage, Serializable {
      * @throws IOException
      */
     private void sendUpdatedMoneyToAll(User user) throws IOException {
-        for(int i=0;i<userNum;i++){
-            User tempUser = gameController.getUser(i);
-            ObjectOutputStream tempOos = tempUser.getOos();
-            tempOos.reset();
-            //it sends the schoolData which contains the updated money
-            tempOos.writeObject(user.getPlayer().getSchool().getSchoolObserver().getSchoolData());
-            tempOos.flush();
-        }
+        sendSchoolsDataToAll();
     }
 
 
