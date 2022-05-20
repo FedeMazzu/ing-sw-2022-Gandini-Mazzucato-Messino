@@ -247,7 +247,7 @@ public class GameData {
                 List<CharacterGuiLogic> characterGuiLogicList = Eriantys.getCurrentApplication().getShopSceneController().getCharacters();
                 int index = 0;
                 for (int charId : characters.keySet()) {
-                    characterGuiLogicList.get(index).getImage().setImage(new Image("/images/characters/c" + charId + ".jpg"));
+                    characterGuiLogicList.get(index).getImage().setImage(new Image("/images/characters/pg" + charId + ".png"));
                     characterGuiLogicList.get(index).setId(charId);
                     index++;
                 }
