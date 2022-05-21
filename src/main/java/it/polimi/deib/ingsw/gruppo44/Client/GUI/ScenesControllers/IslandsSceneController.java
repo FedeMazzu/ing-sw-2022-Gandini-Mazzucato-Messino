@@ -1053,6 +1053,11 @@ public class IslandsSceneController implements Initializable {
             IslandGuiLogic igl = Eriantys.getCurrentApplication().getIslandsSceneController().getIslands().get(i);
             igl.getCircle().setVisible(false);
         }
+        if(usingCharacter4){
+            //handle the effect of the character4 (motherNature can move up to 2 more islands)
+            numOfMoves+=2;
+            usingCharacter4 = false;
+        }
         //then we light up every circle that is reachable from the currPos with that maximum number of jumps
         for(int numJumps = 1; numJumps<=numOfMoves;numJumps++){
             int pos = (currPos + numJumps)%12;
@@ -1064,11 +1069,7 @@ public class IslandsSceneController implements Initializable {
             igl.getCircle().setVisible(true);
             //System.out.println("metto visibile "+(currPos+numJumps)%numOfIslands);
         }
-        if(usingCharacter4){
-            //WRITE HERE THE CODE TO HANDLE CHARACTER 4 EFFECT
 
-            usingCharacter4 = false;
-        }
 
         writeInInfo("Move Mother nature");
 
