@@ -805,7 +805,7 @@ public class IslandsSceneController implements Initializable {
                 studentsSymbol.setVisible(true);
                 studentsSymbols.put(color, studentsSymbol);
             }
-            clouds.put(cloudId,new CloudGuiLogic(students,studentsSymbols,cloud,circle1));
+            clouds.put(cloudId,new CloudGuiLogic(cloudId,students,studentsSymbols,cloud,circle1));
         }
 
     }
