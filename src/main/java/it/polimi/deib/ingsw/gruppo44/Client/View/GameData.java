@@ -19,6 +19,7 @@ import javafx.scene.image.ImageView;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * class to contain the game's data in the client application
@@ -171,11 +172,14 @@ public class GameData {
 
 
     public void setCharacters(Map<Integer, Integer> currCharacters) {
+        System.out.println(currCharacters);
+        System.out.println(characters);
 
         Platform.runLater(()->{
             for(int val:currCharacters.keySet()){
-                if(currCharacters.get(val)!=characters.get(val))
-                    Eriantys.getCurrentApplication().getShopSceneController().cglFromId(val).getCoin().setVisible(true);
+                if(currCharacters.get(val)>characters.get(val)) {
+                    Eriantys.getCurrentApplication().getShopSceneController().cglFromId(val).increasePrice();
+                }
             }
             this.characters = currCharacters;
         });
@@ -241,8 +245,8 @@ public class GameData {
     public void setData(Data data) {
         setIslandsData(data.getIslandsData());
         setCloudsData(data.getCloudsData());
-        characters = data.getBoardData().getCharacters();
         if(Eriantys.getCurrentApplication().getGameMode().isExpertMode()) {
+            characters = data.getBoardData().getCharacters();
             Platform.runLater(() -> {
                 List<CharacterGuiLogic> characterGuiLogicList = Eriantys.getCurrentApplication().getShopSceneController().getCharacters();
                 int index = 0;

@@ -56,21 +56,20 @@ public class Shop implements Creator, Serializable, Observable {
                 index++;
             }
         }
-        randomCharacter[0] = 2;
+        randomCharacter[0] = 3;
         while(randomCharacter[0] == randomCharacter[1]){
             tempId = rand.nextInt(numOfCharacters);
             if(implementedCharacters.contains(tempId+1)) {
                 randomCharacter[1] = tempId;
             }
         }
-        randomCharacter[1] = 7;
+
         while(randomCharacter[2] == randomCharacter[1] || randomCharacter[2] == randomCharacter[0] ){
             tempId = rand.nextInt(numOfCharacters);
             if(implementedCharacters.contains(tempId+1)) {
                 randomCharacter[2] = tempId;
             }
         }
-        randomCharacter[2] = 11;
 
 
         //creating the 3 random characters

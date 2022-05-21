@@ -301,9 +301,7 @@ public class MessagesMethods {
     }
 
     private static boolean characterWait10() throws IOException, ClassNotFoundException {
-        SchoolData schoolData = (SchoolData) Eriantys.getCurrentApplication().getOis().readObject();
-        receiveSchoolsUpdated();
-        //receiving the MovingClient updated money (it's redundant in this case)
+        Platform.runLater(()->{Eriantys.getCurrentApplication().getIslandsSceneController().writeInInfo("The player has swapped some students in his school");});
         receiveSchoolsUpdated();
         //receiving the characters updated prices
         receiveUpdatedPrices();

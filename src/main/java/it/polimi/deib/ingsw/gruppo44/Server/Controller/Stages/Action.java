@@ -252,7 +252,8 @@ public class Action implements Stage, Serializable {
 
         Character char10 = board.getShop().getSingleCharacter(10);
         ((Character10) char10).effect(h1,e1,h2,e2,user.getPlayer().getSchool(),user.getPlayer());
-        sendSchoolsDataToAll();
+
+        //this includes the school updated
         sendUpdatedMoneyToAll(user);
         sendUpdatedPrice(user);
         playStandardTurn(user);

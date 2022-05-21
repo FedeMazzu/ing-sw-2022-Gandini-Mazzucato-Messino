@@ -5,6 +5,7 @@ import it.polimi.deib.ingsw.gruppo44.Client.GUI.Logic.CharacterGuiLogic;
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.Logic.IslandGuiLogic;
 import it.polimi.deib.ingsw.gruppo44.Client.MessagesMethods;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Color;
+import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.SchoolData;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,9 +26,16 @@ import java.util.*;
 public class ShopSceneController implements Initializable {
 
     private List<CharacterGuiLogic> characters;
+    private int character10counter;
 
     @FXML
-    private Label id1,id2,id3;
+    private Button swapButton, endEffectButton;
+    @FXML
+    private Label entranceLabel, hallLabel;
+    @FXML
+    private ListView entranceLV, hallLV;
+    @FXML
+    private Label id1, id2, id3;
     @FXML
     private Button chooseColorButton;
 
@@ -35,7 +43,7 @@ public class ShopSceneController implements Initializable {
     private ListView<Color> colorLV;
 
     @FXML
-    private Button cardsbutton,notBuyButton;
+    private Button  notBuyButton;
 
     @FXML
     private ImageView character1;
@@ -67,57 +75,51 @@ public class ShopSceneController implements Initializable {
     @FXML
     private Rectangle rect3;
 
-    @FXML
-    private Button schoolsbutton;
-
-    @FXML
-    void switchToCards(ActionEvent event) {
-
-    }
 
     @FXML
     void switchToIslands(ActionEvent event) {
         Eriantys.getCurrentApplication().switchToIslandsScene();
     }
 
-    @FXML
-    void switchToSchools(ActionEvent event) {
-
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Eriantys.getCurrentApplication().setShopSceneController(this);
     }
 
-    public void buildDataStructures(){
+    public void buildDataStructures() {
+        character10counter = 0;
         Scene currScene = rect1.getScene();
         characters = new ArrayList<>();
 
-        for(int i=0;i<3;i++){
+        for (int i = 0; i < 3; i++) {
 
-            CharacterGuiLogic tempChar = new CharacterGuiLogic((ImageView) currScene.lookup("#character"+(i+1)),
-                    (ImageView) currScene.lookup("#m"+(i+1)),
-                    (Rectangle) currScene.lookup("#rect"+(i+1)),
-                    (Label) currScene.lookup(("#id"+(i+1)))
+            CharacterGuiLogic tempChar = new CharacterGuiLogic((ImageView) currScene.lookup("#character" + (i + 1)),
+                    (ImageView) currScene.lookup("#m" + (i + 1)),
+                    (Rectangle) currScene.lookup("#rect" + (i + 1)),
+                    (Label) currScene.lookup(("#id" + (i + 1)))
             );
             characters.add(tempChar);
         }
     }
 
-    public void setCharactersVisibility(boolean value){
-        for(CharacterGuiLogic cgl : characters){
-            cgl.getCoin().setVisible(value);
-            cgl.getHighlight().setVisible(value);
+    public void setCharactersVisibility(boolean value) {
+        for (CharacterGuiLogic cgl : characters) {
+            if(value == false){
+                cgl.getHighlight().setVisible(false);
+                cgl.getCoin().setVisible(value);
+            }else if(cgl.isPriceIncreased()){
+                cgl.getCoin().setVisible(true);
+            }
             cgl.getImage().setVisible(value);
             cgl.getIdLabel().setVisible(value);
         }
     }
 
-    public CharacterGuiLogic cglFromId(int id){
+    public CharacterGuiLogic cglFromId(int id) {
         CharacterGuiLogic ans = null;
-        for(CharacterGuiLogic cgl:characters){
-            if(cgl.getId() == id) ans = cgl;
+        for (CharacterGuiLogic cgl : characters) {
+            if (cgl.getId() == id) ans = cgl;
         }
         return ans;
     }
@@ -131,7 +133,7 @@ public class ShopSceneController implements Initializable {
         oos.writeBoolean(false);
         oos.flush();
         notBuyButton.setVisible(false);
-        for(CharacterGuiLogic cgl: characters){
+        for (CharacterGuiLogic cgl : characters) {
             cgl.getHighlight().setVisible(false);
         }
         MessagesMethods.setForMovingStudents();
@@ -144,10 +146,12 @@ public class ShopSceneController implements Initializable {
     public void effectImage1(MouseEvent mouseEvent) throws IOException {
         sendCharacter(characters.get(0).getId());
     }
+
     public void effectImage2(MouseEvent mouseEvent) throws IOException {
         sendCharacter(characters.get(1).getId());
 
     }
+
     public void effectImage3(MouseEvent mouseEvent) throws IOException {
         sendCharacter(characters.get(2).getId());
 
@@ -165,9 +169,9 @@ public class ShopSceneController implements Initializable {
         oos.flush();
 
         notBuyButton.setVisible(false);
-        for(CharacterGuiLogic cgl: characters) cgl.getHighlight().setVisible(false);
+        for (CharacterGuiLogic cgl : characters) cgl.getHighlight().setVisible(false);
         Eriantys.getCurrentApplication().getIslandsSceneController().writeInInfo("Character bought!");
-        new Thread(()->{
+        new Thread(() -> {
             try {
                 handleCharacter(id);
             } catch (IOException | ClassNotFoundException e) {
@@ -177,13 +181,70 @@ public class ShopSceneController implements Initializable {
 
     }
 
+    /**
+     * useful to handle character 10 effect
+     * @param actionEvent
+     */
+    public void swapStudents(ActionEvent actionEvent) throws IOException {
+        Color hallColor = (Color)hallLV.getSelectionModel().getSelectedItem();
+        Color entranceColor = (Color)entranceLV.getSelectionModel().getSelectedItem();
+        if(hallColor!=null && entranceColor!=null) {
+            character10counter++;
 
+            hallLV.getItems().remove(hallColor);
+            entranceLV.getItems().remove(entranceColor);
+            ObjectOutputStream oos = Eriantys.getCurrentApplication().getOos();
+            oos.writeBoolean(true);
+            oos.flush();
 
+            oos.writeObject(hallColor);
+            oos.flush();
+            oos.writeObject(entranceColor);
+            oos.flush();
+
+            if (character10counter == 2) {
+                character10counter = 0;
+                entranceLV.getItems().clear();
+                hallLV.getItems().clear();
+
+                entranceLV.setVisible(false);
+                hallLV.setVisible(false);
+                entranceLabel.setVisible(false);
+                hallLabel.setVisible(false);
+                swapButton.setVisible(false);
+                endEffectButton.setVisible(false);
+
+                setCharactersVisibility(true);
+            }
+        }
+    }
+    /**
+     * useful to end character 10 effect before doing all the swaps
+     * @param actionEvent
+     */
+    public void endEffect(ActionEvent actionEvent) throws IOException {
+        character10counter = 0;
+        ObjectOutputStream oos = Eriantys.getCurrentApplication().getOos();
+        oos.writeBoolean(false);
+        oos.flush();
+        entranceLV.getItems().clear();
+        hallLV.getItems().clear();
+
+        entranceLV.setVisible(false);
+        hallLV.setVisible(false);
+        entranceLabel.setVisible(false);
+        hallLabel.setVisible(false);
+        swapButton.setVisible(false);
+        endEffectButton.setVisible(false);
+
+        setCharactersVisibility(true);
+
+    }
 
 
     private void handleCharacter(int currentCharacter) throws IOException, ClassNotFoundException {
         boolean endGame = false;
-        switch (currentCharacter){
+        switch (currentCharacter) {
             case 1:
                 break;
             case 2:
@@ -204,14 +265,14 @@ public class ShopSceneController implements Initializable {
             case 9:
                 handleCharacter9();
                 break;
-                case 10:
+            case 10:
                 handleCharacter10();
                 break;
             case 12:
                 handleCharacter12();
                 break;
         }
-        if(!endGame) {
+        if (!endGame) {
             //receiving the updated money after using a character
             MessagesMethods.receiveSchoolsUpdated();
             //receiving the updated prices
@@ -225,15 +286,16 @@ public class ShopSceneController implements Initializable {
     private void handleCharacter2() throws IOException, ClassNotFoundException {
         //managed server side
     }
-    private void handleCharacter4() {
 
+    private void handleCharacter4() {
+        Eriantys.getCurrentApplication().getIslandsSceneController().setUsingCharacter4True();
     }
 
     private boolean handleCharacter3() throws IOException, ClassNotFoundException {
-        Platform.runLater(()->{
+        Platform.runLater(() -> {
             Eriantys.getCurrentApplication().getIslandsSceneController().setUsingCharacter3True();
-            for(IslandGuiLogic igl:Eriantys.getCurrentApplication().getIslandsSceneController().getIslands().values()){
-                if(!igl.isCovered()) {
+            for (IslandGuiLogic igl : Eriantys.getCurrentApplication().getIslandsSceneController().getIslands().values()) {
+                if (!igl.isCovered()) {
                     igl.getCircle().setVisible(true);
                 }
             }
@@ -243,25 +305,25 @@ public class ShopSceneController implements Initializable {
 
         MessagesMethods.receiveIslandsUpdated();
 
-         boolean endGame = Eriantys.getCurrentApplication().getOis().readBoolean();
-         if(endGame){
-             Eriantys.getCurrentApplication().switchToEndGameScene();
-         }
-         //to not move to the standard turn
-         return endGame;
+        boolean endGame = Eriantys.getCurrentApplication().getOis().readBoolean();
+        if (endGame) {
+            Eriantys.getCurrentApplication().switchToEndGameScene();
+        }
+        //to not move to the standard turn
+        return endGame;
     }
 
-    private void handleCharacter6(){
+    private void handleCharacter6() {
         //managed server side
     }
 
-    private void handleCharacter8(){
+    private void handleCharacter8() {
         //managed server side
     }
 
-    private void handleCharacter9()  {
+    private void handleCharacter9() {
         setCharactersVisibility(false);
-        for(Color c: Color.values()){
+        for (Color c : Color.values()) {
             colorLV.getItems().add(c);
         }
         colorLV.setVisible(true);
@@ -269,10 +331,15 @@ public class ShopSceneController implements Initializable {
 
     }
 
+    /** to handle character 9,12 effect
+     *
+     * @param actionEvent
+     * @throws IOException
+     */
     public void chooseColor(ActionEvent actionEvent) throws IOException {
         ObjectOutputStream oos = Eriantys.getCurrentApplication().getOos();
         Color color = (Color) colorLV.getSelectionModel().getSelectedItem();
-        if(color!=null){
+        if (color != null) {
             oos.writeObject(color);
             oos.flush();
         }
@@ -280,110 +347,34 @@ public class ShopSceneController implements Initializable {
         colorLV.getItems().clear();
         colorLV.setVisible(false);
         setCharactersVisibility(true);
-        Eriantys.getCurrentApplication().switchToIslandsScene();
+        //Eriantys.getCurrentApplication().switchToIslandsScene();
     }
 
 
     private void handleCharacter10() throws IOException, ClassNotFoundException {
-       /* System.out.println("You want to swap 2 students in your school?\n" +
-                "0 -> NO\n 1 -> YES");
-        int swapChoice = sc.nextInt();
-        if(swapChoice == 0){
-            oos.writeBoolean(false);
-            oos.flush();
-            return;
+        setCharactersVisibility(false);
+        SchoolData sd = Eriantys.getCurrentApplication().getGameData().getSchoolDataMap().get(Eriantys.getCurrentApplication().getGameData().getClientMagician());
+        for (Color color : Color.values()) {
+            for (int i = 0; i < sd.getEntranceStudentsNum(color); i++) {
+                entranceLV.getItems().add(color);
+            }
+            for (int i = 0; i < sd.getHallStudentsNum(color); i++) {
+                hallLV.getItems().add(color);
+            }
         }
-        else{
-            oos.writeBoolean(true);
-            oos.flush();
-            System.out.println("Which 2 colors to swap? (First Hall then Entrance)");
-            System.out.println(" 1-GREEN \n 2-RED \n 3-YELLOW \n 4-PINK \n 5-BLUE");
-            int [] colorChoices = new int[2];
-            colorChoices[0] = sc.nextInt(); //Hall Student Color
-            colorChoices[1] = sc.nextInt(); //Entrance Student Color
-            for(int i=0;i<2;i++){
-                switch (colorChoices[i]){
-                    case 1:
-                        oos.writeObject(Color.GREEN);
-                        oos.flush();
-                        break;
-                    case 2:
-                        oos.writeObject(Color.RED);
-                        oos.flush();
-                        break;
-                    case 3:
-                        oos.writeObject(Color.YELLOW);
-                        oos.flush();
-                        break;
-                    case 4:
-                        oos.writeObject(Color.PINK);
-                        oos.flush();
-                        break;
-                    case 5:
-                        oos.writeObject(Color.BLUE);
-                        oos.flush();
-                        break;
-                    default:
-                        System.out.println("incorrect value");
-                        System.exit(0);
-                        break;
-                }
-            }
-            System.out.println("You want to swap 2 students in your school?\n" +
-                    "0 -> NO\n 1 -> YES");
-            swapChoice = sc.nextInt();
-            if(swapChoice == 0){
-                oos.writeBoolean(false);
-                oos.flush();
-                return;
-            }
-            else{
-                oos.writeBoolean(true);
-                oos.flush();
-                System.out.println("Which 2 colors to swap? (First Hall then Entrance)");
-                System.out.println(" 1-GREEN \n 2-RED \n 3-YELLOW \n 4-PINK \n 5-BLUE");
-                colorChoices[0] = sc.nextInt(); //Hall Student Color
-                colorChoices[1] = sc.nextInt(); //Entrance Student Color
-                for(int i=0;i<2;i++){
-                    switch (colorChoices[i]){
-                        case 1:
-                            oos.writeObject(Color.GREEN);
-                            oos.flush();
-                            break;
-                        case 2:
-                            oos.writeObject(Color.RED);
-                            oos.flush();
-                            break;
-                        case 3:
-                            oos.writeObject(Color.YELLOW);
-                            oos.flush();
-                            break;
-                        case 4:
-                            oos.writeObject(Color.PINK);
-                            oos.flush();
-                            break;
-                        case 5:
-                            oos.writeObject(Color.BLUE);
-                            oos.flush();
-                            break;
-                        default:
-                            System.out.println("incorrect value");
-                            System.exit(0);
-                            break;
-                    }
-                }
 
-            }
+        entranceLV.setVisible(true);
+        hallLV.setVisible(true);
+        entranceLabel.setVisible(true);
+        hallLabel.setVisible(true);
+        swapButton.setVisible(true);
+        endEffectButton.setVisible(true);
 
-        }
-        MessagesMethods.receiveSchoolsUpdated();
-
-        */
     }
 
     private void handleCharacter12() throws IOException, ClassNotFoundException {
         setCharactersVisibility(false);
-        for(Color c: Color.values()){
+        for (Color c : Color.values()) {
             colorLV.getItems().add(c);
         }
         colorLV.setVisible(true);

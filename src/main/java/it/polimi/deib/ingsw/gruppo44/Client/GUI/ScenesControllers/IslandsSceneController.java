@@ -38,7 +38,7 @@ public class IslandsSceneController implements Initializable {
 
     private int phase; //-2Nothing,-1 WaitAfter, 0 student selection, 1 mother nature move, 2 cloud choice
     private int counter; //num of student the player has already moved
-    private boolean usingCharacter3;
+    private boolean usingCharacter3, usingCharacter4;
 
     @FXML
     private Label b0;
@@ -748,6 +748,7 @@ public class IslandsSceneController implements Initializable {
         Eriantys.getCurrentApplication().setIslandsSceneController(this);
     }
     public void buildDataStructures(){
+        usingCharacter4 = false;
         usingCharacter3 = false;
         Scene scene = b0.getScene();
         islands = new HashMap<>();
@@ -973,10 +974,8 @@ public class IslandsSceneController implements Initializable {
             entranceStudentsSelection.getItems().remove(color);
             new Thread(() -> {
                 try {
-                    System.out.println("Prima scuole");
                     MessagesMethods.receiveSchoolsUpdated();
                     MessagesMethods.receiveIslandsUpdated();
-                    System.out.println("dopo tutto");
                 } catch (Exception e) {
                 }
             }).start();
@@ -1065,6 +1064,11 @@ public class IslandsSceneController implements Initializable {
             igl.getCircle().setVisible(true);
             //System.out.println("metto visibile "+(currPos+numJumps)%numOfIslands);
         }
+        if(usingCharacter4){
+            //WRITE HERE THE CODE TO HANDLE CHARACTER 4 EFFECT
+
+            usingCharacter4 = false;
+        }
 
         writeInInfo("Move Mother nature");
 
@@ -1124,6 +1128,9 @@ public class IslandsSceneController implements Initializable {
     public void setUsingCharacter3True() {
         this.usingCharacter3 = true;
     }
+    public void setUsingCharacter4True() {
+        this.usingCharacter4 = true;
+    }
 
     private void sendIslandForCharacter3(int islandId) throws IOException {
         usingCharacter3 =false;
@@ -1131,4 +1138,5 @@ public class IslandsSceneController implements Initializable {
         oos.writeInt(islandId);
         oos.flush();
     }
+
 }

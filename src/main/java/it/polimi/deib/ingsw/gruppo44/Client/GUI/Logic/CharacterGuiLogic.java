@@ -12,12 +12,14 @@ public class CharacterGuiLogic {
     private Rectangle highlight;
     private Label idLabel;
     private int id;
+    private boolean priceIncreased;
 
     public CharacterGuiLogic(ImageView image, ImageView coin, Rectangle highlight,Label idLabel) {
         this.image = image;
         this.coin = coin;
         this.highlight = highlight;
         this.idLabel = idLabel;
+        this.priceIncreased = false;
     }
 
     public ImageView getImage() {
@@ -26,6 +28,13 @@ public class CharacterGuiLogic {
 
     public ImageView getCoin() {
         return coin;
+    }
+
+    public void increasePrice(){
+        priceIncreased = true;
+        Platform.runLater(()->{
+            coin.setVisible(true);
+        });
     }
 
     public Rectangle getHighlight() {
@@ -45,5 +54,9 @@ public class CharacterGuiLogic {
 
     public Label getIdLabel() {
         return idLabel;
+    }
+
+    public boolean isPriceIncreased() {
+        return priceIncreased;
     }
 }

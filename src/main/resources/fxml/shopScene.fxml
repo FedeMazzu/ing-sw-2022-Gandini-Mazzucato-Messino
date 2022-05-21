@@ -11,23 +11,22 @@
 
 <AnchorPane prefHeight="720.0" prefWidth="1080.0" styleClass="cards" stylesheets="@../CSS/backgrounds.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.ShopSceneController">
    <children>
-      <Rectangle fx:id="rect3" arcHeight="5.0" arcWidth="5.0" fill="#e7ff4d" height="445.0" layoutX="732.0" layoutY="66.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="330.0" />
-      <Rectangle fx:id="rect2" arcHeight="5.0" arcWidth="5.0" fill="#e7ff4d" height="445.0" layoutX="383.0" layoutY="66.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="330.0" />
-      <Rectangle fx:id="rect1" arcHeight="5.0" arcWidth="5.0" fill="#e7ff4d" height="445.0" layoutX="27.0" layoutY="66.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="330.0" />
-      <ImageView fx:id="character1" fitHeight="423.0" fitWidth="309.0" layoutX="38.0" layoutY="77.0" onMouseClicked="#effectImage1" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="character2" fitHeight="423.0" fitWidth="309.0" layoutX="394.0" layoutY="77.0" onMouseClicked="#effectImage2" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="character3" fitHeight="423.0" fitWidth="309.0" layoutX="755.0" layoutY="85.0" onMouseClicked="#effectImage3" pickOnBounds="true" preserveRatio="true" />
+      <Rectangle fx:id="rect3" arcHeight="5.0" arcWidth="5.0" fill="#aec900" height="477.0" layoutX="727.0" layoutY="34.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="335.0" />
+      <Rectangle fx:id="rect2" arcHeight="5.0" arcWidth="5.0" fill="#aec900" height="478.0" layoutX="383.0" layoutY="33.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="339.0" />
+      <Rectangle fx:id="rect1" arcHeight="5.0" arcWidth="5.0" fill="#aec900" height="478.0" layoutX="27.0" layoutY="33.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="348.0" />
+      <ImageView fx:id="character1" fitHeight="423.0" fitWidth="309.0" layoutX="58.0" layoutY="80.0" onMouseClicked="#effectImage1" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/characters/Personaggi_retro.jpg" />
+         </image></ImageView>
+      <ImageView fx:id="character2" fitHeight="423.0" fitWidth="309.0" layoutX="409.0" layoutY="80.0" onMouseClicked="#effectImage2" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/characters/Personaggi_retro.jpg" />
+         </image></ImageView>
+      <ImageView fx:id="character3" fitHeight="423.0" fitWidth="309.0" layoutX="755.0" layoutY="80.0" onMouseClicked="#effectImage3" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/characters/Personaggi_retro.jpg" />
+         </image></ImageView>
       <Button fx:id="islandsbutton" layoutX="600.0" layoutY="660.0" mnemonicParsing="false" onAction="#switchToIslands" prefHeight="58.0" prefWidth="154.0" styleClass="buttons" stylesheets="@../CSS/buttons.css" text="Islands">
-         <font>
-            <Font size="30.0" />
-         </font>
-      </Button>
-      <Button fx:id="schoolsbutton" layoutX="445.0" layoutY="660.0" mnemonicParsing="false" onAction="#switchToSchools" prefHeight="58.0" prefWidth="154.0" styleClass="buttons" stylesheets="@../CSS/buttons.css" text="Schools" visible="false">
-         <font>
-            <Font size="30.0" />
-         </font>
-      </Button>
-      <Button fx:id="cardsbutton" layoutX="320.0" layoutY="660.0" mnemonicParsing="false" onAction="#switchToCards" prefHeight="58.0" prefWidth="125.0" styleClass="buttons" stylesheets="@../CSS/buttons.css" text="Cards" visible="false">
          <font>
             <Font size="30.0" />
          </font>
@@ -37,17 +36,17 @@
             <Font size="30.0" />
          </font>
       </Button>
-      <ImageView fx:id="m1" fitHeight="80.0" fitWidth="72.0" layoutX="217.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="m1" fitHeight="80.0" fitWidth="72.0" layoutX="133.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/Coin.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="m2" fitHeight="80.0" fitWidth="72.0" layoutX="568.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="m2" fitHeight="80.0" fitWidth="72.0" layoutX="492.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/Coin.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="m3" fitHeight="80.0" fitWidth="72.0" layoutX="963.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="m3" fitHeight="80.0" fitWidth="72.0" layoutX="839.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/Coin.png" />
          </image>
@@ -63,20 +62,42 @@
             <Font name="Telugu MN" size="19.0" />
          </font>
       </Button>
-      <Label fx:id="id1" layoutX="157.0" layoutY="39.0" text="Label">
+      <Label fx:id="id1" layoutX="169.0" layoutY="39.0" text="Label" textFill="WHITE">
          <font>
             <Font name="Telugu MN" size="30.0" />
          </font>
       </Label>
-      <Label fx:id="id2" layoutX="497.0" layoutY="38.0" text="Label">
+      <Label fx:id="id2" layoutX="515.0" layoutY="39.0" text="Label" textFill="WHITE">
          <font>
             <Font name="Telugu MN" size="30.0" />
          </font>
       </Label>
-      <Label fx:id="id3" layoutX="871.0" layoutY="41.0" text="Label">
+      <Label fx:id="id3" layoutX="860.0" layoutY="39.0" text="Label" textFill="WHITE">
          <font>
             <Font name="Telugu MN" size="30.0" />
          </font>
       </Label>
+      <ListView fx:id="entranceLV" layoutX="262.0" layoutY="221.0" prefHeight="200.0" prefWidth="200.0" visible="false" />
+      <ListView fx:id="hallLV" layoutX="622.0" layoutY="221.0" prefHeight="200.0" prefWidth="200.0" visible="false" />
+      <Label fx:id="entranceLabel" layoutX="313.0" layoutY="185.0" text="Entrance" textFill="WHITE" visible="false">
+         <font>
+            <Font name="Telugu MN" size="23.0" />
+         </font>
+      </Label>
+      <Label fx:id="hallLabel" layoutX="701.0" layoutY="185.0" text="Hall" textFill="WHITE" visible="false">
+         <font>
+            <Font name="Telugu MN" size="23.0" />
+         </font>
+      </Label>
+      <Button fx:id="swapButton" layoutX="448.0" layoutY="470.0" mnemonicParsing="false" onAction="#swapStudents" text="Swap Students" visible="false">
+         <font>
+            <Font name="Telugu MN" size="22.0" />
+         </font>
+      </Button>
+      <Button fx:id="endEffectButton" layoutX="472.0" layoutY="536.0" mnemonicParsing="false" onAction="#endEffect" text="End Effect" visible="false">
+         <font>
+            <Font name="Telugu MN" size="22.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
