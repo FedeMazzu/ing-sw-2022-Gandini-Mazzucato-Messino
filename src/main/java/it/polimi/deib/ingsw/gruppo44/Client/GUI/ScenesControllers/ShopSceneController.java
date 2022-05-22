@@ -1,9 +1,9 @@
 package it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers;
 
-import it.polimi.deib.ingsw.gruppo44.Client.Eriantys;
+import it.polimi.deib.ingsw.gruppo44.Client.GUI.Eriantys;
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.Logic.CharacterGuiLogic;
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.Logic.IslandGuiLogic;
-import it.polimi.deib.ingsw.gruppo44.Client.MessagesMethods;
+import it.polimi.deib.ingsw.gruppo44.Client.GUI.MessagesMethodsGUI;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Color;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.SchoolData;
 import javafx.application.Platform;
@@ -136,7 +136,7 @@ public class ShopSceneController implements Initializable {
         for (CharacterGuiLogic cgl : characters) {
             cgl.getHighlight().setVisible(false);
         }
-        MessagesMethods.setForMovingStudents();
+        MessagesMethodsGUI.setForMovingStudents();
     }
 
     public Button getNotBuyButton() {
@@ -274,12 +274,12 @@ public class ShopSceneController implements Initializable {
         }
         if (!endGame) {
             //receiving the updated money after using a character
-            MessagesMethods.receiveSchoolsUpdated();
+            MessagesMethodsGUI.receiveSchoolsUpdated();
             //receiving the updated prices
-            MessagesMethods.receiveUpdatedPrices();
+            MessagesMethodsGUI.receiveUpdatedPrices();
 
             //to play the standard turn
-            MessagesMethods.setForMovingStudents();
+            MessagesMethodsGUI.setForMovingStudents();
         }
     }
 
@@ -303,7 +303,7 @@ public class ShopSceneController implements Initializable {
 
         });
 
-        MessagesMethods.receiveIslandsUpdated();
+        MessagesMethodsGUI.receiveIslandsUpdated();
 
         boolean endGame = Eriantys.getCurrentApplication().getOis().readBoolean();
         if (endGame) {

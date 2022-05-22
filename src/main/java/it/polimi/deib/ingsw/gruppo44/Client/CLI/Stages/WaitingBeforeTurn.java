@@ -1,8 +1,8 @@
-package it.polimi.deib.ingsw.gruppo44.Client.Controller.Stages;
+package it.polimi.deib.ingsw.gruppo44.Client.CLI.Stages;
 
-import it.polimi.deib.ingsw.gruppo44.Client.Controller.ClientController;
-import it.polimi.deib.ingsw.gruppo44.Client.Controller.ClientStage;
-import it.polimi.deib.ingsw.gruppo44.Client.MessagesMethods;
+import it.polimi.deib.ingsw.gruppo44.Client.CLI.ClientController;
+import it.polimi.deib.ingsw.gruppo44.Client.CLI.ClientStage;
+import it.polimi.deib.ingsw.gruppo44.Client.GUI.MessagesMethodsGUI;
 import it.polimi.deib.ingsw.gruppo44.Common.Stage;
 
 import java.io.IOException;
@@ -35,11 +35,11 @@ public class WaitingBeforeTurn implements Stage {
             boolean usingCharacter = false;
             if(clientController.getGameMode().isExpertMode()) usingCharacter = ois.readBoolean();
             if(usingCharacter){
-                gameEnd = MessagesMethods.characterWait();
+                gameEnd = MessagesMethodsGUI.characterWait();
                 if(gameEnd) return;
             }
             else{
-                gameEnd = MessagesMethods.standardWait();
+                gameEnd = MessagesMethodsGUI.standardWait();
                 if(gameEnd) return;
             }
             counter--;

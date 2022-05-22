@@ -1,8 +1,8 @@
 package it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers;
 
 
-import it.polimi.deib.ingsw.gruppo44.Client.MessagesMethods;
-import it.polimi.deib.ingsw.gruppo44.Client.Eriantys;
+import it.polimi.deib.ingsw.gruppo44.Client.GUI.MessagesMethodsGUI;
+import it.polimi.deib.ingsw.gruppo44.Client.GUI.Eriantys;
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.Logic.CloudGuiLogic;
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.Logic.IslandGuiLogic;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Color;
@@ -974,8 +974,8 @@ public class IslandsSceneController implements Initializable {
             entranceStudentsSelection.getItems().remove(color);
             new Thread(() -> {
                 try {
-                    MessagesMethods.receiveSchoolsUpdated();
-                    MessagesMethods.receiveIslandsUpdated();
+                    MessagesMethodsGUI.receiveSchoolsUpdated();
+                    MessagesMethodsGUI.receiveIslandsUpdated();
                 } catch (Exception e) {
                 }
             }).start();
@@ -1011,7 +1011,7 @@ public class IslandsSceneController implements Initializable {
         oos.flush();
         new Thread(()->{
             try{
-                MessagesMethods.receiveMotherNaturePos();
+                MessagesMethodsGUI.receiveMotherNaturePos();
                 boolean endGame = Eriantys.getCurrentApplication().getOis().readBoolean();
                 if (endGame){
                     String winningMagician =(String) Eriantys.getCurrentApplication().getOis().readObject();
@@ -1098,8 +1098,8 @@ public class IslandsSceneController implements Initializable {
 
         new Thread(()->{
             try {
-                MessagesMethods.receiveCloudsUpdated();
-                MessagesMethods.receiveSchoolsUpdated();
+                MessagesMethodsGUI.receiveCloudsUpdated();
+                MessagesMethodsGUI.receiveSchoolsUpdated();
                 synchronized (Eriantys.getCurrentApplication().getIslandsSceneController()){
                     Eriantys.getCurrentApplication().getIslandsSceneController().notifyAll(); //to wake up and go in wait after
                 }

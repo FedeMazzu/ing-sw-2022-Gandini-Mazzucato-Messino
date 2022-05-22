@@ -1,10 +1,8 @@
-package it.polimi.deib.ingsw.gruppo44.Client.Controller.Stages;
+package it.polimi.deib.ingsw.gruppo44.Client.CLI.Stages;
 
-import it.polimi.deib.ingsw.gruppo44.Client.Controller.ClientController;
-import it.polimi.deib.ingsw.gruppo44.Client.Controller.ClientStage;
+import it.polimi.deib.ingsw.gruppo44.Client.CLI.ClientController;
+import it.polimi.deib.ingsw.gruppo44.Client.CLI.ClientStage;
 import it.polimi.deib.ingsw.gruppo44.Common.Stage;
-import it.polimi.deib.ingsw.gruppo44.Server.Controller.Ticket;
-import it.polimi.deib.ingsw.gruppo44.Server.Model.Card;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Magician;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.CloudsData;
 

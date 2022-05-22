@@ -1,4 +1,4 @@
-package it.polimi.deib.ingsw.gruppo44.Client;
+package it.polimi.deib.ingsw.gruppo44.Client.GUI;
 
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.*;
 import it.polimi.deib.ingsw.gruppo44.Client.View.GameData;

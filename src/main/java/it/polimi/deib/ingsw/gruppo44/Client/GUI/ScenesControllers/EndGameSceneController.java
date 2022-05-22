@@ -1,6 +1,6 @@
 package it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers;
 
-import it.polimi.deib.ingsw.gruppo44.Client.Eriantys;
+import it.polimi.deib.ingsw.gruppo44.Client.GUI.Eriantys;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;

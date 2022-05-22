@@ -1,7 +1,7 @@
 package it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers;
 
-import it.polimi.deib.ingsw.gruppo44.Client.Eriantys;
-import it.polimi.deib.ingsw.gruppo44.Client.WaitProcesses.Wait;
+import it.polimi.deib.ingsw.gruppo44.Client.GUI.Eriantys;
+import it.polimi.deib.ingsw.gruppo44.Client.GUI.WaitProcesses.Wait;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

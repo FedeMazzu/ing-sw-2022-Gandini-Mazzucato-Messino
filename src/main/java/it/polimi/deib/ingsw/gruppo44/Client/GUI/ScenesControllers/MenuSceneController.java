@@ -1,9 +1,9 @@
 package it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers;
 
 
-import it.polimi.deib.ingsw.gruppo44.Client.Eriantys;
+import it.polimi.deib.ingsw.gruppo44.Client.GUI.Eriantys;
 import it.polimi.deib.ingsw.gruppo44.Client.View.GameData;
-import it.polimi.deib.ingsw.gruppo44.Client.WaitProcesses.WaitCards;
+import it.polimi.deib.ingsw.gruppo44.Client.GUI.WaitProcesses.WaitCards;
 import it.polimi.deib.ingsw.gruppo44.Common.ClientChoice;
 import it.polimi.deib.ingsw.gruppo44.Common.GameMode;
 import it.polimi.deib.ingsw.gruppo44.Common.Messages.CreateGameMESSAGE;
@@ -239,7 +239,10 @@ public class MenuSceneController {
     }
 
     public void showMagician(MouseEvent mouseEvent) {
-        magicianIV.setImage(new Image("/images/magicians/"+magicianListView.getSelectionModel().getSelectedItem()+".jpg"));
+        Magician magician = magicianListView.getSelectionModel().getSelectedItem();
+        if (magician != null) {
+            magicianIV.setImage(new Image("/images/magicians/" + magician + ".jpg"));
+        }
     }
 }
 

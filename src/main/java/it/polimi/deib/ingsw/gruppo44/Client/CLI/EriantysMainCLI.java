@@ -1,6 +1,7 @@
-package it.polimi.deib.ingsw.gruppo44.Client;
+package it.polimi.deib.ingsw.gruppo44.Client.CLI;
 
-import it.polimi.deib.ingsw.gruppo44.Client.Controller.ClientController;
+import it.polimi.deib.ingsw.gruppo44.Client.CLI.ClientController;
+import it.polimi.deib.ingsw.gruppo44.Client.GUI.Eriantys;
 
 import java.io.*;
 import java.net.InetAddress;
@@ -12,7 +13,7 @@ import java.util.Scanner;
  * @author
  */
 
-public class NetworkHandler {
+public class EriantysMainCLI {
     private Socket socket;
     private ObjectInputStream ois;
     private ObjectOutputStream oos;
@@ -22,7 +23,7 @@ public class NetworkHandler {
     private Scanner sc = new Scanner(System.in);
     private boolean connectionEstablished;
 
-    public NetworkHandler(String serverIp){
+    public EriantysMainCLI(String serverIp){
         // we pass the Ip and the port of the server we want to connect (that we ask the user)
         try { //open a socket
             //serverIp = askServerIP();
@@ -73,7 +74,7 @@ public class NetworkHandler {
     }
 
     public static void main(String[] args) {
-        Eriantys.main(args);
+        //Eriantys.main(args);
        // NetworkHandler networkHandler = new NetworkHandler();
     }
 }

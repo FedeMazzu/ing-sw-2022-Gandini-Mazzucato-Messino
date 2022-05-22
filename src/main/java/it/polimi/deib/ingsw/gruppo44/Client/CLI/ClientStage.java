@@ -1,4 +1,4 @@
-package it.polimi.deib.ingsw.gruppo44.Client.Controller;
+package it.polimi.deib.ingsw.gruppo44.Client.CLI;
 
 /**
  * represents the client stages

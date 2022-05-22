@@ -1,6 +1,6 @@
-package it.polimi.deib.ingsw.gruppo44.Client.Controller.Stages;
+package it.polimi.deib.ingsw.gruppo44.Client.CLI.Stages;
 
-import it.polimi.deib.ingsw.gruppo44.Client.Controller.ClientController;
+import it.polimi.deib.ingsw.gruppo44.Client.CLI.ClientController;
 import it.polimi.deib.ingsw.gruppo44.Common.Stage;
 
 import java.io.IOException;

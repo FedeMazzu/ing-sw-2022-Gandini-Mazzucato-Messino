@@ -1,4 +1,4 @@
-package it.polimi.deib.ingsw.gruppo44.Client;
+package it.polimi.deib.ingsw.gruppo44.Client.GUI;
 
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.Logic.IslandGuiLogic;
 import it.polimi.deib.ingsw.gruppo44.Client.View.GameData;
@@ -19,7 +19,7 @@ import java.util.Map;
  * class to contain the static methods useful for the communication protocol
  * @author
  */
-public class MessagesMethods {
+public class MessagesMethodsGUI {
 
     /**
      * called to set the GUI for the moves
@@ -243,7 +243,7 @@ public class MessagesMethods {
         receiveSchoolsUpdated();
         //receiving the characters updated prices
         receiveUpdatedPrices();
-        return MessagesMethods.standardWait();
+        return MessagesMethodsGUI.standardWait();
     }
 
     /**
@@ -262,7 +262,7 @@ public class MessagesMethods {
         receiveSchoolsUpdated();
         //receiving the characters updated prices
         receiveUpdatedPrices();
-        return MessagesMethods.standardWait();
+        return MessagesMethodsGUI.standardWait();
     }
 
     private static boolean characterWait4() throws IOException, ClassNotFoundException {
@@ -270,7 +270,7 @@ public class MessagesMethods {
         receiveSchoolsUpdated();
         //receiving the characters updated prices
         receiveUpdatedPrices();
-        return MessagesMethods.standardWait();
+        return MessagesMethodsGUI.standardWait();
     }
 
     private static boolean characterWait6() throws IOException, ClassNotFoundException {
@@ -278,7 +278,7 @@ public class MessagesMethods {
         receiveSchoolsUpdated();
         //receiving the characters updated prices
         receiveUpdatedPrices();
-        return MessagesMethods.standardWait();
+        return MessagesMethodsGUI.standardWait();
     }
 
     private static boolean characterWait8() throws IOException, ClassNotFoundException {
@@ -286,7 +286,7 @@ public class MessagesMethods {
         receiveSchoolsUpdated();
         //receiving the characters updated prices
         receiveUpdatedPrices();
-        return MessagesMethods.standardWait();
+        return MessagesMethodsGUI.standardWait();
     }
 
     private static boolean characterWait9() throws IOException, ClassNotFoundException {
@@ -297,7 +297,7 @@ public class MessagesMethods {
         receiveSchoolsUpdated();
         //receiving the characters updated prices
         receiveUpdatedPrices();
-        return MessagesMethods.standardWait();
+        return MessagesMethodsGUI.standardWait();
     }
 
     private static boolean characterWait10() throws IOException, ClassNotFoundException {
@@ -305,7 +305,7 @@ public class MessagesMethods {
         receiveSchoolsUpdated();
         //receiving the characters updated prices
         receiveUpdatedPrices();
-        return MessagesMethods.standardWait();
+        return MessagesMethodsGUI.standardWait();
     }
     /**
      * handles the waiting while the MovingClient is using the Character12
@@ -319,7 +319,7 @@ public class MessagesMethods {
         //receiving the characters updated prices
         receiveUpdatedPrices();
         //continuing with the standard wait
-        return MessagesMethods.standardWait();
+        return MessagesMethodsGUI.standardWait();
     }
 
 

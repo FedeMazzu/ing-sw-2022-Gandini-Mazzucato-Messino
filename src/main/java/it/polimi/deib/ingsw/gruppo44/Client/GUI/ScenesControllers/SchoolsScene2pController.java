@@ -1,6 +1,6 @@
 package it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers;
 
-import it.polimi.deib.ingsw.gruppo44.Client.Eriantys;
+import it.polimi.deib.ingsw.gruppo44.Client.GUI.Eriantys;
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.Logic.SchoolGuiLogic;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Color;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Magician;

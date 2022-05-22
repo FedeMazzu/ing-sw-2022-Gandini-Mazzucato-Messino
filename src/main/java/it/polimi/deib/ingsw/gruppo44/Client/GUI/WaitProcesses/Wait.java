@@ -1,7 +1,7 @@
-package it.polimi.deib.ingsw.gruppo44.Client.WaitProcesses;
+package it.polimi.deib.ingsw.gruppo44.Client.GUI.WaitProcesses;
 
-import it.polimi.deib.ingsw.gruppo44.Client.MessagesMethods;
-import it.polimi.deib.ingsw.gruppo44.Client.Eriantys;
+import it.polimi.deib.ingsw.gruppo44.Client.GUI.MessagesMethodsGUI;
+import it.polimi.deib.ingsw.gruppo44.Client.GUI.Eriantys;
 import javafx.application.Platform;
 
 import java.io.IOException;
@@ -30,14 +30,14 @@ public class Wait implements Runnable{
                 boolean usingCharacter = false;
                 if(Eriantys.getCurrentApplication().getGameMode().isExpertMode()) usingCharacter = ois.readBoolean();
                 if(usingCharacter){
-                    gameEnd = MessagesMethods.characterWait();
+                    gameEnd = MessagesMethodsGUI.characterWait();
                     if(gameEnd){
                         Eriantys.getCurrentApplication().switchToEndGameScene();
                         return;
                     }
                 }
                 else{
-                    gameEnd = MessagesMethods.standardWait();
+                    gameEnd = MessagesMethodsGUI.standardWait();
                     if(gameEnd){
                         Eriantys.getCurrentApplication().switchToEndGameScene();
                         return;
@@ -72,11 +72,11 @@ public class Wait implements Runnable{
             boolean usingCharacter = false;
             if(Eriantys.getCurrentApplication().getGameMode().isExpertMode()) usingCharacter = ois.readBoolean();
             if(usingCharacter){
-                gameEnd = MessagesMethods.characterWait();
+                gameEnd = MessagesMethodsGUI.characterWait();
                 if(gameEnd) return; //Switch to gameEnd scene
             }
             else{
-                gameEnd = MessagesMethods.standardWait();
+                gameEnd = MessagesMethodsGUI.standardWait();
                 if(gameEnd) return; //Switch to gameEnd scene
             }
             counter++;
@@ -107,11 +107,11 @@ public class Wait implements Runnable{
                         oos.writeBoolean(false);
                         oos.flush();
                     } catch (IOException e) {e.printStackTrace();}
-                    MessagesMethods.setForMovingStudents();
+                    MessagesMethodsGUI.setForMovingStudents();
                 }
             }
             else{
-                MessagesMethods.setForMovingStudents();
+                MessagesMethodsGUI.setForMovingStudents();
             }
 
         });

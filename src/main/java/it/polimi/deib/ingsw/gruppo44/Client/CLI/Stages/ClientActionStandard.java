@@ -1,8 +1,8 @@
-package it.polimi.deib.ingsw.gruppo44.Client.Controller.Stages;
+package it.polimi.deib.ingsw.gruppo44.Client.CLI.Stages;
 
-import it.polimi.deib.ingsw.gruppo44.Client.Controller.ClientController;
-import it.polimi.deib.ingsw.gruppo44.Client.Controller.ClientStage;
-import it.polimi.deib.ingsw.gruppo44.Client.MessagesMethods;
+import it.polimi.deib.ingsw.gruppo44.Client.CLI.ClientController;
+import it.polimi.deib.ingsw.gruppo44.Client.CLI.ClientStage;
+import it.polimi.deib.ingsw.gruppo44.Client.GUI.MessagesMethodsGUI;
 import it.polimi.deib.ingsw.gruppo44.Client.View.GameData;
 import it.polimi.deib.ingsw.gruppo44.Common.Messages.MovingStudentsMESSAGE;
 import it.polimi.deib.ingsw.gruppo44.Common.Stage;
@@ -35,21 +35,21 @@ public class ClientActionStandard implements Stage {
     public void handle() throws IOException, ClassNotFoundException, InterruptedException {
         System.out.println("it's your turn to move");
         //printing the actual data (we can read it from Data)
-        MessagesMethods.printData();
+        MessagesMethodsGUI.printData();
         //sending where to move the students
         MovingStudentsMESSAGE msm = new MovingStudentsMESSAGE(clientController.getGameMode().getCloudStudents());
         msm.moveStudents(gameData);
         oos.writeObject(msm);
         oos.flush();
-        MessagesMethods.receiveSchoolsUpdated();
-        MessagesMethods.receiveIslandsUpdated();
+        MessagesMethodsGUI.receiveSchoolsUpdated();
+        MessagesMethodsGUI.receiveIslandsUpdated();
 
         //MOTHER NATURE
         System.out.println(ois.readObject());
         //sending the number of mother nature steps
         oos.writeInt(sc.nextInt());
         oos.flush();
-        MessagesMethods.receiveMotherNaturePos();
+        MessagesMethodsGUI.receiveMotherNaturePos();
 
         //RECEIVING THE INFORMATION ABOUT THE END OF THE GAME
         boolean gameEnded = ois.readBoolean();
@@ -63,8 +63,8 @@ public class ClientActionStandard implements Stage {
         System.out.println("Choose a Cloud:");
         oos.writeInt(sc.nextInt());
         oos.flush();
-        MessagesMethods.receiveCloudsUpdated();
-        MessagesMethods.receiveSchoolsUpdated();
+        MessagesMethodsGUI.receiveCloudsUpdated();
+        MessagesMethodsGUI.receiveSchoolsUpdated();
 
         clientController.setClientStage(ClientStage.WaitingAfterTurn);
     }

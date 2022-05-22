@@ -1,5 +1,5 @@
 package it.polimi.deib.ingsw.gruppo44.Client.View;
-import it.polimi.deib.ingsw.gruppo44.Client.Eriantys;
+import it.polimi.deib.ingsw.gruppo44.Client.GUI.Eriantys;
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.Logic.CharacterGuiLogic;
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.Logic.CloudGuiLogic;
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.Logic.IslandGuiLogic;
@@ -19,7 +19,6 @@ import javafx.scene.image.ImageView;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * class to contain the game's data in the client application

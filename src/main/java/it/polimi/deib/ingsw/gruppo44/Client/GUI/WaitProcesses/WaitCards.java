@@ -1,6 +1,6 @@
-package it.polimi.deib.ingsw.gruppo44.Client.WaitProcesses;
+package it.polimi.deib.ingsw.gruppo44.Client.GUI.WaitProcesses;
 
-import it.polimi.deib.ingsw.gruppo44.Client.Eriantys;
+import it.polimi.deib.ingsw.gruppo44.Client.GUI.Eriantys;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Magician;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.CloudsData;
 import javafx.application.Platform;

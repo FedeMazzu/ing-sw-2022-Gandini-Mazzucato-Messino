@@ -1,7 +1,7 @@
 package it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers;
 
-import it.polimi.deib.ingsw.gruppo44.Client.Eriantys;
-import it.polimi.deib.ingsw.gruppo44.Client.NetworkHandler;
+import it.polimi.deib.ingsw.gruppo44.Client.GUI.Eriantys;
+import it.polimi.deib.ingsw.gruppo44.Client.CLI.EriantysMainCLI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
@@ -64,7 +64,7 @@ public class StartingSceneController {
             }
         }
         if (correct ){
-            NetworkHandler nh =new NetworkHandler(serverIp);
+            EriantysMainCLI nh =new EriantysMainCLI(serverIp);
             if(nh.isConnectionEstablished()){
                 Eriantys.getCurrentApplication().switchToMenuScene();
             }else{
