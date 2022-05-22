@@ -18,6 +18,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -27,6 +30,9 @@ import java.util.List;
 import java.util.Map;
 
 public class MenuSceneController {
+
+    @FXML
+    private ImageView magicianIV;
     @FXML
     private Button createGameButton, joinGameButton, loadGameButton,createButton,joinButton,selectButton;
     @FXML
@@ -230,6 +236,10 @@ public class MenuSceneController {
         }catch(IOException | ClassNotFoundException e){
 
         }
+    }
+
+    public void showMagician(MouseEvent mouseEvent) {
+        magicianIV.setImage(new Image("/images/magicians/"+magicianListView.getSelectionModel().getSelectedItem()+".jpg"));
     }
 }
 

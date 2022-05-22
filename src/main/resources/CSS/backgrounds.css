@@ -8,13 +8,18 @@
  -fx-background-size: 100% 100%;
 }
 
+.shop{
+ -fx-background-image: url("/images/colors1.jpg");
+ -fx-background-size: 100% 100%;
+}
+
 .menu{
  -fx-background-image: url('/images/menu.jpg');
  -fx-background-size: 100% 100%;
 }
 
 .schools{
- -fx-background-image: url('/images/grass.jpg');
+ -fx-background-image: url('/images/wood.jpg');
  -fx-background-size: 100% 100%;
 }
 

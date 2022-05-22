@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1080.0" styleClass="cards" stylesheets="@../CSS/backgrounds.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.ShopSceneController">
+<AnchorPane prefHeight="720.0" prefWidth="1080.0" styleClass="shop" stylesheets="@../CSS/backgrounds.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.ShopSceneController">
    <children>
       <Rectangle fx:id="rect3" arcHeight="5.0" arcWidth="5.0" fill="#aec900" height="477.0" layoutX="727.0" layoutY="34.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="335.0" />
       <Rectangle fx:id="rect2" arcHeight="5.0" arcWidth="5.0" fill="#aec900" height="478.0" layoutX="383.0" layoutY="33.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="339.0" />
