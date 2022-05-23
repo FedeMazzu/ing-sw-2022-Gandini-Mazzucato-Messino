@@ -51,7 +51,7 @@ public class Start implements Stage, Serializable {
             numUsers = gameController.getNumUsers();
         }
         gameController.setGameIsFull(true);
-        System.out.println("Start ready");
+        System.out.println("All the players have joined!");
 
         String  name;
         Magician magician;

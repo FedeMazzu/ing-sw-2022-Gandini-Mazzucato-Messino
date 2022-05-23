@@ -47,7 +47,7 @@ public class ClientsHandler {
                 handleClient(user);
 
             } catch (IOException ioe) {
-                ioe.printStackTrace();
+                System.out.println("Connection lost!");
             }
         }
     }

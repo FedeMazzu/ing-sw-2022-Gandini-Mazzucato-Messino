@@ -48,6 +48,10 @@ public class Eriantys extends Application {
         stage.setScene(startingScene);
         stage.setTitle("Eriantys");
         stage.setResizable(false);
+        stage.setOnCloseRequest(event ->{
+            stage.close();
+            System.exit(0);
+        });
         //stage.setFullScreen(true);
         stage.show();
     }
