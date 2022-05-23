@@ -1,6 +1,5 @@
 package it.polimi.deib.ingsw.gruppo44.Server.VirtualView;
 
-import it.polimi.deib.ingsw.gruppo44.Observer;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.*;
 
 import java.io.Serializable;

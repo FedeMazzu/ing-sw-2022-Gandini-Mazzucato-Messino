@@ -2,6 +2,7 @@ package it.polimi.deib.ingsw.gruppo44.Client.CLI.Stages;
 
 import it.polimi.deib.ingsw.gruppo44.Client.CLI.ClientController;
 import it.polimi.deib.ingsw.gruppo44.Client.CLI.ClientStage;
+import it.polimi.deib.ingsw.gruppo44.Client.CLI.MessagesMethodsCLI;
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.MessagesMethodsGUI;
 import it.polimi.deib.ingsw.gruppo44.Common.Stage;
 
@@ -35,11 +36,11 @@ public class WaitingAfterTurn implements Stage {
             boolean usingCharacter = false;
             if(clientController.getGameMode().isExpertMode()) usingCharacter = ois.readBoolean();
             if(usingCharacter){
-                gameEnd = MessagesMethodsGUI.characterWait();
+                gameEnd = MessagesMethodsCLI.characterWait();
                 if(gameEnd) return;
             }
             else{
-                gameEnd = MessagesMethodsGUI.standardWait();
+                gameEnd = MessagesMethodsCLI.standardWait();
                 if(gameEnd) return;
             }
 

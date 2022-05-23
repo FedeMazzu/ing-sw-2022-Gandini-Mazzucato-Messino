@@ -2,10 +2,12 @@ package it.polimi.deib.ingsw.gruppo44.Client.CLI.Stages;
 
 import it.polimi.deib.ingsw.gruppo44.Client.CLI.ClientController;
 import it.polimi.deib.ingsw.gruppo44.Client.CLI.ClientStage;
+import it.polimi.deib.ingsw.gruppo44.Client.CLI.GameDataCLI;
+import it.polimi.deib.ingsw.gruppo44.Client.CLI.MessagesMethodsCLI;
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.MessagesMethodsGUI;
-import it.polimi.deib.ingsw.gruppo44.Client.View.GameData;
-import it.polimi.deib.ingsw.gruppo44.Common.Messages.MovingStudentsMESSAGE;
 import it.polimi.deib.ingsw.gruppo44.Common.Stage;
+import it.polimi.deib.ingsw.gruppo44.Server.Model.Color;
+import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.CloudsData;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -22,34 +24,29 @@ public class ClientActionStandard implements Stage {
     private ObjectOutputStream oos;
     private Scanner sc = new Scanner(System.in);
     private int turnNumber;
-    private GameData gameData;
+    private GameDataCLI gameDataCLI;
 
     public ClientActionStandard(ClientController clientController) {
         this.clientController = clientController;
         ois = clientController.getOis();
         oos = clientController.getOos();
         turnNumber = clientController.getTurnNumber();
-        gameData = clientController.getGameData();
+        gameDataCLI = clientController.getGameDataCLI();
     }
     @Override
     public void handle() throws IOException, ClassNotFoundException, InterruptedException {
         System.out.println("it's your turn to move");
         //printing the actual data (we can read it from Data)
-        MessagesMethodsGUI.printData();
-        //sending where to move the students
-        MovingStudentsMESSAGE msm = new MovingStudentsMESSAGE(clientController.getGameMode().getCloudStudents());
-        msm.moveStudents(gameData);
-        oos.writeObject(msm);
-        oos.flush();
-        MessagesMethodsGUI.receiveSchoolsUpdated();
-        MessagesMethodsGUI.receiveIslandsUpdated();
+        MessagesMethodsCLI.printData();
+        //sending where to move the students (and receiving updates from the server)
+        MessagesMethodsCLI.moveStudents();
 
         //MOTHER NATURE
-        System.out.println(ois.readObject());
+        System.out.println("How many steps do you want mother nature to move? MAX "+(int)Math.ceil(((double)clientController.getLastCardSelected()/2.0)));
         //sending the number of mother nature steps
         oos.writeInt(sc.nextInt());
         oos.flush();
-        MessagesMethodsGUI.receiveMotherNaturePos();
+        MessagesMethodsCLI.receiveMotherNaturePos();
 
         //RECEIVING THE INFORMATION ABOUT THE END OF THE GAME
         boolean gameEnded = ois.readBoolean();
@@ -59,14 +56,25 @@ public class ClientActionStandard implements Stage {
         }
 
         //CLOUDS
-        System.out.println(ois.readObject());
+        //printing the clouds
+        CloudsData cd = gameDataCLI.getCloudsData();
+        for(int i=0; i<clientController.getGameMode().getCloudsNumber();i++){
+            if(!cd.isEmpty(i)){
+                System.out.println("Cloud "+i+": ");
+                for(Color color: Color.values()){
+                    System.out.print(color+" "+cd.getStudentsNum(i,color)+"| ");
+                }
+                System.out.println();
+            }
+        }
         System.out.println("Choose a Cloud:");
         oos.writeInt(sc.nextInt());
         oos.flush();
-        MessagesMethodsGUI.receiveCloudsUpdated();
-        MessagesMethodsGUI.receiveSchoolsUpdated();
+        MessagesMethodsCLI.receiveCloudsUpdated();
+        MessagesMethodsCLI.receiveSchoolsUpdated();
 
         clientController.setClientStage(ClientStage.WaitingAfterTurn);
     }
+
 
 }

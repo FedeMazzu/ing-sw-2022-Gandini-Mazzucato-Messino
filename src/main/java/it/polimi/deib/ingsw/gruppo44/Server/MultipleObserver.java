@@ -1,4 +1,4 @@
-package it.polimi.deib.ingsw.gruppo44;
+package it.polimi.deib.ingsw.gruppo44.Server;
 
 /**
  * interface to observe many objects of the same type;

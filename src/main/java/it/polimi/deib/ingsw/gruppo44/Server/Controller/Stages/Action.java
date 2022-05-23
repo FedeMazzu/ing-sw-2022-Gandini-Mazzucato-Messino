@@ -421,9 +421,6 @@ public class Action implements Stage, Serializable {
                 cloudsData += "\n";
             }
         }
-        //it isn't needed for the GUI
-        //oos.writeObject(cloudsData);
-        //oos.flush();
         int cloudChosen = ois.readInt();
         board.getClouds().get(cloudChosen).wipeCloud(currPlayer);
     }
@@ -438,7 +435,7 @@ public class Action implements Stage, Serializable {
      */
     private void moveStudents(School currSchool, ObjectInputStream ois) throws IOException, ClassNotFoundException {
 
-
+        //convention: if integer== -1 => the student goes in the school
         for(int i=0;i<gameController.getGameMode().getCloudStudents();i++){
             Map<Color,Integer> entry = (Map<Color, Integer>) ois.readObject();
             Color color = (Color) entry.keySet().toArray()[0];

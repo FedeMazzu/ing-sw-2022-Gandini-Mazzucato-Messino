@@ -1,7 +1,6 @@
 package it.polimi.deib.ingsw.gruppo44.Client.GUI;
 
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.*;
-import it.polimi.deib.ingsw.gruppo44.Client.View.GameData;
 import it.polimi.deib.ingsw.gruppo44.Common.GameMode;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Magician;
 import javafx.application.Application;
@@ -26,7 +25,7 @@ public class Eriantys extends Application {
 
     private ShopSceneController shopSceneController;
     private EndGameSceneController endGameSceneController;
-    private GameData gameData;
+    private GameDataGUI gameDataGUI;
     private Stage stage;
     private GameMode gameMode;
     private Map<Magician, Integer> magicianId;
@@ -165,9 +164,9 @@ public class Eriantys extends Application {
         this.gameMode = gameMode;
     }
 
-    public void setGameData(GameData gameData) {this.gameData = gameData;}
+    public void setGameData(GameDataGUI gameDataGUI) {this.gameDataGUI = gameDataGUI;}
 
-    public GameData getGameData() {return gameData;}
+    public GameDataGUI getGameData() {return gameDataGUI;}
 
     public CardsSceneController getCardsSceneController() {return cardsSceneController;}
 

@@ -1,7 +1,6 @@
 package it.polimi.deib.ingsw.gruppo44.Server.Model;
 
-import it.polimi.deib.ingsw.gruppo44.MultipleObserver;
-import it.polimi.deib.ingsw.gruppo44.Observer;
+import it.polimi.deib.ingsw.gruppo44.Server.MultipleObserver;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.IslandsData;
 
 import java.io.Serializable;

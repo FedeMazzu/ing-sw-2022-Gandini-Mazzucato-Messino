@@ -1,7 +1,7 @@
 package it.polimi.deib.ingsw.gruppo44.Client.CLI;
 
 import it.polimi.deib.ingsw.gruppo44.Client.CLI.Stages.*;
-import it.polimi.deib.ingsw.gruppo44.Client.View.GameData;
+import it.polimi.deib.ingsw.gruppo44.Client.GUI.GameDataGUI;
 import it.polimi.deib.ingsw.gruppo44.Common.GameMode;
 import it.polimi.deib.ingsw.gruppo44.Common.Stage;
 
@@ -24,15 +24,16 @@ public class ClientController implements Runnable {
     private boolean endGame;
     private GameMode gameMode;
     private int turnNumber;
-    private GameData gameData;
+    private GameDataCLI gameDataCLI;
     private int characterChoice;
+    private int lastCardSelected;
 
     public ClientController(ObjectInputStream ois, ObjectOutputStream oos) {
         this.ois = ois;
         this.oos = oos;
-        /*MessagesMethods.oos = oos;
-        MessagesMethods.ois = ois;
-        MessagesMethods.clientController = this;*/
+        MessagesMethodsCLI.ois = ois;
+        MessagesMethodsCLI.clientController = this;
+        MessagesMethodsCLI.oos = oos;
     }
 
     @Override
@@ -88,8 +89,8 @@ public class ClientController implements Runnable {
      * @return
      */
     private boolean AskIfUsingCharacter() throws IOException {
-        int currMoney = gameData.getClientMoney();
-        Map<Integer,Integer> affordableCharacters = gameData.getAffordableCharacters();
+        int currMoney = gameDataCLI.getClientMoney();
+        Map<Integer,Integer> affordableCharacters = gameDataCLI.getAffordableCharacters();
         if(!affordableCharacters.isEmpty()) {
             System.out.print("you can afford these characters:\n" + affordableCharacters + "\n Which one do you want to use?(0 to avoid):->");
             characterChoice = sc.nextInt();
@@ -158,7 +159,15 @@ public class ClientController implements Runnable {
         return turnNumber;
     }
 
-    public GameData getGameData() {return gameData;}
+    public GameDataCLI getGameDataCLI() {return gameDataCLI;}
 
-    public void setGameData(GameData gameData) {this.gameData = gameData;}
+    public void setGameData(GameDataCLI gameDataCLI) {this.gameDataCLI = gameDataCLI;}
+
+    public int getLastCardSelected() {
+        return lastCardSelected;
+    }
+
+    public void setLastCardSelected(int lastCardSelected) {
+        this.lastCardSelected = lastCardSelected;
+    }
 }

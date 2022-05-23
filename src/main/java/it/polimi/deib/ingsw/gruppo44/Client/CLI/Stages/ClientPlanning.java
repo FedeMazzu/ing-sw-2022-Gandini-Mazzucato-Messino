@@ -32,13 +32,21 @@ public class ClientPlanning implements Stage {
         CloudsData cloudsData = (CloudsData)ois.readObject();
         System.out.println("waiting for your turn of choosing a card");
         //print the map of the cards played by others
-        System.out.println((Map<Magician,Integer>)(ois.readObject()));
+        Map<Magician,Integer> playedCards = (Map<Magician,Integer>)(ois.readObject());
+        System.out.println((playedCards));
 
         //printing available cards
-        System.out.println((ois.readObject()));
+        List<Integer> availableCards = clientController.getGameDataCLI().getAvailableCards();
+        //it's not possible to play cards played from other players
+        for(Integer i : playedCards.values()){
+            if(availableCards.contains(i)) availableCards.remove(i);
+        }
+        System.out.println(availableCards);
 
         //sending the chosen card
-        oos.writeInt(sc.nextInt());
+        int cardChoice = sc.nextInt();
+        clientController.setLastCardSelected(cardChoice);
+        oos.writeInt(cardChoice);
         oos.flush();
 
         System.out.println("Card played! waiting for others..");

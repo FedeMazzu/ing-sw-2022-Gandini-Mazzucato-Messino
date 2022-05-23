@@ -1,4 +1,4 @@
-package it.polimi.deib.ingsw.gruppo44.Client.View;
+package it.polimi.deib.ingsw.gruppo44.Client.GUI;
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.Eriantys;
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.Logic.CharacterGuiLogic;
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.Logic.CloudGuiLogic;
@@ -24,7 +24,7 @@ import java.util.Map;
  * class to contain the game's data in the client application
  * @author
  */
-public class GameData {
+public class GameDataGUI {
     //curr Client data
     private Magician clientMagician;
     private int clientMoney;
@@ -38,7 +38,7 @@ public class GameData {
     // Map<CharacterId, CharacterPrice>
     private Map<Integer,Integer> characters;
 
-    public GameData(Magician clientMagician) {
+    public GameDataGUI(Magician clientMagician) {
         this.clientMagician = clientMagician;
         schoolDataMap = new HashMap<>();
     }

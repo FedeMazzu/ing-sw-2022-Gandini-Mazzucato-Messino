@@ -1,6 +1,6 @@
 package it.polimi.deib.ingsw.gruppo44.Server.Model;
 
-import it.polimi.deib.ingsw.gruppo44.Observable;
+import it.polimi.deib.ingsw.gruppo44.Server.Observable;
 import it.polimi.deib.ingsw.gruppo44.Common.GameMode;
 
 import java.io.Serializable;

@@ -2,7 +2,7 @@ package it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers;
 
 
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.Eriantys;
-import it.polimi.deib.ingsw.gruppo44.Client.View.GameData;
+import it.polimi.deib.ingsw.gruppo44.Client.GUI.GameDataGUI;
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.WaitProcesses.WaitCards;
 import it.polimi.deib.ingsw.gruppo44.Common.ClientChoice;
 import it.polimi.deib.ingsw.gruppo44.Common.GameMode;
@@ -172,7 +172,7 @@ public class MenuSceneController {
         }
         else{
             errorLabel.setVisible(false);
-            Eriantys.getCurrentApplication().setGameData(new GameData(magicianChoice));
+            Eriantys.getCurrentApplication().setGameData(new GameDataGUI(magicianChoice));
             oos.writeObject(magicianChoice);
             oos.flush();
             oos.writeObject(name);

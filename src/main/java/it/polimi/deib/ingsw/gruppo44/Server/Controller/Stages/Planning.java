@@ -92,7 +92,6 @@ public class Planning implements Stage, Serializable {
         List<Integer> sendingCards;
         sendingCards = currPlayer.showAvailableCards();
         int cardValue;
-        System.out.println(sendingCards);
         for(int i=0; i< sendingCards.size() && sendingCards.size()>1;i++){
             if(cardsPlayedFromOtherPlayers.contains(sendingCards.get(i))) sendingCards.remove(i--);
         }

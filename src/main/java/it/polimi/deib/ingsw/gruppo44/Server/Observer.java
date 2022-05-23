@@ -1,4 +1,4 @@
-package it.polimi.deib.ingsw.gruppo44;
+package it.polimi.deib.ingsw.gruppo44.Server;
 
 /**
  * @author filippogandini
