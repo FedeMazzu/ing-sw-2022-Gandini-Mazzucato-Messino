@@ -287,9 +287,6 @@ public class ShopSceneController implements Initializable {
         //managed server side
     }
 
-    private void handleCharacter4() {
-        Eriantys.getCurrentApplication().getIslandsSceneController().setUsingCharacter4True();
-    }
 
     private boolean handleCharacter3() throws IOException, ClassNotFoundException {
         Platform.runLater(() -> {
@@ -311,6 +308,10 @@ public class ShopSceneController implements Initializable {
         }
         //to not move to the standard turn
         return endGame;
+    }
+
+    private void handleCharacter4() {
+        Eriantys.getCurrentApplication().getIslandsSceneController().setUsingCharacter4True();
     }
 
     private void handleCharacter6() {

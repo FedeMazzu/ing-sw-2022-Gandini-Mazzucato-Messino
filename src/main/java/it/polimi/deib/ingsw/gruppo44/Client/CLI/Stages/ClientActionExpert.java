@@ -286,7 +286,7 @@ public class ClientActionExpert implements Stage{
             }
 
         }
-        MessagesMethodsCLI.receiveSchoolsUpdated();
+        //MessagesMethodsCLI.receiveSchoolsUpdated();
     }
 
     private void handleCharacter12() throws IOException, ClassNotFoundException {
@@ -320,7 +320,7 @@ public class ClientActionExpert implements Stage{
                 System.exit(0);
                 break;
         }
-        int numOfUsers = clientController.getGameMode().getTeamPlayers()* clientController.getGameMode().getTeamsNumber();
+        /*int numOfUsers = clientController.getGameMode().getTeamPlayers()* clientController.getGameMode().getTeamsNumber();
         for(int i=0; i< numOfUsers; i++){
             SchoolData schoolData = (SchoolData) ois.readObject();
             System.out.println("HALL of the School of the player:"+schoolData.getMagician()+":");
@@ -328,7 +328,7 @@ public class ClientActionExpert implements Stage{
                 System.out.print(c+" "+schoolData.getHallStudentsNum(c)+"| ");
             }
             System.out.println();
-        }
+        }*/
 
     }
 }
