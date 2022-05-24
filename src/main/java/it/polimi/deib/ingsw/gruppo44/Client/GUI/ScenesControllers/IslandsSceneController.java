@@ -974,12 +974,15 @@ public class IslandsSceneController implements Initializable {
             entranceStudentsSelection.getItems().remove(color);
             new Thread(() -> {
                 try {
+                    System.out.println("prima di ricevere");
                     MessagesMethodsGUI.receiveSchoolsUpdated();
+                    System.out.println("school ricevute");
                     MessagesMethodsGUI.receiveIslandsUpdated();
+                    System.out.println("island ricevute");
                 } catch (Exception e) {
                 }
             }).start();
-            if (counter >= 3) {
+            if (counter >= Eriantys.getCurrentApplication().getGameMode().getCloudStudents()) {
                 phase = 1;
                 counter = 0;
                 entranceStudentsSelection.getItems().clear();

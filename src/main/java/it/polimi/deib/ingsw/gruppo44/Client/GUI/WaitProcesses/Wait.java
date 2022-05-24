@@ -86,6 +86,7 @@ public class Wait implements Runnable{
     }
 
     public void playStandardTurn(){
+        System.out.println("ORA giuoco io");
         Eriantys.getCurrentApplication().getIslandsSceneController().setPhase(-2);
         //put the student choice panel visible
         Platform.runLater(()->{
