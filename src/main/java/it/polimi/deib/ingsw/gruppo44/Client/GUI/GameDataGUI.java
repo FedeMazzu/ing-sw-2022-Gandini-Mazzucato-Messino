@@ -261,9 +261,8 @@ public class GameDataGUI {
         for(SchoolData sd: data.getSchoolDataList()){
             putSchoolData(sd.getMagician(),sd);
             if(sd.getMagician().equals(clientMagician)){
-                //money already updated when calling putDataSchool
-                //clientMoney = sd.getPlayerMoney();
                 setAvailableCards(sd.getAvailableCards());
+                Eriantys.getCurrentApplication().getSchoolsScene2pController().getSchoolInfo().get(clientMagician).getRect().setVisible(true);
             }
         }
 

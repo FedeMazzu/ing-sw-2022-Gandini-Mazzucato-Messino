@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Rectangle;
 
 import java.net.URL;
 import java.util.HashMap;
@@ -22,6 +23,9 @@ import java.util.ResourceBundle;
  * class to manage the Schools Scene
  */
 public class SchoolsScene2pController implements Initializable {
+
+    @FXML
+    private Rectangle rect1,rect2,rect3,rect4;
     @FXML
     private ImageView b1;
 
@@ -373,6 +377,7 @@ public class SchoolsScene2pController implements Initializable {
         Label name, magicianLabel,money;
         Label numTower;
         ImageView coin,tower,schoolImage;
+        Rectangle rect;
 
         for(Magician magician:Eriantys.getCurrentApplication().getMagicianId().keySet()){
             int mageId = Eriantys.getCurrentApplication().getMagicianId().get(magician);
@@ -381,6 +386,7 @@ public class SchoolsScene2pController implements Initializable {
             prof = new HashMap<>();
             colorTokens = new HashMap<>();
 
+            rect = (Rectangle) currScene.lookup("#rect"+mageId);
             schoolImage = (ImageView)currScene.lookup("#school"+mageId);
             name = (Label)currScene.lookup("#name"+mageId);
             magicianLabel = (Label)currScene.lookup("#magician"+mageId);
@@ -417,7 +423,7 @@ public class SchoolsScene2pController implements Initializable {
             }
 
 
-            schoolInfo.put(magician,new SchoolGuiLogic(hallStudents,entranceStudents,prof,colorTokens,name,money,magicianLabel,numTower,coin,tower,schoolImage,mageId));
+            schoolInfo.put(magician,new SchoolGuiLogic(rect,hallStudents,entranceStudents,prof,colorTokens,name,money,magicianLabel,numTower,coin,tower,schoolImage,mageId));
 
         }
     }
@@ -434,4 +440,7 @@ public class SchoolsScene2pController implements Initializable {
     public void switchToIslands(ActionEvent actionEvent) {
         Eriantys.getCurrentApplication().switchToIslandsScene();
     }
+
+
+
 }
