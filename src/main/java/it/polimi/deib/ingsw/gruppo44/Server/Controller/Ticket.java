@@ -20,4 +20,12 @@ public class Ticket implements Serializable {
     public int getPriority() {
         return priority;
     }
+
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "player=" + player.getMagician() +
+                ", priority=" + priority +
+                '}';
+    }
 }

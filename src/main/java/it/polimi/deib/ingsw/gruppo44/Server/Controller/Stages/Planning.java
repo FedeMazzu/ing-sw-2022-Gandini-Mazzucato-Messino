@@ -57,7 +57,6 @@ public class Planning implements Stage, Serializable {
         while(!cardOrder.isEmpty()){
             currPlayer = cardOrder.poll();
             currUser = currPlayer.getUser();
-            oos = currUser.getOos();
             ois = currUser.getOis();
             //send to the next player the cards already played
             oos = currUser.getOos();
@@ -69,8 +68,10 @@ public class Planning implements Stage, Serializable {
             playedCards.put(currPlayer.getMagician(),cardValue);
 
         }
+        PriorityQueue<Ticket> tempTurnOrder = new PriorityQueue<>(turnOrder);
         int turnNumber = 0;
-        for(Ticket ticket:turnOrder){
+        while(!tempTurnOrder.isEmpty()){
+            Ticket ticket = tempTurnOrder.poll();
             oos = ticket.getPlayer().getUser().getOos();
             oos.writeInt(turnNumber);
             oos.flush();

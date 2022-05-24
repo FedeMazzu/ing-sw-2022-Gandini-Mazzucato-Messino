@@ -439,7 +439,6 @@ public class Action implements Stage, Serializable {
         for(int i=0;i<gameController.getGameMode().getCloudStudents();i++){
             Map<Color,Integer> entry = (Map<Color, Integer>) ois.readObject();
             Color color = (Color) entry.keySet().toArray()[0];
-
             if(entry.get(color) != -1){
                 switch (color){
                     case GREEN:
