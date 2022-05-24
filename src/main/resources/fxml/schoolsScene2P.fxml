@@ -9,192 +9,92 @@
 
 <AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" styleClass="schools" stylesheets="@../CSS/backgrounds.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.SchoolsScene2pController">
    <children>
-      <ImageView fitHeight="182.0" fitWidth="440.0" layoutX="664.0" layoutY="475.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="school1" fitHeight="502.0" fitWidth="250.0" layoutX="14.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/name.jpg" />
+            <Image url="@../images/School.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="182.0" fitWidth="440.0" layoutX="130.0" layoutY="473.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/name.jpg" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="461.0" fitWidth="442.0" layoutX="75.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/SchoolCutted.jpg" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="461.0" fitWidth="442.0" layoutX="587.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/SchoolCutted.jpg" />
-         </image>
-      </ImageView>
-      <Label fx:id="name1" layoutX="178.0" layoutY="510.0" text="Nome">
+      <Label fx:id="name1" layoutX="7.0" layoutY="272.0" scaleX="0.7" scaleY="0.7" text="Nome" textFill="WHITE">
          <font>
             <Font name="Telugu MN" size="30.0" />
          </font>
       </Label>
-      <Label fx:id="magician1" layoutX="181.0" layoutY="545.0" text="Mago">
+      <Label fx:id="magician1" layoutX="7.0" layoutY="315.0" scaleX="0.7" scaleY="0.7" text="Mago" textFill="WHITE">
          <font>
             <Font name="Telugu MN" size="30.0" />
          </font>
       </Label>
-      <Label fx:id="money1" layoutX="229.0" layoutY="584.0" text="Soldi">
+      <Label fx:id="money1" layoutX="182.0" layoutY="310.0" scaleX="0.7" scaleY="0.7" text="Soldi" textFill="WHITE">
          <font>
             <Font name="Telugu MN" size="30.0" />
          </font>
       </Label>
-      <Label fx:id="name2" layoutX="694.0" layoutY="510.0" text="Nome">
-         <font>
-            <Font name="Telugu MN" size="30.0" />
-         </font>
-      </Label>
-      <Label fx:id="magician2" layoutX="699.0" layoutY="547.0" text="Mago">
-         <font>
-            <Font name="Telugu MN" size="30.0" />
-         </font>
-      </Label>
-      <Label fx:id="money2" layoutX="754.0" layoutY="584.0" text="Soldi">
-         <font>
-            <Font name="Telugu MN" size="30.0" />
-         </font>
-      </Label>
-      <Label fx:id="eg1" layoutX="138.0" layoutY="74.0" text="Label" translateY="5.0">
+      <Label fx:id="eg1" layoutX="41.0" layoutY="43.0" scaleX="0.7" scaleY="0.7" text="Label" translateY="5.0">
          <font>
             <Font name="Telugu MN" size="18.0" />
          </font></Label>
-      <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="107.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="g1" fitHeight="31.0" fitWidth="31.0" layoutX="23.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7">
          <image>
             <Image url="@../images/pawns/gs.png" />
          </image>
       </ImageView>
-      <Label fx:id="er1" layoutX="138.0" layoutY="151.0" text="Label" translateY="5.0">
+      <Label fx:id="er1" layoutX="41.0" layoutY="84.0" scaleX="0.7" scaleY="0.7" text="Label" translateY="5.0">
          <font>
             <Font name="Telugu MN" size="18.0" />
          </font></Label>
-      <Label fx:id="ey1" layoutX="141.0" layoutY="224.0" text="Label" translateY="5.0">
+      <Label fx:id="ey1" layoutX="41.0" layoutY="128.0" scaleX="0.7" scaleY="0.7" text="Label" translateY="5.0">
          <font>
             <Font name="Telugu MN" size="18.0" />
          </font></Label>
-      <Label fx:id="ep1" layoutX="139.0" layoutY="300.0" text="Label" translateY="5.0">
+      <Label fx:id="ep1" layoutX="41.0" layoutY="168.0" scaleX="0.7" scaleY="0.7" text="Label" translateY="5.0">
          <font>
             <Font name="Telugu MN" size="18.0" />
          </font></Label>
-      <Label fx:id="eb1" layoutX="141.0" layoutY="373.0" text="Label" translateY="5.0">
+      <Label fx:id="eb1" layoutX="41.0" layoutY="210.0" scaleX="0.7" scaleY="0.7" text="Label" translateY="5.0">
          <font>
             <Font name="Telugu MN" size="18.0" />
          </font></Label>
-      <Label fx:id="hg1" layoutX="315.0" layoutY="77.0" text="Label" translateY="5.0">
+      <Label fx:id="hg1" layoutX="131.0" layoutY="44.0" scaleX="0.7" scaleY="0.7" text="Label" translateY="5.0">
          <font>
             <Font name="Telugu MN" size="18.0" />
          </font></Label>
-      <Label fx:id="hr1" layoutX="314.0" layoutY="155.0" text="Label" translateY="5.0">
+      <Label fx:id="hr1" layoutX="131.0" layoutY="84.0" scaleX="0.7" scaleY="0.7" text="Label" translateY="5.0">
          <font>
             <Font name="Telugu MN" size="18.0" />
          </font></Label>
-      <Label fx:id="hy1" layoutX="317.0" layoutY="226.0" text="Label" translateY="5.0">
+      <Label fx:id="hy1" layoutX="131.0" layoutY="128.0" scaleX="0.7" scaleY="0.7" text="Label" translateY="5.0">
          <font>
             <Font name="Telugu MN" size="18.0" />
          </font></Label>
-      <Label fx:id="hp1" layoutX="317.0" layoutY="305.0" text="Label" translateY="5.0">
+      <Label fx:id="hp1" layoutX="131.0" layoutY="168.0" scaleX="0.7" scaleY="0.7" text="Label" translateY="5.0">
          <font>
             <Font name="Telugu MN" size="18.0" />
          </font></Label>
-      <Label fx:id="hb1" layoutX="318.0" layoutY="380.0" text="Label" translateY="5.0">
+      <Label fx:id="hb1" layoutX="131.0" layoutY="209.0" scaleX="0.7" scaleY="0.7" text="Label" translateY="5.0">
          <font>
             <Font name="Telugu MN" size="18.0" />
          </font></Label>
-      <ImageView fitHeight="310.0" fitWidth="720.0" layoutX="-315.0" layoutY="477.0" pickOnBounds="true" visible="false">
-         <image>
-            <Image url="@../images/School.png" />
-         </image>
-      </ImageView>
-      <Label fx:id="eg2" layoutX="654.0" layoutY="71.0" text="Label" translateY="10.0">
-         <font>
-            <Font name="Telugu MN" size="18.0" />
-         </font></Label>
-      <Label fx:id="er2" layoutX="657.0" layoutY="146.0" text="Label" translateY="10.0">
-         <font>
-            <Font name="Telugu MN" size="18.0" />
-         </font></Label>
-      <Label fx:id="ey2" layoutX="651.0" layoutY="219.0" text="Label" translateY="10.0">
-         <font>
-            <Font name="Telugu MN" size="18.0" />
-         </font></Label>
-      <Label fx:id="ep2" layoutX="651.0" layoutY="295.0" text="Label" translateY="10.0">
-         <font>
-            <Font name="Telugu MN" size="18.0" />
-         </font></Label>
-      <Label fx:id="eb2" layoutX="655.0" layoutY="368.0" text="Label" translateY="10.0">
-         <font>
-            <Font name="Telugu MN" size="18.0" />
-         </font></Label>
-      <Label fx:id="hg2" layoutX="823.0" layoutY="71.0" text="Label" translateY="10.0">
-         <font>
-            <Font name="Telugu MN" size="18.0" />
-         </font></Label>
-      <Label fx:id="hr2" layoutX="823.0" layoutY="146.0" text="Label" translateY="10.0">
-         <font>
-            <Font name="Telugu MN" size="18.0" />
-         </font></Label>
-      <Label fx:id="hy2" layoutX="825.0" layoutY="222.0" text="Label" translateY="10.0">
-         <font>
-            <Font name="Telugu MN" size="18.0" />
-         </font></Label>
-      <Label fx:id="hp2" layoutX="825.0" layoutY="296.0" text="Label" translateY="10.0">
-         <font>
-            <Font name="Telugu MN" size="18.0" />
-         </font></Label>
-      <Label fx:id="hb2" layoutX="824.0" layoutY="372.0" text="Label" translateY="10.0">
-         <font>
-            <Font name="Telugu MN" size="18.0" />
-         </font></Label>
-      <ImageView fx:id="pg1" fitHeight="54.0" fitWidth="45.0" layoutX="433.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="pg1" fitHeight="54.0" fitWidth="45.0" layoutX="199.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7">
          <image>
             <Image url="@../images/pawns/gp.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="pr1" fitHeight="54.0" fitWidth="45.0" layoutX="433.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="pr1" fitHeight="54.0" fitWidth="45.0" layoutX="199.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7">
          <image>
             <Image url="@../images/pawns/rp.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="py1" fitHeight="54.0" fitWidth="45.0" layoutX="433.0" layoutY="222.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="py1" fitHeight="48.0" fitWidth="48.0" layoutX="197.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7">
          <image>
             <Image url="@../images/pawns/yp.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="pp1" fitHeight="54.0" fitWidth="45.0" layoutX="433.0" layoutY="293.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="pp1" fitHeight="54.0" fitWidth="45.0" layoutX="199.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7">
          <image>
             <Image url="@../images/pawns/pp.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="pb1" fitHeight="54.0" fitWidth="45.0" layoutX="433.0" layoutY="369.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/pawns/bp.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="pg2" fitHeight="54.0" fitWidth="45.0" layoutX="946.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/pawns/gp.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="pr2" fitHeight="54.0" fitWidth="45.0" layoutX="946.0" layoutY="145.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/pawns/rp.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="py2" fitHeight="54.0" fitWidth="45.0" layoutX="946.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/pawns/yp.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="pp2" fitHeight="54.0" fitWidth="45.0" layoutX="946.0" layoutY="293.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/pawns/pp.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="pb2" fitHeight="54.0" fitWidth="45.0" layoutX="946.0" layoutY="369.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="pb1" fitHeight="56.0" fitWidth="48.0" layoutX="196.0" layoutY="206.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7">
          <image>
             <Image url="@../images/pawns/bp.png" />
          </image>
@@ -214,119 +114,426 @@
             <Font name="Telugu MN" size="30.0" />
          </font>
       </Button>
-      <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="107.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="r1" fitHeight="31.0" fitWidth="31.0" layoutX="23.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7">
          <image>
             <Image url="@../images/pawns/rs.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="107.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="y1" fitHeight="34.0" fitWidth="34.0" layoutX="22.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7">
          <image>
             <Image url="@../images/pawns/ys.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="107.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="p1" fitHeight="31.0" fitWidth="31.0" layoutX="23.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7">
          <image>
             <Image url="@../images/pawns/ps.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="107.0" layoutY="376.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="b1" fitHeight="31.0" fitWidth="31.0" layoutX="23.0" layoutY="213.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7">
          <image>
             <Image url="@../images/pawns/bs.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="278.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/pawns/gs.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="282.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/pawns/rs.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="282.0" layoutY="227.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/pawns/ys.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="283.0" layoutY="302.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/pawns/ps.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="283.0" layoutY="380.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/pawns/bs.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="622.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/pawns/gs.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="622.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/pawns/rs.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="622.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/pawns/ys.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="622.0" layoutY="300.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/pawns/ps.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="622.0" layoutY="374.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/pawns/bs.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="796.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/pawns/gs.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="796.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/pawns/rs.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="796.0" layoutY="229.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/pawns/ys.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="796.0" layoutY="304.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/pawns/ps.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="796.0" layoutY="378.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/pawns/bs.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="coin1" fitHeight="58.0" fitWidth="73.0" layoutX="172.0" layoutY="574.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="coin1" fitHeight="58.0" fitWidth="73.0" layoutX="185.0" layoutY="264.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7">
          <image>
             <Image url="@../images/Coin.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="coin2" fitHeight="58.0" fitWidth="73.0" layoutX="700.0" layoutY="574.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/Coin.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="tower1" fitHeight="65.0" fitWidth="46.0" layoutX="314.0" layoutY="553.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="tower2" fitHeight="65.0" fitWidth="46.0" layoutX="848.0" layoutY="553.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="numTower1" layoutX="364.0" layoutY="584.0" prefHeight="38.0" prefWidth="58.0" text="x0">
+      <ImageView fx:id="tower1" fitHeight="65.0" fitWidth="46.0" layoutX="84.0" layoutY="280.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7" />
+      <Label fx:id="numTower1" layoutX="123.0" layoutY="292.0" prefHeight="38.0" prefWidth="58.0" scaleX="0.7" scaleY="0.7" text="x0" textFill="WHITE">
          <font>
             <Font size="28.0" />
          </font>
       </Label>
-      <Label fx:id="numTower2" layoutX="894.0" layoutY="584.0" prefHeight="38.0" prefWidth="58.0" text="x0">
+      <ImageView fx:id="school2" fitHeight="502.0" fitWidth="250.0" layoutX="14.0" layoutY="370.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/School.jpg" />
+         </image>
+      </ImageView>
+      <Label fx:id="name2" layoutX="2.0" layoutY="630.0" scaleX="0.7" scaleY="0.7" text="Nome" textFill="WHITE">
+         <font>
+            <Font name="Telugu MN" size="30.0" />
+         </font>
+      </Label>
+      <Label fx:id="magician2" layoutX="2.0" layoutY="673.0" scaleX="0.7" scaleY="0.7" text="Mago" textFill="WHITE">
+         <font>
+            <Font name="Telugu MN" size="30.0" />
+         </font>
+      </Label>
+      <Label fx:id="money2" layoutX="177.0" layoutY="668.0" scaleX="0.7" scaleY="0.7" text="Soldi" textFill="WHITE">
+         <font>
+            <Font name="Telugu MN" size="30.0" />
+         </font>
+      </Label>
+      <Label fx:id="eg2" layoutX="36.0" layoutY="401.0" scaleX="0.7" scaleY="0.7" text="Label">
+         <font>
+            <Font name="Telugu MN" size="18.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="g2" fitHeight="31.0" fitWidth="31.0" layoutX="19.0" layoutY="398.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7">
+         <image>
+            <Image url="@../images/pawns/gs.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="er2" layoutX="36.0" layoutY="442.0" scaleX="0.7" scaleY="0.7" text="Label">
+         <font>
+            <Font name="Telugu MN" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="ey2" layoutX="36.0" layoutY="486.0" scaleX="0.7" scaleY="0.7" text="Label">
+         <font>
+            <Font name="Telugu MN" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="ep2" layoutX="36.0" layoutY="526.0" scaleX="0.7" scaleY="0.7" text="Label">
+         <font>
+            <Font name="Telugu MN" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="eb2" layoutX="36.0" layoutY="568.0" scaleX="0.7" scaleY="0.7" text="Label">
+         <font>
+            <Font name="Telugu MN" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="hg2" layoutX="126.0" layoutY="402.0" scaleX="0.7" scaleY="0.7" text="Label">
+         <font>
+            <Font name="Telugu MN" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="hr2" layoutX="126.0" layoutY="442.0" scaleX="0.7" scaleY="0.7" text="Label">
+         <font>
+            <Font name="Telugu MN" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="hy2" layoutX="126.0" layoutY="486.0" scaleX="0.7" scaleY="0.7" text="Label">
+         <font>
+            <Font name="Telugu MN" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="hp2" layoutX="126.0" layoutY="526.0" scaleX="0.7" scaleY="0.7" text="Label">
+         <font>
+            <Font name="Telugu MN" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="hb2" layoutX="126.0" layoutY="567.0" scaleX="0.7" scaleY="0.7" text="Label">
+         <font>
+            <Font name="Telugu MN" size="18.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="pg2" fitHeight="54.0" fitWidth="45.0" layoutX="194.0" layoutY="397.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7">
+         <image>
+            <Image url="@../images/pawns/gp.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="pr2" fitHeight="54.0" fitWidth="45.0" layoutX="194.0" layoutY="438.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7">
+         <image>
+            <Image url="@../images/pawns/rp.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="py2" fitHeight="48.0" fitWidth="48.0" layoutX="192.0" layoutY="482.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7">
+         <image>
+            <Image url="@../images/pawns/yp.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="pp2" fitHeight="54.0" fitWidth="45.0" layoutX="194.0" layoutY="521.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7">
+         <image>
+            <Image url="@../images/pawns/pp.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="pb2" fitHeight="56.0" fitWidth="48.0" layoutX="191.0" layoutY="564.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7">
+         <image>
+            <Image url="@../images/pawns/bp.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="r2" fitHeight="31.0" fitWidth="31.0" layoutX="19.0" layoutY="440.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7">
+         <image>
+            <Image url="@../images/pawns/rs.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="y2" fitHeight="34.0" fitWidth="34.0" layoutX="18.0" layoutY="483.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7">
+         <image>
+            <Image url="@../images/pawns/ys.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="p2" fitHeight="31.0" fitWidth="31.0" layoutX="20.0" layoutY="523.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7">
+         <image>
+            <Image url="@../images/pawns/ps.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="b2" fitHeight="31.0" fitWidth="31.0" layoutX="20.0" layoutY="565.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7">
+         <image>
+            <Image url="@../images/pawns/bs.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="coin2" fitHeight="58.0" fitWidth="73.0" layoutX="180.0" layoutY="622.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7">
+         <image>
+            <Image url="@../images/Coin.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="tower2" fitHeight="65.0" fitWidth="46.0" layoutX="79.0" layoutY="638.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7" />
+      <Label fx:id="numTower2" layoutX="118.0" layoutY="650.0" prefHeight="38.0" prefWidth="58.0" scaleX="0.7" scaleY="0.7" text="x0" textFill="WHITE">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="school3" fitHeight="502.0" fitWidth="250.0" layoutX="816.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/School.jpg" />
+         </image>
+      </ImageView>
+      <Label fx:id="name3" layoutX="805.0" layoutY="276.0" scaleX="0.7" scaleY="0.7" text="Nome" textFill="WHITE" visible="false">
+         <font>
+            <Font name="Telugu MN" size="30.0" />
+         </font>
+      </Label>
+      <Label fx:id="magician3" layoutX="805.0" layoutY="319.0" scaleX="0.7" scaleY="0.7" text="Mago" textFill="WHITE" visible="false">
+         <font>
+            <Font name="Telugu MN" size="30.0" />
+         </font>
+      </Label>
+      <Label fx:id="money3" layoutX="980.0" layoutY="314.0" scaleX="0.7" scaleY="0.7" text="Soldi" textFill="WHITE" visible="false">
+         <font>
+            <Font name="Telugu MN" size="30.0" />
+         </font>
+      </Label>
+      <Label fx:id="eg3" layoutX="839.0" layoutY="47.0" scaleX="0.7" scaleY="0.7" text="Label" visible="false">
+         <font>
+            <Font name="Telugu MN" size="18.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="g3" fitHeight="31.0" fitWidth="31.0" layoutX="822.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7" visible="false">
+         <image>
+            <Image url="@../images/pawns/gs.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="er3" layoutX="839.0" layoutY="88.0" scaleX="0.7" scaleY="0.7" text="Label" visible="false">
+         <font>
+            <Font name="Telugu MN" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="ey3" layoutX="839.0" layoutY="132.0" scaleX="0.7" scaleY="0.7" text="Label" visible="false">
+         <font>
+            <Font name="Telugu MN" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="ep3" layoutX="839.0" layoutY="172.0" scaleX="0.7" scaleY="0.7" text="Label" visible="false">
+         <font>
+            <Font name="Telugu MN" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="eb3" layoutX="839.0" layoutY="214.0" scaleX="0.7" scaleY="0.7" text="Label" visible="false">
+         <font>
+            <Font name="Telugu MN" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="hg3" layoutX="929.0" layoutY="48.0" scaleX="0.7" scaleY="0.7" text="Label" visible="false">
+         <font>
+            <Font name="Telugu MN" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="hr3" layoutX="929.0" layoutY="88.0" scaleX="0.7" scaleY="0.7" text="Label" visible="false">
+         <font>
+            <Font name="Telugu MN" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="hy3" layoutX="929.0" layoutY="132.0" scaleX="0.7" scaleY="0.7" text="Label" visible="false">
+         <font>
+            <Font name="Telugu MN" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="hp3" layoutX="929.0" layoutY="172.0" scaleX="0.7" scaleY="0.7" text="Label" visible="false">
+         <font>
+            <Font name="Telugu MN" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="hb3" layoutX="929.0" layoutY="213.0" scaleX="0.7" scaleY="0.7" text="Label" visible="false">
+         <font>
+            <Font name="Telugu MN" size="18.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="pg3" fitHeight="54.0" fitWidth="45.0" layoutX="997.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7" visible="false">
+         <image>
+            <Image url="@../images/pawns/gp.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="pr3" fitHeight="54.0" fitWidth="45.0" layoutX="997.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7" visible="false">
+         <image>
+            <Image url="@../images/pawns/rp.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="py3" fitHeight="48.0" fitWidth="48.0" layoutX="995.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7" visible="false">
+         <image>
+            <Image url="@../images/pawns/yp.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="pp3" fitHeight="54.0" fitWidth="45.0" layoutX="997.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7" visible="false">
+         <image>
+            <Image url="@../images/pawns/pp.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="pb3" fitHeight="56.0" fitWidth="48.0" layoutX="994.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7" visible="false">
+         <image>
+            <Image url="@../images/pawns/bp.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="r3" fitHeight="31.0" fitWidth="31.0" layoutX="822.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7" visible="false">
+         <image>
+            <Image url="@../images/pawns/rs.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="y3" fitHeight="34.0" fitWidth="34.0" layoutX="821.0" layoutY="129.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7" visible="false">
+         <image>
+            <Image url="@../images/pawns/ys.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="p3" fitHeight="31.0" fitWidth="31.0" layoutX="823.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7" visible="false">
+         <image>
+            <Image url="@../images/pawns/ps.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="b3" fitHeight="31.0" fitWidth="31.0" layoutX="823.0" layoutY="211.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7" visible="false">
+         <image>
+            <Image url="@../images/pawns/bs.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="coin3" fitHeight="58.0" fitWidth="73.0" layoutX="983.0" layoutY="268.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7" visible="false">
+         <image>
+            <Image url="@../images/Coin.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="tower3" fitHeight="65.0" fitWidth="46.0" layoutX="882.0" layoutY="284.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7" visible="false" />
+      <Label fx:id="numTower3" layoutX="921.0" layoutY="296.0" prefHeight="38.0" prefWidth="58.0" scaleX="0.7" scaleY="0.7" text="x0" textFill="WHITE" visible="false">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="school4" fitHeight="502.0" fitWidth="250.0" layoutX="816.0" layoutY="368.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/School.jpg" />
+         </image>
+      </ImageView>
+      <Label fx:id="name4" layoutX="807.0" layoutY="625.0" scaleX="0.7" scaleY="0.7" text="Nome" textFill="WHITE" visible="false">
+         <font>
+            <Font name="Telugu MN" size="30.0" />
+         </font>
+      </Label>
+      <Label fx:id="magician4" layoutX="807.0" layoutY="668.0" scaleX="0.7" scaleY="0.7" text="Mago" textFill="WHITE" visible="false">
+         <font>
+            <Font name="Telugu MN" size="30.0" />
+         </font>
+      </Label>
+      <Label fx:id="money4" layoutX="982.0" layoutY="663.0" scaleX="0.7" scaleY="0.7" text="Soldi" textFill="WHITE" visible="false">
+         <font>
+            <Font name="Telugu MN" size="30.0" />
+         </font>
+      </Label>
+      <Label fx:id="eg4" layoutX="841.0" layoutY="396.0" scaleX="0.7" scaleY="0.7" text="Label" visible="false">
+         <font>
+            <Font name="Telugu MN" size="18.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="g4" fitHeight="31.0" fitWidth="31.0" layoutX="824.0" layoutY="393.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7" visible="false">
+         <image>
+            <Image url="@../images/pawns/gs.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="er4" layoutX="841.0" layoutY="437.0" scaleX="0.7" scaleY="0.7" text="Label" visible="false">
+         <font>
+            <Font name="Telugu MN" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="ey4" layoutX="841.0" layoutY="481.0" scaleX="0.7" scaleY="0.7" text="Label" visible="false">
+         <font>
+            <Font name="Telugu MN" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="ep4" layoutX="841.0" layoutY="521.0" scaleX="0.7" scaleY="0.7" text="Label" visible="false">
+         <font>
+            <Font name="Telugu MN" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="eb4" layoutX="841.0" layoutY="563.0" scaleX="0.7" scaleY="0.7" text="Label" visible="false">
+         <font>
+            <Font name="Telugu MN" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="hg4" layoutX="931.0" layoutY="397.0" scaleX="0.7" scaleY="0.7" text="Label" visible="false">
+         <font>
+            <Font name="Telugu MN" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="hr4" layoutX="931.0" layoutY="437.0" scaleX="0.7" scaleY="0.7" text="Label" visible="false">
+         <font>
+            <Font name="Telugu MN" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="hy4" layoutX="931.0" layoutY="481.0" scaleX="0.7" scaleY="0.7" text="Label" visible="false">
+         <font>
+            <Font name="Telugu MN" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="hp4" layoutX="931.0" layoutY="521.0" scaleX="0.7" scaleY="0.7" text="Label" visible="false">
+         <font>
+            <Font name="Telugu MN" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="hb4" layoutX="931.0" layoutY="562.0" scaleX="0.7" scaleY="0.7" text="Label" visible="false">
+         <font>
+            <Font name="Telugu MN" size="18.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="pg4" fitHeight="54.0" fitWidth="45.0" layoutX="999.0" layoutY="392.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7" visible="false">
+         <image>
+            <Image url="@../images/pawns/gp.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="pr4" fitHeight="54.0" fitWidth="45.0" layoutX="999.0" layoutY="433.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7" visible="false">
+         <image>
+            <Image url="@../images/pawns/rp.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="py4" fitHeight="48.0" fitWidth="48.0" layoutX="997.0" layoutY="477.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7" visible="false">
+         <image>
+            <Image url="@../images/pawns/yp.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="pp4" fitHeight="54.0" fitWidth="45.0" layoutX="999.0" layoutY="516.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7" visible="false">
+         <image>
+            <Image url="@../images/pawns/pp.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="pb4" fitHeight="56.0" fitWidth="48.0" layoutX="996.0" layoutY="559.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7" visible="false">
+         <image>
+            <Image url="@../images/pawns/bp.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="r4" fitHeight="31.0" fitWidth="31.0" layoutX="824.0" layoutY="435.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7" visible="false">
+         <image>
+            <Image url="@../images/pawns/rs.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="y4" fitHeight="34.0" fitWidth="34.0" layoutX="823.0" layoutY="478.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7" visible="false">
+         <image>
+            <Image url="@../images/pawns/ys.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="p4" fitHeight="31.0" fitWidth="31.0" layoutX="825.0" layoutY="518.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7" visible="false">
+         <image>
+            <Image url="@../images/pawns/ps.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="b4" fitHeight="31.0" fitWidth="31.0" layoutX="825.0" layoutY="560.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7" visible="false">
+         <image>
+            <Image url="@../images/pawns/bs.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="coin4" fitHeight="58.0" fitWidth="73.0" layoutX="985.0" layoutY="617.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7" visible="false">
+         <image>
+            <Image url="@../images/Coin.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="tower4" fitHeight="65.0" fitWidth="46.0" layoutX="884.0" layoutY="633.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7" visible="false" />
+      <Label fx:id="numTower4" layoutX="923.0" layoutY="645.0" prefHeight="38.0" prefWidth="58.0" scaleX="0.7" scaleY="0.7" text="x0" textFill="WHITE" visible="false">
          <font>
             <Font size="28.0" />
          </font>
