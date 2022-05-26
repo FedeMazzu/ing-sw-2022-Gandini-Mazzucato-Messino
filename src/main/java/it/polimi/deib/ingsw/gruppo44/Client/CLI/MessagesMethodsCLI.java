@@ -1,6 +1,7 @@
 package it.polimi.deib.ingsw.gruppo44.Client.CLI;
 
 
+import it.polimi.deib.ingsw.gruppo44.Client.GUI.Eriantys;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Color;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.CloudsData;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.IslandsData;
@@ -66,6 +67,10 @@ public class MessagesMethodsCLI {
     public static void receiveCloudsUpdated() throws IOException, ClassNotFoundException {
         CloudsData cloudsData = (CloudsData)ois.readObject();
         clientController.getGameDataCLI().setCloudsData(cloudsData);
+    }
+
+    public static boolean receiveSuspendedGameInfo() throws IOException {
+        return ois.readBoolean();
     }
 
     public static void receiveMotherNaturePos() throws IOException, ClassNotFoundException {

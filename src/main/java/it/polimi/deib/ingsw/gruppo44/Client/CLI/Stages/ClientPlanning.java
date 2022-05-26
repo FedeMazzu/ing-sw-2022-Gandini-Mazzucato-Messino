@@ -31,8 +31,29 @@ public class ClientPlanning implements Stage {
 
         CloudsData cloudsData = (CloudsData)ois.readObject();
         System.out.println("waiting for your turn of choosing a card");
+        boolean gameSuspension = ois.readBoolean();
+        if(gameSuspension){
+            //stop the game
+            System.out.println("Another player suspended the game, the application will now close");
+            clientController.getSocket().close();
+            System.exit(0); //we kill the program and you have to open another one
+        }
         //print the map of the cards played by others
         Map<Magician,Integer> playedCards = (Map<Magician,Integer>)(ois.readObject());
+        if(playedCards.isEmpty()){
+            System.out.println("Do you want to suspend the game here and continue?");
+            System.out.println("1 -> YES\n 0 -> NO");
+            boolean suspendGame = sc.nextInt() == 1;
+            oos.writeBoolean(suspendGame);
+            oos.flush();
+            if(suspendGame){
+                //stop the game
+                System.out.println("The application will now close");
+                clientController.getSocket().close();
+                System.exit(0); //we kill the program
+            }
+        }
+        System.out.println("Choose a card, any card:");
         System.out.println((playedCards));
 
         //printing available cards

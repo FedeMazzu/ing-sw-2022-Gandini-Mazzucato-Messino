@@ -32,7 +32,7 @@ public class EriantysMainCLI {
             System.out.println("Connection established.");
             oos = new ObjectOutputStream(socket.getOutputStream());
             ois = new ObjectInputStream(socket.getInputStream());
-            clientController = new ClientController(ois,oos);
+            clientController = new ClientController(ois,oos,socket);
             new Thread(clientController).start();
             // remember to close the socket
         }catch (IOException ioe){
@@ -92,6 +92,7 @@ public class EriantysMainCLI {
 
         }
     }
+
 
     public static void main(String[] args) {
 

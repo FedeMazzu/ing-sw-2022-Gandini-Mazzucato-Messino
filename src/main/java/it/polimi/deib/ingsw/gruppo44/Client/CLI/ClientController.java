@@ -8,6 +8,7 @@ import it.polimi.deib.ingsw.gruppo44.Common.Stage;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -16,6 +17,7 @@ import java.util.Scanner;
  * @author filippogandini
  */
 public class ClientController implements Runnable {
+    private Socket socket;
     private ObjectInputStream ois;
     private ObjectOutputStream oos;
     private Scanner sc = new Scanner(System.in);
@@ -28,12 +30,13 @@ public class ClientController implements Runnable {
     private int characterChoice;
     private int lastCardSelected;
 
-    public ClientController(ObjectInputStream ois, ObjectOutputStream oos) {
+    public ClientController(ObjectInputStream ois, ObjectOutputStream oos, Socket socket) {
         this.ois = ois;
         this.oos = oos;
         MessagesMethodsCLI.ois = ois;
         MessagesMethodsCLI.clientController = this;
         MessagesMethodsCLI.oos = oos;
+        this.socket = socket;
     }
 
     @Override
@@ -128,6 +131,10 @@ public class ClientController implements Runnable {
             default://case 3
                 clientStage = ClientStage.LOADGAME;
         }
+    }
+
+    public Socket getSocket() {
+        return socket;
     }
 
     public void endGame(){
