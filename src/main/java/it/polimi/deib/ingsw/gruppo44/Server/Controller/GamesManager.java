@@ -2,6 +2,10 @@ package it.polimi.deib.ingsw.gruppo44.Server.Controller;
 
 import it.polimi.deib.ingsw.gruppo44.Common.GameMode;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.*;
 
 /**
@@ -10,9 +14,10 @@ import java.util.*;
  * to exactly one game
  * @author filippogandini
  */
-public class GamesManager {
+public class GamesManager implements Serializable {
     private Map<String,GameController> games;
     Scanner sc = new Scanner(System.in);
+
 
     public GamesManager(){
         this.games = new HashMap<>();
@@ -47,6 +52,8 @@ public class GamesManager {
 
         new Thread(gameController).start();
     }
+
+
 
 
     private String askGameName() {

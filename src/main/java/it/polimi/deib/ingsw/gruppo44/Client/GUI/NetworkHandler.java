@@ -25,6 +25,7 @@ public class NetworkHandler {
         try { //open a socket
             //serverIp = askServerIP();
             socket = new Socket(serverIp, SERVERPORT);
+            Eriantys.getCurrentApplication().setSocket(socket);
             connectionEstablished = true;
             superviseConnection();
             System.out.println("Connection established.");

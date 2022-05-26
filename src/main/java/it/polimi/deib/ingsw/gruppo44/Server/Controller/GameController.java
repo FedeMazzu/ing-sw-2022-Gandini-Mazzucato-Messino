@@ -93,22 +93,6 @@ public class GameController implements Serializable, Runnable {
 
     }
 
-    /**
-     * saves the current game on a file named <GameName>.ser
-     */
-    public void saveGame(){
-        try {
-            FileOutputStream fileOut = new FileOutputStream(gameName + ".ser");
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(this);
-            //needed?
-            // out.flush();
-            out.close();
-            fileOut.close();
-        }catch (IOException ioe){
-            ioe.printStackTrace();
-        }
-    }
 
     /**
      * loads the serialized gameController (which includes the game)
@@ -129,6 +113,23 @@ public class GameController implements Serializable, Runnable {
         }catch (IOException | ClassNotFoundException ioe){
             ioe.printStackTrace();
             return null;
+        }
+    }
+
+    /**
+     * saves the current game on a file named <GameName>.ser
+     */
+    public void saveGame(String gameName){
+        try {
+            FileOutputStream fileOut = new FileOutputStream(gameName + ".ser");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(this);
+            //needed?
+            // out.flush();
+            out.close();
+            fileOut.close();
+        }catch (IOException ioe){
+            ioe.printStackTrace();
         }
     }
 
@@ -191,6 +192,9 @@ public class GameController implements Serializable, Runnable {
 
     public void setTurnHandler(TurnHandler turnHandler){ this.turnHandler = turnHandler; }
 
+    public void setEndGame(boolean endGame) {
+        this.endGame = endGame;
+    }
 
     public GameMode getGameMode() {
         return gameMode;
@@ -215,4 +219,5 @@ public class GameController implements Serializable, Runnable {
     public boolean getGameIsFull() {
         return gameIsFull;
     }
+
 }

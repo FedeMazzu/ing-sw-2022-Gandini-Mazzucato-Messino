@@ -16,10 +16,10 @@ import java.net.Socket;
  */
 public class User implements Serializable {
     private Player player;
-    private Socket socket;
+    transient private Socket socket;
     //private Magician magician;
-    private ObjectOutputStream oos;
-    private ObjectInputStream ois;
+    transient private ObjectOutputStream oos;
+    transient private ObjectInputStream ois;
     //private int port;
 
     public User(Socket socket) throws IOException {

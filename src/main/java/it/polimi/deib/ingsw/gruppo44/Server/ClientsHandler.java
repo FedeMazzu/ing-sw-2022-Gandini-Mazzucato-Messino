@@ -15,7 +15,7 @@ import java.util.*;
  * Class to manage the connections with the clients
  * @author
  */
-public class ClientsHandler {
+public class ClientsHandler implements Serializable {
     private final int PORT = 59090;
     private ServerSocket serverSocket;
     private GamesManager gamesManager;

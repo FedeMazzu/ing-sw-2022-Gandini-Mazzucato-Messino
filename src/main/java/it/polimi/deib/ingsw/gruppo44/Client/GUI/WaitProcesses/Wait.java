@@ -20,7 +20,7 @@ public class Wait implements Runnable{
         ObjectInputStream ois = Eriantys.getCurrentApplication().getOis();
         try{
             turnNumber = ois.readInt();
-
+            System.out.println("My turn number is: "+turnNumber);
             int counter = turnNumber;
 
             //WAIT BEFORE

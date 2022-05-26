@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.util.Map;
 
 public class Eriantys extends Application {
@@ -22,6 +23,7 @@ public class Eriantys extends Application {
     private CardsSceneController cardsSceneController;
     private SchoolsScene2pController schoolsScene2pController;
     private IslandsSceneController islandsSceneController;
+    private Socket socket;
 
     private ShopSceneController shopSceneController;
     private EndGameSceneController endGameSceneController;
@@ -33,6 +35,7 @@ public class Eriantys extends Application {
     private Scene schoolScene2P;
     private Scene islandsScene;
     private Scene endGameScene;
+    private Scene startingScene;
 
     private Scene shopScene;
 
@@ -44,7 +47,7 @@ public class Eriantys extends Application {
         this.stage = stage;
         currentApplication = this;
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/startingScene.fxml"));
-        Scene startingScene = new Scene(root);
+        startingScene = new Scene(root);
         stage.setScene(startingScene);
         stage.setTitle("Eriantys");
         stage.setResizable(false);
@@ -125,6 +128,13 @@ public class Eriantys extends Application {
         });
     }
 
+    public void switchToStartingScene(){
+        Platform.runLater(()->{
+            stage.setScene(startingScene);
+            stage.show();
+        });
+    }
+
 
     public static Eriantys getCurrentApplication(){return currentApplication;}
 
@@ -158,6 +168,14 @@ public class Eriantys extends Application {
 
     public void setEndGameSceneController(EndGameSceneController endGameSceneController) {
         this.endGameSceneController = endGameSceneController;
+    }
+
+    public Socket getSocket() {
+        return socket;
+    }
+
+    public void setSocket(Socket socket) {
+        this.socket = socket;
     }
 
     public GameMode getGameMode() {

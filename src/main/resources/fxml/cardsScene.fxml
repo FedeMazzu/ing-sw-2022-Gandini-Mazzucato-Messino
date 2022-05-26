@@ -63,5 +63,10 @@
             <Font name="Telugu MN" size="30.0" />
          </font>
       </Button>
+      <Button fx:id="suspendButton" layoutX="14.0" layoutY="660.0" mnemonicParsing="false" onAction="#suspendGame" styleClass="buttons" stylesheets="@../CSS/buttons.css" text="Suspend Game" visible="false">
+         <font>
+            <Font name="Telugu MN" size="30.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

@@ -52,6 +52,11 @@ public class MessagesMethodsGUI {
         Eriantys.getCurrentApplication().switchToIslandsScene();
     }
 
+    public static boolean receiveSuspendedGameInfo() throws IOException {
+        ObjectInputStream ois = Eriantys.getCurrentApplication().getOis();
+        return ois.readBoolean();
+    }
+
     /**
      * method called by the WaitingClient ( before and after) to get updates in a standard turn
      * @throws IOException
