@@ -20,7 +20,7 @@
             <Font name="Telugu MN" size="35.0" />
          </font>
       </Button>
-      <Button fx:id="loadGameButton" layoutX="58.0" layoutY="214.0" mnemonicParsing="false" styleClass="buttons" stylesheets="@../CSS/buttons.css" text="Load Game">
+      <Button fx:id="loadGameButton" layoutX="58.0" layoutY="214.0" mnemonicParsing="false" onAction="#loadGame" styleClass="buttons" stylesheets="@../CSS/buttons.css" text="Load Game">
          <font>
             <Font name="Telugu MN" size="35.0" />
          </font>
@@ -89,5 +89,6 @@
          </font>
       </Button>
       <ImageView fx:id="magicianIV" fitHeight="433.0" fitWidth="289.0" layoutX="496.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true" />
+      <ListView fx:id="loadGameListView" layoutX="69.0" layoutY="318.0" prefHeight="200.0" prefWidth="200.0" visible="false" />
    </children>
 </AnchorPane>

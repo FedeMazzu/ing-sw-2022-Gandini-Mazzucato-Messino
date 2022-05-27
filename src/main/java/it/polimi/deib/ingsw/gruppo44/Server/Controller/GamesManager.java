@@ -2,11 +2,13 @@ package it.polimi.deib.ingsw.gruppo44.Server.Controller;
 
 import it.polimi.deib.ingsw.gruppo44.Common.GameMode;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * class to manage the games
@@ -51,6 +53,19 @@ public class GamesManager implements Serializable {
         games.put(gameController.getGameName(),gameController);
 
         new Thread(gameController).start();
+    }
+
+    public List<String> getLoadableGames() throws IOException {
+        //correct the path
+        List<File> filesInFolder = Files.walk(Paths.get("/savedGames"))
+                //.filter(Files::isRegularFile)
+                .map(Path::toFile)
+                .collect(Collectors.toList());
+        List <String> loadableGames = new ArrayList<>();
+        for(File file:filesInFolder){
+            loadableGames.add(file.getName());
+        }
+        return loadableGames;
     }
 
 

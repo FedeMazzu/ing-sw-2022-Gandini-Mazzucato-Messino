@@ -7,6 +7,7 @@ import it.polimi.deib.ingsw.gruppo44.Client.GUI.WaitProcesses.WaitCards;
 import it.polimi.deib.ingsw.gruppo44.Common.ClientChoice;
 import it.polimi.deib.ingsw.gruppo44.Common.GameMode;
 import it.polimi.deib.ingsw.gruppo44.Common.Messages.CreateGameMESSAGE;
+import it.polimi.deib.ingsw.gruppo44.Server.Controller.Stages.Action;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Magician;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.Data;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.SchoolData;
@@ -25,6 +26,7 @@ import javafx.scene.input.MouseEvent;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,6 +47,8 @@ public class MenuSceneController {
     private ListView<Map.Entry<String,GameMode>> openGamesListView;
     @FXML
     private ListView<Magician> magicianListView;
+    @FXML
+    private ListView<String> loadGameListView;
 
     private GameMode[]gameModes = GameMode.values();
 
@@ -236,6 +240,36 @@ public class MenuSceneController {
         }catch(IOException | ClassNotFoundException e){
 
         }
+    }
+
+    public void loadGame(ActionEvent actionEvent) throws IOException {
+        //ask the server for the list of loadable games
+        ObjectOutputStream oos =  Eriantys.getCurrentApplication().getOos();
+        oos.writeObject(ClientChoice.LoadGameCHOICE);
+        oos.flush();
+        createGameButton.setVisible(false);
+        joinGameButton.setVisible(false);
+        loadGameButton.setVisible(false);
+
+        new Thread(()->{
+            ObjectInputStream ois = Eriantys.getCurrentApplication().getOis();
+            List<String> loadableGames = null;
+            try {
+                loadableGames = (ArrayList<String>) ois.readObject();
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            List<String> finalLoadableGames = loadableGames;
+            Platform.runLater(()->{
+                loadGameListView.getItems().addAll(finalLoadableGames);
+                loadGameListView.setVisible(true);
+            });
+
+        }).start();
+
+
+
     }
 
     public void showMagician(MouseEvent mouseEvent) {

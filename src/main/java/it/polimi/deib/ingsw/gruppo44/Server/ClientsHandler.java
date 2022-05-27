@@ -80,6 +80,9 @@ public class ClientsHandler implements Serializable {
                                 }
                             }
                             break;
+                        case LoadGameCHOICE:
+                            List<String> loadableGames = gamesManager.getLoadableGames();
+                            System.out.println(loadableGames);
                         default: //case LoadGameCHOICE
                             //
                     }
