@@ -50,6 +50,8 @@ public class GamesManager implements Serializable {
     public void loadGame(String gameName){
         //reinitialize because if a game can be loaded it has already been created and added to games
         GameController gameController = GameController.loadGame(gameName);
+        //we mark the game as loaded to go into a special planning
+        gameController.setLoadedGame(true);
         games.put(gameController.getGameName(),gameController);
 
         new Thread(gameController).start();
@@ -57,13 +59,16 @@ public class GamesManager implements Serializable {
 
     public List<String> getLoadableGames() throws IOException {
         //correct the path
-        List<File> filesInFolder = Files.walk(Paths.get("/savedGames"))
-                //.filter(Files::isRegularFile)
+        List <File> filesInFolder = Files.list(Paths.get("savedGames"))
+                .filter(Files::isRegularFile)
                 .map(Path::toFile)
                 .collect(Collectors.toList());
+
+
+
         List <String> loadableGames = new ArrayList<>();
         for(File file:filesInFolder){
-            loadableGames.add(file.getName());
+            loadableGames.add(file.getName().replaceAll(".ser",""));
         }
         return loadableGames;
     }

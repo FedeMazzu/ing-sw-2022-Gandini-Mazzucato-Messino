@@ -90,5 +90,10 @@
       </Button>
       <ImageView fx:id="magicianIV" fitHeight="433.0" fitWidth="289.0" layoutX="496.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true" />
       <ListView fx:id="loadGameListView" layoutX="69.0" layoutY="318.0" prefHeight="200.0" prefWidth="200.0" visible="false" />
+      <Button fx:id="confirmLoadGameButton" layoutX="465.0" layoutY="547.0" mnemonicParsing="false" onAction="#confirmLoading" styleClass="buttons" stylesheets="@../CSS/buttons.css" text="Load" visible="false">
+         <font>
+            <Font name="Telugu MN" size="35.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

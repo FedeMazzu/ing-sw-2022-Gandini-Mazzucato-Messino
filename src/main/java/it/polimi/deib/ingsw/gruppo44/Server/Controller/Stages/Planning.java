@@ -37,6 +37,12 @@ public class Planning implements Stage, Serializable {
     public void handle() throws IOException {
 
         System.out.println("-----------PLANNING PHASE----------------");
+        if(gameController.isLoadedGame()){
+            //handle the reconnection of other players
+            //send the magicians that were chosen in the game
+            //wait for the player to select magician and go on with the planning it should work as a normal game
+            //we will have to wait for everyone to connect before conitnuing
+        }
         Player currPlayer;
         User currUser;
         ObjectInputStream ois;

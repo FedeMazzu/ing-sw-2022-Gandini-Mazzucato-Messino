@@ -27,6 +27,7 @@ public class GameController implements Serializable, Runnable {
     private boolean endGame;
     private boolean gameIsFull;
     private TurnHandler turnHandler;
+    private boolean loadedGame;
 
 
 
@@ -35,6 +36,7 @@ public class GameController implements Serializable, Runnable {
         this.gameMode = gameMode;
         this.gameStage = GameStage.START;
         users = new ArrayList<>();
+        this.loadedGame = false;
     }
 
     /**
@@ -101,7 +103,7 @@ public class GameController implements Serializable, Runnable {
      */
     public static GameController loadGame(String parameterGameName){
         try {
-            FileInputStream fileIn = new FileInputStream(parameterGameName + ".ser");
+            FileInputStream fileIn = new FileInputStream("savedGames/"+parameterGameName + ".ser");
             ObjectInputStream in = new ObjectInputStream(fileIn);
             GameController gameController = (GameController) in.readObject();
 
@@ -121,7 +123,7 @@ public class GameController implements Serializable, Runnable {
      */
     public void saveGame(String gameName){
         try {
-            FileOutputStream fileOut = new FileOutputStream(gameName + ".ser");
+            FileOutputStream fileOut = new FileOutputStream("savedGames/"+gameName + ".ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(this);
             //needed?
@@ -220,4 +222,11 @@ public class GameController implements Serializable, Runnable {
         return gameIsFull;
     }
 
+    public boolean isLoadedGame() {
+        return loadedGame;
+    }
+
+    public void setLoadedGame(boolean loadedGame) {
+        this.loadedGame = loadedGame;
+    }
 }

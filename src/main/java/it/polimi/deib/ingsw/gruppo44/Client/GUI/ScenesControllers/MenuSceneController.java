@@ -36,7 +36,7 @@ public class MenuSceneController {
     @FXML
     private ImageView magicianIV;
     @FXML
-    private Button createGameButton, joinGameButton, loadGameButton,createButton,joinButton,selectButton;
+    private Button createGameButton, joinGameButton, loadGameButton,createButton,joinButton,selectButton, confirmLoadGameButton;
     @FXML
     private Label gameNameLabel, gameModeLabel, errorLabel, waitingLabel, openGamesLabel,nameLabel,magicianLabel;
     @FXML
@@ -264,12 +264,23 @@ public class MenuSceneController {
             Platform.runLater(()->{
                 loadGameListView.getItems().addAll(finalLoadableGames);
                 loadGameListView.setVisible(true);
+                confirmLoadGameButton.setVisible(true);
             });
 
         }).start();
 
+    }
 
+    public void confirmLoading (ActionEvent actionEvent) throws IOException {
+        String chosenGame = loadGameListView.getSelectionModel().getSelectedItem();
+        ObjectOutputStream oos = Eriantys.getCurrentApplication().getOos();
 
+        oos.writeObject(chosenGame);
+        oos.flush();
+
+        loadGameListView.setVisible(false);
+        confirmLoadGameButton.setVisible(false);
+        waitingLabel.setVisible(true);
     }
 
     public void showMagician(MouseEvent mouseEvent) {

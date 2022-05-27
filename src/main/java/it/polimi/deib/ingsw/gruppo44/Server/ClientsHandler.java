@@ -9,6 +9,8 @@ import it.polimi.deib.ingsw.gruppo44.Server.Controller.User;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
 /**
@@ -82,7 +84,11 @@ public class ClientsHandler implements Serializable {
                             break;
                         case LoadGameCHOICE:
                             List<String> loadableGames = gamesManager.getLoadableGames();
-                            System.out.println(loadableGames);
+                            oos.writeObject(loadableGames);
+                            //receive the chosen game
+                            String chosenGame = (String) ois.readObject();
+                            gamesManager.loadGame(chosenGame);
+
                         default: //case LoadGameCHOICE
                             //
                     }
