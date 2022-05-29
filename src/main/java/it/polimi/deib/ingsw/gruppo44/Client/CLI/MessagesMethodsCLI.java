@@ -2,8 +2,11 @@ package it.polimi.deib.ingsw.gruppo44.Client.CLI;
 
 
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.Eriantys;
+import it.polimi.deib.ingsw.gruppo44.Common.GameMode;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Color;
+import it.polimi.deib.ingsw.gruppo44.Server.Model.Magician;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.CloudsData;
+import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.Data;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.IslandsData;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.SchoolData;
 
@@ -13,6 +16,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -137,6 +141,29 @@ public class MessagesMethodsCLI {
         System.out.println(currData);
         System.out.println("------------------------------------------------------------------------------------------");
     }
+
+
+    public static void setupToReloadGame() throws IOException, ClassNotFoundException {
+        Scanner sc = new Scanner(System.in);
+        //receive used magicians
+        List<Magician> usedMagicians = (List<Magician>) ois.readObject();
+        System.out.println("Who you were?(Insert a number");
+        for(int i=0; i< usedMagicians.size(); i++){
+            System.out.println(i+" - "+usedMagicians.get(i));
+        }
+        Magician magician = usedMagicians.get(sc.nextInt());
+        //sending the chosen magician
+        oos.writeObject(magician);
+        oos.flush();
+        clientController.setGameMode((GameMode) ois.readObject());
+        GameDataCLI gameDataCLI = new GameDataCLI(magician);
+        clientController.setGameData(gameDataCLI);
+        gameDataCLI.setData((Data) ois.readObject());
+        printData();
+        clientController.setClientStage(ClientStage.ClientPLANNING);
+        System.out.println("Waiting for the other players to rejoin");
+    }
+
 
     /**
      * method called from the Moving character to print a representation of the game

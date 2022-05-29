@@ -55,6 +55,7 @@ public class ClientController implements Runnable {
                         break;
                     case LOADGAME:
                         stage = new LoadGame(this);
+                        break;
                     case SETUP:
                         stage = new Setup(this);
                         break;

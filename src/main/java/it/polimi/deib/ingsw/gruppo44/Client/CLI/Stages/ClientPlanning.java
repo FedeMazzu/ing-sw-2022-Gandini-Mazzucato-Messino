@@ -41,8 +41,8 @@ public class ClientPlanning implements Stage {
         //print the map of the cards played by others
         Map<Magician,Integer> playedCards = (Map<Magician,Integer>)(ois.readObject());
         if(playedCards.isEmpty()){
-            System.out.println("Do you want to suspend the game here and continue?");
-            System.out.println("1 -> YES\n 0 -> NO");
+            System.out.println("Do you want to suspend the game here?");
+            System.out.println("0 -> NO\n1-> YES");
             boolean suspendGame = sc.nextInt() == 1;
             oos.writeBoolean(suspendGame);
             oos.flush();

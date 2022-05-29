@@ -243,28 +243,26 @@ public class MenuSceneController {
         }
     }
 
-    public void loadGame(ActionEvent actionEvent) throws IOException {
+    public void loadGame(ActionEvent actionEvent) throws IOException, ClassNotFoundException {
         //ask the server for the list of loadable games
+        ObjectInputStream ois = Eriantys.getCurrentApplication().getOis();
         ObjectOutputStream oos =  Eriantys.getCurrentApplication().getOos();
         oos.writeObject(ClientChoice.LoadGameCHOICE);
         oos.flush();
-        createGameButton.setVisible(false);
-        joinGameButton.setVisible(false);
-        loadGameButton.setVisible(false);
-        errorLabel.setVisible(false);
-
-        new Thread(()-> {
-            ObjectInputStream ois = Eriantys.getCurrentApplication().getOis();
-            try {
-                List<String> games = (List<String>) ois.readObject();
-                loadGameListView.getItems().clear();
-                loadGameListView.getItems().addAll(games);
-                loadGameListView.setVisible(true);
-                confirmLoadGameButton.setVisible(true);
-            } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-        }).start();
+        List<String> games = (List<String>) ois.readObject();
+        if(!games.isEmpty()) {
+            createGameButton.setVisible(false);
+            joinGameButton.setVisible(false);
+            loadGameButton.setVisible(false);
+            errorLabel.setVisible(false);
+            loadGameListView.getItems().clear();
+            loadGameListView.getItems().addAll(games);
+            loadGameListView.setVisible(true);
+            confirmLoadGameButton.setVisible(true);
+        }else{
+            errorLabel.setText("There aren't available games");
+            errorLabel.setVisible(true);
+        }
 
     }
 

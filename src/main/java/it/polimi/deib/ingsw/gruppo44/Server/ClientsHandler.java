@@ -94,9 +94,11 @@ public class ClientsHandler implements Serializable {
                             List<String> loadableGames = gamesManager.getLoadableGames();
                             oos.writeObject(loadableGames);
                             //receive the chosen game
-                            String chosenGame = (String) ois.readObject();
-                            gamesManager.loadGame(chosenGame, user);
-                            gameJoined = true;
+                            if(!loadableGames.isEmpty()) {
+                                String chosenGame = (String) ois.readObject();
+                                gamesManager.loadGame(chosenGame, user);
+                                gameJoined = true;
+                            }
                         default: //case LoadGameCHOICE
                             //
                     }
