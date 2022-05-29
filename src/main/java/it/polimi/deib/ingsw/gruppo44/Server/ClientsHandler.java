@@ -9,8 +9,6 @@ import it.polimi.deib.ingsw.gruppo44.Server.Controller.User;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.*;
 
 /**
@@ -70,15 +68,25 @@ public class ClientsHandler implements Serializable {
                             break;
                         case JoinGameCHOISE:
                             Map<String, GameMode> openGames = gamesManager.getOpenGames();
+                            List<String> loadedOpenGames = gamesManager.getLoadedOpenGames();
                             oos.writeObject(openGames);
                             oos.flush();
-                            if (!openGames.isEmpty()) {
+                            oos.writeObject(loadedOpenGames);
+                            oos.flush();
+                            if (!openGames.isEmpty() || !loadedOpenGames.isEmpty()) {
                                 String gameName = (String) ois.readObject();
-                                gameJoined = gamesManager.joinGame(gameName, user);
+                                //Differs if the game is new or loaded
+                                if(loadedOpenGames.contains(gameName)){
 
-                                if(!gameJoined){
-                                    oos.writeBoolean(false);
-                                    oos.flush();
+                                    gamesManager.joinLoadedGame(gameName,user);
+                                    gameJoined = true;
+                                }else {
+                                    gameJoined = gamesManager.joinGame(gameName, user);
+
+                                    if (!gameJoined) {
+                                        oos.writeBoolean(false);
+                                        oos.flush();
+                                    }
                                 }
                             }
                             break;
@@ -87,8 +95,8 @@ public class ClientsHandler implements Serializable {
                             oos.writeObject(loadableGames);
                             //receive the chosen game
                             String chosenGame = (String) ois.readObject();
-                            gamesManager.loadGame(chosenGame);
-
+                            gamesManager.loadGame(chosenGame, user);
+                            gameJoined = true;
                         default: //case LoadGameCHOICE
                             //
                     }

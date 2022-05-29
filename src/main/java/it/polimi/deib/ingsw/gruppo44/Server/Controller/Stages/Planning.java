@@ -1,16 +1,12 @@
 package it.polimi.deib.ingsw.gruppo44.Server.Controller.Stages;
 
-import it.polimi.deib.ingsw.gruppo44.Client.GUI.Eriantys;
+import it.polimi.deib.ingsw.gruppo44.Common.GameMode;
 import it.polimi.deib.ingsw.gruppo44.Common.Stage;
 import it.polimi.deib.ingsw.gruppo44.Server.Controller.*;
-import it.polimi.deib.ingsw.gruppo44.Server.Model.Card;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Magician;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Player;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.io.*;
 import java.util.*;
 
 /**
@@ -24,6 +20,7 @@ public class Planning implements Stage, Serializable {
     private PriorityQueue<Ticket> turnOrder;
     private Set<Integer> cardsPlayedFromOtherPlayers;
     private boolean gameSuspension;
+    private GameMode gameMode;
 
     public Planning(GameController gameController) {
         this.gameController = gameController;
@@ -31,18 +28,50 @@ public class Planning implements Stage, Serializable {
         this.turnOrder = gameController.getTurnHandler().getTurnOrder();
         cardsPlayedFromOtherPlayers = new HashSet<>();
         this.gameSuspension = false;
+        gameMode = gameController.getGameMode();
     }
 
     @Override
-    public void handle() throws IOException {
+    public void handle() throws IOException, InterruptedException {
 
         System.out.println("-----------PLANNING PHASE----------------");
         if(gameController.isLoadedGame()){
+            gameController.setLoadedGame(true);
             //handle the reconnection of other players
             //send the magicians that were chosen in the game
             //wait for the player to select magician and go on with the planning it should work as a normal game
             //we will have to wait for everyone to connect before conitnuing
+
+            //Waiting for the players to rejoin
+            int numUsers = gameController.getNumUsers();
+            while(numUsers < gameMode.getTeamPlayers()*gameMode.getTeamsNumber()) {
+                synchronized (gameController) {
+                    gameController.wait();
+                }
+                numUsers = gameController.getNumUsers();
+            }
+
+            gameController.setLoadedGame(false);
+            System.out.println("All the players have rejoined correctly");
+            //deleting the file
+            File file = new File("savedGames/"+gameController.getGameName()+".ser");
+            file.delete();
+
+            //sending Data and GameMode to all to reset the game
+            for(int i=0;i<gameMode.getTeamsNumber()*gameMode.getTeamPlayers();i++){
+                User tempUser = gameController.getUser(i);
+                ObjectOutputStream oos = tempUser.getOos();
+
+                oos.writeObject(gameMode);
+                oos.flush();
+
+                oos.writeObject(gameController.getData());
+                oos.flush();
+            }
+
         }
+
+
         Player currPlayer;
         User currUser;
         ObjectInputStream ois;
@@ -70,13 +99,14 @@ public class Planning implements Stage, Serializable {
             if(turnOrder.isEmpty()) {
                 //only the first player broadcast their choice
 
+                //sending false to the first player by default
                 oos.writeBoolean(gameSuspension);
                 oos.flush();
                 oos.writeObject(playedCards);
                 oos.flush();
                 gameSuspension = ois.readBoolean();
 
-                for(int i=0;i<gameController.getNumUsers();i++){
+                for(int i = 0; i<gameController.getNumUsers(); i++){
                     if(currUser.equals(gameController.getUser(i))) continue;
                     ObjectOutputStream tempOos = gameController.getUser(i).getOos();
                     tempOos.writeBoolean(gameSuspension);
@@ -90,12 +120,17 @@ public class Planning implements Stage, Serializable {
 
 
             if(gameSuspension){
+                //adding the first player because he will have to choose again
+                cardOrder.addFirst(currPlayer);
+                for(int i = 0; i<gameController.getNumUsers(); i++){
+                    gameController.getUser(i).closeSocket();
+                    //because when the user will rejoin the socket will be dated
+                }
+                //emptying the list of users
+                gameController.clearUsers();
                 //we want to stop and save the game
                 gameController.saveGame(gameController.getGameName());
                 gameController.setEndGame(true);
-                for(int i=0;i<gameController.getNumUsers();i++){
-                    gameController.getUser(i).closeSocket();
-                }
                 return; //if the value is -1 we want to suspend the game
             }
 

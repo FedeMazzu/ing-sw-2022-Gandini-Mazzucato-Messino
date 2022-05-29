@@ -24,21 +24,21 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
+import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class MenuSceneController {
+
+
 
     @FXML
     private ImageView magicianIV;
     @FXML
-    private Button createGameButton, joinGameButton, loadGameButton,createButton,joinButton,selectButton, confirmLoadGameButton;
+    private Button selectUsedMagicianButton, createGameButton, joinGameButton, loadGameButton,createButton,joinButton,selectButton, confirmLoadGameButton, joinLoadedGameButton;
     @FXML
-    private Label gameNameLabel, gameModeLabel, errorLabel, waitingLabel, openGamesLabel,nameLabel,magicianLabel;
+    private Label whoLabel,gameNameLabel, gameModeLabel, errorLabel, waitingLabel, openGamesLabel,nameLabel,magicianLabel;
     @FXML
     private TextField gameNameTextField,nameTextField;
     @FXML
@@ -48,7 +48,7 @@ public class MenuSceneController {
     @FXML
     private ListView<Magician> magicianListView;
     @FXML
-    private ListView<String> loadGameListView;
+    private ListView<String> loadGameListView,loadedOpenGames;
 
     private GameMode[]gameModes = GameMode.values();
 
@@ -120,19 +120,31 @@ public class MenuSceneController {
         ObjectOutputStream oos = Eriantys.getCurrentApplication().getOos();
         ObjectInputStream ois = Eriantys.getCurrentApplication().getOis();
         Map<String, GameMode> openGames;
+        List<String> openGamesLoaded;
         oos.writeObject(ClientChoice.JoinGameCHOISE);
         oos.flush();
         openGames = (Map<String, GameMode>) ois.readObject();
-        if(!openGames.isEmpty()) {
-            for(Map.Entry<String,GameMode> game : openGames.entrySet()){
-                openGamesListView.getItems().add( game);
-            }
+        openGamesLoaded = (List<String>)ois.readObject();
+        if(!openGames.isEmpty() || !openGamesLoaded.isEmpty()) {
             createGameButton.setVisible(false);
             joinGameButton.setVisible(false);
             loadGameButton.setVisible(false);
-            openGamesListView.setVisible(true);
-            joinButton.setVisible(true);
-            openGamesLabel.setVisible(true);
+            if(!openGames.isEmpty()) {
+
+                for (Map.Entry<String, GameMode> game : openGames.entrySet()) {
+                    openGamesListView.getItems().add(game);
+                }
+                openGamesListView.setVisible(true);
+                joinButton.setVisible(true);
+                openGamesLabel.setVisible(true);
+            }
+            if(!openGamesLoaded.isEmpty()){
+                loadedOpenGames.getItems().addAll(openGamesLoaded);
+                loadedOpenGames.setVisible(true);
+                joinLoadedGameButton.setVisible(true);
+            }
+
+
         }else{
             errorLabel.setText("There aren't available games");
             errorLabel.setVisible(true);
@@ -157,6 +169,8 @@ public class MenuSceneController {
         openGamesListView.setVisible(false);
         openGamesLabel.setVisible(false);
         joinButton.setVisible(false);
+        loadedOpenGames.setVisible(false);
+        joinLoadedGameButton.setVisible(false);
         waitingLabel.setVisible(true);
         new Thread(this::getStartingAck).start();
     }
@@ -192,20 +206,7 @@ public class MenuSceneController {
             waitingLabel.setText("Waiting for your turn of choosing a card");
             waitingLabel.setVisible(true);
             //receiving the data of the initialized game
-            new Thread(()->{
-                try {
-                Data data = (Data) ois.readObject();
-                //need to be in the event thread
-                setMagicianId(data);
-                //need to be after setMagicianId
-                    Eriantys.getCurrentApplication().loadGameScenes();
-                Eriantys.getCurrentApplication().getGameData().setData(data);
-                new Thread(new WaitCards()).start();
-                } catch (IOException | ClassNotFoundException e) {
-                    e.printStackTrace();
-                }
-
-            }).start();
+            new Thread(() -> receiveDataAndSetTheGame()).start();
 
         }
 
@@ -250,23 +251,19 @@ public class MenuSceneController {
         createGameButton.setVisible(false);
         joinGameButton.setVisible(false);
         loadGameButton.setVisible(false);
+        errorLabel.setVisible(false);
 
-        new Thread(()->{
+        new Thread(()-> {
             ObjectInputStream ois = Eriantys.getCurrentApplication().getOis();
-            List<String> loadableGames = null;
             try {
-                loadableGames = (ArrayList<String>) ois.readObject();
+                List<String> games = (List<String>) ois.readObject();
+                loadGameListView.getItems().clear();
+                loadGameListView.getItems().addAll(games);
+                loadGameListView.setVisible(true);
+                confirmLoadGameButton.setVisible(true);
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
-
-            List<String> finalLoadableGames = loadableGames;
-            Platform.runLater(()->{
-                loadGameListView.getItems().addAll(finalLoadableGames);
-                loadGameListView.setVisible(true);
-                confirmLoadGameButton.setVisible(true);
-            });
-
         }).start();
 
     }
@@ -280,13 +277,107 @@ public class MenuSceneController {
 
         loadGameListView.setVisible(false);
         confirmLoadGameButton.setVisible(false);
-        waitingLabel.setVisible(true);
+        new Thread(()-> {
+            try {
+                prepareForMagicianReloading();
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }).start();
     }
+
 
     public void showMagician(MouseEvent mouseEvent) {
         Magician magician = magicianListView.getSelectionModel().getSelectedItem();
         if (magician != null) {
             magicianIV.setImage(new Image("/images/magicians/" + magician + ".jpg"));
+        }
+    }
+
+    public void joinLoadedGame(ActionEvent actionEvent) throws IOException {
+        ObjectOutputStream oos = Eriantys.getCurrentApplication().getOos();
+        String gameName;
+        gameName = loadedOpenGames.getSelectionModel().getSelectedItem();
+        if(gameName != null){
+            oos.writeObject(gameName);
+            oos.flush();
+            loadedOpenGames.setVisible(false);
+            joinLoadedGameButton.setVisible(false);
+            errorLabel.setVisible(false);
+            openGamesListView.setVisible(false);
+            joinButton.setVisible(false);
+            openGamesLabel.setVisible(false);
+            new Thread(()-> {
+                try {
+                    prepareForMagicianReloading();
+                } catch (IOException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }).start();
+        }
+
+    }
+
+    private void prepareForMagicianReloading() throws IOException, ClassNotFoundException {
+        List<Magician> usedMagicians= (List<Magician>) Eriantys.getCurrentApplication().getOis().readObject();
+        Platform.runLater(()->{
+            magicianListView.getItems().clear();
+            magicianListView.getItems().addAll(usedMagicians);
+            magicianListView.setVisible(true);
+            whoLabel.setVisible(true);
+            selectUsedMagicianButton.setVisible(true);
+        });
+
+    }
+
+
+    public void selectUsedMagician(ActionEvent actionEvent) throws IOException {
+        ObjectOutputStream oos = Eriantys.getCurrentApplication().getOos();
+
+        Magician magician = magicianListView.getSelectionModel().getSelectedItem();
+        if(magician!=null){
+            Eriantys.getCurrentApplication().setGameData(new GameDataGUI(magician));
+            oos.writeObject(magician);
+            oos.flush();
+            magicianListView.setVisible(false);
+            whoLabel.setVisible(false);
+            selectUsedMagicianButton.setVisible(false);
+            new Thread(()-> receiveDataAndGameModeAndSetTheGame()).start();
+        }
+    }
+
+    private void receiveDataAndGameModeAndSetTheGame() {
+        try {
+            ObjectInputStream ois = Eriantys.getCurrentApplication().getOis();
+            //receiving the gameMode
+            Eriantys.getCurrentApplication().setGameMode((GameMode) ois.readObject());
+
+            Data data = (Data) ois.readObject();
+            //need to be in the event thread
+            setMagicianId(data);
+            //need to be after setMagicianId
+
+            Eriantys.getCurrentApplication().loadGameScenes();
+            Eriantys.getCurrentApplication().getGameData().setData(data);
+            new Thread(new WaitCards()).start();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void receiveDataAndSetTheGame(){
+        try {
+            ObjectInputStream ois = Eriantys.getCurrentApplication().getOis();
+            Data data = (Data) ois.readObject();
+            //need to be in the event thread
+            setMagicianId(data);
+            //need to be after setMagicianId
+
+            Eriantys.getCurrentApplication().loadGameScenes();
+            Eriantys.getCurrentApplication().getGameData().setData(data);
+            new Thread(new WaitCards()).start();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
 }

@@ -1,6 +1,11 @@
 package it.polimi.deib.ingsw.gruppo44.Server.Controller;
 
 import it.polimi.deib.ingsw.gruppo44.Common.GameMode;
+import it.polimi.deib.ingsw.gruppo44.Server.Model.Game;
+import it.polimi.deib.ingsw.gruppo44.Server.Model.Magician;
+import it.polimi.deib.ingsw.gruppo44.Server.Model.Player;
+import it.polimi.deib.ingsw.gruppo44.Server.Model.Team;
+import org.w3c.dom.stylesheets.LinkStyle;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -47,15 +52,19 @@ public class GamesManager implements Serializable {
      * loads a game from a file .ser and runs it
       * @param gameName
      */
-    public void loadGame(String gameName){
+    public void loadGame(String gameName, User user) throws IOException, ClassNotFoundException {
         //reinitialize because if a game can be loaded it has already been created and added to games
         GameController gameController = GameController.loadGame(gameName);
         //we mark the game as loaded to go into a special planning
         gameController.setLoadedGame(true);
         games.put(gameController.getGameName(),gameController);
-
         new Thread(gameController).start();
+
+        magicianAuthentication(gameName,user);
+
     }
+
+
 
     public List<String> getLoadableGames() throws IOException {
         //correct the path
@@ -71,6 +80,10 @@ public class GamesManager implements Serializable {
             loadableGames.add(file.getName().replaceAll(".ser",""));
         }
         return loadableGames;
+    }
+
+    public void joinLoadedGame(String gameName,User user) throws IOException, ClassNotFoundException {
+        magicianAuthentication(gameName,user);
     }
 
 
@@ -127,4 +140,41 @@ public class GamesManager implements Serializable {
         }
     }
 
+    public List<String> getLoadedOpenGames() {
+        List<String> loadedOpenGames = new ArrayList<>();
+        for(String s : games.keySet()){
+            if(games.get(s).isLoadedGame()) loadedOpenGames.add(s);
+        }
+        return loadedOpenGames;
+    }
+
+    private  void magicianAuthentication(String gameName, User user) throws IOException, ClassNotFoundException {
+        Map<Magician,Player> usedMagicians = new HashMap<>();
+        List<Magician> magicians = new ArrayList<>();
+        Game game = games.get(gameName).getGame();
+        for(Team t: game.getTeams()){
+            for(Player p: t.getPlayers()){
+                usedMagicians.put(p.getMagician(),p);
+                magicians.add(p.getMagician());
+            }
+        }
+        ObjectOutputStream oos = user.getOos();
+        ObjectInputStream ois = user.getOis();
+        oos.writeObject(magicians);
+        oos.flush();
+        //receiving the magician used
+        Magician magician = (Magician) ois.readObject();
+
+        //associating the player to the user
+        Player player = usedMagicians.get(magician);
+        user.setPlayer(player);
+        player.setUser(user);
+        //waking up the thread in the planning stage
+        GameController gameController = games.get(gameName);
+        gameController.addUser(user);
+        synchronized (gameController) {
+            games.get(gameName).notifyAll();
+        }
+
+    }
 }

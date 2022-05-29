@@ -174,9 +174,10 @@ public class GameController implements Serializable, Runnable {
     /**
      * @return the number of users participating the game
      */
-    public  synchronized int  getNumUsers(){
+    public  synchronized int getNumUsers(){
         return users.size();
     }
+
 
     /**
      * method called from the END stage to quit che loop and end the game
@@ -228,5 +229,9 @@ public class GameController implements Serializable, Runnable {
 
     public void setLoadedGame(boolean loadedGame) {
         this.loadedGame = loadedGame;
+    }
+
+    public void clearUsers() {
+        users.clear();
     }
 }

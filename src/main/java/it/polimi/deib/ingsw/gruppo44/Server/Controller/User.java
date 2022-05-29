@@ -23,9 +23,8 @@ public class User implements Serializable {
     //private int port;
 
     public User(Socket socket) throws IOException {
-        this.socket = socket;
-        this.ois = new ObjectInputStream(socket.getInputStream());
-        this.oos = new ObjectOutputStream(socket.getOutputStream());
+        setSocket(socket);
+
     }
 
     /**
@@ -52,6 +51,14 @@ public class User implements Serializable {
 
     public Player getPlayer() {
         return player;
+    }
+
+
+    public void setSocket(Socket socket) throws IOException {
+        this.socket = socket;
+        ois = new ObjectInputStream(socket.getInputStream());
+        oos = new ObjectOutputStream((socket.getOutputStream()));
+
     }
 
     public void setPlayer(Player player) {

@@ -62,7 +62,7 @@
             <Font name="Telugu MN" size="48.0" />
          </font>
       </Label>
-      <Button fx:id="joinButton" layoutX="85.0" layoutY="511.0" mnemonicParsing="false" onAction="#join" text="Join" visible="false">
+      <Button fx:id="joinButton" layoutX="93.0" layoutY="550.0" mnemonicParsing="false" onAction="#join" text="Join" visible="false">
          <font>
             <Font name="Telugu MN" size="35.0" />
          </font>
@@ -93,6 +93,22 @@
       <Button fx:id="confirmLoadGameButton" layoutX="465.0" layoutY="547.0" mnemonicParsing="false" onAction="#confirmLoading" styleClass="buttons" stylesheets="@../CSS/buttons.css" text="Load" visible="false">
          <font>
             <Font name="Telugu MN" size="35.0" />
+         </font>
+      </Button>
+      <ListView fx:id="loadedOpenGames" layoutX="711.0" layoutY="291.0" prefHeight="200.0" prefWidth="200.0" visible="false" />
+      <Button fx:id="joinLoadedGameButton" layoutX="659.0" layoutY="550.0" mnemonicParsing="false" onAction="#joinLoadedGame" text="Join Loaded Game" visible="false">
+         <font>
+            <Font name="Telugu MN" size="35.0" />
+         </font>
+      </Button>
+      <Label fx:id="whoLabel" layoutX="55.0" layoutY="267.0" text="Who you were?" textFill="WHITE" visible="false">
+         <font>
+            <Font name="Telugu MN" size="40.0" />
+         </font>
+      </Label>
+      <Button fx:id="selectUsedMagicianButton" layoutX="123.0" layoutY="602.0" mnemonicParsing="false" onAction="#selectUsedMagician" text="Select" visible="false">
+         <font>
+            <Font name="Telugu MN" size="30.0" />
          </font>
       </Button>
    </children>

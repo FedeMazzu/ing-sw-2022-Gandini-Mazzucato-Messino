@@ -65,7 +65,7 @@ public class Start implements Stage, Serializable {
         PriorityQueue<Ticket> turnOrder = turnHandler.getTurnOrder();
 
         //sending an ack that the correct amount of players has connected
-        for(int i=0; i< gameController.getNumUsers(); i++){
+        for(int i = 0; i< gameController.getNumUsers(); i++){
             oos = gameController.getUser(i).getOos();
             oos.writeBoolean(true);
             oos.flush();
