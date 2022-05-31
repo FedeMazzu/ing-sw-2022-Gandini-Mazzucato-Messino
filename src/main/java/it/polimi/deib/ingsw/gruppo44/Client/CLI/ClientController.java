@@ -121,9 +121,9 @@ public class ClientController implements Runnable {
 
     public void askOptions() {
         System.out.println("what do you want to do?\n" +
-                "1- Create a new Game\n" +
-                "2- Join a game\n" +
-                "3- Load a game");
+                "1 - Create a new Game\n" +
+                "2 - Join a game\n" +
+                "3 - Load a game");
         switch (sc.nextInt()){
             case 1:
                 clientStage = ClientStage.CREATEGAME;

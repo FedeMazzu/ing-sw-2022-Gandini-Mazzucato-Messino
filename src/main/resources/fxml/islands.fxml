@@ -1064,17 +1064,17 @@
             <Image url="@../images/Coin.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="bIcloud3" fitHeight="29.0" fitWidth="29.0" layoutX="561.0" layoutY="429.0" pickOnBounds="true" preserveRatio="true" scaleX="0.8" scaleY="0.8" visible="false">
+         <image>
+            <Image url="@../images/Coin.png" />
+         </image>
+      </ImageView>
       <ImageView fx:id="yIcloud3" fitHeight="29.0" fitWidth="29.0" layoutX="561.0" layoutY="387.0" pickOnBounds="true" preserveRatio="true" scaleX="0.8" scaleY="0.8" visible="false">
          <image>
             <Image url="@../images/Coin.png" />
          </image>
       </ImageView>
       <ImageView fx:id="pIcloud3" fitHeight="29.0" fitWidth="29.0" layoutX="561.0" layoutY="408.0" pickOnBounds="true" preserveRatio="true" scaleX="0.8" scaleY="0.8" visible="false">
-         <image>
-            <Image url="@../images/Coin.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="bIcloud3" fitHeight="29.0" fitWidth="29.0" layoutX="561.0" layoutY="429.0" pickOnBounds="true" preserveRatio="true" scaleX="0.8" scaleY="0.8" visible="false">
          <image>
             <Image url="@../images/Coin.png" />
          </image>
@@ -1104,9 +1104,12 @@
             <Font name="Telugu MN" size="12.0" />
          </font>
       </Label>
-      <Rectangle fx:id="studentChoicePanel" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="230.0" layoutX="270.0" layoutY="214.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="492.0" />
-      <ListView fx:id="entranceStudentsSelection" layoutX="397.0" layoutY="227.0" prefHeight="200.0" prefWidth="200.0" visible="false" />
-      <Button fx:id="schoolSelectionButton" layoutX="664.0" layoutY="318.0" mnemonicParsing="false" onAction="#selectSchool" text="School" visible="false" />
+      <Rectangle fx:id="studentChoicePanel" arcHeight="5.0" arcWidth="5.0" fill="#680009" height="248.0" layoutX="270.0" layoutY="202.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="492.0" />
+      <ListView fx:id="entranceStudentsSelection" layoutX="314.0" layoutY="234.0" prefHeight="200.0" prefWidth="200.0" visible="false" />
+      <Button fx:id="schoolSelectionButton" layoutX="591.0" layoutY="309.0" mnemonicParsing="false" onAction="#selectSchool" text="School Hall" visible="false">
+         <font>
+            <Font name="Telugu MN" size="18.0" />
+         </font></Button>
       <Button fx:id="shopButton" layoutX="945.0" layoutY="660.0" mnemonicParsing="false" onAction="#switchToShopScene" prefHeight="58.0" prefWidth="125.0" styleClass="buttons" stylesheets="@../CSS/buttons.css" text="Shop" visible="false">
          <font>
             <Font name="Telugu MN" size="30.0" />
@@ -1117,5 +1120,10 @@
             <Font name="Telugu MN" size="13.0" />
          </font>
       </TextArea>
+      <Label fx:id="schoolEntranceLabel" layoutX="340.0" layoutY="202.0" text="School Entrance" textFill="WHITE" visible="false">
+         <font>
+            <Font name="Telugu MN" size="19.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

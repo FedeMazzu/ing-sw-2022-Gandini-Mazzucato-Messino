@@ -39,7 +39,8 @@ public class IslandsSceneController implements Initializable {
     private int phase; //-2Nothing,-1 WaitAfter, 0 student selection, 1 mother nature move, 2 cloud choice
     private int counter; //num of student the player has already moved
     private boolean usingCharacter3, usingCharacter4;
-
+    @FXML
+    private Label schoolEntranceLabel;
     @FXML
     private Label b0;
 
@@ -825,6 +826,10 @@ public class IslandsSceneController implements Initializable {
         Eriantys.getCurrentApplication().switchToSchools2PScene();
     }
 
+    public Label getSchoolEntranceLabel() {
+        return schoolEntranceLabel;
+    }
+
     public Map<Integer, IslandGuiLogic> getIslands() {
         return islands;
     }
@@ -987,6 +992,7 @@ public class IslandsSceneController implements Initializable {
                 entranceStudentsSelection.setVisible(false);
                 studentChoicePanel.setVisible(false);
                 schoolSelectionButton.setVisible(false);
+                schoolEntranceLabel.setVisible(false);
                 //make mother nature move
                 setupForMotherNature();
             }

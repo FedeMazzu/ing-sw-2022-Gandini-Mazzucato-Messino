@@ -7,6 +7,7 @@ import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.IslandsData;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.SchoolData;
 import javafx.application.Platform;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.shape.Rectangle;
 
@@ -32,6 +33,7 @@ public class MessagesMethodsGUI {
         ListView<Color> entranceStudentsSel = Eriantys.getCurrentApplication().getIslandsSceneController().getEntranceStudentsSelection();
         Button schoolSelButton = Eriantys.getCurrentApplication().getIslandsSceneController().getSchoolSelectionButton();
         SchoolData schoolData = Eriantys.getCurrentApplication().getGameData().getSchoolDataMap().get(Eriantys.getCurrentApplication().getGameData().getClientMagician());
+        Label schoolEntranceLabel = Eriantys.getCurrentApplication().getIslandsSceneController().getSchoolEntranceLabel();
 
         for(Color color:Color.values()){
             int numOfStudents=schoolData.getEntranceStudentsNum(color);
@@ -49,6 +51,7 @@ public class MessagesMethodsGUI {
         rectangle.setVisible(true);
         schoolSelButton.setVisible(true);
         entranceStudentsSel.setVisible(true);
+        schoolEntranceLabel.setVisible(true);
         Eriantys.getCurrentApplication().switchToIslandsScene();
     }
 

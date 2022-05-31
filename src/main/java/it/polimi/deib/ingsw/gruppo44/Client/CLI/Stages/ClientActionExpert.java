@@ -113,8 +113,6 @@ public class ClientActionExpert implements Stage{
 
     private void handleCharacter() throws IOException, ClassNotFoundException {
         switch (currentCharacter){
-            case 1:
-                break;
             case 2:
                 handleCharacter2();
                 break;
@@ -147,12 +145,15 @@ public class ClientActionExpert implements Stage{
     }
 
     private void handleCharacter2() throws IOException, ClassNotFoundException {
-        System.out.println("During this turn you get the professor also when you have the same amount of students");
+        System.out.println("During this turn you get the professor also when you have the same amount of students in the hall");
     }
 
     private void handleCharacter3() throws IOException, ClassNotFoundException {
-        System.out.println("Which island do you use the power on?");
-        int islandChosen = sc.nextInt();
+        int islandChosen;
+        do {
+            System.out.println("Which island do you use the power on?");
+            islandChosen = sc.nextInt();
+        }while(!(clientController.getGameDataCLI().getIslandsData().getGroup(islandChosen)==-1));
         oos.writeInt(islandChosen);
         oos.flush();
         MessagesMethodsCLI.receiveIslandsUpdated();
@@ -201,14 +202,18 @@ public class ClientActionExpert implements Stage{
                 oos.flush();
                 break;
             default:
-                System.out.println("you choose "+colorChoice );
                 System.out.println("incorrect value");
-                System.exit(0);
+                handleCharacter9();
                 break;
         }
 
     }
 
+    /**
+     *  this character lacks of the controls for the correct input
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     private void handleCharacter10() throws IOException, ClassNotFoundException {
         System.out.println("You want to swap 2 students in your school?\n" +
                 "0 -> NO\n 1 -> YES");

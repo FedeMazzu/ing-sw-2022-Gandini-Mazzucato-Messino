@@ -29,7 +29,7 @@
             <Font name="Telugu MN" size="30.0" />
          </font>
       </Label>
-      <Label fx:id="money1" layoutX="182.0" layoutY="310.0" scaleX="0.7" scaleY="0.7" text="Soldi" textFill="WHITE">
+      <Label fx:id="money1" layoutX="234.0" layoutY="274.0" scaleX="0.7" scaleY="0.7" text="Soldi" textFill="WHITE">
          <font>
             <Font name="Telugu MN" size="30.0" />
          </font>
@@ -165,7 +165,7 @@
             <Font name="Telugu MN" size="30.0" />
          </font>
       </Label>
-      <Label fx:id="money2" layoutX="177.0" layoutY="668.0" scaleX="0.7" scaleY="0.7" text="Soldi" textFill="WHITE">
+      <Label fx:id="money2" layoutX="229.0" layoutY="631.0" scaleX="0.7" scaleY="0.7" text="Soldi" textFill="WHITE">
          <font>
             <Font name="Telugu MN" size="30.0" />
          </font>
@@ -296,7 +296,7 @@
             <Font name="Telugu MN" size="30.0" />
          </font>
       </Label>
-      <Label fx:id="money3" layoutX="980.0" layoutY="314.0" scaleX="0.7" scaleY="0.7" text="Soldi" textFill="WHITE" visible="false">
+      <Label fx:id="money3" layoutX="1034.0" layoutY="277.0" scaleX="0.7" scaleY="0.7" text="Soldi" textFill="WHITE" visible="false">
          <font>
             <Font name="Telugu MN" size="30.0" />
          </font>
@@ -427,7 +427,7 @@
             <Font name="Telugu MN" size="30.0" />
          </font>
       </Label>
-      <Label fx:id="money4" layoutX="982.0" layoutY="663.0" scaleX="0.7" scaleY="0.7" text="Soldi" textFill="WHITE" visible="false">
+      <Label fx:id="money4" layoutX="1036.0" layoutY="626.0" scaleX="0.7" scaleY="0.7" text="Soldi" textFill="WHITE" visible="false">
          <font>
             <Font name="Telugu MN" size="30.0" />
          </font>
