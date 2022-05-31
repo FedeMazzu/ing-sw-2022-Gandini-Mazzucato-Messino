@@ -32,14 +32,12 @@ public class Wait implements Runnable{
                 if(usingCharacter){
                     gameEnd = MessagesMethodsGUI.characterWait();
                     if(gameEnd){
-                        Eriantys.getCurrentApplication().switchToEndGameScene();
                         return;
                     }
                 }
                 else{
                     gameEnd = MessagesMethodsGUI.standardWait();
                     if(gameEnd){
-                        Eriantys.getCurrentApplication().switchToEndGameScene();
                         return;
                     }
                 }

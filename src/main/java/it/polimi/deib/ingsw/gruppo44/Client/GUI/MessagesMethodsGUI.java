@@ -84,12 +84,12 @@ public class MessagesMethodsGUI {
         boolean gameEnd = Eriantys.getCurrentApplication().getOis().readBoolean();
         if (gameEnd){
             String winningMagician =(String) Eriantys.getCurrentApplication().getOis().readObject();
-
+            Eriantys.getCurrentApplication().switchToEndGameScene();
             Platform.runLater(()->{
                 Eriantys.getCurrentApplication().getEndGameSceneController().getWinLabel().setText(winningMagician);
             });
 
-            Eriantys.getCurrentApplication().switchToEndGameScene();
+            return true;
         }
 
         //after choosing cloud
