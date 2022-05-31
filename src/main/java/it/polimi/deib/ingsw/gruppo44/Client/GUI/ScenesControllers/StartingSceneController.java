@@ -66,6 +66,7 @@ public class StartingSceneController {
         if (correct ){
             NetworkHandler nh =new NetworkHandler(serverIp);
             if(nh.isConnectionEstablished()){
+                errorIp.setVisible(false);
                 Eriantys.getCurrentApplication().switchToMenuScene();
             }else{
                 errorIp.setText("Server not Found!");

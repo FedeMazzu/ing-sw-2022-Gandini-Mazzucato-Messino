@@ -80,7 +80,7 @@ public class GameDataGUI {
             magicianLabel.setText(String.valueOf(magician));
             name.setText(schoolData.getPlayerName());
 
-            //updating the tower and the nuj of towers
+            //updating the tower and the num of towers
             String numTower = String.valueOf(schoolData.getNumTower());
             schoolGuiLogic.getNumTower().setText(numTower);
             schoolGuiLogic.getTower().setImage(new Image("/images/pawns/"+schoolData.getTeamTower().getId()+"tower.png"));
@@ -109,6 +109,8 @@ public class GameDataGUI {
                         if(islandsData.getGroupSize(i)>1) {
                             igl.getNumTowers().setText("x" + islandsData.getGroupSize(i));
                             igl.getNumTowers().setVisible(true);
+                        }else{
+                            igl.getNumTowers().setVisible(false);
                         }
                     }
                     else igl.getNumTowers().setVisible(false);

@@ -126,6 +126,7 @@ public class MenuSceneController {
         openGames = (Map<String, GameMode>) ois.readObject();
         openGamesLoaded = (List<String>)ois.readObject();
         if(!openGames.isEmpty() || !openGamesLoaded.isEmpty()) {
+            errorLabel.setVisible(false);
             createGameButton.setVisible(false);
             joinGameButton.setVisible(false);
             loadGameButton.setVisible(false);
