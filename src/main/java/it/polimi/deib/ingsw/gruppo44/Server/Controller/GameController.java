@@ -123,6 +123,8 @@ public class GameController implements Serializable, Runnable {
      */
     public void saveGame(String gameName){
         try {
+            //creates the directory if it doesn't exist yet
+            new File("savedGames").mkdir();
             FileOutputStream fileOut = new FileOutputStream("savedGames/"+gameName + ".ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(this);
