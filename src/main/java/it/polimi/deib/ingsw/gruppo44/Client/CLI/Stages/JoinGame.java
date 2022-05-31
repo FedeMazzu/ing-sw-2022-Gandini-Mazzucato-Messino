@@ -37,17 +37,19 @@ public class JoinGame implements Stage {
         oos.flush();
         openGames = (Map<String, GameMode>) ois.readObject();
         loadedOpenGames = (List<String>) ois.readObject();
-
-
+        String gameChoice;
 
         if(!openGames.isEmpty() || !loadedOpenGames.isEmpty()) {
             if(!openGames.isEmpty() && !loadedOpenGames.isEmpty())  {
                 System.out.println("Do you want to:\n0 - join a new game\n1 - join a loaded game");
                 int choice = sc.nextInt();
                 if(choice == 0){
-                    System.out.println("Which new game do you want to join?(name)");
-                    System.out.println(openGames);
-                    String gameChoice = sc.next();
+                    do {
+                        System.out.println("Which new game do you want to join?(insert the name)");
+                        System.out.println(openGames);
+                        gameChoice = sc.next();
+                    }while(!(openGames.containsKey(gameChoice)));
+
                     clientController.setGameMode(openGames.get(gameChoice));
                     oos.writeObject(gameChoice);
                     oos.flush();
@@ -59,17 +61,22 @@ public class JoinGame implements Stage {
                         clientController.setClientStage(ClientStage.SETUP);
                     }
                 }else{
-                    System.out.println("Which loaded game do you want to join?(name)");
-                    System.out.println(loadedOpenGames);
-                    String gameChoice = sc.next();
+                    do {
+                        System.out.println("Which loaded game do you want to join?(insert the name)");
+                        System.out.println(loadedOpenGames);
+                        gameChoice = sc.next();
+                    }while (!(loadedOpenGames.contains(gameChoice)));
+
                     oos.writeObject(gameChoice);
                     oos.flush();
                     MessagesMethodsCLI.setupToReloadGame();
                 }
             }else if(!openGames.isEmpty()){
-                System.out.println("Which new game do you want to join?(name)");
-                System.out.println(openGames);
-                String gameChoice = sc.next();
+                do {
+                    System.out.println("Which new game do you want to join?(insert the name)");
+                    System.out.println(openGames);
+                    gameChoice = sc.next();
+                }while(!(openGames.containsKey(gameChoice)));
                 clientController.setGameMode(openGames.get(gameChoice));
                 oos.writeObject(gameChoice);
                 oos.flush();
@@ -82,9 +89,12 @@ public class JoinGame implements Stage {
                 }
 
             }else{//case there are only loadedOpenGames
-                System.out.println("Which loaded game do you want to join?(name)");
-                System.out.println(loadedOpenGames);
-                String gameChoice = sc.next();
+                do {
+                    System.out.println("Which loaded game do you want to join?(insert the name)");
+                    System.out.println(loadedOpenGames);
+                    gameChoice = sc.next();
+                }while (!(loadedOpenGames.contains(gameChoice)));
+
                 oos.writeObject(gameChoice);
                 oos.flush();
                 MessagesMethodsCLI.setupToReloadGame();

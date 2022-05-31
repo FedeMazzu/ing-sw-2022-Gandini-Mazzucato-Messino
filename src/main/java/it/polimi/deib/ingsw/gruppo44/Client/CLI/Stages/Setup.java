@@ -84,7 +84,7 @@ public class Setup implements Stage {
 
         System.out.println("Waiting for you turn to select the magician..");
         List<Magician> availableMagicians = (ArrayList<Magician>) ois.readObject();
-        System.out.println("Select your magician(number):");
+        System.out.println("These are the available magicians:");
         int i=0;
         for (Magician mag: availableMagicians){
             System.out.println(i+" - "+mag);
@@ -92,7 +92,10 @@ public class Setup implements Stage {
         }
 
         //send the chosen index corresponding to a magician
-        magicianChoice = sc.nextInt();
+        do {
+            System.out.println("Select your magician(number):");
+            magicianChoice = sc.nextInt();
+        }while(magicianChoice<0 || magicianChoice>i);
 
         magician = availableMagicians.get(magicianChoice);
 

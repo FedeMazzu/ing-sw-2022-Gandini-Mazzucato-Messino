@@ -96,8 +96,10 @@ public class ClientController implements Runnable {
         int currMoney = gameDataCLI.getClientMoney();
         Map<Integer,Integer> affordableCharacters = gameDataCLI.getAffordableCharacters();
         if(!affordableCharacters.isEmpty()) {
-            System.out.print("you can afford these characters:\n" + affordableCharacters + "\n Which one do you want to use?(0 to avoid):->");
-            characterChoice = sc.nextInt();
+            do {
+                System.out.println("You can afford these characters:\n" + affordableCharacters + "\nWhich one do you want to use?\n(Insert the id number, 0 to avoid)");
+                characterChoice = sc.nextInt();
+            }while(characterChoice!=0 && !gameDataCLI.getAffordableCharacters().containsKey(characterChoice));
             if (characterChoice != 0) {
                 //communicating decision to use a character
                 oos.writeBoolean(true);
@@ -129,8 +131,12 @@ public class ClientController implements Runnable {
             case 2:
                 clientStage = ClientStage.JOINGAME;
                 break;
-            default://case 3
+            case 3:
                 clientStage = ClientStage.LOADGAME;
+                break;
+            default://case 3
+                System.out.println("Invalid input.. try again");
+                askOptions();
         }
     }
 

@@ -12,6 +12,8 @@ import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.CloudsData;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -35,16 +37,25 @@ public class ClientActionStandard implements Stage {
     }
     @Override
     public void handle() throws IOException, ClassNotFoundException, InterruptedException {
-        System.out.println("it's your turn to move");
+        System.out.println("------------------------------------------------------------------------------------------\n" +
+                "------------------------------------------------------------------------------------------\n" +
+                "ACTION PHASE\n" +
+                "--------------------------");
         //printing the actual data (we can read it from Data)
         MessagesMethodsCLI.printData();
         //sending where to move the students (and receiving updates from the server)
         MessagesMethodsCLI.moveStudents();
 
         //MOTHER NATURE
-        System.out.println("How many steps do you want mother nature to move? MAX "+(int)Math.ceil(((double)clientController.getLastCardSelected()/2.0)));
+        int maxMNSteps = (int)Math.ceil(((double)clientController.getLastCardSelected()/2.0));
         //sending the number of mother nature steps
-        oos.writeInt(sc.nextInt());
+        int stepsChoice;
+        do {
+            System.out.println("How many steps do you want mother nature to move? MAX " + maxMNSteps);
+            stepsChoice = sc.nextInt();
+        }while(stepsChoice<1 || stepsChoice>maxMNSteps);
+        //sending the number of mother nature steps
+        oos.writeInt(stepsChoice);
         oos.flush();
         MessagesMethodsCLI.receiveMotherNaturePos();
 
@@ -58,8 +69,10 @@ public class ClientActionStandard implements Stage {
         //CLOUDS
         //printing the clouds
         CloudsData cd = gameDataCLI.getCloudsData();
+        List<Integer> availableCloudsId = new ArrayList<>();
         for(int i=0; i<clientController.getGameMode().getCloudsNumber();i++){
             if(!cd.isEmpty(i)){
+                availableCloudsId.add(i);
                 System.out.println("Cloud "+i+": ");
                 for(Color color: Color.values()){
                     System.out.print(color+" "+cd.getStudentsNum(i,color)+"| ");
@@ -67,8 +80,13 @@ public class ClientActionStandard implements Stage {
                 System.out.println();
             }
         }
-        System.out.println("Choose a Cloud:");
-        oos.writeInt(sc.nextInt());
+        int cloudChoice;
+        do {
+            System.out.println("Choose a Cloud:");
+            cloudChoice= sc.nextInt();
+        }while(!availableCloudsId.contains(cloudChoice));
+
+        oos.writeInt(cloudChoice);
         oos.flush();
         MessagesMethodsCLI.receiveCloudsUpdated();
         MessagesMethodsCLI.receiveSchoolsUpdated();

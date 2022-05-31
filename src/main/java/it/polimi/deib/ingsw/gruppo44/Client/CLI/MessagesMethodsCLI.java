@@ -327,33 +327,45 @@ public class MessagesMethodsCLI {
 
     public static void moveStudents() throws IOException, ClassNotFoundException {
         int movesNum = clientController.getGameMode().getCloudStudents();
+        boolean correctInput;
+        int colorChoice;
+        Color color;
         Scanner sc = new Scanner(System.in);
         Map<Color,Integer> studentMove;
         for(int i=0; i< movesNum; i++){
             studentMove = new HashMap<>();
-            System.out.println("Choose a color: \n 1-GREEN \n 2-RED \n 3-YELLOW \n 4-PINK \n 5-BLUE");
-            int colorChoice = sc.nextInt();
-            Color color = null;
-            switch (colorChoice){
-                case 1:
-                    color =  Color.GREEN;
-                    break;
-                case 2:
-                    color =  Color.RED;
-                    break;
-                case 3:
-                    color =  Color.YELLOW;
-                    break;
-                case 4:
-                    color =  Color.PINK;
-                    break;
-                case 5:
-                    color =  Color.BLUE;
-                    break;
-                default:
-                    System.out.println("incorrect value");
-                    System.exit(0);
-            }
+            correctInput = false;
+            do {
+                System.out.println("Choose a color: \n 1-GREEN \n 2-RED \n 3-YELLOW \n 4-PINK \n 5-BLUE");
+                colorChoice = sc.nextInt();
+                color = null;
+                switch (colorChoice) {
+                    case 1:
+                        color = Color.GREEN;
+                        break;
+                    case 2:
+                        color = Color.RED;
+                        break;
+                    case 3:
+                        color = Color.YELLOW;
+                        break;
+                    case 4:
+                        color = Color.PINK;
+                        break;
+                    case 5:
+                        color = Color.BLUE;
+                        break;
+                    default:
+                        System.out.println("incorrect value");
+                        System.exit(0);
+                }
+                if (clientController.getGameDataCLI().getSchoolDataMap().get(clientController.getGameDataCLI().getClientMagician()).getEntranceStudentsNum(color) > 0) {
+                    correctInput = true;
+                }else{
+                    System.out.println("Your school doesn't have students of this color in the entrance.. choose again");
+                }
+            }while(!correctInput);
+
             System.out.println("Where do you want to put it? 0:ISLAND || 1:SCHOOL");
             int placeChoice = sc.nextInt();
             if(placeChoice==0){

@@ -30,7 +30,7 @@ public class ClientPlanning implements Stage {
     public void handle() throws IOException, ClassNotFoundException, InterruptedException {
 
         CloudsData cloudsData = (CloudsData)ois.readObject();
-        System.out.println("waiting for your turn of choosing a card");
+        System.out.println("Waiting for your turn of choosing a card");
         boolean gameSuspension = ois.readBoolean();
         if(gameSuspension){
             //stop the game
@@ -42,7 +42,7 @@ public class ClientPlanning implements Stage {
         Map<Magician,Integer> playedCards = (Map<Magician,Integer>)(ois.readObject());
         if(playedCards.isEmpty()){
             System.out.println("Do you want to suspend the game here?");
-            System.out.println("0 -> NO\n1-> YES");
+            System.out.println("0 -> NO\n1 -> YES");
             boolean suspendGame = sc.nextInt() == 1;
             oos.writeBoolean(suspendGame);
             oos.flush();
@@ -52,8 +52,13 @@ public class ClientPlanning implements Stage {
                 clientController.getSocket().close();
                 System.exit(0); //we kill the program
             }
+            System.out.println("Game continues..");
         }
-        System.out.println("Choose a card, any card:");
+        System.out.println("------------------------------------------------------------------------------------------\n" +
+                "------------------------------------------------------------------------------------------\n" +
+                "PLANNING PHASE\n" +
+                "--------------------------");
+        System.out.println("Cards played from the other players");
         System.out.println((playedCards));
 
         //printing available cards
@@ -62,10 +67,15 @@ public class ClientPlanning implements Stage {
         for(Integer i : playedCards.values()){
             if(availableCards.contains(i)) availableCards.remove(i);
         }
-        System.out.println(availableCards);
 
         //sending the chosen card
-        int cardChoice = sc.nextInt();
+        int cardChoice;
+        do {
+            System.out.println("Choose a card, any number in:");
+            System.out.println(availableCards);
+            cardChoice = sc.nextInt();
+        }while(!(availableCards.contains(cardChoice)));
+        //sending the chosen card
         clientController.setLastCardSelected(cardChoice);
         oos.writeInt(cardChoice);
         oos.flush();
@@ -75,7 +85,7 @@ public class ClientPlanning implements Stage {
         //receiving the turnNumber of this round
         int turnNumber = ois.readInt();
         clientController.setTurnNumber(turnNumber);
-        System.out.println("Your turn number is "+turnNumber);
+        System.out.println("Your are the "+(turnNumber+1)+"° player to play!");
 
         if(turnNumber == 0) clientController.setClientStage(ClientStage.ClientACTION);
         else clientController.setClientStage(ClientStage.WaitingBeforeTurn);
