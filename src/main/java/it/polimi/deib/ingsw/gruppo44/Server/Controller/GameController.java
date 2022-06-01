@@ -77,7 +77,7 @@ public class GameController implements Serializable, Runnable {
      * @return a boolean value
      */
     public boolean checkEndOfGame(){
-        boolean COND1 = false, COND2 = false, COND3 = false;
+        boolean COND1 = false, COND2 = false, COND3 = false, COND4 = false;
         //team tower supply is empty COND1
         for(Team team:game.getTeams()){
             if(team.getTowerCount() <= 0) COND1 = true;
@@ -91,7 +91,18 @@ public class GameController implements Serializable, Runnable {
         }
         if(game.getBoard().getNotOwnedObjects().getStudentsSize() <= 0) COND3 = true;
 
-        return COND1 || COND2 || COND3;
+        //checking if there are enough students to play another turn
+        if(users.size()==2){
+            if(game.getBoard().getNotOwnedObjects().getStudentsSize()<6) {
+                COND4 = true;
+            }
+        }else{ // case 3 or 4 players
+               if(game.getBoard().getNotOwnedObjects().getStudentsSize()<12){
+                   COND4 = true;
+               }
+        }
+
+        return COND1 || COND2 || COND3 || COND4;
 
     }
 
