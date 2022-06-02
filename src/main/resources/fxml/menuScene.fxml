@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -40,7 +41,11 @@
             <Font name="Telugu MN" size="54.0" />
          </font>
       </Label>
-      <ListView fx:id="gameModeListView" layoutX="89.0" layoutY="347.0" prefHeight="200.0" prefWidth="200.0" visible="false" />
+      <ListView fx:id="gameModeListView" layoutX="89.0" layoutY="347.0" prefHeight="200.0" prefWidth="200.0" stylesheets="@../CSS/list.css" visible="false">
+         <styleClass>
+            <String fx:value="list" />
+            <String fx:value="list-cell" />
+         </styleClass></ListView>
       <Button fx:id="createButton" layoutX="115.0" layoutY="583.0" mnemonicParsing="false" onAction="#create" styleClass="buttons" stylesheets="@../CSS/buttons.css" text="Create" visible="false">
          <font>
             <Font name="Telugu MN" size="36.0" />
@@ -61,7 +66,11 @@
             <Font name="Telugu MN" size="48.0" />
          </font>
       </Label>
-      <ListView fx:id="openGamesListView" layoutX="89.0" layoutY="347.0" prefHeight="200.0" prefWidth="200.0" visible="false" />
+      <ListView fx:id="openGamesListView" layoutX="89.0" layoutY="347.0" prefHeight="200.0" prefWidth="200.0" stylesheets="@../CSS/list.css" visible="false">
+         <styleClass>
+            <String fx:value="list" />
+            <String fx:value="list-cell" />
+         </styleClass></ListView>
       <Button fx:id="joinButton" layoutX="138.0" layoutY="583.0" mnemonicParsing="false" onAction="#join" styleClass="buttons" stylesheets="@../CSS/buttons.css" text="Join" visible="false">
          <font>
             <Font name="Telugu MN" size="35.0" />
@@ -82,20 +91,32 @@
             <Font name="Telugu MN" size="42.0" />
          </font>
       </Label>
-      <ListView fx:id="magicianListView" layoutX="89.0" layoutY="347.0" onMouseClicked="#showMagician" prefHeight="200.0" prefWidth="200.0" visible="false" />
+      <ListView fx:id="magicianListView" layoutX="89.0" layoutY="347.0" onMouseClicked="#showMagician" prefHeight="200.0" prefWidth="200.0" stylesheets="@../CSS/list.css" visible="false">
+         <styleClass>
+            <String fx:value="list" />
+            <String fx:value="list-cell" />
+         </styleClass></ListView>
       <Button fx:id="selectButton" layoutX="133.0" layoutY="590.0" mnemonicParsing="false" onAction="#select" styleClass="buttons" stylesheets="@../CSS/buttons.css" text="Select" visible="false">
          <font>
             <Font name="Telugu MN" size="28.0" />
          </font>
       </Button>
       <ImageView fx:id="magicianIV" fitHeight="433.0" fitWidth="289.0" layoutX="496.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true" />
-      <ListView fx:id="loadGameListView" layoutX="89.0" layoutY="347.0" prefHeight="200.0" prefWidth="200.0" visible="false" />
+      <ListView fx:id="loadGameListView" layoutX="89.0" layoutY="347.0" prefHeight="200.0" prefWidth="200.0" stylesheets="@../CSS/list.css" visible="false">
+         <styleClass>
+            <String fx:value="list" />
+            <String fx:value="list-cell" />
+         </styleClass></ListView>
       <Button fx:id="confirmLoadGameButton" layoutX="130.0" layoutY="583.0" mnemonicParsing="false" onAction="#confirmLoading" styleClass="buttons" stylesheets="@../CSS/buttons.css" text="Load" visible="false">
          <font>
             <Font name="Telugu MN" size="35.0" />
          </font>
       </Button>
-      <ListView fx:id="loadedOpenGames" layoutX="711.0" layoutY="347.0" prefHeight="200.0" prefWidth="200.0" visible="false" />
+      <ListView fx:id="loadedOpenGames" layoutX="711.0" layoutY="347.0" prefHeight="200.0" prefWidth="200.0" stylesheets="@../CSS/list.css" visible="false">
+         <styleClass>
+            <String fx:value="list" />
+            <String fx:value="list-cell" />
+         </styleClass></ListView>
       <Button fx:id="joinLoadedGameButton" layoutX="670.0" layoutY="583.0" mnemonicParsing="false" onAction="#joinLoadedGame" styleClass="buttons" stylesheets="@../CSS/buttons.css" text="Join Loaded Game" visible="false">
          <font>
             <Font name="Telugu MN" size="35.0" />
