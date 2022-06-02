@@ -16,8 +16,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * manages the setup stage
- * @author filippogandini
+ * Class to manage the game setup
  */
 public class Setup implements Stage {
     private ClientController  clientController;
@@ -46,7 +45,7 @@ public class Setup implements Stage {
 
         System.out.println("Magician set! Waiting for others..");
 
-        //Receiving the data to draw the GUI
+        //Receiving the data of the initialized game
         receiveData(ois);
         clientController.setClientStage(ClientStage.ClientPLANNING);
     }
@@ -102,7 +101,6 @@ public class Setup implements Stage {
         GameDataCLI gameDataCLI = new GameDataCLI(magician);
         clientController.setGameData(gameDataCLI);
         return magician;
-        //MessagesMethods.gameData =  gameData;
     }
 }
 

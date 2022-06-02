@@ -15,8 +15,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 /**
- * manages the join Game stage
- * @author filippogandini
+ * Class to manage the JoinGame
  */
 public class JoinGame implements Stage {
     private ClientController clientController;
@@ -82,7 +81,7 @@ public class JoinGame implements Stage {
                 oos.flush();
                 System.out.println("Waiting for the other players...");
 
-                //getting a bolean indicating if the game was joined correctly
+                //getting a boolean indicating if the game was joined correctly
                 boolean ack = getStartingAck();
                 if(ack){
                     clientController.setClientStage(ClientStage.SETUP);

@@ -14,8 +14,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * manages the load game stage
- * @author filippogandini
+ * Class to manage the LoadGame
  */
 public class LoadGame implements Stage {
     private ClientController clientController;

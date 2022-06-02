@@ -8,8 +8,7 @@ import java.net.Socket;
 import java.util.Scanner;
 
 /**
- * Note that it can be divided into different classes
- * @author
+ * Class to start the CLI game and to manage the connection
  */
 
 public class EriantysMainCLI {
@@ -68,6 +67,7 @@ public class EriantysMainCLI {
     public boolean isConnectionEstablished() {
         return connectionEstablished;
     }
+
     private String askServerIP(){
         String IP;
         boolean correct;
@@ -95,7 +95,6 @@ public class EriantysMainCLI {
 
 
     public static void main(String[] args) {
-
         EriantysMainCLI networkHandler = new EriantysMainCLI();
     }
 }

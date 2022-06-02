@@ -13,7 +13,6 @@ import java.util.*;
 
 /**
  * class to manage  the Client Planning
- * @author filippogandini
  */
 public class ClientPlanning implements Stage {
     private ClientController clientController;
@@ -38,7 +37,7 @@ public class ClientPlanning implements Stage {
             clientController.getSocket().close();
             System.exit(0); //we kill the program and you have to open another one
         }
-        //print the map of the cards played by others
+
         Map<Magician,Integer> playedCards = (Map<Magician,Integer>)(ois.readObject());
         if(playedCards.isEmpty()){
             System.out.println("Do you want to suspend the game here?");
@@ -60,8 +59,7 @@ public class ClientPlanning implements Stage {
                 "--------------------------");
         System.out.println("Cards played from the other players");
         System.out.println((playedCards));
-
-        //printing available cards
+        
         List<Integer> availableCards = clientController.getGameDataCLI().getAvailableCards();
         //it's not possible to play cards played from other players
         for(Integer i : playedCards.values()){

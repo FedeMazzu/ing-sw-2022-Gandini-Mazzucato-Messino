@@ -17,8 +17,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * class to manage the Client Action
- * @author filippogandini
+ * Class to manage the standard Client Action
  */
 public class ClientActionStandard implements Stage {
     private ClientController clientController;

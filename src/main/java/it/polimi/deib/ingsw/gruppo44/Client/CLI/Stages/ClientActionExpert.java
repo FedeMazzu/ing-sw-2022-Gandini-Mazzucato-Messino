@@ -18,8 +18,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * stage to manage the Expert mode when the client decides to use a character
- * @author
+ * Class to manage the Expert mode when the client decides to use a character
  */
 public class ClientActionExpert implements Stage{
     private ClientController clientController;
@@ -70,7 +69,7 @@ public class ClientActionExpert implements Stage{
             //sending the number of mother nature steps
             oos.writeInt(stepsChoice);
             oos.flush();
-            //receving the pos and the updated islands
+            //receiving the pos and the updated islands
             MessagesMethodsCLI.receiveMotherNaturePos();
 
             //RECEIVING THE INFORMATION ABOUT THE END OF THE GAME
@@ -81,7 +80,6 @@ public class ClientActionExpert implements Stage{
             }
 
             //CLOUDS
-            //printing the clouds
             CloudsData cd = gameDataCLI.getCloudsData();
             List<Integer> availableCloudsId = new ArrayList<>();
             for(int i=0; i<clientController.getGameMode().getCloudsNumber();i++){
@@ -110,7 +108,9 @@ public class ClientActionExpert implements Stage{
 
     }
 
-
+    /**
+     * handles the active use of a character
+     */
     private void handleCharacter() throws IOException, ClassNotFoundException {
         switch (currentCharacter){
             case 2:
@@ -211,8 +211,6 @@ public class ClientActionExpert implements Stage{
 
     /**
      *  this character lacks of the controls for the correct input
-     * @throws IOException
-     * @throws ClassNotFoundException
      */
     private void handleCharacter10() throws IOException, ClassNotFoundException {
         System.out.println("You want to swap 2 students in your school?\n" +
@@ -339,15 +337,6 @@ public class ClientActionExpert implements Stage{
                 handleCharacter12();
                 break;
         }
-        /*int numOfUsers = clientController.getGameMode().getTeamPlayers()* clientController.getGameMode().getTeamsNumber();
-        for(int i=0; i< numOfUsers; i++){
-            SchoolData schoolData = (SchoolData) ois.readObject();
-            System.out.println("HALL of the School of the player:"+schoolData.getMagician()+":");
-            for(Color c: Color.values()){
-                System.out.print(c+" "+schoolData.getHallStudentsNum(c)+"| ");
-            }
-            System.out.println();
-        }*/
 
     }
 }

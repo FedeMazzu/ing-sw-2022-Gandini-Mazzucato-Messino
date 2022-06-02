@@ -8,6 +8,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
+/**
+ * CLass to manage the end of the game
+ */
 public class ClientEND implements Stage {
     private ClientController clientController;
     private ObjectInputStream ois;

@@ -22,8 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * class to contain the game's data in the client application
- * @author
+ * class to contain the game's data in the client application for the CLI
  */
 public class GameDataCLI {
     //curr Client data

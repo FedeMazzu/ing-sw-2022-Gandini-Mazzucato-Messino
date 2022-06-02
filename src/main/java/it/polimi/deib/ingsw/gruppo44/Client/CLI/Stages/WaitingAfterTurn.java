@@ -10,9 +10,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 /**
- * stage to manage the client who has already moved and is waiting the end of the other palyers turn
+ * Class to manage the client who has already moved and is waiting the end of the other players turn
  * and, in the meanwhile, is receiving the updates of the moves made by the player who's moving
- * @author filippogandini
  */
 public class WaitingAfterTurn implements Stage {
     private ClientController clientController;

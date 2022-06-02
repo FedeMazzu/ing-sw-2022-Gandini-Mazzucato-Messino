@@ -20,6 +20,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+/**
+ * Class containing static methods useful for the communication with the server
+ */
 public class MessagesMethodsCLI {
     public static ObjectInputStream ois;
     public static ObjectOutputStream oos;
@@ -142,7 +145,9 @@ public class MessagesMethodsCLI {
         System.out.println("------------------------------------------------------------------------------------------");
     }
 
-
+    /**
+     * manages the rejoin of a game after a previous suspension
+     */
     public static void setupToReloadGame() throws IOException, ClassNotFoundException {
         Scanner sc = new Scanner(System.in);
         //receive used magicians
@@ -191,7 +196,6 @@ public class MessagesMethodsCLI {
             currData += "........................................................................................\n";
         }
 
-
         currData+="Islands:\n";
         IslandsData islandsData = gameDataCLI.getIslandsData();;
         for(int i=0;i<12;i++){
@@ -213,9 +217,7 @@ public class MessagesMethodsCLI {
 
     /**
      * handles the waiting in the expert mode depending on the character chosen
-     * @throws IOException
-     * @throws ClassNotFoundException
-     * @return  wether the game is ended or not
+     * @return  whether the game is ended or not
      */
 
     public static boolean characterWait() throws IOException, ClassNotFoundException {
@@ -253,8 +255,6 @@ public class MessagesMethodsCLI {
 
     /**
      * handles the waiting while the MovingClient is using the Character3
-     * @throws IOException
-     * @throws ClassNotFoundException
      */
 
     private static boolean characterWait3() throws IOException, ClassNotFoundException {
@@ -310,12 +310,10 @@ public class MessagesMethodsCLI {
         receiveUpdatedPrices();
         return MessagesMethodsCLI.standardWait();
     }
+
     /**
      * handles the waiting while the MovingClient is using the Character12
-     * @throws IOException
-     * @throws ClassNotFoundException
      */
-
     private static boolean characterWait12() throws IOException, ClassNotFoundException {
 
         receiveSchoolsUpdated();
@@ -325,6 +323,9 @@ public class MessagesMethodsCLI {
         return MessagesMethodsCLI.standardWait();
     }
 
+    /**
+     * Guides the client in moving the student during the Action phase
+     */
     public static void moveStudents() throws IOException, ClassNotFoundException {
         int movesNum = clientController.getGameMode().getCloudStudents();
         boolean correctInput;

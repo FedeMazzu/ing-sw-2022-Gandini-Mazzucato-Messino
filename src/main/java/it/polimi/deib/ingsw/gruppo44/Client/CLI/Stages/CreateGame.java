@@ -14,8 +14,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- * manages the Create Game stage
- * @author filippogandini
+ * Class to manage the creation of a game
  */
 public class CreateGame implements Stage {
     private ClientController clientController;
@@ -33,12 +32,11 @@ public class CreateGame implements Stage {
     public void handle() throws IOException, ClassNotFoundException, InterruptedException {
         oos.writeObject(ClientChoice.CreateGameCHOISE);
         oos.flush();
-        //maybe need to check if the server receives the option
         CreateGameMESSAGE createGameMESSAGE = new CreateGameMESSAGE(askGameName(),askGameMode());
         oos.writeObject(createGameMESSAGE);
         oos.flush();
         System.out.println("Waiting for the other players...");
-        //getting a boolean indicating if the game was joined correctly
+        //getting a boolean indicating if the game was created and joined correctly
         getStartingAck();
         clientController.setClientStage(ClientStage.SETUP);
     }

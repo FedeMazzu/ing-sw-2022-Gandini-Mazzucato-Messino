@@ -13,8 +13,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 /**
- * manages the client stages
- * @author filippogandini
+ * Class to manage the client stages
  */
 public class ClientController implements Runnable {
     private Socket socket;

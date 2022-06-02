@@ -10,9 +10,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 /**
- * stage to manage the client waiting to play his turn and receiving the updates of the moves made
+ * Class to manage the client waiting to play his turn and receiving the updates of the moves made
  * by the player who's moving
- * @author filippogandini
  */
 public class WaitingBeforeTurn implements Stage {
     private ClientController clientController;
