@@ -12,8 +12,7 @@ import java.net.Socket;
 import java.util.*;
 
 /**
- * Class to manage the connections with the clients
- * @author
+ * Class to manage the connections with the clients and their first choices
  */
 public class ClientsHandler implements Serializable {
     private final int PORT = 59090;

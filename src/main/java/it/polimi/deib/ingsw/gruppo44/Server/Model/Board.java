@@ -11,7 +11,6 @@ import java.util.Map;
 
 /**
  * class to represent the board of the game
- * @author FedeMazzu
  */
 
 public class Board implements Observable, Serializable {
@@ -43,7 +42,6 @@ public class Board implements Observable, Serializable {
             notOwnedObjects.fillCloud(cloud);
         }
 
-        // remember multithreading implementation
         if(gameMode.isExpertMode()) shop = new Shop(game,boardObserver);
 
         boardObserver.update();
@@ -54,7 +52,6 @@ public class Board implements Observable, Serializable {
      * method to change mother nature's position on the islands
      * @param spaces number of spaces motherNature will move
      */
-    //SHOULD BE PRIVATE? ç
     public void moveMotherNature(int spaces){
         int currIsland = getMotherNaturePosition();
         int currGroup = unionFind.findGroup(currIsland);

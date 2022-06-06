@@ -7,7 +7,6 @@ import java.util.*;
 
 /**
  * class to keep track of the unused objects
- * @author zenomess
  */
 
 public class NotOwnedObjects implements Serializable {
@@ -71,7 +70,7 @@ public class NotOwnedObjects implements Serializable {
 
     /**
      * @param index in the List of students
-     * @return the color of the drawed student
+     * @return the color of the drawn student
      */
     public Color drawStudent(int index){
         return students.remove(index);

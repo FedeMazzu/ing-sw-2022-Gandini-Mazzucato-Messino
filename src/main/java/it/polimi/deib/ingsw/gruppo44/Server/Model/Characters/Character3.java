@@ -9,7 +9,6 @@ import it.polimi.deib.ingsw.gruppo44.Server.Model.Player;
  * effect: choose an island and resolve island as if Mother nature had ended her movement there.
  * Mother nature will still move and the island where she ends her movement will also be resolved
  * WE ASSUME THE CHOICE IS DONE BEFORE STARTING THE STANDARD TURN
- * @author filippogandini
  */
 public class Character3 extends Character {
     

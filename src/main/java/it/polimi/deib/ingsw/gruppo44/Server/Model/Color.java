@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 /**
  * enum to represent the students/professors colors
- * @author filippogandini
  */
 public enum Color implements Serializable {
     GREEN('g'),RED('r'),YELLOW('y'),PINK('p'),BLUE('b');

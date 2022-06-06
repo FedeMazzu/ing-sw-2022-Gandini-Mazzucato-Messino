@@ -14,7 +14,6 @@ import java.util.*;
 
 /**
  * stage to initialize the game
- * @author
  */
 public class Start implements Stage, Serializable {
     private final GameStage gameStage = GameStage.START;
@@ -131,11 +130,7 @@ public class Start implements Stage, Serializable {
 
 
     /**
-     * ask the client the magician
-     * @param ois ObjectInputStream related
-     * @param oos ObjectOutputStream related
-     * @return the chosen magician
-     * @throws IOException
+     * ask the magician to the client
      */
     private Magician askMagician(ObjectInputStream ois,ObjectOutputStream oos) throws IOException, ClassNotFoundException {
         Magician choice;

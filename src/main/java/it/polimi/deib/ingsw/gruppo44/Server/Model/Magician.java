@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 /**
  * enum to represent the magicians
- * @author filippogandini
  */
 public enum Magician implements Serializable {
     KING("King",1),WITCH("Witch",2),MONK("Monk",3),WIZARD("Wizard",4);

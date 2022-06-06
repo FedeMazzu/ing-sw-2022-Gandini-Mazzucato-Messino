@@ -15,7 +15,6 @@ import java.io.Serializable;
 
 /**
  * stage to clean up the game before starting a new round
- * @author
  */
 public class Cleanup implements Stage, Serializable {
     private final GameStage gameStage = GameStage.CLEANUP;

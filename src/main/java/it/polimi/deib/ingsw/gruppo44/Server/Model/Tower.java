@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 /**
  * enum to represent the towers type
- * @author filippogandini
  */
 public enum Tower implements Serializable {
     BLACK("black"),WHITE("white"),GREY("grey");

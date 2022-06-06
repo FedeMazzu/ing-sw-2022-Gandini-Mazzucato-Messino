@@ -6,7 +6,6 @@ import java.io.Serializable;
 
 /**
  * School observer
- * @author filippogandini
  */
 public class SchoolObserver implements Observer, Serializable {
     private School school;

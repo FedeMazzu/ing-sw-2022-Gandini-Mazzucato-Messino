@@ -10,7 +10,6 @@ import java.util.Queue;
 
 /**
  * Class to manage the playing order
- * @author FedeMazzu
  */
 public class TurnHandler implements Serializable {
 
@@ -35,7 +34,7 @@ public class TurnHandler implements Serializable {
             cardOrder.add(p);
         }
         catch (NullPointerException e){
-            e.printStackTrace(); //ç da modificare con qualcosa
+            e.printStackTrace();
         }
     }
 
@@ -52,7 +51,6 @@ public class TurnHandler implements Serializable {
 }
 
 class TicketComparator implements Comparator<Ticket>,Serializable{
-    //attenzione a quale deve essere l'ordine, sicuro 99% cosi` e` corretto ç
     public int compare(Ticket t1, Ticket t2){
         if(t1.getPriority() > t2.getPriority()) return 1;
         else if(t1.getPriority() < t2.getPriority()) return -1;

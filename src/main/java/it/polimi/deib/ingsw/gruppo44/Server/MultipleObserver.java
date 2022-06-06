@@ -1,8 +1,7 @@
 package it.polimi.deib.ingsw.gruppo44.Server;
 
 /**
- * interface to observe many objects of the same type;
- * @author filippogandini
+ * interface to observe many objects of the same type
  */
 public interface MultipleObserver {
 

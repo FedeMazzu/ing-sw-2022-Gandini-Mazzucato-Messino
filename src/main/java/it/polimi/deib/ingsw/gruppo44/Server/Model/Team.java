@@ -8,7 +8,6 @@ import java.util.List;
 
 /**
  * class to represent the teams
- * @author filippogandini
  */
 public class Team implements Serializable {
     private List<Player> players;

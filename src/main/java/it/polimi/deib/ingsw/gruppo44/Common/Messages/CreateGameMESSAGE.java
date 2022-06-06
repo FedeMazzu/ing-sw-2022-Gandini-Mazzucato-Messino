@@ -4,6 +4,9 @@ import it.polimi.deib.ingsw.gruppo44.Common.GameMode;
 
 import java.io.Serializable;
 
+/**
+ *  Class to manage the message for a creation of a game
+ */
 public class CreateGameMESSAGE implements Serializable {
     private String gameName;
     private GameMode gameMode;

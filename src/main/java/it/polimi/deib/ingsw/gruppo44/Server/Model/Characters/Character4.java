@@ -8,7 +8,6 @@ import it.polimi.deib.ingsw.gruppo44.Server.Model.Player;
  * Class to represent the Character 4
  * effect: you may move mother nature up to 2 additional islands than is
  * indicated by the assistant card you have played
- * @author
  */
 
 public class Character4 extends Character {

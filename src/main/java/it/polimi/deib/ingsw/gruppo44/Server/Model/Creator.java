@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 /**
  * Implementation of the Factory pattern revisited a little
- * @author filippogandini
  */
 public interface Creator{
     public void factoryMethod();

@@ -12,15 +12,12 @@ import java.net.Socket;
 
 /**
  * class to manage the User
- * @author filippogandini
  */
 public class User implements Serializable {
     private Player player;
     transient private Socket socket;
-    //private Magician magician;
     transient private ObjectOutputStream oos;
     transient private ObjectInputStream ois;
-    //private int port;
 
     public User(Socket socket) throws IOException {
         setSocket(socket);

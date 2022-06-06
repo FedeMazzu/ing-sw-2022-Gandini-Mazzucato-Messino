@@ -14,7 +14,6 @@ import java.util.List;
 
 /**
  * Class to manage the game stages
- * @author filippogandini
  */
 public class GameController implements Serializable, Runnable {
     private Game game; //identifier
@@ -117,9 +116,6 @@ public class GameController implements Serializable, Runnable {
             FileInputStream fileIn = new FileInputStream("savedGames/"+parameterGameName + ".ser");
             ObjectInputStream in = new ObjectInputStream(fileIn);
             GameController gameController = (GameController) in.readObject();
-
-            //needed?
-            // in.flush();
             in.close();
             fileIn.close();
             return gameController;
@@ -139,8 +135,6 @@ public class GameController implements Serializable, Runnable {
             FileOutputStream fileOut = new FileOutputStream("savedGames/"+gameName + ".ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(this);
-            //needed?
-            // out.flush();
             out.close();
             fileOut.close();
         }catch (IOException ioe){

@@ -1,7 +1,7 @@
 package it.polimi.deib.ingsw.gruppo44.Server;
 
 /**
- * @author filippogandini
+ * Interface implemented from the observed classes
  */
 public interface Observable {
     public void notifyObserver();

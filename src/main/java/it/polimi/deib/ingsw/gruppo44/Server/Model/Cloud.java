@@ -8,7 +8,6 @@ import java.util.Map;
 
 /**
  * class to manage the clouds
- * @author zenomess
  */
 
 public class Cloud implements Observable, Serializable {

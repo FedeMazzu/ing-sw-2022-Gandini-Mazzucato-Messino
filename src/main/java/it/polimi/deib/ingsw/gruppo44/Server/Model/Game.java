@@ -8,8 +8,6 @@ import java.util.List;
 
 /**
  * class to manage the game
- * the name is the identifier
- * @author filippogandini
  */
 public class Game implements Serializable {
     private List<Team> teams;
