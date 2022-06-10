@@ -96,17 +96,23 @@ public class GameDataGUI {
         this.islandsData = islandsData;
 
         Platform.runLater(()->{
+            int countDrawnIslands = 0;
             for(int i=0; i<12; i++){
                 IslandGuiLogic igl = Eriantys.getCurrentApplication().getIslandsSceneController().getIslands().get(i);
                 if(islandsData.getGroup(i) != -1){
                     igl.coverMergedIsland();
                 }
                 else{
+                    //set the position of the island
+                    double angle = (double)360/islandsData.getNumOfIslands();
+                    igl.transform(countDrawnIslands,angle,islandsData.getNumOfIslands());
+                    countDrawnIslands++;
                     //Lacks of setting the typeof tower
                     //TEMPORARY
                     if(islandsData.getHasTower(i)){
                         igl.getTower().setImage(new Image("/images/pawns/"+islandsData.getTowerType(i).getId()+"tower.png"));
                         if(islandsData.getGroupSize(i)>1) {
+                            //here we want to set the position of the islands (and possibly the correct position)
                             igl.getNumTowers().setText("x" + islandsData.getGroupSize(i));
                             igl.getNumTowers().setVisible(true);
                         }else{
