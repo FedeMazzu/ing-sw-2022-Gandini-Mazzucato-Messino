@@ -1104,9 +1104,14 @@
             <Font name="Telugu MN" size="12.0" />
          </font>
       </Label>
-      <Rectangle fx:id="studentChoicePanel" arcHeight="5.0" arcWidth="5.0" fill="#680009" height="248.0" layoutX="270.0" layoutY="202.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="492.0" />
-      <ListView fx:id="entranceStudentsSelection" layoutX="314.0" layoutY="234.0" prefHeight="200.0" prefWidth="200.0" visible="false" />
-      <Button fx:id="schoolSelectionButton" layoutX="591.0" layoutY="309.0" mnemonicParsing="false" onAction="#selectSchool" text="School Hall" visible="false">
+      <Rectangle fx:id="studentChoicePanel" arcHeight="5.0" arcWidth="5.0" fill="#680009" height="248.0" layoutX="302.0" layoutY="217.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="492.0" />
+      <ListView fx:id="entranceStudentsSelection" layoutX="346.0" layoutY="249.0" prefHeight="200.0" prefWidth="200.0" visible="false" />
+      <Label fx:id="schoolEntranceLabel" layoutX="372.0" layoutY="217.0" text="School Entrance" textFill="WHITE" visible="false">
+         <font>
+            <Font name="Telugu MN" size="19.0" />
+         </font>
+      </Label>
+      <Button fx:id="schoolSelectionButton" layoutX="623.0" layoutY="324.0" mnemonicParsing="false" onAction="#selectSchool" text="School Hall" visible="false">
          <font>
             <Font name="Telugu MN" size="18.0" />
          </font></Button>
@@ -1120,10 +1125,5 @@
             <Font name="Telugu MN" size="13.0" />
          </font>
       </TextArea>
-      <Label fx:id="schoolEntranceLabel" layoutX="340.0" layoutY="202.0" text="School Entrance" textFill="WHITE" visible="false">
-         <font>
-            <Font name="Telugu MN" size="19.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>

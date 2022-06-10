@@ -59,7 +59,7 @@ public class End implements Stage, Serializable {
         //ObjectInputStream ois;
         String winningMessage ="";
         for(Player player : tempWinner.getPlayers()){
-            winningMessage += player.getMagician()+" WON!";
+            winningMessage += player.getMagician()+" WON! ";
         }
         for(Team team : gameController.getGame().getTeams()){
             for(Player player : team.getPlayers()){
