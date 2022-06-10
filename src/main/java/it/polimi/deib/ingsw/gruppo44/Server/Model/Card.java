@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 /**
  * enum to represent the cards/Assistants
- * @author filippogandini
  */
 
 public enum Card implements Serializable {

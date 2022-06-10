@@ -11,7 +11,6 @@ import java.util.*;
 
 /**
  * stage to model the planning phase
- * @author
  */
 public class Planning implements Stage, Serializable {
     private final GameStage gameStage = GameStage.PLANNING;
@@ -37,10 +36,6 @@ public class Planning implements Stage, Serializable {
         System.out.println("-----------PLANNING PHASE----------------");
         if(gameController.isLoadedGame()){
             gameController.setLoadedGame(true);
-            //handle the reconnection of other players
-            //send the magicians that were chosen in the game
-            //wait for the player to select magician and go on with the planning it should work as a normal game
-            //we will have to wait for everyone to connect before conitnuing
 
             //Waiting for the players to rejoin
             int numUsers = gameController.getNumUsers();
@@ -155,11 +150,6 @@ public class Planning implements Stage, Serializable {
 
     /**
      * manages the card choice
-     * @param currPlayer
-     * @param ois
-     * @param oos
-     * @return
-     * @throws IOException
      */
     private int cardChoosing(Player currPlayer, ObjectInputStream ois, ObjectOutputStream oos)throws IOException {
         List<Integer> sendingCards;

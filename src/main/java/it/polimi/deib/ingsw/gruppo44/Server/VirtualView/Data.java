@@ -6,7 +6,6 @@ import java.util.List;
 
 /**
  * class to manage the Virtual view data
- * @author filippogandini
  */
 public class Data implements Serializable {
     private BoardData boardData; //to trace mother nature position

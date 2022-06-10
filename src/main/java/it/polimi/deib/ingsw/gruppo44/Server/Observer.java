@@ -1,7 +1,7 @@
 package it.polimi.deib.ingsw.gruppo44.Server;
 
 /**
- * @author filippogandini
+ * Interface implemented by the observers
  */
 public interface Observer {
     public void update();

@@ -5,7 +5,6 @@ import it.polimi.deib.ingsw.gruppo44.Server.Model.*;
 /**
  * Class to represent the Character 10
  * effect: you may exchange up to 2 students between your entrance and your dining room
- * @author
  */
 public class Character10 extends Character {
     public Character10(Game game, BoardObserver boardObserver) {

@@ -12,7 +12,6 @@ import java.util.Random;
 
 /**
  * class to create and manage the characters
- * @author filippogandini
  */
 public class Shop implements Creator, Serializable, Observable {
     private Game game;
@@ -113,7 +112,6 @@ public class Shop implements Creator, Serializable, Observable {
                     break;
             }
 
-            //notifyObserver();
         }
 
 

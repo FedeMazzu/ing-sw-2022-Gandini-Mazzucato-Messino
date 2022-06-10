@@ -163,11 +163,11 @@ public class School implements Observable, Serializable {
         notifyObserver();
     }
 
-    //METHOD ONLY FOR TESTING ç
+    //METHOD ONLY FOR TESTING
     public void TESTsetProfessor(Color color){
         professors.put(color,true);
     }
-
+    //METHOD ONLY FOR TESTING
     public void TESTnoProfessor(Color color){
         professors.put(color,false);
     }

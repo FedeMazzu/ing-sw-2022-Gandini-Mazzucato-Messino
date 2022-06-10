@@ -8,7 +8,6 @@ import java.util.Map;
 
 /**
  * class to represent the islands
- * @author FedeMazzu
  */
 public class Island implements Observable, Serializable {
     private UnionFind unionFind;
@@ -118,7 +117,6 @@ public class Island implements Observable, Serializable {
                 unionFind.merge(this,forwardGroup);
             }
 
-            //check win conditions ç
 
             //backward
             pos = currGroup;
@@ -131,8 +129,6 @@ public class Island implements Observable, Serializable {
                 unionFind.merge(this,backwardGroup);
             }
 
-
-            //check win conditions ç
             notifyObserver();
         }
         catch (Exception e){

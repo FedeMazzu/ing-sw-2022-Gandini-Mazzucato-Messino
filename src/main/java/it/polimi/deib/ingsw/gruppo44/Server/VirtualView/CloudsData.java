@@ -11,7 +11,6 @@ import java.util.Map;
 /**
  * Clouds in the virtual view
  * Note: the index of the List identifies the cloud
- * @author filippogandini
  */
 public class CloudsData implements Serializable {
     private List<Map<Color,Integer>> students;

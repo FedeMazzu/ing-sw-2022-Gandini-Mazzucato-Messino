@@ -7,7 +7,6 @@ import it.polimi.deib.ingsw.gruppo44.Server.Model.Player;
 /**
  * Class to represent the Character 8
  * effect: during the influence calculation this turn, you count as having two more influence
- * @author
  */
 public class Character8 extends Character {
 

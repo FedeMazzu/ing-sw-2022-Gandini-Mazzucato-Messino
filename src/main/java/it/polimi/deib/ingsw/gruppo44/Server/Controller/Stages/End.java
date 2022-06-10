@@ -13,6 +13,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
+/**
+ * Stage to model the end of the game
+ */
 public class End implements Stage, Serializable {
     private final GameStage gameStage = GameStage.END;
     private final GameController gameController;
@@ -47,7 +50,7 @@ public class End implements Stage, Serializable {
                     tempWinner = team;
                 }
                 else if(profTempTeam == profTempWinner){
-                    //FAI UNA SCHERMATA APPOSTA PER IL PAREGGIO
+                    //draw not handled yet
                 }
             }
         }

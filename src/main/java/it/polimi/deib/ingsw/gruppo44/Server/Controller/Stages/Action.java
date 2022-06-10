@@ -23,7 +23,6 @@ import static it.polimi.deib.ingsw.gruppo44.Server.Model.Color.GREEN;
 
 /**
  * stage to model the action phase
- * @author
  */
 public class Action implements Stage, Serializable {
     private final GameStage gameStage = GameStage.ACTION;

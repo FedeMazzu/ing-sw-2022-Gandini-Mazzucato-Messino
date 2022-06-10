@@ -17,9 +17,8 @@ import java.util.stream.Stream;
 
 /**
  * class to manage the games
- * Note that it manages the Game controllers, but each controlled is associate
+ * Note that it manages the game controllers, each controller is associated
  * to exactly one game
- * @author filippogandini
  */
 public class GamesManager implements Serializable {
     private Map<String,GameController> games;
@@ -88,12 +87,6 @@ public class GamesManager implements Serializable {
 
 
 
-
-    private String askGameName() {
-        System.out.println("Insert the game name:");
-        return sc.next();
-    }
-
     /**
      * @return the name and gameMode of the running games
      */
@@ -106,39 +99,6 @@ public class GamesManager implements Serializable {
         return openGames;
     }
 
-
-    /**
-     * Temporary method used for trying
-     * @return gameMode
-     */
-    private GameMode askGameMode()throws InputMismatchException {
-        int a;
-        do {
-            System.out.println("Choose the game mode(number):\n" +
-                    "1 - TwoPlayersBasic\n" +
-                    "2 - TwoPlayersExpert\n" +
-                    "3 - ThreePlayersBasic\n" +
-                    "4 - ThreePlayersExpert\n" +
-                    "5 - TeamBasic\n" +
-                    "6 - TeamExpert");
-
-            a = sc.nextInt();
-        } while (a < 1 || a > 6);
-        switch (a) {
-            case 1:
-                return GameMode.TwoPlayersStandard;
-            case 2:
-                return GameMode.TwoPlayersExpert;
-            case 3:
-                return GameMode.ThreePlayersStandard;
-            case 4:
-                return GameMode.ThreePlayersExpert;
-            case 5:
-                return GameMode.TeamStandard;
-            default://else
-                return GameMode.TeamExpert;
-        }
-    }
 
     public List<String> getLoadedOpenGames() {
         List<String> loadedOpenGames = new ArrayList<>();

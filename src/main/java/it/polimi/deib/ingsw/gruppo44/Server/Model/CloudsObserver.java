@@ -9,7 +9,6 @@ import java.util.List;
 
 /**
  * Observer of the clouds
- * @author filippogandini
  */
 public class CloudsObserver implements MultipleObserver, Serializable {
     private List<Cloud> clouds;

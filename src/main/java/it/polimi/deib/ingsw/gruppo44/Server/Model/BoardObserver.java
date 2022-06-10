@@ -9,7 +9,6 @@ import java.io.Serializable;
 
 /**
  * Observer of the mother nature position (and maybe of the shop)
- * @author filippogandini
  */
 public class BoardObserver implements Observer, Serializable {
     private Board board;

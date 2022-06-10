@@ -8,7 +8,6 @@ import it.polimi.deib.ingsw.gruppo44.Server.Model.Player;
  * Class to represent the Character 9
  * effect: choose a color of Students: during the influence calculation this turn,
  * that color adds no influence
- * @author
  */
 public class Character9 extends Character {
 

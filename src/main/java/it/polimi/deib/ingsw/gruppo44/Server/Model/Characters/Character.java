@@ -8,8 +8,6 @@ import java.io.Serializable;
 
 /**
  * abstract class to represent the characters
- * Factory pattern to instantiate the characters?
- * @author filippogandini
  */
 public abstract class Character implements Serializable, Observable {
     protected int price;

@@ -9,7 +9,6 @@ import java.util.Random;
 
 /**
  * class to manage the islands
- * @author FedeMazzu
  */
 public class UnionFind implements Serializable {
 

@@ -9,7 +9,6 @@ import it.polimi.deib.ingsw.gruppo44.Server.Model.Player;
  * Class to represent the Character 6
  * effect: when resolving a Conquering on an island,
  * Towers do not count towards influence
- * @author
  */
 public class Character6 extends Character {
     public Character6(Game game, BoardObserver boardObserver) {

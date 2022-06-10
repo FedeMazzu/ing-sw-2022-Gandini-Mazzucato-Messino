@@ -59,7 +59,7 @@ public class ClientPlanning implements Stage {
                 "--------------------------");
         System.out.println("Cards played from the other players");
         System.out.println((playedCards));
-        
+
         List<Integer> availableCards = clientController.getGameDataCLI().getAvailableCards();
         //it's not possible to play cards played from other players
         for(Integer i : playedCards.values()){

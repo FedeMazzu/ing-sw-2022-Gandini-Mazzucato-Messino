@@ -6,11 +6,9 @@ import java.util.Map;
 
 /**
  * class made to observe the mother nature position and the Shop/Characters
- * @author filippogandini
  */
 public class BoardData implements Serializable {
     private int motherNaturePosition;
-    // Map<CharacterId, CharacterPrice>
     private Map<Integer,Integer> characters;
 
     public BoardData() {

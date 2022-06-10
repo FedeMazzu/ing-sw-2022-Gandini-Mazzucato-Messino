@@ -21,7 +21,6 @@ import java.util.Random;
  * Class to represent the Character 1
  * effect: take one student from the card and move it on an island of
  * your choice. Then draw a student from the bag and put it on this card.
- * @author zenomess
  */
 public class Character1 extends Character {
     private List<Color> students;

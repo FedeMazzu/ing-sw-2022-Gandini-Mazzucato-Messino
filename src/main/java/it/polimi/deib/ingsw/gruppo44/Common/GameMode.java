@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 /**
  * Enum to represent the possible types of games
- * @author filippogandini
  */
 public enum GameMode implements Serializable {
     TwoPlayersStandard(2,1,8,7,3,2,false),
