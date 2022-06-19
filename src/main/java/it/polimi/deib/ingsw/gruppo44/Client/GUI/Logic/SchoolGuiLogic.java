@@ -7,7 +7,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 
 import java.util.Map;
-
+/**
+ * class to model a school for the GUI
+ */
 public class SchoolGuiLogic {
 
     private Rectangle rect;

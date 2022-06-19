@@ -5,6 +5,9 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 
+/**
+ * class to model a character for the GUI
+ */
 public class CharacterGuiLogic {
 
     private ImageView image;

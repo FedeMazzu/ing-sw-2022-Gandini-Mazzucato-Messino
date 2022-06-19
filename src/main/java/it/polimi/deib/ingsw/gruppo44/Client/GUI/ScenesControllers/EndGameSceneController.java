@@ -8,6 +8,9 @@ import javafx.scene.control.Label;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller of the end game scene
+ */
 public class EndGameSceneController implements Initializable {
 
     @FXML

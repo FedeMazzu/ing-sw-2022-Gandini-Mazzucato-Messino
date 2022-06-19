@@ -29,6 +29,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.*;
 
+/**
+ * Controller of the menu scene
+ */
 public class MenuSceneController {
 
 

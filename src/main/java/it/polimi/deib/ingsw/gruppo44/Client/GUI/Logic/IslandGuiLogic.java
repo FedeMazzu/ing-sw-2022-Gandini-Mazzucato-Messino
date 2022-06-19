@@ -6,7 +6,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
 
 import java.util.Map;
-
+/**
+ * class to model an island for the GUI
+ */
 public class IslandGuiLogic {
     private Map<Color, Label> students;
     private Map<Color, ImageView> studentsSymbols;
@@ -31,7 +33,6 @@ public class IslandGuiLogic {
     public void resizeItems(int sizeOfIsland){
         //we must resize based ONLY on the number of island that make up the bigger island
         //(so that it stays a fixed size during a turn)
-        //maybe circle has to be resized more carefully???
         double resFactor = (1.0+(Math.min(sizeOfIsland*0.02,0.1)));
 
         double newIslandHeight = 210.0 * resFactor;
@@ -48,7 +49,6 @@ public class IslandGuiLogic {
         for(Color color:Color.values()){
             studentsSymbols.get(color).setFitWidth(newStudentSize);
             studentsSymbols.get(color).setFitHeight(newStudentSize);
-            //how to resize labels correctly if needed at all?
         }
 
 

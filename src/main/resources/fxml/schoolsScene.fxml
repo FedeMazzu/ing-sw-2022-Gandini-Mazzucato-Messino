@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" styleClass="schools" stylesheets="@../CSS/backgrounds.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.SchoolsScene2pController">
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" styleClass="schools" stylesheets="@../CSS/backgrounds.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.deib.ingsw.gruppo44.Client.GUI.ScenesControllers.SchoolsSceneController">
    <children>
       <Rectangle fx:id="rect3" arcHeight="5.0" arcWidth="5.0" fill="#92ff1f" height="354.0" layoutX="810.0" layoutY="11.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="262.0" />
       <Rectangle fx:id="rect4" arcHeight="5.0" arcWidth="5.0" fill="#92ff1f" height="354.0" layoutX="810.0" layoutY="364.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="262.0" />

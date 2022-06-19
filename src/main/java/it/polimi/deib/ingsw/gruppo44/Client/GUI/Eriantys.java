@@ -16,12 +16,15 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.Map;
 
+/**
+ * Class to connect Gui and GameData
+ */
 public class Eriantys extends Application {
     private static Eriantys currentApplication;
     private ObjectInputStream ois;
     private ObjectOutputStream oos;
     private CardsSceneController cardsSceneController;
-    private SchoolsScene2pController schoolsScene2pController;
+    private SchoolsSceneController schoolsSceneController;
     private IslandsSceneController islandsSceneController;
     private Socket socket;
 
@@ -65,10 +68,10 @@ public class Eriantys extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/cardsScene.fxml"));
         cardsScene = new Scene(root);
         //SCHOOLS 2P
-        Parent schools2P = FXMLLoader.load(getClass().getResource("/fxml/schoolsScene2P.fxml"));
+        Parent schools2P = FXMLLoader.load(getClass().getResource("/fxml/schoolsScene.fxml"));
         schoolScene2P = new Scene(schools2P);
         //need to be called after creating the scene
-        schoolsScene2pController.buildDataStructures();
+        schoolsSceneController.buildDataStructures();
 
         //ISLANDS
         Parent islands = FXMLLoader.load(getClass().getResource("/fxml/islands.fxml"));
@@ -202,12 +205,12 @@ public class Eriantys extends Application {
         this.magicianId = magicianId;
     }
 
-    public SchoolsScene2pController getSchoolsScene2pController() {
-        return schoolsScene2pController;
+    public SchoolsSceneController getSchoolsSceneController() {
+        return schoolsSceneController;
     }
 
-    public void setSchoolsScene2pController(SchoolsScene2pController schoolsScene2pController) {
-        this.schoolsScene2pController = schoolsScene2pController;
+    public void setSchoolsSceneController(SchoolsSceneController schoolsSceneController) {
+        this.schoolsSceneController = schoolsSceneController;
     }
 
     public IslandsSceneController getIslandsSceneController() {

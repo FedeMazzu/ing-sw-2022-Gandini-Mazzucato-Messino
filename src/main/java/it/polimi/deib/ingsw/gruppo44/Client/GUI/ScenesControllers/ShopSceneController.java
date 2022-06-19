@@ -23,6 +23,9 @@ import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.*;
 
+/**
+ * Controller of the Shop Scene
+ */
 public class ShopSceneController implements Initializable {
 
     private List<CharacterGuiLogic> characters;

@@ -10,6 +10,9 @@ import javafx.scene.shape.Circle;
 
 import java.util.Map;
 
+/**
+ * class to model a cloud for the GUI
+ */
 public class CloudGuiLogic {
     private int cloudId;
     private Map<Color, Label> students;
@@ -42,6 +45,9 @@ public class CloudGuiLogic {
         return circle;
     }
 
+    /**
+     *  resize the clouds and translate them depending on the gameMode
+     */
     private void resizeForCurrentGame(){
         if(Eriantys.getCurrentApplication().getGameMode().getCloudsNumber()==2){
             if(cloudId==0) resize(1,1,-35,50);

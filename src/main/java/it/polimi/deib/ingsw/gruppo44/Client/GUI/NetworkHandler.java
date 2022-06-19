@@ -7,8 +7,7 @@ import java.net.Socket;
 import java.util.Scanner;
 
 /**
- * Note that it can be divided into different classes
- * @author
+ * Class to manage the connections
  */
 
 public class NetworkHandler {
@@ -43,6 +42,7 @@ public class NetworkHandler {
 
     /**
      * checks if the connection persists
+     * (for safety)
      */
     private void superviseConnection() {
         new Thread(() -> {

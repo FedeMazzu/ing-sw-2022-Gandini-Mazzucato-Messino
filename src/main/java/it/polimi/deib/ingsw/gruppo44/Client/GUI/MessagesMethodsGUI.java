@@ -17,7 +17,6 @@ import java.util.Map;
 
 /**
  * class to contain the static methods useful for the communication protocol
- * @author
  */
 public class MessagesMethodsGUI {
 
@@ -62,17 +61,13 @@ public class MessagesMethodsGUI {
 
     /**
      * method called by the WaitingClient ( before and after) to get updates in a standard turn
-     * @throws IOException
-     * @throws ClassNotFoundException
      */
     public static boolean standardWait() throws IOException, ClassNotFoundException {
         //receive the outputs of the turnNumber players after you
 
         //after moving the students
-        System.out.println("A player has moved the students!");
         Platform.runLater(()->{Eriantys.getCurrentApplication().getIslandsSceneController().writeInInfo("A player is moving the students");});
         for(int i=0;i<Eriantys.getCurrentApplication().getGameMode().getCloudStudents();i++){
-            //System.out.println("Il banano e` "+i);
             receiveSchoolsUpdated();
             receiveIslandsUpdated();
         }
@@ -97,7 +92,6 @@ public class MessagesMethodsGUI {
 
         //after choosing cloud
         receiveCloudsUpdated();
-        System.out.println("A player has chosen a cloud!");
         receiveSchoolsUpdated();
         Platform.runLater(()->{Eriantys.getCurrentApplication().getIslandsSceneController().writeInInfo("A player choose a cloud");});
         return false;
@@ -108,8 +102,6 @@ public class MessagesMethodsGUI {
         Map<Integer,Integer> updatedPrices =(Map<Integer, Integer>) Eriantys.getCurrentApplication().getOis().readObject();
         //updating GameData
         Eriantys.getCurrentApplication().getGameData().setCharacters(updatedPrices);
-        System.out.println(updatedPrices);
-        System.out.println("------------------------------------------------------------------------------------------");
     }
 
     public static void receiveCloudsUpdated() throws IOException, ClassNotFoundException {
@@ -118,12 +110,9 @@ public class MessagesMethodsGUI {
     }
 
     public static void receiveMotherNaturePos() throws IOException, ClassNotFoundException {
-        System.out.println("Moving mother nature..");
         receiveIslandsUpdated();
         int motherNaturePos = Eriantys.getCurrentApplication().getOis().readInt();
         Eriantys.getCurrentApplication().getGameData().setMotherNaturePosition(motherNaturePos);
-        System.out.println("A player has moved mother nature on the island: "+ motherNaturePos+"!");
-        System.out.println("------------------------------------------------------------------------------------------");
     }
 
     /**
@@ -155,62 +144,8 @@ public class MessagesMethodsGUI {
         //updating GameData
         Eriantys.getCurrentApplication().getGameData().setIslandsData(islandsData);
 
-
-        String currData = "Islands updated:\n";
-        for(int i=0;i<12;i++){
-            if(islandsData.getGroup(i)!=-1) continue;
-
-            currData+="Island ID: "+i+" ";
-            for(Color c: Color.values()){
-                currData+=c+" "+islandsData.getStudentsNum(i,c)+"| ";
-            }
-            if(islandsData.getHasTower(i)){
-                currData+="Num Towers: "+islandsData.getGroupSize(i);
-            }
-            currData+="\n";
-        }
-        System.out.println(currData);
-        System.out.println("------------------------------------------------------------------------------------------");
     }
 
-    /**
-     * method called from the Moving character to print a representation of the game
-     */
-
-    public static void printData() {
-        GameDataGUI gameDataGUI = Eriantys.getCurrentApplication().getGameData();
-        String currData;
-        currData = "";
-        for (SchoolData sd : gameDataGUI.getSchoolDataMap().values()){
-            currData += "School of the magician "+sd.getMagician()+":\n";
-            currData += "Money: "+sd.getPlayerMoney()+"\n";
-            currData+="Entrance:";
-            for(Color color: Color.values()) currData+="Color "+color+": "+sd.getEntranceStudentsNum(color)+" | ";
-            currData+="\n";
-            currData+="Hall:";
-            for(Color color: Color.values())  currData+="Color "+color+": "+sd.getHallStudentsNum(color)+" "+sd.hasProfessor(color)+"| ";
-            currData+="\n";
-            currData += "........................................................................................\n";
-        }
-
-
-        currData+="Islands:\n";
-        IslandsData islandsData = gameDataGUI.getIslandsData();;
-        for(int i=0;i<12;i++){
-            if(islandsData.getGroup(i)!=-1) continue;
-
-            currData+="Island ID: "+i+" ";
-            for(Color c: Color.values()){
-                currData+=c+" "+islandsData.getStudentsNum(i,c)+"| ";
-            }
-            if(islandsData.getHasTower(i)){
-                currData+="Num Towers: "+islandsData.getGroupSize(i);
-            }
-            currData+="\n";
-        }
-        System.out.println(currData);
-        System.out.println("------------------------------------------------------------------------------------------");
-    }
 
     /**
      * handles the waiting in the expert mode depending on the character chosen
@@ -218,11 +153,9 @@ public class MessagesMethodsGUI {
      * @throws ClassNotFoundException
      * @return  wether the game is ended or not
      */
-
     public static boolean characterWait() throws IOException, ClassNotFoundException {
         int charId = Eriantys.getCurrentApplication().getOis().readInt();
         Platform.runLater(()->{Eriantys.getCurrentApplication().getIslandsSceneController().writeInInfo("A player choose to use character"+charId);});
-        System.out.println("Character used "+charId);
         switch (charId){
             case 2:
                 return characterWait2();

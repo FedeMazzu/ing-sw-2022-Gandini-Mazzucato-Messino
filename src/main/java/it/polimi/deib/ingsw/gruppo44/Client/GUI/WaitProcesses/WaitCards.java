@@ -12,6 +12,9 @@ import java.io.ObjectInputStream;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Runnable to wait the client turn and set up the Cards gui before the player can choose
+ */
 public class WaitCards implements Runnable{
 
     @Override
@@ -22,10 +25,7 @@ public class WaitCards implements Runnable{
         try {
 
             Eriantys.getCurrentApplication().getGameData().setCloudsData((CloudsData) ois.readObject());
-            System.out.println("Dopo aver riempito le nuvole");
-            System.out.println("Vorrei ricevere un boolean");
             boolean gameSuspended = MessagesMethodsGUI.receiveSuspendedGameInfo();
-            System.out.println("Ho ricevuto "+gameSuspended);
             if(gameSuspended){
                 Eriantys.getCurrentApplication().getSocket().close();
                 Eriantys.getCurrentApplication().switchToStartingScene();

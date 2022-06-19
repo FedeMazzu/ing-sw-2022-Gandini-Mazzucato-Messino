@@ -29,7 +29,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 /**
- * class to manage the islands GUI
+ * Controller of the islands scene
  */
 public class IslandsSceneController implements Initializable {
 

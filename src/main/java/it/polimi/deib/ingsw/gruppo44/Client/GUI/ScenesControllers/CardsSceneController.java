@@ -16,6 +16,9 @@ import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller of the cards scene
+ */
 public class CardsSceneController implements Initializable {
     @FXML
     private ImageView im1,im2,im3,im4,im5,im6,im7,im8,im9,im10;

@@ -9,6 +9,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Map;
 
+/**
+ * Runnable to coordinate the active and passive game phases
+ */
 public class Wait implements Runnable{
 
     private int turnNumber;
@@ -20,7 +23,6 @@ public class Wait implements Runnable{
         ObjectInputStream ois = Eriantys.getCurrentApplication().getOis();
         try{
             turnNumber = ois.readInt();
-            System.out.println("My turn number is: "+turnNumber);
             int counter = turnNumber;
 
             //WAIT BEFORE
@@ -84,7 +86,6 @@ public class Wait implements Runnable{
     }
 
     public void playStandardTurn(){
-        System.out.println("ORA giuoco io");
         Eriantys.getCurrentApplication().getIslandsSceneController().setPhase(-2);
         //put the student choice panel visible
         Platform.runLater(()->{

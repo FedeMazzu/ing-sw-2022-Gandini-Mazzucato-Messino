@@ -20,9 +20,9 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 /**
- * class to manage the Schools Scene
+ * Controller of the Schools Scene
  */
-public class SchoolsScene2pController implements Initializable {
+public class SchoolsSceneController implements Initializable {
 
     @FXML
     private Rectangle rect1,rect2,rect3,rect4;
@@ -365,7 +365,7 @@ public class SchoolsScene2pController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Eriantys.getCurrentApplication().setSchoolsScene2pController(this);
+        Eriantys.getCurrentApplication().setSchoolsSceneController(this);
 
     }
 

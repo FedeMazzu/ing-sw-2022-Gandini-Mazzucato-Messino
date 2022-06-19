@@ -1,5 +1,4 @@
 package it.polimi.deib.ingsw.gruppo44.Client.GUI;
-import it.polimi.deib.ingsw.gruppo44.Client.GUI.Eriantys;
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.Logic.CharacterGuiLogic;
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.Logic.CloudGuiLogic;
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.Logic.IslandGuiLogic;
@@ -52,7 +51,7 @@ public class GameDataGUI {
         }
         Platform.runLater(()->{
 
-            SchoolGuiLogic schoolGuiLogic = Eriantys.getCurrentApplication().getSchoolsScene2pController().getSchoolInfo().get(magician);
+            SchoolGuiLogic schoolGuiLogic = Eriantys.getCurrentApplication().getSchoolsSceneController().getSchoolInfo().get(magician);
             Map<Color, Label> hallStudents = schoolGuiLogic.getHallStudents();
             Map<Color, Label> entranceStudents = schoolGuiLogic.getEntranceStudents();
             Map<Color,ImageView> prof = schoolGuiLogic.getProf();
@@ -88,9 +87,6 @@ public class GameDataGUI {
         });
     }
 
-   /* public void setClientMoney(int clientMoney) {
-        this.clientMoney = clientMoney;
-    }*/
 
     public void setIslandsData(IslandsData islandsData) {
         this.islandsData = islandsData;
@@ -179,8 +175,6 @@ public class GameDataGUI {
 
 
     public void setCharacters(Map<Integer, Integer> currCharacters) {
-        System.out.println(currCharacters);
-        System.out.println(characters);
 
         Platform.runLater(()->{
             for(int val:currCharacters.keySet()){
@@ -270,7 +264,7 @@ public class GameDataGUI {
             putSchoolData(sd.getMagician(),sd);
             if(sd.getMagician().equals(clientMagician)){
                 setAvailableCards(sd.getAvailableCards());
-                Eriantys.getCurrentApplication().getSchoolsScene2pController().getSchoolInfo().get(clientMagician).getRect().setVisible(true);
+                Eriantys.getCurrentApplication().getSchoolsSceneController().getSchoolInfo().get(clientMagician).getRect().setVisible(true);
             }
         }
 
