@@ -46,7 +46,7 @@ public class JoinGame implements Stage {
                     do {
                         System.out.println("Which new game do you want to join?(insert the name)");
                         System.out.println(openGames);
-                        gameChoice = sc.next();
+                        gameChoice = sc.nextLine();
                     }while(!(openGames.containsKey(gameChoice)));
 
                     clientController.setGameMode(openGames.get(gameChoice));
@@ -63,7 +63,7 @@ public class JoinGame implements Stage {
                     do {
                         System.out.println("Which loaded game do you want to join?(insert the name)");
                         System.out.println(loadedOpenGames);
-                        gameChoice = sc.next();
+                        gameChoice = sc.nextLine();
                     }while (!(loadedOpenGames.contains(gameChoice)));
 
                     oos.writeObject(gameChoice);
@@ -74,7 +74,7 @@ public class JoinGame implements Stage {
                 do {
                     System.out.println("Which new game do you want to join?(insert the name)");
                     System.out.println(openGames);
-                    gameChoice = sc.next();
+                    gameChoice = sc.nextLine();
                 }while(!(openGames.containsKey(gameChoice)));
                 clientController.setGameMode(openGames.get(gameChoice));
                 oos.writeObject(gameChoice);
@@ -91,7 +91,7 @@ public class JoinGame implements Stage {
                 do {
                     System.out.println("Which loaded game do you want to join?(insert the name)");
                     System.out.println(loadedOpenGames);
-                    gameChoice = sc.next();
+                    gameChoice = sc.nextLine();
                 }while (!(loadedOpenGames.contains(gameChoice)));
 
                 oos.writeObject(gameChoice);

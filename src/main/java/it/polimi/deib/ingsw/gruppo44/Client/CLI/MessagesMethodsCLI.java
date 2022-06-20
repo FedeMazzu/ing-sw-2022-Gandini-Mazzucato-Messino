@@ -26,7 +26,6 @@ import java.util.Scanner;
 public class MessagesMethodsCLI {
     public static ObjectInputStream ois;
     public static ObjectOutputStream oos;
-
     public static ClientController clientController;
     public static GameDataCLI gameDataCLI;
 
