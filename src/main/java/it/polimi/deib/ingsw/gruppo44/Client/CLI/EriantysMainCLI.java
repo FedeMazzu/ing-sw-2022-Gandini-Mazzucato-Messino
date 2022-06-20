@@ -27,7 +27,7 @@ public class EriantysMainCLI {
             serverIp = askServerIP();
             socket = new Socket(serverIp, SERVERPORT);
             connectionEstablished = true;
-            superviseConnection();
+            //superviseConnection();
             System.out.println("Connection established.");
             oos = new ObjectOutputStream(socket.getOutputStream());
             ois = new ObjectInputStream(socket.getInputStream());

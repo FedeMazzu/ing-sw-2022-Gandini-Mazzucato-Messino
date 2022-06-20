@@ -77,8 +77,6 @@ public class GameDataCLI {
 
 
     public void setCharacters(Map<Integer, Integer> currCharacters) {
-        System.out.println(currCharacters);
-        System.out.println(characters);
         this.characters = currCharacters;
 
     }

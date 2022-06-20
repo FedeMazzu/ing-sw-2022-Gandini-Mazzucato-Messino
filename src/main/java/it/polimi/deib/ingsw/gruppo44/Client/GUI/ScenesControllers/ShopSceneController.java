@@ -147,16 +147,15 @@ public class ShopSceneController implements Initializable {
     }
 
     public void effectImage1(MouseEvent mouseEvent) throws IOException {
-        sendCharacter(characters.get(0).getId());
+        if(rect1.isVisible()) sendCharacter(characters.get(0).getId());
     }
 
     public void effectImage2(MouseEvent mouseEvent) throws IOException {
-        sendCharacter(characters.get(1).getId());
-
+        if(rect2.isVisible()) sendCharacter(characters.get(1).getId());
     }
 
     public void effectImage3(MouseEvent mouseEvent) throws IOException {
-        sendCharacter(characters.get(2).getId());
+        if(rect3.isVisible()) sendCharacter(characters.get(2).getId());
 
     }
 
@@ -176,6 +175,7 @@ public class ShopSceneController implements Initializable {
         Eriantys.getCurrentApplication().getIslandsSceneController().writeInInfo("Character bought!");
         new Thread(() -> {
             try {
+
                 handleCharacter(id);
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();

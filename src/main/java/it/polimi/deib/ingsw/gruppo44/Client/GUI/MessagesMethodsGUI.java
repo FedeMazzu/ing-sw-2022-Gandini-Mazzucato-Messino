@@ -34,23 +34,25 @@ public class MessagesMethodsGUI {
         SchoolData schoolData = Eriantys.getCurrentApplication().getGameData().getSchoolDataMap().get(Eriantys.getCurrentApplication().getGameData().getClientMagician());
         Label schoolEntranceLabel = Eriantys.getCurrentApplication().getIslandsSceneController().getSchoolEntranceLabel();
 
-        for(Color color:Color.values()){
-            int numOfStudents=schoolData.getEntranceStudentsNum(color);
-            for(int i=0;i<numOfStudents;i++){
-                entranceStudentsSel.getItems().add(color);
-            }
-        }
+        Platform.runLater(()-> {
+                    for (Color color : Color.values()) {
+                        int numOfStudents = schoolData.getEntranceStudentsNum(color);
+                        for (int i = 0; i < numOfStudents; i++) {
+                            entranceStudentsSel.getItems().add(color);
+                        }
+                    }
 
-        for(int i=0;i<12;i++){
-            IslandGuiLogic igl = Eriantys.getCurrentApplication().getIslandsSceneController().getIslands().get(i);
-            if(igl.isCovered()) continue;
-            igl.getCircle().setVisible(true);
-        }
+                    for (int i = 0; i < 12; i++) {
+                        IslandGuiLogic igl = Eriantys.getCurrentApplication().getIslandsSceneController().getIslands().get(i);
+                        if (igl.isCovered()) continue;
+                        igl.getCircle().setVisible(true);
+                    }
 
-        rectangle.setVisible(true);
-        schoolSelButton.setVisible(true);
-        entranceStudentsSel.setVisible(true);
-        schoolEntranceLabel.setVisible(true);
+                    rectangle.setVisible(true);
+                    schoolSelButton.setVisible(true);
+                    entranceStudentsSel.setVisible(true);
+                    schoolEntranceLabel.setVisible(true);
+                });
         Eriantys.getCurrentApplication().switchToIslandsScene();
     }
 
@@ -155,7 +157,7 @@ public class MessagesMethodsGUI {
      */
     public static boolean characterWait() throws IOException, ClassNotFoundException {
         int charId = Eriantys.getCurrentApplication().getOis().readInt();
-        Platform.runLater(()->{Eriantys.getCurrentApplication().getIslandsSceneController().writeInInfo("A player choose to use character"+charId);});
+        Platform.runLater(()->{Eriantys.getCurrentApplication().getIslandsSceneController().writeInInfo("A player choose to use character "+charId);});
         switch (charId){
             case 2:
                 return characterWait2();
