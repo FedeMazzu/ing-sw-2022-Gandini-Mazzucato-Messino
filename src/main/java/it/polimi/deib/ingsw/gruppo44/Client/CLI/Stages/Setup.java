@@ -72,7 +72,7 @@ public class Setup implements Stage {
 
     private String askName() {
         System.out.println("Enter your nickname:");
-        return sc.next();
+        return sc.nextLine();
     }
 
     private Magician askMagician() throws IOException, ClassNotFoundException {
