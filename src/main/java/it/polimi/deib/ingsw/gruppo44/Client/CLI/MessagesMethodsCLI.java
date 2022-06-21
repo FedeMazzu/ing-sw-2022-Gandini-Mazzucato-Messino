@@ -36,7 +36,6 @@ public class MessagesMethodsCLI {
         System.out.println("A player is moving the students!");
         //receiving updates after each move
         for(int i=0;i<clientController.getGameMode().getCloudStudents();i++){
-            //System.out.println("Il banano e` "+i);
             receiveSchoolsUpdated();
             receiveIslandsUpdated();
         }
