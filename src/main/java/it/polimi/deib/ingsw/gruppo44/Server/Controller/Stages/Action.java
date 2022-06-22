@@ -44,7 +44,7 @@ public class Action implements Stage, Serializable {
     public void handle() throws IOException, ClassNotFoundException {
 
         endGame = false;
-        System.out.println("--------------ACTION PHASE--------------");
+        System.out.println("-------------------ACTION PHASE-------------------");
         Player currPlayer;
         User currUser;
         ObjectInputStream ois;
@@ -52,6 +52,7 @@ public class Action implements Stage, Serializable {
         while(!turnOrder.isEmpty()){
             currPlayer = turnOrder.peek().getPlayer();
             currUser = currPlayer.getUser();
+            System.out.println("- Turn of: "+ currPlayer.getName()+" [ "+currPlayer.getMagician()+" ]");
             oos = currUser.getOos();
             ois = currUser.getOis();
             boolean usingCharacter = false;
@@ -502,9 +503,8 @@ public class Action implements Stage, Serializable {
     private void moveMotherNature(ObjectInputStream ois, ObjectOutputStream oos) throws IOException {
 
         int stepsChoice = ois.readInt();
-        System.out.println("Position before: "+board.getMotherNaturePosition());
         board.moveMotherNature(stepsChoice);
-        System.out.println("Position after: "+board.getMotherNaturePosition());
+        //System.out.println("Mother nature was moved on island: "+board.getMotherNaturePosition());
     }
 
 }

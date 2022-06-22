@@ -29,19 +29,20 @@ public class Cleanup implements Stage, Serializable {
 
     @Override
     public void handle() throws IOException {
-        System.out.println("--------------CLEANUP PHASE---------------");
+        System.out.println("-------------------CLEANUP PHASE-------------------");
         //fill clouds
         Board board= gameController.getGame().getBoard();
         for(Cloud cloud: board.getClouds()){
             board.getNotOwnedObjects().fillCloud(cloud);
         }
-        for(int i=0;i< board.getClouds().size();i++){
+        //print for debugging
+        /*for(int i=0;i< board.getClouds().size();i++){
             System.out.println("Cloud ID "+i);
             Cloud cloud = board.getClouds().get(i);
             for(Color c : Color.values()){
                 System.out.println("Student: "+c+" "+cloud.getStudentsNum(c));
             }
-        }
+        }*/
 
 
         gameController.setGameStage(GameStage.PLANNING);

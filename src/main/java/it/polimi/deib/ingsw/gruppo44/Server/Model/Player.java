@@ -43,7 +43,7 @@ public class Player implements Serializable {
         money++;
         notOwnedObjects.giveCoin();
         school.getSchoolObserver().updateMoney();
-        System.out.println("Player money added "+money);
+        //System.out.println("Player money added "+money);
     }
 
     public void spendMoney(int moneyToSpend){
@@ -114,4 +114,7 @@ public class Player implements Serializable {
     public Magician getMagician() {return magician; }
     public Tower getTeamTower() {return teamTower;}
 
+    public String getName() {
+        return name;
+    }
 }

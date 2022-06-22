@@ -33,7 +33,7 @@ public class Planning implements Stage, Serializable {
     @Override
     public void handle() throws IOException, InterruptedException {
 
-        System.out.println("-----------PLANNING PHASE----------------");
+        System.out.println("-------------------PLANNING PHASE-------------------");
         if(gameController.isLoadedGame()){
             gameController.setLoadedGame(true);
 

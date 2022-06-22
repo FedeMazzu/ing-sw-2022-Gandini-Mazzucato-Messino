@@ -139,7 +139,7 @@ public class School implements Observable, Serializable {
         boolean earnProfessor = true;
         int numStudents = hallStudents.get(color);
 
-        System.out.println("STAMPA SCUOLE: \n"+schools);
+        //System.out.println("STAMPA SCUOLE: \n"+schools);
         for(School s : schools) {
             if(s.hasProfessor(color)) {
                 if (s.hallStudents.get(color) >= numStudents) {

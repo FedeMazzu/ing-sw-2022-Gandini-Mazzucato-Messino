@@ -42,7 +42,7 @@ public class ClientsHandler implements Serializable {
                 socket = serverSocket.accept();
                 user = new User(socket);
                 clients.add(user);
-                System.out.println("Client "+socket+" Connected!\n-------------------");
+                System.out.println("Client "+socket+" Connected!\n------------------------------------------------------");
                 handleClient(user);
 
             } catch (IOException ioe) {
