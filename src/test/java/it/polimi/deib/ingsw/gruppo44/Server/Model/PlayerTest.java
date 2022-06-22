@@ -48,6 +48,20 @@ class PlayerTest {
 
     }
 
+    @Test
+    public void spendMoney__nwoud(){
+        player.addCoin();
+        player.addCoin();
+        player.addCoin();
+        assertEquals(3,player.getMoney());
+        player.spendMoney(2);
+        assertEquals(1,player.getMoney());
+
+        //the method throws an exception
+        player.spendMoney(2);
+        assertEquals(1,player.getMoney());
+    }
+
 
     @Test
     public void showAvailableCards__woct(){

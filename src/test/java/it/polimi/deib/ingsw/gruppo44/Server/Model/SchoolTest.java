@@ -108,4 +108,27 @@ class SchoolTest {
         }
     }
 
+
+    @Test
+    public void swapStudentsForChar10_wocd(){
+        School sc = new School(player,7,8);
+        sc.addEntranceStudent(Color.GREEN);
+        sc.addEntranceStudent(Color.GREEN);
+        sc.addEntranceStudent(Color.GREEN);
+        sc.addEntranceStudent(Color.BLUE);
+        sc.addEntranceStudent(Color.BLUE);
+        sc.addEntranceStudent(Color.BLUE);
+        assertEquals(3,sc.getEntranceStudentsNum(Color.GREEN));
+        assertEquals(3,sc.getEntranceStudentsNum(Color.BLUE));
+        sc.addHallStudent(Color.GREEN);
+        assertEquals(2,sc.getEntranceStudentsNum(Color.GREEN));
+        assertEquals(1, sc.getHallStudentsNum(Color.GREEN));
+        sc.swapStudentsForChar10(Color.GREEN, Color.BLUE);
+
+        assertEquals(3,sc.getEntranceStudentsNum(Color.GREEN));
+        assertEquals(0, sc.getHallStudentsNum(Color.GREEN));
+        assertEquals(2, sc.getEntranceStudentsNum(Color.BLUE));
+        assertEquals(1, sc.getHallStudentsNum(Color.BLUE));
+
+    }
 }

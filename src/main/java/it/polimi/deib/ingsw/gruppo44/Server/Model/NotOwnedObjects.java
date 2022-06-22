@@ -32,7 +32,7 @@ public class NotOwnedObjects implements Serializable {
 
     public void giveCoin(){bankMoney--;}
 
-    public void receiveCoin(){bankMoney++;}
+    //public void receiveCoin(){bankMoney++;}
 
     /**
      * fills the passed cloud at the beginning anf at the end of every round

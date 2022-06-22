@@ -37,7 +37,6 @@ public class WaitCards implements Runnable{
             if(playedCards.isEmpty()){
                 Eriantys.getCurrentApplication().getCardsSceneController().setFirstPlayer(true);
             }
-            System.out.println(playedCards);
             List<Integer> availableCards = Eriantys.getCurrentApplication().getGameData().getAvailableCards();
 
 

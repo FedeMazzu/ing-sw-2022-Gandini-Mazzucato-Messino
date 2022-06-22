@@ -74,9 +74,6 @@ public class Shop implements Creator, Serializable, Observable {
 
             //because randInt returns a value between 0 and randomCharacter-1
             switch (randomCharacter[i]+1){
-                case 1 :
-                    characters.add(new Character1(game,boardObserver));
-                    break;
                 case 2:
                     characters.add(new Character2(game,boardObserver));
                     break;
@@ -86,14 +83,8 @@ public class Shop implements Creator, Serializable, Observable {
                 case 4:
                     characters.add(new Character4(game,boardObserver));
                     break;
-                case 5:
-                    characters.add(new Character5(game,boardObserver));
-                    break;
                 case 6:
                     characters.add(new Character6(game,boardObserver));
-                    break;
-                case 7:
-                    characters.add(new Character7(game,boardObserver));
                     break;
                 case 8:
                     characters.add(new Character8(game,boardObserver));
@@ -103,9 +94,6 @@ public class Shop implements Creator, Serializable, Observable {
                     break;
                 case 10:
                     characters.add(new Character10(game,boardObserver));
-                    break;
-                case 11:
-                    characters.add(new Character11(game,boardObserver));
                     break;
                 default://for safety
                     characters.add(new Character12(game,boardObserver));
