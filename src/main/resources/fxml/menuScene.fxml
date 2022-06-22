@@ -26,7 +26,7 @@
             <Font name="Telugu MN" size="35.0" />
          </font>
       </Button>
-      <TextField fx:id="gameNameTextField" layoutX="43.0" layoutY="186.0" visible="false">
+      <TextField fx:id="gameNameTextField" layoutX="43.0" layoutY="186.0" style="-fx-background-radius: 12px; -fx-border-color: #ABCDEF; -fx-border-radius: 12px; -fx-border-width: 3px;" visible="false">
          <font>
             <Font size="29.0" />
          </font>
@@ -81,7 +81,7 @@
             <Font name="Telugu MN" size="42.0" />
          </font>
       </Label>
-      <TextField fx:id="nameTextField" layoutX="61.0" layoutY="156.0" visible="false">
+      <TextField fx:id="nameTextField" layoutX="61.0" layoutY="156.0" style="-fx-border-color: #ABCDEF; -fx-border-radius: 12px; -fx-background-radius: 12px; -fx-border-width: 3px;" visible="false">
          <font>
             <Font size="29.0" />
          </font>

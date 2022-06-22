@@ -963,10 +963,72 @@ public class IslandsSceneController implements Initializable {
         }
     }
 
+   /* private void setCloudsVisible(boolean b){
+        setCloud1Visible(b);
+        setCloud2Visible(b);
+        setCloud3Visible(b);
+        setCloud0Visible(b);
+    }
+
+    private void setCloud0Visible(boolean a){
+        cloud0.setVisible(a);
+        gIcloud0.setVisible(a);
+        rIcloud0.setVisible(a);
+        yIcloud0.setVisible(a);
+        pIcloud0.setVisible(a);
+        bIcloud0.setVisible(a);
+        gcloud0.setVisible(a);
+        rcloud0.setVisible(a);
+        ycloud0.setVisible(a);
+        pcloud0.setVisible(a);
+        bcloud0.setVisible(a);
+    }
+
+    private void setCloud1Visible(boolean a){
+        cloud1.setVisible(a);
+        gIcloud1.setVisible(a);
+        rIcloud1.setVisible(a);
+        yIcloud1.setVisible(a);
+        pIcloud1.setVisible(a);
+        bIcloud1.setVisible(a);
+        gcloud1.setVisible(a);
+        rcloud1.setVisible(a);
+        ycloud1.setVisible(a);
+        pcloud1.setVisible(a);
+        bcloud1.setVisible(a);
+    }
+
+    private void setCloud2Visible(boolean a){
+        cloud2.setVisible(a);
+        gIcloud2.setVisible(a);
+        rIcloud2.setVisible(a);
+        yIcloud2.setVisible(a);
+        pIcloud2.setVisible(a);
+        bIcloud2.setVisible(a);
+        gcloud2.setVisible(a);
+        rcloud2.setVisible(a);
+        ycloud2.setVisible(a);
+        pcloud2.setVisible(a);
+        bcloud2.setVisible(a);
+    }
+
+    private void setCloud3Visible(boolean a){
+        cloud3.setVisible(a);
+        gIcloud3.setVisible(a);
+        rIcloud3.setVisible(a);
+        yIcloud3.setVisible(a);
+        pIcloud3.setVisible(a);
+        bIcloud3.setVisible(a);
+        gcloud3.setVisible(a);
+        rcloud3.setVisible(a);
+        ycloud3.setVisible(a);
+        pcloud3.setVisible(a);
+        bcloud3.setVisible(a);
+    } */
 
     private void moveEntranceStudent(int island) throws IOException {
         //island is the island id of the selected island, -1 if it is a school
-
+        //setCloudsVisible(false);
         Map<Color,Integer> entry = new HashMap<>();
         ObjectOutputStream oos = Eriantys.getCurrentApplication().getOos();
         Color color = entranceStudentsSelection.getSelectionModel().getSelectedItem();

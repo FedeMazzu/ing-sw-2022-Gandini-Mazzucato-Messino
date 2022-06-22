@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -26,7 +27,7 @@
          <image>
             <Image url="@../images/characters/Personaggi_retro.jpg" />
          </image></ImageView>
-      <Button fx:id="islandsbutton" layoutX="600.0" layoutY="660.0" mnemonicParsing="false" onAction="#switchToIslands" prefHeight="58.0" prefWidth="154.0" styleClass="buttons" stylesheets="@../CSS/buttons.css" text="Islands">
+      <Button fx:id="islandsbutton" layoutX="480.0" layoutY="660.0" mnemonicParsing="false" onAction="#switchToIslands" prefHeight="58.0" prefWidth="154.0" styleClass="buttons" stylesheets="@../CSS/buttons.css" text="Islands">
          <font>
             <Font size="30.0" />
          </font>
@@ -51,13 +52,17 @@
             <Image url="@../images/Coin.png" />
          </image>
       </ImageView>
-      <Button fx:id="notBuyButton" layoutX="413.0" layoutY="510.0" mnemonicParsing="false" onAction="#doNotBuy" prefHeight="58.0" prefWidth="230.0" text="Do not buy!" visible="false">
+      <Button fx:id="notBuyButton" layoutX="437.0" layoutY="510.0" mnemonicParsing="false" onAction="#doNotBuy" prefHeight="58.0" prefWidth="230.0" styleClass="buttons" stylesheets="@../CSS/buttons.css" text="Do not buy!" visible="false">
          <font>
             <Font size="25.0" />
          </font>
       </Button>
-      <ListView fx:id="colorLV" layoutX="452.0" layoutY="208.0" prefHeight="216.0" prefWidth="200.0" visible="false" />
-      <Button fx:id="chooseColorButton" layoutX="462.0" layoutY="498.0" mnemonicParsing="false" onAction="#chooseColor" prefHeight="76.0" prefWidth="182.0" text="Choose Color" visible="false">
+      <ListView fx:id="colorLV" layoutX="452.0" layoutY="208.0" prefHeight="216.0" prefWidth="200.0" stylesheets="@../CSS/list.css" visible="false">
+         <styleClass>
+            <String fx:value="list" />
+            <String fx:value="list-cell" />
+         </styleClass></ListView>
+      <Button fx:id="chooseColorButton" layoutX="462.0" layoutY="512.0" mnemonicParsing="false" onAction="#chooseColor" prefHeight="60.0" prefWidth="182.0" styleClass="buttons" stylesheets="@../CSS/buttons.css" text="Choose Color" visible="false">
          <font>
             <Font name="Telugu MN" size="19.0" />
          </font>
@@ -77,8 +82,16 @@
             <Font name="Telugu MN" size="30.0" />
          </font>
       </Label>
-      <ListView fx:id="entranceLV" layoutX="262.0" layoutY="221.0" prefHeight="200.0" prefWidth="200.0" visible="false" />
-      <ListView fx:id="hallLV" layoutX="622.0" layoutY="221.0" prefHeight="200.0" prefWidth="200.0" visible="false" />
+      <ListView fx:id="entranceLV" layoutX="262.0" layoutY="221.0" prefHeight="200.0" prefWidth="200.0" stylesheets="@../CSS/list.css" visible="false">
+         <styleClass>
+            <String fx:value="list" />
+            <String fx:value="list-cell" />
+         </styleClass></ListView>
+      <ListView fx:id="hallLV" layoutX="622.0" layoutY="221.0" prefHeight="200.0" prefWidth="200.0" stylesheets="@../CSS/list.css" visible="false">
+         <styleClass>
+            <String fx:value="list" />
+            <String fx:value="list-cell" />
+         </styleClass></ListView>
       <Label fx:id="entranceLabel" layoutX="313.0" layoutY="185.0" text="Entrance" textFill="WHITE" visible="false">
          <font>
             <Font name="Telugu MN" size="23.0" />
@@ -89,12 +102,12 @@
             <Font name="Telugu MN" size="23.0" />
          </font>
       </Label>
-      <Button fx:id="swapButton" layoutX="448.0" layoutY="470.0" mnemonicParsing="false" onAction="#swapStudents" text="Swap Students" visible="false">
+      <Button fx:id="swapButton" layoutX="461.0" layoutY="470.0" mnemonicParsing="false" onAction="#swapStudents" styleClass="buttons" stylesheets="@../CSS/buttons.css" text="Swap Students" visible="false">
          <font>
             <Font name="Telugu MN" size="22.0" />
          </font>
       </Button>
-      <Button fx:id="endEffectButton" layoutX="472.0" layoutY="536.0" mnemonicParsing="false" onAction="#endEffect" text="End Effect" visible="false">
+      <Button fx:id="endEffectButton" layoutX="487.0" layoutY="536.0" mnemonicParsing="false" onAction="#endEffect" styleClass="buttons" stylesheets="@../CSS/buttons.css" text="End Effect" visible="false">
          <font>
             <Font name="Telugu MN" size="22.0" />
          </font>
