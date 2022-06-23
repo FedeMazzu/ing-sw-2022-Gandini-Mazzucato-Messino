@@ -16,11 +16,11 @@ import java.util.Map;
 public class CloudGuiLogic {
     private int cloudId;
     private Map<Color, Label> students;
-    private Map<Color,ImageView> studentsSymbols;
+    private Map<Color, ImageView> studentsSymbols;
     private ImageView cloud;
     private Circle circle;
 
-    public CloudGuiLogic(int cloudId,Map<Color, Label> students, Map<Color, ImageView> studentsSymbols, ImageView cloud, Circle circle) {
+    public CloudGuiLogic(int cloudId, Map<Color, Label> students, Map<Color, ImageView> studentsSymbols, ImageView cloud, Circle circle) {
         this.cloudId = cloudId;
         this.students = students;
         this.studentsSymbols = studentsSymbols;
@@ -46,19 +46,19 @@ public class CloudGuiLogic {
     }
 
     /**
-     *  resize the clouds and translate them depending on the gameMode
+     * resize the clouds and translate them depending on the gameMode
      */
-    private void resizeForCurrentGame(){
-        if(Eriantys.getCurrentApplication().getGameMode().getCloudsNumber()==2){
-            if(cloudId==0) resize(1,1,-35,50);
-            if(cloudId==1) resize(1,1,35,50);
-        }else if(Eriantys.getCurrentApplication().getGameMode().getCloudsNumber()==3){
-            if(cloudId==2) resize(0.8,0.8,75,-15);
+    private void resizeForCurrentGame() {
+        if (Eriantys.getCurrentApplication().getGameMode().getCloudsNumber() == 2) {
+            if (cloudId == 0) resize(1, 1, -35, 50);
+            if (cloudId == 1) resize(1, 1, 35, 50);
+        } else if (Eriantys.getCurrentApplication().getGameMode().getCloudsNumber() == 3) {
+            if (cloudId == 2) resize(0.8, 0.8, 75, -15);
         }
     }
 
-    private void resize(double resizeX, double resizeY, double translateX, double translateY){
-        Platform.runLater(()->{
+    private void resize(double resizeX, double resizeY, double translateX, double translateY) {
+        Platform.runLater(() -> {
             cloud.setScaleX(resizeX);
             cloud.setScaleY(resizeY);
             cloud.setTranslateX(translateX);
@@ -69,7 +69,7 @@ public class CloudGuiLogic {
             circle.setTranslateX(translateX);
             circle.setTranslateY(translateY);
 
-            for(Color c: Color.values()){
+            for (Color c : Color.values()) {
 
                 students.get(c).setScaleX(resizeX);
                 students.get(c).setScaleY(resizeY);
@@ -85,6 +85,20 @@ public class CloudGuiLogic {
 
 
         });
+
+    }
+
+    public void setCloudVisibility(boolean value){
+        cloud.setVisible(value);
+        //circle.setVisible(value);
+        for (Color c : Color.values()) {
+            if(!students.get(c).getText().equals("Label") && !(students.get(c).getText().equals("x0"))) {
+                students.get(c).setVisible(value);
+                studentsSymbols.get(c).setVisible(value);
+            }
+
+        }
+
 
     }
 }

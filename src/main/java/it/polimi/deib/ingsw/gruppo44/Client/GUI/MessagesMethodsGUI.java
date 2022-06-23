@@ -1,5 +1,6 @@
 package it.polimi.deib.ingsw.gruppo44.Client.GUI;
 
+import it.polimi.deib.ingsw.gruppo44.Client.GUI.Logic.CloudGuiLogic;
 import it.polimi.deib.ingsw.gruppo44.Client.GUI.Logic.IslandGuiLogic;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Color;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.CloudsData;
@@ -28,7 +29,8 @@ public class MessagesMethodsGUI {
         //setting the phase attribute to "wake up" events
         Eriantys.getCurrentApplication().getIslandsSceneController().setPhase(0);
         Platform.runLater(()->{Eriantys.getCurrentApplication().getIslandsSceneController().writeInInfo("Move the students");});
-        Rectangle rectangle = Eriantys.getCurrentApplication().getIslandsSceneController().getStudentChoicePanel();
+        //Rectangle rectangle = Eriantys.getCurrentApplication().getIslandsSceneController().getStudentChoicePanel();
+        Map<Integer,CloudGuiLogic> clouds = Eriantys.getCurrentApplication().getIslandsSceneController().getClouds();
         ListView<Color> entranceStudentsSel = Eriantys.getCurrentApplication().getIslandsSceneController().getEntranceStudentsSelection();
         Button schoolSelButton = Eriantys.getCurrentApplication().getIslandsSceneController().getSchoolSelectionButton();
         SchoolData schoolData = Eriantys.getCurrentApplication().getGameData().getSchoolDataMap().get(Eriantys.getCurrentApplication().getGameData().getClientMagician());
@@ -48,10 +50,14 @@ public class MessagesMethodsGUI {
                         igl.getCircle().setVisible(true);
                     }
 
-                    rectangle.setVisible(true);
+                    //rectangle.setVisible(true);
                     schoolSelButton.setVisible(true);
                     entranceStudentsSel.setVisible(true);
                     schoolEntranceLabel.setVisible(true);
+
+            for (int i=0; i< Eriantys.getCurrentApplication().getGameMode().getCloudsNumber();i++){
+                clouds.get(i).setCloudVisibility(false);
+            }
                 });
         Eriantys.getCurrentApplication().switchToIslandsScene();
     }

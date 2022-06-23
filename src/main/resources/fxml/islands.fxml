@@ -1111,7 +1111,7 @@
             <String fx:value="list" />
             <String fx:value="list-cell" />
          </styleClass></ListView>
-      <Label fx:id="schoolEntranceLabel" layoutX="372.0" layoutY="217.0" text="School Entrance" textFill="WHITE" visible="false">
+      <Label fx:id="schoolEntranceLabel" layoutX="372.0" layoutY="217.0" text="School Entrance" visible="false">
          <font>
             <Font name="Telugu MN" size="19.0" />
          </font>
