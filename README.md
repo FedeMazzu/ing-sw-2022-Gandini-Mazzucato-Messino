@@ -12,12 +12,12 @@ Progetto Ingegneria del Software Polimi 2022: applicazione del gioco da tavolo E
 -----------------------------
 |                       |
 |-----------------------|
-| Regole Complete       |
+| Regole complete       |
 | CLI                   |
 | GUI                   |
 | Socket                |
 | Partita a 4 giocatori |
-| Partite Multiple      |
+| Partite multiple      |
 | Persistenza           |
 
 
@@ -25,4 +25,4 @@ Progetto Ingegneria del Software Polimi 2022: applicazione del gioco da tavolo E
 -------------------------
 Eseguire i jar del server e della CLI da command line. 
 
-Eseguire il jar della GUI in base al sistema operativo utiliazzato.
+Eseguire il jar della GUI in base al sistema operativo utilizzato.
