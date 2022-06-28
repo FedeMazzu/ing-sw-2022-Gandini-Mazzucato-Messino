@@ -27,5 +27,6 @@ public class ClientEND implements Stage {
     public void handle() throws IOException, ClassNotFoundException, InterruptedException {
         System.out.println(ois.readObject());
         clientController.endGame();
+        System.exit(0);
     }
 }

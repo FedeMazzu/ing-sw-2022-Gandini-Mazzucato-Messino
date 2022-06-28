@@ -39,7 +39,7 @@ public class LoadGame implements Stage {
             System.out.println(savedGames);
 
             //sending the chosen game
-            oos.writeObject(sc.next());
+            oos.writeObject(sc.nextLine());
             oos.flush();
 
             MessagesMethodsCLI.setupToReloadGame();
