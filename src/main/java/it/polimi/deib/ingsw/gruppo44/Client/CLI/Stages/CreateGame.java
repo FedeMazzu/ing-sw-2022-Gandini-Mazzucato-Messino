@@ -83,6 +83,6 @@ public class CreateGame implements Stage {
 
     private String askGameName() {
         System.out.println("Insert the game name:");
-        return sc.next();
+        return sc.nextLine();
     }
 }

@@ -2,6 +2,7 @@ package it.polimi.deib.ingsw.gruppo44.Client.CLI.Stages;
 
 import it.polimi.deib.ingsw.gruppo44.Client.CLI.ClientController;
 import it.polimi.deib.ingsw.gruppo44.Client.CLI.ClientStage;
+import it.polimi.deib.ingsw.gruppo44.Client.CLI.MessagesMethodsCLI;
 import it.polimi.deib.ingsw.gruppo44.Common.Stage;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Magician;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.CloudsData;
@@ -27,8 +28,8 @@ public class ClientPlanning implements Stage {
     }
     @Override
     public void handle() throws IOException, ClassNotFoundException, InterruptedException {
-
-        CloudsData cloudsData = (CloudsData)ois.readObject();
+        MessagesMethodsCLI.receiveCloudsUpdated();
+        //CloudsData cloudsData = (CloudsData)ois.readObject();
         System.out.println("Waiting for your turn of choosing a card");
         boolean gameSuspension = ois.readBoolean();
         if(gameSuspension){
