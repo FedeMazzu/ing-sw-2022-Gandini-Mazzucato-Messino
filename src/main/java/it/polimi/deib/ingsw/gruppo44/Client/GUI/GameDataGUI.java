@@ -149,6 +149,7 @@ public class GameDataGUI {
                 for(Color color: Color.values()){
                     int numStudents = cloudsData.getStudentsNum(i,color);
                     if(numStudents==0) {
+                        students.get(color).setText("x" + numStudents);
                         cgl.getStudentsSymbols().get(color).setVisible(false);
                         cgl.getStudents().get(color).setVisible(false);
                     }else{
