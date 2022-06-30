@@ -54,7 +54,7 @@ public class Eriantys extends Application {
         startingScene = new Scene(root);
         stage.setScene(startingScene);
         stage.setTitle("Eriantys");
-        stage.getIcons().add(new Image("/images/StageIcon.png"));
+        stage.getIcons().add(new Image("/images/01.png"));
         stage.setResizable(false);
         stage.setOnCloseRequest(event ->{
             stage.close();
