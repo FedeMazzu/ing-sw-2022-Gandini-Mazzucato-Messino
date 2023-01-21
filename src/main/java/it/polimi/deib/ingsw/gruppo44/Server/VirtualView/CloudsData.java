@@ -13,7 +13,7 @@ import java.util.Map;
  * Note: the index of the List identifies the cloud
  */
 public class CloudsData implements Serializable {
-    private List<Map<Color,Integer>> students;
+    private final List<Map<Color,Integer>> students;
 
     public CloudsData(int cloudsNumber){
         students = new ArrayList<>();
@@ -33,16 +33,11 @@ public class CloudsData implements Serializable {
         return students.get(cloudId).get(color);
     }
 
-    public boolean isEmpty(int cloudId){
-        Map<Color,Integer> currStudents =students.get(cloudId);
-        boolean isEmpty=true;
-        for(Color color : Color.values()){
-            if(currStudents.get(color)>0){
-                isEmpty = false;
-                break;
-            }
-        }
-        return  isEmpty;
+    public boolean isEmpty(int cloudId) {
+        return students.get(cloudId)
+                .entrySet()
+                .stream()
+                .noneMatch(colorIntegerEntry -> colorIntegerEntry.getValue() > 0);
     }
 
 }

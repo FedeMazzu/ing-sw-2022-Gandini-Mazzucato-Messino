@@ -3,20 +3,22 @@ package it.polimi.deib.ingsw.gruppo44.Server.Model;
 import it.polimi.deib.ingsw.gruppo44.Server.Observable;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * class to manage the clouds
+ * Class to manage the clouds
  */
 
 public class Cloud implements Observable, Serializable {
-    private Map<Color, Integer> students;
-    private int cloudId;
-    private int sizeMod;
+    private final Map<Color, Integer> students;
+    private final int cloudId;
+    private final int sizeMod;
     private CloudsObserver cloudsObserver;
 
-    public Cloud(int sizeMod, int id){
+    public Cloud(final int sizeMod,
+                 final int id){
         this.sizeMod = sizeMod;
         this.cloudId = id;
         students = new HashMap<>();
@@ -35,65 +37,69 @@ public class Cloud implements Observable, Serializable {
      * @param color of the student to add
      * @return a boolean which indicates if the cloud was filled correctly
      */
-    public boolean addStudent(Color color){
-        try{
-            int numStudents = 0;
-            for(Color col : Color.values()) numStudents += students.get(col);
-            if(numStudents >= sizeMod) throw new Exception();
+    public boolean addStudent(final Color color) {
+        final int numStudents = Arrays
+                .stream(Color.values())
+                .mapToInt(students::get)
+                .sum();
+        if(breachCloudLimit(numStudents)) {
+            System.out.println("Cloud already full");
+            return false;
+        } else {
             students.put(color,students.get(color)+1);
             notifyObserver();
             return true;
-        }catch(Exception e ){
-            System.out.println("Cloud already full");
-            return false;
         }
+    }
 
+    private boolean breachCloudLimit (final int numOfStudents) {
+        return numOfStudents >= sizeMod;
     }
 
     /**
      * @return true if the cloud doesn't contain students
      */
-    public boolean isEmpty(){
-        boolean isEmpty = true;
-        for(Color color : Color.values()){
-            if(students.get(color)>0){
-                isEmpty =false;
-                break;
-            }
-        }
-        return isEmpty;
+    public boolean isEmpty() {
+        return students
+                .entrySet()
+                .stream()
+                .noneMatch(colorIntegerEntry -> colorIntegerEntry.getValue() > 0);
     }
 
     /**
-     * method to wipe the clouds clean
+     * Method to wipe the clouds clean
      */
-    public void wipeCloud(Player player){
+    public void wipeCloud(final Player player) {
         School school = player.getSchool();
-        int numStudents;
-        for (Color color : Color.values()) {
-            numStudents = students.get(color);
-            for(int i=0; i<numStudents; i++){
-                school.addEntranceStudent(color);
-            }
-            students.put(color, 0);
-        }
+
+        Arrays.stream(Color.values())
+                .forEach(color -> {
+                    addStudentsToSchool(school, color);
+                    resetStudentsForColor(color);
+                });
         notifyObserver();
     }
 
+    private void resetStudentsForColor(final Color color) {students.put(color, 0);}
+
+    private void addStudentsToSchool(
+            final School school,
+            final Color color) {
+        for(int i=0; i<students.get(color); i++) {
+            school.addEntranceStudent(color);
+        }
+    }
+
     /**
-     * useful just for testing
-     * @param color
+     * Visible for testing
+     * @param color of the students you want to know the number of
      * @return the number of students of the passed color on the island
      */
-    public int getStudentsNum(Color color){
-        return students.get(color);
-    }
+    public int getStudentsNum(final Color color) {return students.get(color);}
 
-    public int getCloudId() {
-        return cloudId;
-    }
+    public int getCloudId() {return cloudId;}
 
-    public void setCloudsObserver(CloudsObserver cloudsObserver) {
-        this.cloudsObserver = cloudsObserver;
-    }
+    public void setCloudsObserver(
+            final CloudsObserver cloudsObserver) {
+        this.cloudsObserver = cloudsObserver;}
 }
