@@ -1,7 +1,6 @@
 package it.polimi.deib.ingsw.gruppo44.Client.CLI;
 
 import it.polimi.deib.ingsw.gruppo44.Client.CLI.Stages.*;
-import it.polimi.deib.ingsw.gruppo44.Client.GUI.GameDataGUI;
 import it.polimi.deib.ingsw.gruppo44.Common.GameMode;
 import it.polimi.deib.ingsw.gruppo44.Common.Stage;
 
@@ -16,11 +15,10 @@ import java.util.Scanner;
  * Class to manage the client stages
  */
 public class ClientController implements Runnable {
-    private Socket socket;
-    private ObjectInputStream ois;
-    private ObjectOutputStream oos;
-    private Scanner sc = new Scanner(System.in);
-    private Stage stage;
+    private final Socket socket;
+    private final ObjectInputStream ois;
+    private final ObjectOutputStream oos;
+    private final Scanner sc = new Scanner(System.in);
     private ClientStage clientStage;
     private boolean endGame;
     private GameMode gameMode;
@@ -45,6 +43,7 @@ public class ClientController implements Runnable {
             askOptions();
             endGame = false;
             while(!endGame) {
+                Stage stage;
                 switch (clientStage) {
                     case CREATEGAME: //create a game
                         stage = new CreateGame(this);
@@ -89,10 +88,9 @@ public class ClientController implements Runnable {
 
     /**
      * ask the user which character (if he can afford) at the start of the Action Phase in case of Expert Mode
-     * @return
+     * @return true if the character can be used
      */
     private boolean AskIfUsingCharacter() throws IOException {
-        int currMoney = gameDataCLI.getClientMoney();
         Map<Integer,Integer> affordableCharacters = gameDataCLI.getAffordableCharacters();
         if(!affordableCharacters.isEmpty()) {
             do {
