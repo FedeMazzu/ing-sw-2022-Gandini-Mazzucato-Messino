@@ -19,7 +19,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -27,6 +26,8 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Controller of the islands scene
@@ -35,9 +36,10 @@ public class IslandsSceneController implements Initializable {
 
     private Map<Integer, IslandGuiLogic> islands;
     private Map<Integer,CloudGuiLogic> clouds;
+    private Logger logger;
 
-    private int phase; //-2Nothing,-1 WaitAfter, 0 student selection, 1 mother nature move, 2 cloud choice
-    private int counter; //num of student the player has already moved
+    private int phase; // -2 Nothing,-1 WaitAfter, 0 student selection, 1 mother nature move, 2 cloud choice
+    private int counter; // Num of student the player has already moved
     private boolean usingCharacter3, usingCharacter4;
     @FXML
     private Label schoolEntranceLabel;
@@ -767,7 +769,7 @@ public class IslandsSceneController implements Initializable {
         if(Eriantys.getCurrentApplication().getGameMode().isExpertMode()){
             shopButton.setVisible(true);
         }
-        //islands
+        // Islands
         for(int islandId = 0; islandId<12; islandId++){
             students = new HashMap<>();
             studentsSymbols = new HashMap<>();
@@ -781,14 +783,14 @@ public class IslandsSceneController implements Initializable {
             for(Color color: Color.values()){
                 students.put(color, (Label)scene.lookup("#"+color.getId()+islandId));
                 studentSym =(ImageView) scene.lookup("#"+color.getId()+"I"+islandId);
-                //need to understand which is the pattern for initializing the images automatically
+                // Need to understand which is the pattern for initializing the images automatically
                 studentSym.setImage(new Image("/images/pawns/"+color.getId()+"s.png"));
                 studentsSymbols.put(color, studentSym);
             }
             islands.put(islandId,new IslandGuiLogic(students,studentsSymbols,island,circle,tower,motherNature,numTowers));
         }
 
-        //clouds
+        // Clouds
         clouds = new HashMap<>();
         for(int cloudId=0; cloudId<Eriantys.getCurrentApplication().getGameMode().getCloudsNumber(); cloudId++){
             students = new HashMap<>();
@@ -845,10 +847,6 @@ public class IslandsSceneController implements Initializable {
     public Button getSchoolSelectionButton(){
         return schoolSelectionButton;
     }
-
-    /*public Rectangle getStudentChoicePanel(){
-        return studentChoicePanel;
-    }*/
 
     public void selectSchool(ActionEvent actionEvent) throws IOException {
         moveEntranceStudent(-1);
@@ -982,6 +980,8 @@ public class IslandsSceneController implements Initializable {
                     MessagesMethodsGUI.receiveSchoolsUpdated();
                     MessagesMethodsGUI.receiveIslandsUpdated();
                 } catch (Exception e) {
+                    // We log the exception message at least
+                    logger.log(Level.WARNING, e.getMessage());
                 }
             }).start();
             if (counter >= Eriantys.getCurrentApplication().getGameMode().getCloudStudents()) {
@@ -1002,9 +1002,9 @@ public class IslandsSceneController implements Initializable {
         }
     }
 
-    private void moveMotherNature(int islandTarget) throws IOException {
-        int currPos = Eriantys.getCurrentApplication().getGameData().getMotherNaturePosition();
-        int numOfIslands = Eriantys.getCurrentApplication().getGameData().getIslandsData().getNumOfIslands();
+    private void moveMotherNature(final int islandTarget) throws IOException {
+        final int currPos = Eriantys.getCurrentApplication().getGameData().getMotherNaturePosition();
+        final int numOfIslands = Eriantys.getCurrentApplication().getGameData().getIslandsData().getNumOfIslands();
         ObjectOutputStream oos = Eriantys.getCurrentApplication().getOos();
         for(IslandGuiLogic igl :islands.values()){
             igl.getCircle().setVisible(false);
@@ -1018,6 +1018,7 @@ public class IslandsSceneController implements Initializable {
 
         oos.writeInt(numOfJumps);
         oos.flush();
+
         new Thread(()->{
             try{
                 MessagesMethodsGUI.receiveMotherNaturePos();
@@ -1032,10 +1033,13 @@ public class IslandsSceneController implements Initializable {
                     Eriantys.getCurrentApplication().switchToEndGameScene();
                 }
             }
-            catch (Exception e){}
+            catch (Exception e){
+                System.out.println(e.getMessage());
+            }
 
         }).start();
-        phase = 2; //go in cloud choice phase
+        // Go in cloud choice phase
+        phase = 2;
         CloudGuiLogic cgl;
         Circle cloudCircle;
         writeInInfo("Choose a cloud");
@@ -1048,7 +1052,6 @@ public class IslandsSceneController implements Initializable {
 
         }
     }
-
 
     private void setupForMotherNature(){
         int currPos = Eriantys.getCurrentApplication().getGameData().getMotherNaturePosition();
@@ -1113,7 +1116,7 @@ public class IslandsSceneController implements Initializable {
                     Eriantys.getCurrentApplication().getIslandsSceneController().notifyAll(); //to wake up and go in wait after
                 }
             } catch (IOException | ClassNotFoundException e) {
-
+                System.out.println(e.getMessage());
             }
         }).start();
         writeInInfo("A player is choosing a card");

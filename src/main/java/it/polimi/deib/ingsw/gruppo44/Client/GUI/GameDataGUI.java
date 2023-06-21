@@ -25,25 +25,25 @@ import java.util.Map;
  */
 public class GameDataGUI {
     //curr Client data
-    private Magician clientMagician;
+    final private Magician clientMagician;
     private int clientMoney;
     private List<Integer> availableCards;
 
     // Game data
     private IslandsData islandsData;
     private CloudsData cloudsData;
-    private Map<Magician, SchoolData> schoolDataMap;
+    final private Map<Magician, SchoolData> schoolDataMap;
     private int motherNaturePosition;
     // Map<CharacterId, CharacterPrice>
     private Map<Integer,Integer> characters;
 
-    public GameDataGUI(Magician clientMagician) {
+    public GameDataGUI(final Magician clientMagician) {
         this.clientMagician = clientMagician;
         schoolDataMap = new HashMap<>();
     }
 
 
-    public void putSchoolData(Magician magician, SchoolData schoolData){
+    public void putSchoolData(final Magician magician, final SchoolData schoolData){
         schoolDataMap.put(magician,schoolData);
         if(clientMagician.equals(magician)){
             clientMoney = schoolData.getPlayerMoney();
@@ -56,14 +56,14 @@ public class GameDataGUI {
             Map<Color, Label> entranceStudents = schoolGuiLogic.getEntranceStudents();
             Map<Color,ImageView> prof = schoolGuiLogic.getProf();
             for(Color color:Color.values()){
-                //hallStudents update
+                // hallStudents update
                 hallStudents.get(color).setText("x"+schoolData.getHallStudentsNum(color));
-                //entranceStudents update
+                // entranceStudents update
                 entranceStudents.get(color).setText("x"+schoolData.getEntranceStudentsNum(color));
-                //prof update
+                // prof update
                 prof.get(color).setVisible(schoolData.hasProfessor(color));
             }
-            //updating money
+            // updating money
             if(Eriantys.getCurrentApplication().getGameMode().isExpertMode()){
                 Label money = schoolGuiLogic.getMoney();
                 Integer currMoney = schoolData.getPlayerMoney();
@@ -73,14 +73,14 @@ public class GameDataGUI {
                 schoolGuiLogic.getMoney().setVisible(false);
             }
 
-            //updating name and magician redundantly
-            Label magicianLabel = schoolGuiLogic.getMagician();
-            Label name = schoolGuiLogic.getName();
+            // updating name and magician redundantly
+            final Label magicianLabel = schoolGuiLogic.getMagician();
+            final Label name = schoolGuiLogic.getName();
             magicianLabel.setText(String.valueOf(magician));
             name.setText(schoolData.getPlayerName());
 
-            //updating the tower and the num of towers
-            String numTower = String.valueOf(schoolData.getNumTower());
+            // updating the tower and the num of towers
+            final String numTower = String.valueOf(schoolData.getNumTower());
             schoolGuiLogic.getNumTower().setText(numTower);
             schoolGuiLogic.getTower().setImage(new Image("/images/pawns/"+schoolData.getTeamTower().getId()+"tower.png"));
 
@@ -88,27 +88,27 @@ public class GameDataGUI {
     }
 
 
-    public void setIslandsData(IslandsData islandsData) {
+    public void setIslandsData(final IslandsData islandsData) {
         this.islandsData = islandsData;
 
         Platform.runLater(()->{
             int countDrawnIslands = 0;
             for(int i=0; i<12; i++){
-                IslandGuiLogic igl = Eriantys.getCurrentApplication().getIslandsSceneController().getIslands().get(i);
+                final IslandGuiLogic igl = Eriantys.getCurrentApplication().getIslandsSceneController().getIslands().get(i);
                 if(islandsData.getGroup(i) != -1){
                     igl.coverMergedIsland();
                 }
                 else{
-                    //set the position of the island
-                    double angle = (double)360/islandsData.getNumOfIslands();
+                    // Set the position of the island
+                    final double angle = (double)360/islandsData.getNumOfIslands();
                     igl.transform(countDrawnIslands,angle,islandsData.getNumOfIslands());
                     countDrawnIslands++;
-                    //Lacks of setting the typeof tower
-                    //TEMPORARY
+                    // Lacks of setting the typeof tower
+                    // TEMPORARY
                     if(islandsData.getHasTower(i)){
                         igl.getTower().setImage(new Image("/images/pawns/"+islandsData.getTowerType(i).getId()+"tower.png"));
                         if(islandsData.getGroupSize(i)>1) {
-                            //here we want to set the position of the islands (and possibly the correct position)
+                            // Here we want to set the position of the islands (and possibly the correct position)
                             igl.getNumTowers().setText("x" + islandsData.getGroupSize(i));
                             igl.getNumTowers().setVisible(true);
                         }else{
@@ -152,7 +152,7 @@ public class GameDataGUI {
                         students.get(color).setText("x" + numStudents);
                         cgl.getStudentsSymbols().get(color).setVisible(false);
                         cgl.getStudents().get(color).setVisible(false);
-                    }else{
+                    }else {
                         students.get(color).setText("x" + numStudents);
                         cgl.getStudentsSymbols().get(color).setVisible(true);
                         cgl.getStudents().get(color).setVisible(true);
@@ -177,7 +177,7 @@ public class GameDataGUI {
 
     public void setCharacters(Map<Integer, Integer> currCharacters) {
 
-        Platform.runLater(()->{
+        Platform.runLater(() -> {
             for(int val:currCharacters.keySet()){
                 if(currCharacters.get(val)>characters.get(val)) {
                     Eriantys.getCurrentApplication().getShopSceneController().cglFromId(val).increasePrice();
@@ -193,10 +193,6 @@ public class GameDataGUI {
 
     public Magician getClientMagician() {
         return clientMagician;
-    }
-
-    public int getClientMoney() {
-        return clientMoney;
     }
 
     public Map<Magician, SchoolData> getSchoolDataMap() {

@@ -10,13 +10,13 @@ import java.util.Map;
  * class to model an island for the GUI
  */
 public class IslandGuiLogic {
-    private Map<Color, Label> students;
-    private Map<Color, ImageView> studentsSymbols;
-    private ImageView island;
-    private Circle circle;
-    private ImageView tower;
-    private ImageView motherNature;
-    private Label numTowers;
+    final private Map<Color, Label> students;
+    final private Map<Color, ImageView> studentsSymbols;
+    final private ImageView island;
+    final private Circle circle;
+    final private ImageView tower;
+    final private ImageView motherNature;
+    final private Label numTowers;
     private boolean isCovered;
 
     public IslandGuiLogic(Map<Color, Label> students, Map<Color, ImageView> studentsSymbols, ImageView island, Circle circle, ImageView tower, ImageView motherNature, Label numTowers) {
@@ -30,17 +30,16 @@ public class IslandGuiLogic {
         this.isCovered = false;
     }
 
+    @Deprecated
     public void resizeItems(int sizeOfIsland){
-        //we must resize based ONLY on the number of island that make up the bigger island
-        //(so that it stays a fixed size during a turn)
+        // We must resize based ONLY on the number of island that make up the bigger island
+        // (so that it stays a fixed size during a turn)
         double resFactor = (1.0+(Math.min(sizeOfIsland*0.02,0.1)));
 
         double newIslandHeight = 210.0 * resFactor;
         double newIslandWidth = 213.0 * resFactor;
         double newCircleRadius = 87 * resFactor;
         double newStudentSize = 29 * resFactor;
-        //double newStudLabelWidth = 28 *resFactor;
-        //double newStudLabelHeight = 17.6 * resFactor;
 
 
         island.setFitHeight(newIslandHeight);
@@ -57,23 +56,13 @@ public class IslandGuiLogic {
     }
 
     public void transform(int islandSeqNum, double angle,int numOfIslands){
-        //given the sequence number we want to draw the island correctly
-        //inside an ellipse which has a and b as dimensions
+        // given the sequence number we want to draw the island correctly
+        // inside an ellipse which has a and b as dimensions
         int a = 890/2;
         int b = 470/2;
-        double angOffset = 0.0; //offset of a particular island in degrees
+        // Offset of a particular island in degrees
+        double angOffset = 0.0;
         double totAngle = islandSeqNum*angle;
-        //REMEMBER THE WORK
-        /*double tempAng = (totAngle*3.0)*Math.PI/180;
-                double signS = 1.0,signC = 1.0;
-                if(totAngle == 150 || totAngle == 210) signS = -1.0;
-                if(totAngle == 60 || totAngle == 120) signC = -1.0;
-                angOffsetS = (10*Math.sin(tempAng)*signS);
-                angOffsetC = (8.5*Math.cos(tempAng)*signC);
-
-                if(Math.abs(angOffsetS-0.0)<1.0) angOffsetS = 0;
-                if(Math.abs(angOffsetC-0.0)<1.0) angOffsetC = 0;*/
-
 
         if(numOfIslands == 12){
             double [] offSet = {0,10,7.5,0,-7.5,-10,0,10,7.5,0,-7.5,-10};
@@ -96,7 +85,7 @@ public class IslandGuiLogic {
             angOffset = offSet[islandSeqNum];
         }
 
-        //angle in radians
+        // angle in radians
         totAngle = ((totAngle+angOffset)*Math.PI)/180;
 
 
@@ -106,27 +95,27 @@ public class IslandGuiLogic {
         double translCoeffX = newPosX-island.getLayoutX();
         double translCoeffY = newPosY-island.getLayoutY();
 
-        //set islands position
+        // set islands position
         island.setLayoutY(newPosY);
         island.setLayoutX(newPosX);
 
-        //translate motherNature
+        // translate motherNature
         motherNature.setTranslateX(motherNature.getTranslateX()+translCoeffX);
         motherNature.setTranslateY(motherNature.getTranslateY()+translCoeffY);
 
-        //translate circle
+        // translate circle
         circle.setTranslateX(circle.getTranslateX()+translCoeffX);
         circle.setTranslateY(circle.getTranslateY()+translCoeffY);
 
-        //translate tower
+        // translate tower
         tower.setTranslateX(tower.getTranslateX()+translCoeffX);
         tower.setTranslateY(tower.getTranslateY()+translCoeffY);
 
-        //translate tower label
+        // translate tower label
         numTowers.setTranslateX(numTowers.getTranslateX()+translCoeffX);
         numTowers.setTranslateY(numTowers.getTranslateY()+translCoeffY);
 
-        //translate students and students label
+        // translate students and students label
         for(Color color:Color.values()){
             studentsSymbols.get(color).setTranslateX(studentsSymbols.get(color).getTranslateX()+translCoeffX);
             studentsSymbols.get(color).setTranslateY(studentsSymbols.get(color).getTranslateY()+translCoeffY);

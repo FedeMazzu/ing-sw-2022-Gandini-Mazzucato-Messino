@@ -1,7 +1,6 @@
 package it.polimi.deib.ingsw.gruppo44.Server.VirtualView;
 
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Color;
-import it.polimi.deib.ingsw.gruppo44.Server.Model.Island;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Tower;
 
 import java.io.Serializable;
@@ -16,11 +15,11 @@ import java.util.Map;
  */
 
 public class IslandsData implements Serializable {
-    private int group[]; //representing the connection between the island with the UnionFind conventions
-    private List<Map<Color, Integer>> students;
-    private Tower[] towers;
-    private boolean[] hasTower;
-    private int [] groupSize;
+    final private int group[]; //representing the connection between the island with the UnionFind conventions
+    final private List<Map<Color, Integer>> students;
+    final private Tower[] towers;
+    final private boolean[] hasTower;
+    final private int [] groupSize;
     private int numOfIslands;
 
     public IslandsData() {
@@ -92,7 +91,6 @@ public class IslandsData implements Serializable {
 
     public int getStudentsNum(int islandId, Color color){
         return students.get(islandId).get(color);
-
     }
 
     public int getGroup(int islandId) {
