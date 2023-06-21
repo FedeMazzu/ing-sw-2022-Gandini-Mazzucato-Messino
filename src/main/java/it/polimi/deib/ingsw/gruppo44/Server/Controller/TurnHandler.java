@@ -1,37 +1,32 @@
 package it.polimi.deib.ingsw.gruppo44.Server.Controller;
-import it.polimi.deib.ingsw.gruppo44.Common.GameMode;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Player;
 
 import java.io.Serializable;
 import java.util.ArrayDeque;
 import java.util.Comparator;
+import java.util.Objects;
 import java.util.PriorityQueue;
-import java.util.Queue;
 
 /**
  * Class to manage the playing order
  */
 public class TurnHandler implements Serializable {
 
-    private PriorityQueue<Ticket> turnOrder;
-    private ArrayDeque<Player> cardOrder;
-    private Player currPlayer;
-    private int numOfPlayers;
+    private final PriorityQueue<Ticket> turnOrder;
+    private final ArrayDeque<Player> cardOrder;
 
-    public TurnHandler(GameMode gameMode){
-        turnOrder = new PriorityQueue<Ticket>(new TicketComparator());
-        cardOrder = new ArrayDeque<Player>();
-        numOfPlayers = gameMode.getTeamPlayers() * gameMode.getTeamsNumber();
+    public TurnHandler(){
+        turnOrder = new PriorityQueue<>(new TicketComparator());
+        cardOrder = new ArrayDeque<>();
     }
 
     /**
-     * when a player has ended their turn they get removed from the PrioQ and get added to the Deque for the next round
+     * when a player has ended their turn they get removed from the PriorityQ and get added to the Deque for the next round
      */
 
     public void endOfTurn(){
         try{
-            Player p = turnOrder.poll().getPlayer();
-            cardOrder.add(p);
+            cardOrder.add(Objects.requireNonNull(turnOrder.poll()).getPlayer());
         }
         catch (NullPointerException e){
             e.printStackTrace();

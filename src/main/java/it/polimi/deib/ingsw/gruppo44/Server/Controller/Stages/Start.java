@@ -8,7 +8,6 @@ import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.Data;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.SchoolData;
 
 import java.io.*;
-import java.net.Socket;
 import java.util.*;
 
 
@@ -16,11 +15,8 @@ import java.util.*;
  * stage to initialize the game
  */
 public class Start implements Stage, Serializable {
-    private final GameStage gameStage = GameStage.START;
     private final GameController gameController;
-    private Game game;
-    private Data data;
-    private Map<Magician,Boolean> freeMagician;
+    private final Map<Magician,Boolean> freeMagician;
     public Start(GameController gameController) {
         this.gameController = gameController;
         freeMagician = new HashMap<>();
@@ -30,20 +26,20 @@ public class Start implements Stage, Serializable {
     public void handle() throws IOException, ClassNotFoundException, InterruptedException {
         Random rand = new Random();
         GameMode gameMode= gameController.getGameMode();
-        game = new Game(gameMode);
-        data = new Data();
+        Game game = new Game(gameMode);
+        Data data = new Data();
         gameController.setGame(game);
         gameController.setData(data);
-        TurnHandler turnHandler = new TurnHandler(gameMode);
+        TurnHandler turnHandler = new TurnHandler();
         gameController.setTurnHandler(turnHandler);
-        //saving the reference of the islands and clouds Data in the Virtual View
+        // saving the reference of the islands and clouds Data in the Virtual View
         data.setBoardData(game.getBoard().getBoardObserver().getBoardData());
         data.setIslandsData(game.getBoard().getUnionFind().getIslandsObserver().getIslandsData());
         data.setCloudsData(game.getBoard().getCloudsObserver().getCloudsData());
 
-        //Waiting for the players to join
+        // Waiting for the players to join
         int numUsers = gameController.getNumUsers();
-        while(numUsers < gameMode.getTeamPlayers()*gameMode.getTeamsNumber()) {
+        while(numUsers < gameMode.getTeamPlayers() * gameMode.getTeamsNumber()) {
             synchronized (gameController) {
                 gameController.wait();
             }
@@ -58,7 +54,6 @@ public class Start implements Stage, Serializable {
         User user;
         SchoolData schoolData;
         School school;
-        Socket socket;
         ObjectOutputStream oos;
         ObjectInputStream ois;
         PriorityQueue<Ticket> turnOrder = turnHandler.getTurnOrder();
@@ -90,7 +85,7 @@ public class Start implements Stage, Serializable {
             player = turnOrder.peek().getPlayer();
             user = player.getUser();
             school = player.getSchool();
-            for(Team team:game.getTeams()){
+            for(Team team: game.getTeams()){
                 for(Player p: team.getPlayers()){
                     if(school.equals(p.getSchool())) continue;
                     school.addSchool(p.getSchool());
