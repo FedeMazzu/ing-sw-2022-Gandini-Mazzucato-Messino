@@ -4,11 +4,9 @@ import it.polimi.deib.ingsw.gruppo44.Client.CLI.ClientController;
 import it.polimi.deib.ingsw.gruppo44.Client.CLI.ClientStage;
 import it.polimi.deib.ingsw.gruppo44.Client.CLI.GameDataCLI;
 import it.polimi.deib.ingsw.gruppo44.Client.CLI.MessagesMethodsCLI;
-import it.polimi.deib.ingsw.gruppo44.Client.GUI.MessagesMethodsGUI;
 import it.polimi.deib.ingsw.gruppo44.Common.Stage;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Color;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.CloudsData;
-import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.SchoolData;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -43,7 +41,7 @@ public class ClientActionExpert implements Stage{
     @Override
     public void handle() throws IOException, ClassNotFoundException, InterruptedException {
         handleCharacter();
-        if(endGame) clientController.setClientStage(ClientStage.ClientEND);
+        if(endGame) clientController.setClientStage(ClientStage.CLIENT_END);
         else{
             System.out.println("------------------------------------------------------------------------------------------\n" +
                     "------------------------------------------------------------------------------------------\n" +
@@ -75,7 +73,7 @@ public class ClientActionExpert implements Stage{
             //RECEIVING THE INFORMATION ABOUT THE END OF THE GAME
             boolean gameEnded = ois.readBoolean();
             if (gameEnded){
-                clientController.setClientStage(ClientStage.ClientEND);
+                clientController.setClientStage(ClientStage.CLIENT_END);
                 return;
             }
 
@@ -103,7 +101,7 @@ public class ClientActionExpert implements Stage{
             MessagesMethodsCLI.receiveCloudsUpdated();
             MessagesMethodsCLI.receiveSchoolsUpdated();
 
-            clientController.setClientStage(ClientStage.WaitingAfterTurn);
+            clientController.setClientStage(ClientStage.WAITING_AFTER_TURN);
         }
 
     }

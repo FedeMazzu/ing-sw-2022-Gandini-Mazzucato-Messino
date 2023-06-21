@@ -4,7 +4,6 @@ import it.polimi.deib.ingsw.gruppo44.Client.CLI.ClientController;
 import it.polimi.deib.ingsw.gruppo44.Client.CLI.ClientStage;
 import it.polimi.deib.ingsw.gruppo44.Client.CLI.GameDataCLI;
 import it.polimi.deib.ingsw.gruppo44.Client.CLI.MessagesMethodsCLI;
-import it.polimi.deib.ingsw.gruppo44.Client.GUI.MessagesMethodsGUI;
 import it.polimi.deib.ingsw.gruppo44.Common.Stage;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Color;
 import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.CloudsData;
@@ -61,7 +60,7 @@ public class ClientActionStandard implements Stage {
         //RECEIVING THE INFORMATION ABOUT THE END OF THE GAME
         boolean gameEnded = ois.readBoolean();
         if (gameEnded){
-            clientController.setClientStage(ClientStage.ClientEND);
+            clientController.setClientStage(ClientStage.CLIENT_END);
             return;
         }
 
@@ -90,7 +89,7 @@ public class ClientActionStandard implements Stage {
         MessagesMethodsCLI.receiveCloudsUpdated();
         MessagesMethodsCLI.receiveSchoolsUpdated();
 
-        clientController.setClientStage(ClientStage.WaitingAfterTurn);
+        clientController.setClientStage(ClientStage.WAITING_AFTER_TURN);
     }
 
 

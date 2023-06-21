@@ -1,7 +1,6 @@
 package it.polimi.deib.ingsw.gruppo44.Client.CLI;
 
 
-import it.polimi.deib.ingsw.gruppo44.Client.GUI.Eriantys;
 import it.polimi.deib.ingsw.gruppo44.Common.GameMode;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Color;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Magician;
@@ -13,7 +12,6 @@ import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.SchoolData;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.List;
@@ -163,7 +161,7 @@ public class MessagesMethodsCLI {
         clientController.setGameData(gameDataCLI);
         gameDataCLI.setData((Data) ois.readObject());
         printData();
-        clientController.setClientStage(ClientStage.ClientPLANNING);
+        clientController.setClientStage(ClientStage.CLIENT_PLANNING);
         System.out.println("Waiting for the other players to rejoin");
     }
 

@@ -47,7 +47,7 @@ public class Setup implements Stage {
 
         //Receiving the data of the initialized game
         receiveData(ois);
-        clientController.setClientStage(ClientStage.ClientPLANNING);
+        clientController.setClientStage(ClientStage.CLIENT_PLANNING);
     }
 
     /**

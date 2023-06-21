@@ -45,31 +45,31 @@ public class ClientController implements Runnable {
             while(!endGame) {
                 Stage stage;
                 switch (clientStage) {
-                    case CREATEGAME: //create a game
+                    case CREATE_GAME: //create a game
                         stage = new CreateGame(this);
                         break;
-                    case JOINGAME: //join a game
+                    case JOIN_GAME: //join a game
                         stage = new JoinGame(this);
                         break;
-                    case LOADGAME:
+                    case LOAD_GAME:
                         stage = new LoadGame(this);
                         break;
                     case SETUP:
                         stage = new Setup(this);
                         break;
-                    case ClientPLANNING:
+                    case CLIENT_PLANNING:
                         stage = new ClientPlanning(this);
                         break;
-                    case WaitingBeforeTurn:
+                    case WAITING_BEFORE_TURN:
                         stage = new WaitingBeforeTurn(this);
                         break;
-                    case ClientACTION:
+                    case CLIENT_ACTION:
                         boolean usingCharacter = false;
                         if(gameMode.isExpertMode()) usingCharacter = AskIfUsingCharacter();
                         if (usingCharacter) stage = new ClientActionExpert(this,characterChoice);
                         else stage = new ClientActionStandard(this);
                         break;
-                    case WaitingAfterTurn:
+                    case WAITING_AFTER_TURN:
                         stage = new WaitingAfterTurn(this);
                         break;
                     default: //case END
@@ -123,13 +123,13 @@ public class ClientController implements Runnable {
                 "3 - Load a game");
         switch (sc.nextInt()){
             case 1:
-                clientStage = ClientStage.CREATEGAME;
+                clientStage = ClientStage.CREATE_GAME;
                 break;
             case 2:
-                clientStage = ClientStage.JOINGAME;
+                clientStage = ClientStage.JOIN_GAME;
                 break;
             case 3:
-                clientStage = ClientStage.LOADGAME;
+                clientStage = ClientStage.LOAD_GAME;
                 break;
             default://case 3
                 System.out.println("Invalid input.. try again");

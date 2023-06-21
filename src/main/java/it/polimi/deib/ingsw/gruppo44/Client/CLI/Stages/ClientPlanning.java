@@ -5,7 +5,6 @@ import it.polimi.deib.ingsw.gruppo44.Client.CLI.ClientStage;
 import it.polimi.deib.ingsw.gruppo44.Client.CLI.MessagesMethodsCLI;
 import it.polimi.deib.ingsw.gruppo44.Common.Stage;
 import it.polimi.deib.ingsw.gruppo44.Server.Model.Magician;
-import it.polimi.deib.ingsw.gruppo44.Server.VirtualView.CloudsData;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -86,7 +85,7 @@ public class ClientPlanning implements Stage {
         clientController.setTurnNumber(turnNumber);
         System.out.println("Your are the "+(turnNumber+1)+"° player to play!");
 
-        if(turnNumber == 0) clientController.setClientStage(ClientStage.ClientACTION);
-        else clientController.setClientStage(ClientStage.WaitingBeforeTurn);
+        if(turnNumber == 0) clientController.setClientStage(ClientStage.CLIENT_ACTION);
+        else clientController.setClientStage(ClientStage.WAITING_BEFORE_TURN);
     }
 }
