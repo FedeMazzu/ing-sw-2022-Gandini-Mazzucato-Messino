@@ -80,7 +80,6 @@ public class MessagesMethodsCLI {
         System.out.println("Moving mother nature..");
         receiveIslandsUpdated();
         int motherNaturePos = ois.readInt();
-        clientController.getGameDataCLI().setMotherNaturePosition(motherNaturePos);
         System.out.println("Mother nature was moved on island: "+ motherNaturePos+"!");
         System.out.println("------------------------------------------------------------------------------------------");
     }
@@ -193,7 +192,7 @@ public class MessagesMethodsCLI {
         }
 
         currData+="Islands:\n";
-        IslandsData islandsData = gameDataCLI.getIslandsData();;
+        IslandsData islandsData = gameDataCLI.getIslandsData();
         for(int i=0;i<12;i++){
             if(islandsData.getGroup(i)!=-1) continue;
 
